@@ -1,0 +1,20 @@
+group 'edu.wmi.dpri.przychodnia'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.0.1'
+    compile group: 'javax.validation', name: 'validation-api', version: '1.1.0.Final'
+    compile 'org.glassfish.jersey.core:jersey-client:2.23.2'
+    compile group: 'org.glassfish.jersey.ext', name: 'jersey-proxy-client', version: '2.23.2'
+    compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.23.2'
+
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
