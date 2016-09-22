@@ -6,9 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import static edu.wmi.dpri.przychodnia.server.entity.builder.PersonBuilder.aPerson;
-import static edu.wmi.dpri.przychodnia.server.usermanagement.providers.SampleDataProvider.PATIENT;
-import static edu.wmi.dpri.przychodnia.server.usermanagement.providers.SampleDataProvider.USER;
-import static edu.wmi.dpri.przychodnia.server.usermanagement.providers.SampleDataProvider.getSampleAssignments;
+import static edu.wmi.dpri.przychodnia.server.usermanagement.providers.SampleDataProvider.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -56,8 +54,9 @@ public class UserToUserDataSimpleWebModelFunctionTest {
         user.setEmailAddress(USER_DOMAIN_COM);
         user.setLogin(U_123);
         user.setPerson(aPerson().withFirstName(JOZEK).withPESEL(PESEL).withLastName(PIERDZISTOLEK).build());
-        user.setChildUsers(getSampleAssignments(ABC, DEF));
-        user.setParentUsers(getSampleAssignments(DEF, ABC));
+        user.setChildUsers(getSampleUserList(ABC, DEF));
+        user.setParentUsers(getSampleUserList(DEF, ABC));
+        user.setRoles(getSampleRoleList());
         return user;
     }
 

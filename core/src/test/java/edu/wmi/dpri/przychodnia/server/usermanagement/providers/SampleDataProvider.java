@@ -15,6 +15,13 @@ import static edu.wmi.dpri.przychodnia.server.entity.builder.UserBuilder.anUser;
  */
 public class SampleDataProvider {
 
+    public static final String APARTMENT = "445";
+    public static final String CITY = "CITY";
+    public static final String COUNTRY = "COUNTRY";
+    public static final String HOUSE = "55A";
+    public static final String POST_CODE = "12-222";
+    public static final String A_PROVINCE = "A_PROVINCE";
+    public static final String STREET = "STREET";
     public static final String PESEL_BASE = "123456789";
     public static final String USER = "USER";
     public static final String PATIENT = "PATIENT";
@@ -28,12 +35,6 @@ public class SampleDataProvider {
         two.setName(PATIENT);
         two.setId(2);
         return newArrayList(one, two);
-    }
-
-    public static List<User> getSampleAssignments(String fNameTemplate, String
-            lNameTemplate) {
-        List<User> users = getSampleUserList(fNameTemplate, lNameTemplate);
-        return users;
     }
 
     public static List<User> getSampleUserList(String fNameTemplate, String lNameTemplate) {

@@ -5,6 +5,7 @@ import edu.wmi.dpri.przychodnia.server.exceptionmanagement.mappers.AppExceptionM
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.mappers.ConstraintViolationExceptionMapper;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.mappers.GenericExceptionMapper;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.mappers.NotFoundExceptionMapper;
+import edu.wmi.dpri.przychodnia.server.usermanagement.web.api.AddressWebApiImpl;
 import edu.wmi.dpri.przychodnia.server.usermanagement.web.api.IdTypeManagementWebApiImpl;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
@@ -19,7 +20,10 @@ import org.springframework.stereotype.Component;
 public class UserManagementJerseyConfig extends ResourceConfig {
 
     public UserManagementJerseyConfig() {
+        //apis
         register(IdTypeManagementWebApiImpl.class);
+        register(AddressWebApiImpl.class);
+        //mappers
         register(AppExceptionMapper.class);
         register(GenericExceptionMapper.class);
         register(NotFoundExceptionMapper.class);

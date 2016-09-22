@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 public class AddressWebModel {
 
 	@NotNull
-	private Integer id;
+	private Long id;
 	@NotNull
 	private String country;
 	@NotNull
@@ -23,11 +23,11 @@ public class AddressWebModel {
 	@NotNull
 	private String postCode;
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

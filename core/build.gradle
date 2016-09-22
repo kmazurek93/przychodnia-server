@@ -1,3 +1,5 @@
+import com.sun.org.apache.xalan.internal.xsltc.compiler.util.Util
+
 group 'edu.wmi.dpri.przychodnia'
 version '1.0-SNAPSHOT'
 
@@ -21,32 +23,27 @@ configurations.all {
     }
 
 }
-
+war {
+    Util.baseName("backend")
+}
 dependencies {
     compile("org.springframework.boot:spring-boot") {
         exclude module: 'commons-logging'
     }
-    compile("org.springframework.boot:spring-boot-starter-web:1.4.0.RELEASE") {
-        exclude module: "spring-boot-starter-tomcat"
-    }
-    compile('org.springframework.boot:spring-boot-starter-data-jpa:1.4.0.RELEASE') {
-        exclude module: "spring-boot-starter-tomcat"
-    }
-    compile('org.springframework.boot:spring-boot-starter-jersey:1.4.0.RELEASE') {
-        exclude module: "spring-boot-starter-tomcat"
-    }
-    compile ('org.hibernate:hibernate-core:5.2.2.Final')
-    compile ('org.hibernate:hibernate-entitymanager:5.2.2.Final')
-    compile ('org.hibernate:hibernate-validator:5.2.2.Final')
+    compile("org.springframework.boot:spring-boot-starter-web:1.4.0.RELEASE")
+    compile('org.springframework.boot:spring-boot-starter-data-jpa:1.4.0.RELEASE')
+    compile('org.springframework.boot:spring-boot-starter-jersey:1.4.0.RELEASE')
+    compile('org.hibernate:hibernate-core:5.2.2.Final')
+    compile('org.hibernate:hibernate-entitymanager:5.2.2.Final')
+    compile('org.hibernate:hibernate-validator:5.2.2.Final')
     compile('org.springframework:spring-orm:4.3.2.RELEASE')
-    compile("org.springframework.boot:spring-boot-starter-jetty:1.4.0.RELEASE")
     compile group: 'joda-time', name: 'joda-time', version: '2.9.4'
     compile group: 'org.jadira.usertype', name: 'usertype.core', version: '6.0.1.GA'
     compile group: 'org.glassfish.jersey.ext', name: 'jersey-spring3', version: '2.23.2'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
     compile group: 'com.google.guava', name: 'guava', version: '19.0'
-    compile ('javax.ws.rs:javax.ws.rs-api:2.0.1')
-    compile ('javax.validation:validation-api:1.1.0.Final')
+    compile('javax.ws.rs:javax.ws.rs-api:2.0.1')
+    compile('javax.validation:validation-api:1.1.0.Final')
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.8.2'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.2'
     compile group: 'com.fasterxml.jackson.jaxrs', name: 'jackson-jaxrs-json-provider', version: '2.8.2'
@@ -54,6 +51,7 @@ dependencies {
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.26'
     compile 'org.jboss.logging:jboss-logging:3.2.0.Final'
     compile project(':commons')
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat:1.4.0.RELEASE'
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile group: 'org.mockito', name: 'mockito-core', version: '1.10.19'
     testCompile group: 'org.assertj', name: 'assertj-core', version: '3.5.2'

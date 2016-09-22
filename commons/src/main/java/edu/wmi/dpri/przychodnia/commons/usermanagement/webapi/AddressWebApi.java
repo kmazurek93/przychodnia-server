@@ -22,7 +22,7 @@ public interface AddressWebApi {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    AddressWebModel getAddressById(@QueryParam("id") @NotNull Integer id);
+    AddressWebModel getAddressById(@QueryParam("id") @NotNull Long id);
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -35,6 +35,6 @@ public interface AddressWebApi {
     AddressWebModel update(@NotNull @Valid AddressWebModel addressWebModel);
 
     @DELETE
-    Response deleteOne(@NotNull @QueryParam("id") Integer id);
+    Response deleteOne(@NotNull @QueryParam("id") Long id);
 
 }

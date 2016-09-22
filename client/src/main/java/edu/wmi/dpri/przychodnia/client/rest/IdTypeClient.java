@@ -10,6 +10,7 @@ import javax.ws.rs.core.Response;
  * Created by lupus on 21.09.16.
  */
 public class IdTypeClient extends GenericRestClient<IdTypeManagementWebApi> {
+
     public IdTypeClient(String url) {
         super(url, IdTypeManagementWebApi.class);
     }

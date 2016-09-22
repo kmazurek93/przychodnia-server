@@ -18,7 +18,8 @@ public class NotFoundExceptionThrower {
 	public static final String AND_ID = " and id: ";
 	public static final String FAILED = " failed";
 
-	public static void throwExceptionIfNull(Integer id, Object entity, ExceptionCause cause,
+	public static void throwExceptionIfNull(Number id, Object entity, ExceptionCause
+			cause,
 			Class entityClazz) {
 		if (entity == null) {
 			String message = StringUtils.join(cause, ENTITY_OF_CLASS, entityClazz.getSimpleName(), AND_ID, id,
@@ -30,4 +31,5 @@ public class NotFoundExceptionThrower {
 			throw new NotFoundException(errorMessage);
 		}
 	}
+
 }

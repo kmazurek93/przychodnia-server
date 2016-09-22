@@ -6,7 +6,7 @@ import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.AddressWebModel;
  * Created by kmazu on 06.07.2016.
  */
 public final class AddressWebModelBuilder {
-    private Integer id;
+    private Long id;
     private String country;
     private String province;
     private String city;
@@ -22,7 +22,7 @@ public final class AddressWebModelBuilder {
         return new AddressWebModelBuilder();
     }
 
-    public AddressWebModelBuilder withId(Integer id) {
+    public AddressWebModelBuilder withId(Long id) {
         this.id = id;
         return this;
     }
