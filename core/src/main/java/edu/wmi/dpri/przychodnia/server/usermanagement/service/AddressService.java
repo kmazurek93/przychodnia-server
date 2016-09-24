@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.List;
 
+import static com.google.common.collect.Lists.newArrayList;
 import static edu.wmi.dpri.przychodnia.server.exceptionmanagement.NotFoundExceptionThrower.throwExceptionIfNull;
 
 /**
@@ -46,7 +48,7 @@ public class AddressService {
     @Transactional(readOnly = true)
     public Address findOne(Long id) {
         Address foundAddress = repository.findOne(id);
-        throwExceptionIfNull(id, foundAddress, ExceptionCause.DELETION, Address.class);
+        throwExceptionIfNull(id, foundAddress, ExceptionCause.RETRIEVAL, Address.class);
         return foundAddress;
     }
 
@@ -55,5 +57,10 @@ public class AddressService {
         Address foundAddress = repository.findOne(id);
         throwExceptionIfNull(id, foundAddress, ExceptionCause.DELETION, Address.class);
         repository.delete(id);
+    }
+
+    @Transactional
+    public List<Address> getAll() {
+        return newArrayList(repository.findAll());
     }
 }

@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by lupus on 22.09.16.
@@ -42,5 +44,11 @@ public class AddressWebService {
     public Response deleteOne(Long id) {
         addressService.deleteOne(id);
         return Response.noContent().build();
+    }
+
+    public List<AddressWebModel> getAll() {
+        List<Address> all = addressService.getAll();
+        return all.stream().map(o -> entityToWebModelFunction.apply(o))
+                .collect(Collectors.toList());
     }
 }

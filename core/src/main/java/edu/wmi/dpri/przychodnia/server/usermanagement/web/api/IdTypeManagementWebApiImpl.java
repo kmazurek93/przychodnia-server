@@ -7,35 +7,40 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 /**
  * Created by kmazu on 07.09.2016.
  */
 @Service
-
 public class IdTypeManagementWebApiImpl implements IdTypeManagementWebApi {
 
-	@Inject
-	private IdTypeWebService idTypeWebService;
+    @Inject
+    private IdTypeWebService idTypeWebService;
 
-	@Override
-	public IdTypeWebModel getOne(Integer id) {
-		return idTypeWebService.getOne(id);
-	}
+    @Override
+    public IdTypeWebModel getOne(Integer id) {
+        return idTypeWebService.getOne(id);
+    }
 
-	@Override
-	public IdTypeWebModel createOne(IdTypeWebModel input) {
-		return idTypeWebService.createOne(input);
-	}
+    @Override
+    public IdTypeWebModel createOne(IdTypeWebModel input) {
+        return idTypeWebService.createOne(input);
+    }
 
-	@Override
-	public IdTypeWebModel updateIdType(IdTypeWebModel toUpdate) {
-		return idTypeWebService.updateIdType(toUpdate);
-	}
+    @Override
+    public IdTypeWebModel updateIdType(IdTypeWebModel toUpdate) {
+        return idTypeWebService.updateIdType(toUpdate);
+    }
 
-	@Override
-	public Response deleteOne(Integer id) {
-		return idTypeWebService.deleteOne(id);
-	}
+    @Override
+    public Response deleteOne(Integer id) {
+        return idTypeWebService.deleteOne(id);
+    }
+
+    @Override
+    public List<IdTypeWebModel> getAll() {
+        return idTypeWebService.getAll();
+    }
 
 }

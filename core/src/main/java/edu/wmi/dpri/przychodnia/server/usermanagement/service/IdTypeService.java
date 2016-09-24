@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
+import static com.google.common.collect.Lists.newArrayList;
 import static edu.wmi.dpri.przychodnia.server.exceptionmanagement.NotFoundExceptionThrower.throwExceptionIfNull;
 
 
@@ -55,4 +57,8 @@ public class IdTypeService {
         return Response.noContent().build();
     }
 
+    @Transactional(readOnly = true)
+    public List<IdType> getAll() {
+        return newArrayList(idTypeRepository.findAll());
+    }
 }

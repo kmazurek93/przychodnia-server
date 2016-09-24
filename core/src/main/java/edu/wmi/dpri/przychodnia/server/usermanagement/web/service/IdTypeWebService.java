@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class IdTypeWebService {
@@ -34,5 +36,10 @@ public class IdTypeWebService {
 
     public Response deleteOne(Integer id) {
         return idTypeService.deleteIdType(id);
+    }
+
+    public List<IdTypeWebModel> getAll() {
+        List<IdType> all = idTypeService.getAll();
+        return all.stream().map(o -> function.apply(o)).collect(Collectors.toList());
     }
 }

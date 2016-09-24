@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 import static edu.wmi.dpri.przychodnia.commons.usermanagement.UserManagementConstants.API_PATH;
 import static edu.wmi.dpri.przychodnia.commons.usermanagement.webapi.IdTypeManagementWebApi.BASE_PATH;
@@ -19,6 +20,7 @@ import static edu.wmi.dpri.przychodnia.commons.usermanagement.webapi.IdTypeManag
 public interface IdTypeManagementWebApi {
 
 	String BASE_PATH = "/idTypes";
+	String LIST = "/list";
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
@@ -37,4 +39,8 @@ public interface IdTypeManagementWebApi {
 	@DELETE
 	Response deleteOne(@QueryParam("id") @NotNull Integer id);
 
+	@GET
+	@Path(LIST)
+	@Produces(MediaType.APPLICATION_JSON)
+	List<IdTypeWebModel> getAll();
 }

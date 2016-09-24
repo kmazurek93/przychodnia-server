@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 import static edu.wmi.dpri.przychodnia.commons.usermanagement.UserManagementConstants.API_PATH;
 import static edu.wmi.dpri.przychodnia.commons.usermanagement.webapi.AddressWebApi.BASE_PATH;
@@ -19,6 +20,7 @@ import static edu.wmi.dpri.przychodnia.commons.usermanagement.webapi.AddressWebA
 @Path(API_PATH + BASE_PATH)
 public interface AddressWebApi {
     String BASE_PATH = "/addresses";
+    String LIST = "/list";
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -37,4 +39,8 @@ public interface AddressWebApi {
     @DELETE
     Response deleteOne(@NotNull @QueryParam("id") Long id);
 
+    @GET
+    @Path(LIST)
+    @Produces(MediaType.APPLICATION_JSON)
+    List<AddressWebModel> getAll();
 }
