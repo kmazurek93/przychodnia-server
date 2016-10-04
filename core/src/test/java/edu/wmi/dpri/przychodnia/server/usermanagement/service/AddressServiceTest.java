@@ -99,6 +99,8 @@ public class AddressServiceTest {
 
     @Test
     public void deleteOne() throws Exception {
+        //given
+        when(repository.findOne(eq(ADDRESS_ID))).thenReturn(new Address());
         // when
         tested.deleteOne(ADDRESS_ID);
         // then
