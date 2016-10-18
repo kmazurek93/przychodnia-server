@@ -2,10 +2,12 @@ package edu.wmi.dpri.przychodnia.server.usermanagement.web.service;
 
 import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.AddressWebModel;
 import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.creation.AddressCreationWebModel;
+import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.creation.RegistrationInputWebModel;
 import edu.wmi.dpri.przychodnia.server.entity.Address;
 import edu.wmi.dpri.przychodnia.server.usermanagement.function.AddressCreationWebModelToAddressFunction;
 import edu.wmi.dpri.przychodnia.server.usermanagement.function.AddressToAddressWebModelFunction;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.AddressService;
+import edu.wmi.dpri.przychodnia.server.usermanagement.state.UserRegisteringState;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -27,18 +29,18 @@ public class AddressWebService {
 
     public AddressWebModel getAddressById(Long id) {
         Address address = addressService.findOne(id);
-        return entityToWebModelFunction.apply(address);
+        return convertEntityToWebModel(address);
     }
 
     public AddressWebModel createAddress(AddressCreationWebModel addressCreationWebModel) {
-        Address address = creationWebModelToAddressFunction.apply(addressCreationWebModel);
+        Address address = convertCreationModelToNewEntity(addressCreationWebModel);
         Address savedAddress = addressService.saveAddress(address);
-        return entityToWebModelFunction.apply(savedAddress);
+        return convertEntityToWebModel(savedAddress);
     }
 
     public AddressWebModel update(AddressWebModel addressWebModel) {
         Address address = addressService.updateAddress(addressWebModel);
-        return entityToWebModelFunction.apply(address);
+        return convertEntityToWebModel(address);
     }
 
     public Response deleteOne(Long id) {
@@ -48,7 +50,27 @@ public class AddressWebService {
 
     public List<AddressWebModel> getAll() {
         List<Address> all = addressService.getAll();
-        return all.stream().map(o -> entityToWebModelFunction.apply(o))
-                .collect(Collectors.toList());
+        return all.stream().map(this::convertEntityToWebModel).collect(Collectors.toList());
+    }
+
+    private AddressWebModel convertEntityToWebModel(Address o) {
+        return entityToWebModelFunction.apply(o);
+    }
+
+    public void handleAddingAddressesDuringRegistration(UserRegisteringState state) {
+        RegistrationInputWebModel registrationInputWebModel = state.getRegistrationInputWebModel();
+        AddressCreationWebModel address = registrationInputWebModel.getAddress();
+        AddressCreationWebModel mailingAddress = registrationInputWebModel.getMailingAddress();
+        Address savedAddress = addressService.saveAddress(convertCreationModelToNewEntity(address));
+        state.setSavedAddress(savedAddress);
+        if (mailingAddress != null) {
+            Address savedMailingAddress = addressService.saveAddress(convertCreationModelToNewEntity
+                    (mailingAddress));
+            state.setSavedMailingAddress(savedMailingAddress);
+        }
+    }
+
+    private Address convertCreationModelToNewEntity(AddressCreationWebModel address) {
+        return creationWebModelToAddressFunction.apply(address);
     }
 }

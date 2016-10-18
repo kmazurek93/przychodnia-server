@@ -2,7 +2,7 @@ package edu.wmi.dpri.przychodnia.server.entity;
 
 import edu.wmi.dpri.przychodnia.server.entity.enums.ActionType;
 import edu.wmi.dpri.przychodnia.server.entity.enums.EntityType;
-import org.jadira.usertype.dateandtime.joda.PersistentDateTime;
+import org.joda.time.DateTime;
 
 import javax.persistence.*;
 
@@ -33,13 +33,13 @@ public class ActionLog {
     private ActionType actionType;
 
     @Column(name = "action_date")
-    private PersistentDateTime actionDate;
+    private DateTime actionDate;
 
-    public PersistentDateTime getActionDate() {
+    public DateTime getActionDate() {
         return actionDate;
     }
 
-    public void setActionDate(PersistentDateTime actionDate) {
+    public void setActionDate(DateTime actionDate) {
         this.actionDate = actionDate;
     }
 
