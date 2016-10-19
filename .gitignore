@@ -1,9 +1,9 @@
-.gradle
-gradle
-gradlew
+#.gradle
+#gradle
+#gradlew
 *.ipr
 *.iws
-gradlew.bat
+#gradlew.bat
 .idea/*
 .idea
 out/*
