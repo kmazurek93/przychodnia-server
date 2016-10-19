@@ -9,11 +9,10 @@ pipelines:
   default:
     - step:
         script: # Modify the commands below to build your repository.
-          - echo 'Won't do anything -- default'
+          - echo "Won't do anything -- default"
   branches:
    master:
     - step:
 	script:
-	  - echo 'building war'
-	  - ./gradlew bootRepackage
-	
+      - echo 'building war...'
+      - ./gradlew bootRepackage
