@@ -13,6 +13,9 @@ public class AddressToAddressWebModelFunction implements Function<Address, Addre
 
     @Override
     public AddressWebModel apply(Address input) {
+        if (input == null) {
+            return null;
+        }
         AddressWebModel outcome = new AddressWebModel();
         outcome.setStreet(input.getStreet());
         outcome.setPostCode(input.getPostCode());

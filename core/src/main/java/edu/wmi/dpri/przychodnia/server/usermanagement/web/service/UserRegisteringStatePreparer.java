@@ -6,6 +6,7 @@ import edu.wmi.dpri.przychodnia.server.entity.Role;
 import edu.wmi.dpri.przychodnia.server.entity.Sex;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.IdTypeService;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.RoleService;
+import edu.wmi.dpri.przychodnia.server.usermanagement.service.SexService;
 import edu.wmi.dpri.przychodnia.server.usermanagement.state.UserRegisteringState;
 import org.springframework.stereotype.Component;
 

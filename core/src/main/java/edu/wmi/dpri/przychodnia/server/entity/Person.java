@@ -6,6 +6,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.util.List;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 
 /**
  * Created by kmazu on 12.06.2016.
@@ -57,7 +59,7 @@ public class Person {
     private Sex sex;
 
     @OneToMany(targetEntity = User.class, mappedBy = "id")
-    private List<User> users;
+    private List<User> users = newArrayList();
 
     public String getPESEL() {
         return PESEL;

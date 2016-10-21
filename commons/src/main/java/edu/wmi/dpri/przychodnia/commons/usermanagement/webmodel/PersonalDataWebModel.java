@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
  */
 public class PersonalDataWebModel {
     @NotNull
-    private String PESEL;
+    private String pesel;
     @NotNull
     private String firstName;
     private String middleName;
@@ -24,12 +24,12 @@ public class PersonalDataWebModel {
     @NotNull
     private Integer sexId;
 
-    public String getPESEL() {
-        return PESEL;
+    public String getPesel() {
+        return pesel;
     }
 
-    public void setPESEL(String PESEL) {
-        this.PESEL = PESEL;
+    public void setPesel(String pesel) {
+        this.pesel = pesel;
     }
 
     public String getFirstName() {

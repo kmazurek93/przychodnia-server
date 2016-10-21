@@ -10,6 +10,7 @@ import static com.google.common.collect.Lists.newArrayList;
 /**
  * Created by lupus on 18.10.16.
  */
+
 public class UserRegisteringState {
     private RegistrationInputWebModel registrationInputWebModel;
     private Address savedAddress;

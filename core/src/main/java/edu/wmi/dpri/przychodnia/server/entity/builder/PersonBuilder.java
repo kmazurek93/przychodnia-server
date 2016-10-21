@@ -1,10 +1,11 @@
 package edu.wmi.dpri.przychodnia.server.entity.builder;
 
 import edu.wmi.dpri.przychodnia.server.entity.*;
-import org.jadira.usertype.dateandtime.joda.PersistentDateTime;
 import org.joda.time.DateTime;
 
 import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
 
 /**
  * Created by lupus on 19.09.16.
@@ -21,7 +22,7 @@ public final class PersonBuilder {
     private Address address;
     private Address mailingAddress;
     private Sex sex;
-    private List<User> users;
+    private List<User> users = newArrayList();
 
     private PersonBuilder() {
     }
