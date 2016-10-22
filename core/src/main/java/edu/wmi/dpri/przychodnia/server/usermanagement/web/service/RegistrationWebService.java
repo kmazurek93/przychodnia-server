@@ -3,6 +3,7 @@ package edu.wmi.dpri.przychodnia.server.usermanagement.web.service;
 import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.RegistrationOutput;
 import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.creation.RegistrationInputWebModel;
 import edu.wmi.dpri.przychodnia.server.usermanagement.function.AddressToAddressWebModelFunction;
+import edu.wmi.dpri.przychodnia.server.usermanagement.service.verification.UserVerificationService;
 import edu.wmi.dpri.przychodnia.server.usermanagement.state.UserRegisteringState;
 import org.springframework.stereotype.Service;
 
@@ -26,13 +27,22 @@ public class RegistrationWebService {
     private UserRegisteringStatePreparer userRegisteringStatePreparer;
     @Inject
     private AddressToAddressWebModelFunction addressFunction;
+    @Inject
+    private UserVerificationService userVerificationService;
 
     public RegistrationOutput registerUserAndReturnOutput(RegistrationInputWebModel input) {
+        verifyIfProvidedEmailAndUsernameAndPeselAreUnique(input);
         UserRegisteringState state = userRegisteringStatePreparer.prepareUserRegisteringState
                 (input);
         handleRegistrationProcess(state);
         return createRegistrationOutput(input, state);
 
+    }
+
+    private void verifyIfProvidedEmailAndUsernameAndPeselAreUnique(RegistrationInputWebModel input) {
+        userVerificationService.verifyIfEmailExists(input.getUserData().getEmailAddress());
+        userVerificationService.verifyIfUserNameExists(input.getUserData().getUsername());
+        userVerificationService.verifyIfPeselExists(input.getPersonalData().getPesel());
     }
 
     private void handleRegistrationProcess(UserRegisteringState state) {

@@ -7,6 +7,7 @@ import edu.wmi.dpri.przychodnia.server.exceptionmanagement.mappers.GenericExcept
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.mappers.NotFoundExceptionMapper;
 import edu.wmi.dpri.przychodnia.server.usermanagement.web.api.AddressWebApiImpl;
 import edu.wmi.dpri.przychodnia.server.usermanagement.web.api.IdTypeManagementWebApiImpl;
+import edu.wmi.dpri.przychodnia.server.usermanagement.web.api.LoginApiImpl;
 import edu.wmi.dpri.przychodnia.server.usermanagement.web.api.RegistrationWebApiImpl;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
@@ -25,6 +26,7 @@ public class UserManagementJerseyConfig extends ResourceConfig {
         register(IdTypeManagementWebApiImpl.class);
         register(AddressWebApiImpl.class);
         register(RegistrationWebApiImpl.class);
+        register(LoginApiImpl.class);
         //mappers
         register(AppExceptionMapper.class);
         register(GenericExceptionMapper.class);

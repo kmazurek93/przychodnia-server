@@ -21,7 +21,7 @@ public class PersonWebService {
 
     public void handleAddingPersonDuringRegistration(UserRegisteringState state) {
         Person person = userRegisteringStateFunctions.createPersonToSaveFromState(state);
-        Person savedPerson = personService.createPerson(person, person.getPESEL());
+        Person savedPerson = personService.createPerson(person);
         state.setSavedPerson(savedPerson);
     }
 

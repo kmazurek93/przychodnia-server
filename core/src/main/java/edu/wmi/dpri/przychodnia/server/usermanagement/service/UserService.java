@@ -20,4 +20,20 @@ public class UserService {
     public User saveUser(User user) {
         return userRepository.save(user);
     }
+
+    @Transactional(readOnly = true)
+    public User getUserByLogin(String login) {
+        return userRepository.findByLogin(login);
+    }
+
+    @Transactional(readOnly = true)
+    public boolean emailExists(String email) {
+        User byEmail = userRepository.findByEmailAddress(email);
+        return (byEmail != null);
+    }
+    @Transactional(readOnly = true)
+    public boolean usernameExists(String username) {
+        User byLogin = userRepository.findByLogin(username);
+        return (byLogin != null);
+    }
 }

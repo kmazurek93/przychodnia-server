@@ -20,9 +20,8 @@ public class ConstraintViolationExceptionMapper implements ExceptionMapper<Const
     public Response toResponse(ConstraintViolationException ex) {
         ErrorMessage errorMessage = new ErrorMessage();
         setHttpStatus(ex, errorMessage);
-        errorMessage.setCode(555);
         Set<ConstraintViolation<?>> set = ex.getConstraintViolations();
-        String message ="";
+        String message = "";
 
         for(ConstraintViolation<?> c : set) {
                 String templ = "";
@@ -33,8 +32,6 @@ public class ConstraintViolationExceptionMapper implements ExceptionMapper<Const
         }
         errorMessage.setMessage(message);
 
-        errorMessage.setDeveloperMessage(null);
-        errorMessage.setLink(null);
         return Response.status(errorMessage.getStatus())
                 .entity(errorMessage)
                 .type(MediaType.APPLICATION_JSON)

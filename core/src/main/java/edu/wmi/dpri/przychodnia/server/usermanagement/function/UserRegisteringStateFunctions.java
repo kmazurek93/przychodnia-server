@@ -57,11 +57,11 @@ public class UserRegisteringStateFunctions {
 
     private User createUser(UserDataWebModel userDataWebModel, UserRegisteringState state) {
         String hashedPassword = passwordService.createSaltedHash(userDataWebModel.getPassword(), userDataWebModel
-                .getLogin());
+                .getUsername());
         return anUser()
                 .withActive(true)
                 .withEmailAddress(userDataWebModel.getEmailAddress())
-                .withLogin(userDataWebModel.getLogin())
+                .withLogin(userDataWebModel.getUsername())
                 .withPassword(hashedPassword)
                 .withPerson(state.getSavedPerson())
                 .withRoles(state.getTargetRoles())
