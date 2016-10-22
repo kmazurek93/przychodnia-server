@@ -7,8 +7,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 
 /**
  * Created by lupus on 10.05.16.
@@ -20,12 +18,7 @@ public class GenericExceptionMapper implements ExceptionMapper<Throwable> {
     public Response toResponse(Throwable ex) {
         ErrorMessage errorMessage = new ErrorMessage();
         setHttpStatus(ex, errorMessage);
-        errorMessage.setCode(999);
         errorMessage.setMessage(ex.getMessage());
-        StringWriter errorStackTrace = new StringWriter();
-        ex.printStackTrace(new PrintWriter(errorStackTrace));
-        errorMessage.setDeveloperMessage(errorStackTrace.toString());
-        errorMessage.setLink(null);
 
         return Response.status(errorMessage.getStatus())
                 .entity(errorMessage)

@@ -1,19 +1,13 @@
 package edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions;
 
 /**
- * Created by lupus on 11.09.16.
+ * Created by lupus on 22.10.16.
  */
 public final class ErrorMessageBuilder {
-
-    int status;
-
-    int code;
-
-    String message;
-
-    String link;
-
-    String developerMessage;
+    private int status;
+    private String message;
+    private String value;
+    private String valueType;
 
     private ErrorMessageBuilder() {
     }
@@ -27,33 +21,27 @@ public final class ErrorMessageBuilder {
         return this;
     }
 
-    public ErrorMessageBuilder withCode(int code) {
-        this.code = code;
-        return this;
-    }
-
     public ErrorMessageBuilder withMessage(String message) {
         this.message = message;
         return this;
     }
 
-    public ErrorMessageBuilder withLink(String link) {
-        this.link = link;
+    public ErrorMessageBuilder withValue(String value) {
+        this.value = value;
         return this;
     }
 
-    public ErrorMessageBuilder withDeveloperMessage(String developerMessage) {
-        this.developerMessage = developerMessage;
+    public ErrorMessageBuilder withValueType(String valueType) {
+        this.valueType = valueType;
         return this;
     }
 
     public ErrorMessage build() {
         ErrorMessage errorMessage = new ErrorMessage();
         errorMessage.setStatus(status);
-        errorMessage.setCode(code);
         errorMessage.setMessage(message);
-        errorMessage.setLink(link);
-        errorMessage.setDeveloperMessage(developerMessage);
+        errorMessage.setValue(value);
+        errorMessage.setValueType(valueType);
         return errorMessage;
     }
 }

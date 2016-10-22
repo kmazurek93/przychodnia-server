@@ -2,27 +2,37 @@ package edu.wmi.dpri.przychodnia.server.exceptionmanagement.generators;
 
 
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.ErrorMessage;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Created by kmazu on 19.06.2016.
  */
 public class ErrorMessageGenerator {
 
-    public static ErrorMessage getConflictMessage(String id, String type) {
+    private static final String ALREADY_EXISTS = " already exists";
+    private static final String WITH_VALUE = " with value ";
+    private static final String WITH_ID = " with id ";
+
+    public static ErrorMessage getConflictMessage(String type, String value, String valueType) {
         ErrorMessage errorMessage = new ErrorMessage();
-        errorMessage.setMessage(type + " with id " + id + " already exists");
-        errorMessage.setCode(409);
+        errorMessage.setMessage(StringUtils.join(type, "_EXISTS"));
         errorMessage.setStatus(409);
-        errorMessage.setLink(null);
+        errorMessage.setValue(value);
+        errorMessage.setValueType(valueType);
         return errorMessage;
     }
 
-    public static ErrorMessage getNotFoundErrorMessage(String id, String type) {
+    public static ErrorMessage getNotFoundErrorMessage(String type) {
         ErrorMessage errorMessage = new ErrorMessage();
-        errorMessage.setMessage(type + " with id " + id + " not found");
-        errorMessage.setCode(404);
+        errorMessage.setMessage(StringUtils.join(type.toUpperCase(), "_NOT_FOUND"));
         errorMessage.setStatus(404);
-        errorMessage.setLink(null);
+        return errorMessage;
+    }
+
+    public static ErrorMessage getAuthenticationErrorMessage(String message) {
+        ErrorMessage errorMessage = new ErrorMessage();
+        errorMessage.setMessage(message);
+        errorMessage.setStatus(401);
         return errorMessage;
     }
 }

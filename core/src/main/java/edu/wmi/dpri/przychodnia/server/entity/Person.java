@@ -1,10 +1,12 @@
 package edu.wmi.dpri.przychodnia.server.entity;
 
-import org.jadira.usertype.dateandtime.joda.PersistentDateTime;
+import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
 
 
 /**
@@ -29,7 +31,7 @@ public class Person {
 
     @Column(name = "birth_date", nullable = false)
     @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private PersistentDateTime birthDate;
+    private DateTime birthDate;
 
     @Column(name = "birth_place", nullable = false)
     private String birthPlace;
@@ -57,7 +59,7 @@ public class Person {
     private Sex sex;
 
     @OneToMany(targetEntity = User.class, mappedBy = "id")
-    private List<User> users;
+    private List<User> users = newArrayList();
 
     public String getPESEL() {
         return PESEL;
@@ -91,11 +93,11 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public PersistentDateTime getBirthDate() {
+    public DateTime getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(PersistentDateTime birthDate) {
+    public void setBirthDate(DateTime birthDate) {
         this.birthDate = birthDate;
     }
 

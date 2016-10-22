@@ -59,7 +59,7 @@ UNIQUE(name)
 ;
 CREATE TABLE `user`(
 id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-login NVARCHAR(50) NOT NULL,
+login NVARCHAR(50) UNIQUE NOT NULL,
 password NVARCHAR(1000) NOT NULL,
 email_address NVARCHAR(100) NOT NULL,
 active BIT(1) NOT NULL DEFAULT b'0',
@@ -146,10 +146,10 @@ VALUES
 ('XXXXXXXXXXX', 'Super', 'Admin', 'Poznań', '1970-01-01', 'AAA000000', 1, 1, 1);
 
 INSERT INTO role(id, name) VALUES
-(1, 'ADMIN'), (2, 'USER'), (3, 'DOCTOR'), (4, 'PATIENT'), (5, 'STAFF');
+(1, 'ROLE_ADMIN'), (2, 'ROLE_USER'), (3, 'ROLE_DOCTOR'), (4, 'ROLE_PATIENT'), (5, 'ROLE_STAFF');
 
 INSERT INTO user(id, login, password, email_address, active, pesel) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin@przychodnia.com', b'1', 'XXXXXXXXXXX');
+(1, 'admin', 'JRqnd8lI1tMhnt3it8gY4w==', 'admin@przychodnia.com', b'1', 'XXXXXXXXXXX');
 
 INSERT INTO user_roles(user_id, role_id) VALUES
 (1, 1), (1, 2), (1, 5);

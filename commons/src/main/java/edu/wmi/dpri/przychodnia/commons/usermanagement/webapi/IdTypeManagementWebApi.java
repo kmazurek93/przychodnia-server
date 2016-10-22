@@ -19,28 +19,27 @@ import static edu.wmi.dpri.przychodnia.commons.usermanagement.webapi.IdTypeManag
 @Path(API_PATH + BASE_PATH)
 public interface IdTypeManagementWebApi {
 
-	String BASE_PATH = "/idTypes";
-	String LIST = "/list";
+    String BASE_PATH = "/idTypes";
 
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	IdTypeWebModel getOne(@QueryParam("id") Integer id);
+    @GET
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    IdTypeWebModel getOne(@PathParam("id") Integer id);
 
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	IdTypeWebModel createOne(@NotNull @Valid IdTypeWebModel input);
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    IdTypeWebModel createOne(@NotNull @Valid IdTypeWebModel input);
 
-	@PUT
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	IdTypeWebModel updateIdType(@NotNull @Valid IdTypeWebModel toUpdate);
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    IdTypeWebModel updateIdType(@NotNull @Valid IdTypeWebModel toUpdate);
 
-	@DELETE
-	Response deleteOne(@QueryParam("id") @NotNull Integer id);
+    @DELETE
+    Response deleteOne(@QueryParam("id") @NotNull Integer id);
 
-	@GET
-	@Path(LIST)
-	@Produces(MediaType.APPLICATION_JSON)
-	List<IdTypeWebModel> getAll();
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    List<IdTypeWebModel> getAll();
 }

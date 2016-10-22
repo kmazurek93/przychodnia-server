@@ -20,11 +20,11 @@ import static edu.wmi.dpri.przychodnia.commons.usermanagement.webapi.AddressWebA
 @Path(API_PATH + BASE_PATH)
 public interface AddressWebApi {
     String BASE_PATH = "/addresses";
-    String LIST = "/list";
 
     @GET
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    AddressWebModel getAddressById(@QueryParam("id") @NotNull Long id);
+    AddressWebModel getAddressById(@PathParam("id") @NotNull Long id);
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -40,7 +40,6 @@ public interface AddressWebApi {
     Response deleteOne(@NotNull @QueryParam("id") Long id);
 
     @GET
-    @Path(LIST)
     @Produces(MediaType.APPLICATION_JSON)
     List<AddressWebModel> getAll();
 }

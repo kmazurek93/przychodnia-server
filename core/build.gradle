@@ -34,6 +34,8 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web:1.4.1.RELEASE")
     compile('org.springframework.boot:spring-boot-starter-data-jpa:1.4.1.RELEASE')
     compile('org.springframework.boot:spring-boot-starter-jersey:1.4.1.RELEASE')
+    compile('org.springframework.boot:spring-boot-starter-security:1.4.1.RELEASE')
+    compile group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version: '2.0.11.RELEASE'
     compile('org.hibernate:hibernate-core:5.2.2.Final')
     compile('org.hibernate:hibernate-entitymanager:5.2.2.Final') {
         exclude module: 'jboss-logging'
@@ -56,9 +58,11 @@ dependencies {
     compile group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.26'
     compile 'org.jboss.logging:jboss-logging:3.3.0.Final'
+    compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.7.0'
+
     compile project(':commons')
 
-    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat:1.4.1.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-tomcat:1.4.1.RELEASE'
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile group: 'org.mockito', name: 'mockito-core', version: '1.10.19'
     testCompile group: 'org.assertj', name: 'assertj-core', version: '3.5.2'

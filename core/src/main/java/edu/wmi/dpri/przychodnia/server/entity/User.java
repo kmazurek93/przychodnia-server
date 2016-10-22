@@ -15,7 +15,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "login", nullable = false)
+    @Column(name = "login", nullable = false, unique = true)
     private String login;
 
     @Column(name = "password", nullable = false)
@@ -120,5 +120,6 @@ public class User {
     public void setActive(boolean active) {
         this.active = active;
     }
+
 
 }

@@ -2,25 +2,39 @@ package edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions;
 
 public class ErrorMessage {
 
-    /** contains the same HTTP Status code returned by the server */
+    private int status;
+    private String message;
+    private String value;
+    private String valueType;
 
-    int status;
+    public ErrorMessage() {
+    }
 
-    /** application specific error code */
+    public ErrorMessage(int status, String message) {
+        this.status = status;
+        this.message = message;
+    }
 
-    int code;
+    public ErrorMessage(Exception ex) {
+        this.status = 500;
+        this.message = "An error has occurred: " + ex.getMessage();
+    }
 
-    /** message describing the error*/
+    public String getValueType() {
+        return valueType;
+    }
 
-    String message;
+    public void setValueType(String valueType) {
+        this.valueType = valueType;
+    }
 
-    /** link point to page where the error message is documented */
+    public String getValue() {
+        return value;
+    }
 
-    String link;
-
-    /** extra information that might useful for developers */
-
-    String developerMessage;
+    public void setValue(String value) {
+        this.value = value;
+    }
 
     public int getStatus() {
         return status;
@@ -30,54 +44,12 @@ public class ErrorMessage {
         this.status = status;
     }
 
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
     public String getMessage() {
         return message;
     }
 
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public String getDeveloperMessage() {
-        return developerMessage;
-    }
-
-    public void setDeveloperMessage(String developerMessage) {
-        this.developerMessage = developerMessage;
-    }
-
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
-
-    public ErrorMessage() {}
-
-    public ErrorMessage(int status, int code, String message, String link, String developerMessage) {
-        this.status = status;
-        this.code = code;
-        this.message = message;
-        this.link = link;
-        this.developerMessage = developerMessage;
-    }
-
-    public ErrorMessage(Exception ex) {
-        this.status = 500;
-        this.code = 99999;
-        this.message = "An error has occurred: " + ex.getMessage();
-        this.developerMessage = ex.getStackTrace().toString();
-        this.link = null;
     }
 
 

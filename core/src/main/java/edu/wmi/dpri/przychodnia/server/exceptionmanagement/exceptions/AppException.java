@@ -3,7 +3,6 @@ package edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions;
  * Created by lupus on 10.05.16.
  */
 
-import org.apache.commons.lang3.exception.ExceptionUtils;
 import javax.ws.rs.WebApplicationException;
 
 public class AppException extends WebApplicationException {
@@ -15,8 +14,6 @@ public class AppException extends WebApplicationException {
     public AppException(ErrorMessage errorMessage) {
         super(errorMessage.getMessage());
         this.errorMessage = errorMessage;
-        if (errorMessage.getDeveloperMessage() == null)
-            this.errorMessage.setDeveloperMessage(ExceptionUtils.getStackTrace(this));
     }
 
     public AppException() {
