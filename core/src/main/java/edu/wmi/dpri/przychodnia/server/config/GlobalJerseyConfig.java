@@ -1,7 +1,6 @@
 package edu.wmi.dpri.przychodnia.server.config;
 
 import com.fasterxml.jackson.jaxrs.base.JsonMappingExceptionMapper;
-import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.UnsupportedMethodException;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.mappers.*;
 import edu.wmi.dpri.przychodnia.server.security.webapi.SecurityApiImpl;
 import edu.wmi.dpri.przychodnia.server.usermanagement.web.api.AddressWebApiImpl;
@@ -34,7 +33,7 @@ public class GlobalJerseyConfig extends ResourceConfig {
         register(NotFoundExceptionMapper.class);
         register(JsonMappingExceptionMapper.class);
         register(ConstraintViolationExceptionMapper.class);
-        register(UnsupportedMethodException.class);
+        register(UnsupportedMethodExceptionMapper.class);
         register(AuthenticationAppExceptionMapper.class);
 
         this.property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);

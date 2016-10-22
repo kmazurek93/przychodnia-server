@@ -2,6 +2,7 @@ package edu.wmi.dpri.przychodnia.server.security.webapi;
 
 import edu.wmi.dpri.przychodnia.server.security.jwt.model.JwtToken;
 import edu.wmi.dpri.przychodnia.server.security.webmodel.LoginWebModel;
+import edu.wmi.dpri.przychodnia.server.security.webmodel.UserContextWebModel;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,14 +21,19 @@ import static edu.wmi.dpri.przychodnia.server.security.SecurityConstants.SECURIT
 @Path(SECURITY_API_PATH)
 public interface SecurityApi {
     String TOKEN_REFRESH_PATH = "/auth/token";
-
+    String USER_CONTEXT = "/userContext";
 
     @Path("/login")
     @POST
     Boolean login(LoginWebModel loginWebModel);
 
-    @Path(SecurityApi.TOKEN_REFRESH_PATH)
+    @Path(TOKEN_REFRESH_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @GET
     JwtToken refreshToken(@Context HttpServletRequest request, @Context HttpServletResponse response);
+
+    @Path(USER_CONTEXT)
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    UserContextWebModel getUserContext();
 }

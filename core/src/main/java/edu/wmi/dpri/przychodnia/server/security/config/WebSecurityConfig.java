@@ -34,9 +34,10 @@ import java.util.List;
 @Profile("secure")
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public static final String JWT_TOKEN_HEADER_PARAM = "Authorization";
-    public static final String FORM_BASED_LOGIN_ENTRY_POINT = "/security/login";
-    public static final String TOKEN_BASED_AUTH_ENTRY_POINT = "/**";
-    public static final String TOKEN_REFRESH_ENTRY_POINT = "/security/auth/token";
+    private static final String LOGIN_ENDPOINT = "/security/login";
+    private static final String TOKEN_BASED_AUTH_ENDPOINTS = "/**";
+    private static final String TOKEN_REFRESH_ENDPOINT = "/security/auth/token";
+    private static final String REGISTRATION_ENDPOINT = "/public/**";
 
     @Inject
     private RestAuthenticationEntryPoint authenticationEntryPoint;
@@ -57,15 +58,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     protected AjaxLoginProcessingFilter buildAjaxLoginProcessingFilter() throws Exception {
-        AjaxLoginProcessingFilter filter = new AjaxLoginProcessingFilter(FORM_BASED_LOGIN_ENTRY_POINT, successHandler, failureHandler, objectMapper);
+        AjaxLoginProcessingFilter filter = new AjaxLoginProcessingFilter(LOGIN_ENDPOINT, successHandler, failureHandler, objectMapper);
         filter.setAuthenticationManager(this.authenticationManager);
         return filter;
     }
 
     @Bean
     protected JwtAuthenticationProcessingFilter buildJwtTokenAuthenticationProcessingFilter() throws Exception {
-        List<String> pathsToSkip = Arrays.asList(TOKEN_REFRESH_ENTRY_POINT, FORM_BASED_LOGIN_ENTRY_POINT);
-        SkipPathRequestMatcher matcher = new SkipPathRequestMatcher(pathsToSkip, TOKEN_BASED_AUTH_ENTRY_POINT);
+        List<String> pathsToSkip = Arrays.asList(TOKEN_REFRESH_ENDPOINT, LOGIN_ENDPOINT, REGISTRATION_ENDPOINT);
+        SkipPathRequestMatcher matcher = new SkipPathRequestMatcher(pathsToSkip, TOKEN_BASED_AUTH_ENDPOINTS);
         JwtAuthenticationProcessingFilter filter
                 = new JwtAuthenticationProcessingFilter(failureHandler, jwtTokenExtractor, matcher);
         filter.setAuthenticationManager(this.authenticationManager);
@@ -96,11 +97,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .authorizeRequests()
-                .antMatchers(FORM_BASED_LOGIN_ENTRY_POINT).permitAll()
-                .antMatchers(TOKEN_REFRESH_ENTRY_POINT).permitAll()
+                .antMatchers(LOGIN_ENDPOINT).permitAll()
+                .antMatchers(TOKEN_REFRESH_ENDPOINT).permitAll()
+                .antMatchers(REGISTRATION_ENDPOINT).permitAll()
                 .and()
                 .authorizeRequests()
-                .antMatchers(TOKEN_BASED_AUTH_ENTRY_POINT).authenticated() // Protected API End-points
+                .antMatchers(TOKEN_BASED_AUTH_ENDPOINTS).authenticated() // Protected API End-points
                 .and()
                 .addFilterBefore(buildAjaxLoginProcessingFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(buildJwtTokenAuthenticationProcessingFilter(), UsernamePasswordAuthenticationFilter.class);
