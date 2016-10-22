@@ -1,6 +1,6 @@
 package edu.wmi.dpri.przychodnia.server.usermanagement.function;
 
-import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.UserDataSimpleWebModel;
+import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.CompleteUserDataSimpleModel;
 import edu.wmi.dpri.przychodnia.server.entity.User;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Created by kmazu on 24.08.2016.
  */
-public class UserToUserDataSimpleWebModelFunctionTest {
+public class UserToCompleteUserDataSimpleModelFunctionTest {
 
 
     public static final String USER_DOMAIN_COM = "user@domain.com";
@@ -31,7 +31,7 @@ public class UserToUserDataSimpleWebModelFunctionTest {
         //given
         User user = getSampleUser();
         //when
-        UserDataSimpleWebModel actual = tested.apply(user);
+        CompleteUserDataSimpleModel actual = tested.apply(user);
         //then
         assertThat(actual.getEmailAddress()).isEqualTo(USER_DOMAIN_COM);
         assertThat(actual.getFirstName()).isEqualTo(JOZEK);

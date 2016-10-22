@@ -1,4 +1,4 @@
-package edu.wmi.dpri.przychodnia.server.config;
+package edu.wmi.dpri.przychodnia.server.security.config;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;
@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Profile;
  */
 @Configuration
 @Profile("secure")
-public class SecurityConfig {
+public class SSLConfig {
     @Bean
     public EmbeddedServletContainerFactory servletContainer() {
         TomcatEmbeddedServletContainerFactory tomcat = new TomcatEmbeddedServletContainerFactory() {

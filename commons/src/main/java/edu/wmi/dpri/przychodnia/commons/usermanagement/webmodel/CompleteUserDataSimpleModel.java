@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by kmazu on 06.07.2016.
  */
-public class UserDataSimpleWebModel {
+public class CompleteUserDataSimpleModel {
     private Long userId;
     private String PESEL;
     private String firstName;

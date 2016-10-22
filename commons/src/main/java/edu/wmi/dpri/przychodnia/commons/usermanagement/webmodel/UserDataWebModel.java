@@ -19,6 +19,14 @@ public class UserDataWebModel {
     private String emailAddress;
     private List<String> roles = DEFAULT_ROLES_FOR_NEW_USER;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getUsername() {
         return username;
     }

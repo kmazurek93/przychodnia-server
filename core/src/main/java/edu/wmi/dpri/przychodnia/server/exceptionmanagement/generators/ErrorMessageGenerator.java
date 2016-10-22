@@ -16,7 +16,6 @@ public class ErrorMessageGenerator {
     public static ErrorMessage getConflictMessage(String type, String value, String valueType) {
         ErrorMessage errorMessage = new ErrorMessage();
         errorMessage.setMessage(StringUtils.join(type, "_EXISTS"));
-        errorMessage.setCode(409);
         errorMessage.setStatus(409);
         errorMessage.setValue(value);
         errorMessage.setValueType(valueType);
@@ -26,8 +25,14 @@ public class ErrorMessageGenerator {
     public static ErrorMessage getNotFoundErrorMessage(String type) {
         ErrorMessage errorMessage = new ErrorMessage();
         errorMessage.setMessage(StringUtils.join(type.toUpperCase(), "_NOT_FOUND"));
-        errorMessage.setCode(404);
         errorMessage.setStatus(404);
+        return errorMessage;
+    }
+
+    public static ErrorMessage getAuthenticationErrorMessage(String message) {
+        ErrorMessage errorMessage = new ErrorMessage();
+        errorMessage.setMessage(message);
+        errorMessage.setStatus(401);
         return errorMessage;
     }
 }

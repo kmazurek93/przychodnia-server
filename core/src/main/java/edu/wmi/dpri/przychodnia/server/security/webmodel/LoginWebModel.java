@@ -1,4 +1,6 @@
-package edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel;
+package edu.wmi.dpri.przychodnia.server.security.webmodel;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.NotNull;
 
@@ -10,6 +12,15 @@ public class LoginWebModel {
     private String username;
     @NotNull
     private String password;
+
+    public LoginWebModel() {
+    }
+
+    public LoginWebModel(@JsonProperty("username") String username,
+                         @JsonProperty("password") String password) {
+        this.username = username;
+        this.password = password;
+    }
 
     public String getUsername() {
         return username;

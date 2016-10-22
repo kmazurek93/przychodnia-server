@@ -1,6 +1,6 @@
 package edu.wmi.dpri.przychodnia.server.usermanagement.function;
 
-import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.UserDataSimpleWebModel;
+import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.CompleteUserDataSimpleModel;
 import edu.wmi.dpri.przychodnia.server.entity.Role;
 import edu.wmi.dpri.przychodnia.server.entity.User;
 import org.apache.commons.lang3.StringUtils;
@@ -17,13 +17,13 @@ import static com.google.common.collect.Lists.newArrayList;
  * Created by lupus on 31.07.16.
  */
 @Component
-public class UserToUserDataSimpleWebModelFunction implements Function<User, UserDataSimpleWebModel> {
+public class UserToUserDataSimpleWebModelFunction implements Function<User, CompleteUserDataSimpleModel> {
 
     private static final String SPACE = " ";
 
     @Override
-    public UserDataSimpleWebModel apply(User user) {
-        UserDataSimpleWebModel userDataSimpleModel = new UserDataSimpleWebModel();
+    public CompleteUserDataSimpleModel apply(User user) {
+        CompleteUserDataSimpleModel userDataSimpleModel = new CompleteUserDataSimpleModel();
         userDataSimpleModel.setFirstName(user.getPerson().getFirstName());
         userDataSimpleModel.setLastName(user.getPerson().getLastName());
         userDataSimpleModel.setEmailAddress(user.getEmailAddress());

@@ -3,7 +3,6 @@ package edu.wmi.dpri.przychodnia.server.exceptionmanagement;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.ErrorMessage;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.NotFoundException;
 import org.apache.commons.lang3.StringUtils;
-import org.omg.CORBA.Object;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

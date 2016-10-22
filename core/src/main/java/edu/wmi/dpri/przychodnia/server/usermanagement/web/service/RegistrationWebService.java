@@ -59,6 +59,7 @@ public class RegistrationWebService {
         registrationOutput.setMailingAddress(addressFunction.apply(state.getSavedMailingAddress()));
         registrationOutput.getUserDataWebModel().setPassword(state.getSavedUser().getPassword());
         registrationOutput.getUserDataWebModel().setRoles(DEFAULT_ROLES_FOR_NEW_USER);
+        registrationOutput.getUserDataWebModel().setId(state.getSavedUser().getId());
         return registrationOutput;
     }
 }

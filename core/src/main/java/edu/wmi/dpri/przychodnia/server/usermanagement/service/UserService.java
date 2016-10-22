@@ -2,6 +2,7 @@ package edu.wmi.dpri.przychodnia.server.usermanagement.service;
 
 import edu.wmi.dpri.przychodnia.server.entity.User;
 import edu.wmi.dpri.przychodnia.server.repository.UserRepository;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +24,12 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public User getUserByLogin(String login) {
-        return userRepository.findByLogin(login);
+        User user = userRepository.findByLogin(login);
+        if(user != null) {
+            Hibernate.initialize(user.getRoles());
+            //TODO initialize rest
+        }
+        return user;
     }
 
     @Transactional(readOnly = true)
