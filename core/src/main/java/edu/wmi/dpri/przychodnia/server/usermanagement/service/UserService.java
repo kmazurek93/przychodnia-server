@@ -27,6 +27,7 @@ public class UserService {
         User user = userRepository.findByLogin(login);
         if(user != null) {
             Hibernate.initialize(user.getRoles());
+            Hibernate.initialize(user.getPerson());
             //TODO initialize rest
         }
         return user;
