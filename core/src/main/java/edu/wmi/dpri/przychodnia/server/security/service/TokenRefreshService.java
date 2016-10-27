@@ -63,7 +63,7 @@ public class TokenRefreshService {
                 .map(authority -> new SimpleGrantedAuthority(authority.getName()))
                 .collect(Collectors.toList());
 
-        UserContext userContext = UserContext.create(user.getLogin(), authorities);
+        UserContext userContext = UserContext.create(user.getLogin(), user.getId(), authorities);
 
         return tokenFactory.createAccessJwtToken(userContext);
     }

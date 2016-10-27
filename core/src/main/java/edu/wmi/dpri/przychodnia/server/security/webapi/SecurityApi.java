@@ -23,10 +23,6 @@ public interface SecurityApi {
     String TOKEN_REFRESH_PATH = "/auth/token";
     String USER_CONTEXT = "/userContext";
 
-    @Path("/login")
-    @POST
-    Boolean login(LoginWebModel loginWebModel);
-
     @Path(TOKEN_REFRESH_PATH)
     @Produces(MediaType.APPLICATION_JSON)
     @GET

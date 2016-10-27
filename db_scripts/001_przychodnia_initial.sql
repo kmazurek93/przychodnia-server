@@ -4,7 +4,7 @@ DROP DATABASE IF EXISTS `przychodnia`;
 ;
 CREATE DATABASE IF NOT EXISTS `przychodnia` DEFAULT CHARACTER SET = 'utf8' DEFAULT COLLATE = 'utf8_polish_ci';
 ;
-CREATE USER IF NOT EXISTS 'przychodnia' IDENTIFIED BY 'przychodnia' PASSWORD EXPIRE NEVER;
+CREATE USER IF NOT EXISTS 'przychodnia'@'localhost' IDENTIFIED BY 'przychodnia' PASSWORD EXPIRE NEVER;
 ;
 USE przychodnia;
 ;

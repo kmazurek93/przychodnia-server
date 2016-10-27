@@ -18,11 +18,6 @@ import javax.ws.rs.core.Context;
 public class SecurityApiNonSecureImpl implements SecurityApi {
 
     @Override
-    public Boolean login(LoginWebModel loginWebModel) {
-        return null;
-    }
-
-    @Override
     public JwtToken refreshToken(@Context HttpServletRequest request, @Context HttpServletResponse response) {
         return null;
     }

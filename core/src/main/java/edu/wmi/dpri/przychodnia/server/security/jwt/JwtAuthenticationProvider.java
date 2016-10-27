@@ -1,8 +1,10 @@
 package edu.wmi.dpri.przychodnia.server.security.jwt;
 
+import edu.wmi.dpri.przychodnia.server.entity.User;
 import edu.wmi.dpri.przychodnia.server.security.config.JwtSettings;
 import edu.wmi.dpri.przychodnia.server.security.jwt.model.RawAccessJwtToken;
 import edu.wmi.dpri.przychodnia.server.security.model.UserContext;
+import edu.wmi.dpri.przychodnia.server.usermanagement.service.UserService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import org.springframework.context.annotation.Profile;
@@ -26,7 +28,8 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
 
     @Inject
     private JwtSettings jwtSettings;
-
+    @Inject
+    private UserService userService;
 
     @Override
     @SuppressWarnings("unchecked")
@@ -34,13 +37,13 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
         RawAccessJwtToken rawAccessToken = (RawAccessJwtToken) authentication.getCredentials();
 
         Jws<Claims> jwsClaims = rawAccessToken.parseClaims(jwtSettings.getTokenSigningKey());
-        String subject = jwsClaims.getBody().getSubject();
+        String username = jwsClaims.getBody().getSubject();
         List<String> scopes = jwsClaims.getBody().get("scopes", List.class);
         List<GrantedAuthority> authorities = scopes.stream()
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
-
-        UserContext context = UserContext.create(subject, authorities);
+        User userByLogin = userService.getUserByLogin(username);
+        UserContext context = UserContext.create(username, userByLogin.getId(), authorities);
 
         return new ClinicJwtAuthToken(context, context.getAuthorities());
     }

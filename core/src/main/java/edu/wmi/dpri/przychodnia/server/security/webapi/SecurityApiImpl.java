@@ -27,11 +27,6 @@ public class SecurityApiImpl implements SecurityApi {
     private SecurityService securityService;
 
     @Override
-    public Boolean login(LoginWebModel loginWebModel) {
-        return null;
-    }
-
-    @Override
     public JwtToken refreshToken(@Context HttpServletRequest request, @Context HttpServletResponse response) {
         return tokenRefreshService.refreshToken(request, response);
     }

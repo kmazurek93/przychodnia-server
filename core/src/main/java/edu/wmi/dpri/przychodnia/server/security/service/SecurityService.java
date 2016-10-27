@@ -41,6 +41,7 @@ public class SecurityService {
         Person person = user.getPerson();
         contextWebModel.setFirstName(person.getFirstName());
         contextWebModel.setLastName(person.getLastName());
+        contextWebModel.setUserId(user.getId());
     }
 
     private void fillRoles(UserContextWebModel contextWebModel, UserContext context) {

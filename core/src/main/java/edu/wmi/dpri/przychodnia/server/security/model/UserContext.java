@@ -10,18 +10,27 @@ import java.util.List;
  */
 public class UserContext {
     private String username;
+    private Long userId;
     private List<GrantedAuthority> authorities;
 
-
-    private UserContext(String username, List<GrantedAuthority> authorities) {
-        this.username = username;
-        this.authorities = authorities;
+    public Long getUserId() {
+        return userId;
     }
 
-    public static UserContext create(String username, List<GrantedAuthority> authorities) {
-        if (StringUtils.isBlank(username))
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    private UserContext(String username, Long userId, List<GrantedAuthority> authorities) {
+        this.username = username;
+        this.authorities = authorities;
+        this.userId = userId;
+    }
+
+    public static UserContext create(String username, Long userId, List<GrantedAuthority> authorities) {
+        if (StringUtils.isBlank(username) || userId == null)
             throw new IllegalArgumentException("Username is blank: " + username);
-        return new UserContext(username, authorities);
+        return new UserContext(username, userId, authorities);
     }
 
     public String getUsername() {
