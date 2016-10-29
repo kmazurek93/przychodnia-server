@@ -5,8 +5,10 @@ import edu.wmi.dpri.przychodnia.server.entity.Role;
 import edu.wmi.dpri.przychodnia.server.entity.User;
 
 import java.util.List;
+import java.util.Set;
 
 import static com.google.common.collect.Lists.newArrayList;
+import static com.google.common.collect.Sets.newHashSet;
 import static edu.wmi.dpri.przychodnia.server.entity.builder.PersonBuilder.aPerson;
 import static edu.wmi.dpri.przychodnia.server.entity.builder.UserBuilder.anUser;
 
@@ -37,8 +39,8 @@ public class SampleDataProvider {
         return newArrayList(one, two);
     }
 
-    public static List<User> getSampleUserList(String fNameTemplate, String lNameTemplate) {
-        List<User> users = newArrayList();
+    public static Set<User> getSampleUserSet(String fNameTemplate, String lNameTemplate) {
+        Set<User> users = newHashSet();
         for (int i = 0; i < 3; i++) {
             User child = anUser().withId((long) i).withPerson(getPerson(fNameTemplate + i,
                     lNameTemplate + i)).build();

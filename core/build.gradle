@@ -49,6 +49,8 @@ dependencies {
     }
     compile('org.glassfish.jersey.ext:jersey-bean-validation:2.23.2')
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.4'
+    compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.1'
+
     compile group: 'com.google.guava', name: 'guava', version: '19.0'
     compile('javax.ws.rs:javax.ws.rs-api:2.0.1')
     compile('javax.validation:validation-api:1.1.0.Final')

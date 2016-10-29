@@ -1,10 +1,13 @@
 package edu.wmi.dpri.przychodnia.commons.usermanagement.webapi;
 
 
-import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.UserConnectionWebModel;
-import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.creation.UserConnectionCreationDeletionWebModel;
+import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.creation.UserLinkingUnlinkingWebModel;
 
-import javax.ws.rs.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -19,17 +22,20 @@ import static edu.wmi.dpri.przychodnia.commons.usermanagement.webapi.UserConnect
 public interface UserConnectionWebApi {
 
     String BASE_PATH = "/userConnections";
+    String CREATE = "/create";
+    String REMOVE = "/remove";
 
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    UserConnectionWebModel connectUsers(UserConnectionCreationDeletionWebModel model);
+    @Path(CREATE)
+    Response connectUsers(@NotNull @Valid  UserLinkingUnlinkingWebModel model);
 
 
-    @DELETE
+    @POST
+    @Path(REMOVE)
     @Consumes(MediaType.APPLICATION_JSON)
-    Response removeConnection(UserConnectionCreationDeletionWebModel model);
+    Response removeConnection(@NotNull @Valid UserLinkingUnlinkingWebModel model);
 
 
 }

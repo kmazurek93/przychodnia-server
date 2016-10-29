@@ -5,6 +5,7 @@ import edu.wmi.dpri.przychodnia.server.entity.Role;
 import edu.wmi.dpri.przychodnia.server.entity.User;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by lupus on 19.09.16.
@@ -16,8 +17,8 @@ public final class UserBuilder {
     private String emailAddress;
     private boolean active;
     private Person person;
-    private List<User> parentUsers;
-    private List<User> childUsers;
+    private Set<User> parentUsers;
+    private Set<User> childUsers;
     private List<Role> roles;
 
     private UserBuilder() {
@@ -57,12 +58,12 @@ public final class UserBuilder {
         return this;
     }
 
-    public UserBuilder withParentUsers(List<User> parentUsers) {
+    public UserBuilder withParentUsers(Set<User> parentUsers) {
         this.parentUsers = parentUsers;
         return this;
     }
 
-    public UserBuilder withChildUsers(List<User> childUsers) {
+    public UserBuilder withChildUsers(Set<User> childUsers) {
         this.childUsers = childUsers;
         return this;
     }

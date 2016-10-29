@@ -52,7 +52,8 @@ public class SecurityService {
     }
 
     private UserContext getUserContextFromContextHolder() {
-        return (UserContext) SecurityContextHolder.getContext().getAuthentication()
+        return (UserContext) SecurityContextHolder.getContext()
+                .getAuthentication()
                 .getPrincipal();
     }
 

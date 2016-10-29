@@ -54,8 +54,8 @@ public class UserToCompleteUserDataSimpleModelFunctionTest {
         user.setEmailAddress(USER_DOMAIN_COM);
         user.setLogin(U_123);
         user.setPerson(aPerson().withFirstName(JOZEK).withPESEL(PESEL).withLastName(PIERDZISTOLEK).build());
-        user.setChildUsers(getSampleUserList(ABC, DEF));
-        user.setParentUsers(getSampleUserList(DEF, ABC));
+        user.setChildUsers(getSampleUserSet(ABC, DEF));
+        user.setParentUsers(getSampleUserSet(DEF, ABC));
         user.setRoles(getSampleRoleList());
         return user;
     }

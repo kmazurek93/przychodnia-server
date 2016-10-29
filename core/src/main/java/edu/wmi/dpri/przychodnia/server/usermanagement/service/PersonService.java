@@ -33,7 +33,7 @@ public class PersonService {
         Person one = findOne(pesel);
         return (one != null);
     }
-    @Transactional
+    @Transactional(readOnly = true)
     public Person findOneAndInitialize(String pesel) {
         Person person = personRepository.findOne(pesel);
         throwExceptionIfNull(pesel, person, ExceptionCause.RETRIEVAL, Person.class);

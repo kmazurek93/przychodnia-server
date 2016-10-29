@@ -58,7 +58,7 @@ public class Person {
     @JoinColumn(name = "sex_id")
     private Sex sex;
 
-    @OneToMany(targetEntity = User.class, mappedBy = "id")
+    @OneToMany(targetEntity = User.class, mappedBy = "person")
     private List<User> users = newArrayList();
 
     public String getPESEL() {

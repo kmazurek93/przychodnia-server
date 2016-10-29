@@ -35,4 +35,11 @@ public class ErrorMessageGenerator {
         errorMessage.setStatus(401);
         return errorMessage;
     }
+    public static ErrorMessage getForbiddenErrorMessage(String message) {
+        ErrorMessage errorMessage = new ErrorMessage();
+        errorMessage.setMessage(message);
+        errorMessage.setStatus(403);
+        return errorMessage;
+    }
+
 }

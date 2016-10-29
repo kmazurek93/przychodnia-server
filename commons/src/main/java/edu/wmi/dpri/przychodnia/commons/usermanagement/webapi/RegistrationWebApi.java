@@ -3,6 +3,8 @@ package edu.wmi.dpri.przychodnia.commons.usermanagement.webapi;
 import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.RegistrationOutput;
 import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.creation.RegistrationInputWebModel;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -21,5 +23,5 @@ public interface RegistrationWebApi {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    RegistrationOutput registerUser(RegistrationInputWebModel registrationInputWebModel);
+    RegistrationOutput registerUser(@NotNull @Valid RegistrationInputWebModel registrationInputWebModel);
 }

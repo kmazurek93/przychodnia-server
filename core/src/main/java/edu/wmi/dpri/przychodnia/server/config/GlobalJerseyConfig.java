@@ -6,6 +6,7 @@ import edu.wmi.dpri.przychodnia.server.security.webapi.SecurityApiImpl;
 import edu.wmi.dpri.przychodnia.server.usermanagement.web.api.AddressWebApiImpl;
 import edu.wmi.dpri.przychodnia.server.usermanagement.web.api.IdTypeManagementWebApiImpl;
 import edu.wmi.dpri.przychodnia.server.usermanagement.web.api.RegistrationWebApiImpl;
+import edu.wmi.dpri.przychodnia.server.usermanagement.web.api.UserConnectionWebApiImpl;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
 import org.springframework.context.annotation.Configuration;
@@ -24,6 +25,7 @@ public class GlobalJerseyConfig extends ResourceConfig {
         register(IdTypeManagementWebApiImpl.class);
         register(AddressWebApiImpl.class);
         register(RegistrationWebApiImpl.class);
+        register(UserConnectionWebApiImpl.class);
         //security
         register(SecurityApiImpl.class);
 

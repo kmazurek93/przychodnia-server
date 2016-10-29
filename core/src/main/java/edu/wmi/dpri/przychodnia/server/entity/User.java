@@ -2,6 +2,7 @@ package edu.wmi.dpri.przychodnia.server.entity;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by khartv on 17.05.2016.
@@ -34,12 +35,12 @@ public class User {
     @ManyToMany
     @JoinTable(name = "user_connection", joinColumns = @JoinColumn(name = "parent_id"),
             inverseJoinColumns = @JoinColumn(name = "child_id"))
-    private List<User> parentUsers;
+    private Set<User> parentUsers;
 
     @ManyToMany
     @JoinTable(name = "user_connection", joinColumns = @JoinColumn(name = "child_id"),
             inverseJoinColumns = @JoinColumn(name = "parent_id"))
-    private List<User> childUsers;
+    private Set<User> childUsers;
 
     @ManyToMany
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
@@ -57,19 +58,19 @@ public class User {
         this.person = person;
     }
 
-    public List<User> getParentUsers() {
+    public Set<User> getParentUsers() {
         return parentUsers;
     }
 
-    public void setParentUsers(List<User> parentUsers) {
+    public void setParentUsers(Set<User> parentUsers) {
         this.parentUsers = parentUsers;
     }
 
-    public List<User> getChildUsers() {
+    public Set<User> getChildUsers() {
         return childUsers;
     }
 
-    public void setChildUsers(List<User> childUsers) {
+    public void setChildUsers(Set<User> childUsers) {
         this.childUsers = childUsers;
     }
 
