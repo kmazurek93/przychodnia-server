@@ -1,8 +1,10 @@
 package edu.wmi.dpri.przychodnia.server.security.jwt;
 
+import edu.wmi.dpri.przychodnia.server.config.CorsFilter;
 import edu.wmi.dpri.przychodnia.server.security.config.WebSecurityConfig;
 import edu.wmi.dpri.przychodnia.server.security.jwt.model.RawAccessJwtToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContext;
@@ -36,6 +38,9 @@ public class JwtAuthenticationProcessingFilter extends AbstractAuthenticationPro
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws AuthenticationException, IOException, ServletException {
+        if (request.getMethod().equals(HttpMethod.OPTIONS.name())) {
+            return CorsFilter.doCorsAndReturnNull(response);
+        }
         String tokenPayload = request.getHeader(WebSecurityConfig.JWT_TOKEN_HEADER_PARAM);
         RawAccessJwtToken token = new RawAccessJwtToken(jwtTokenExtractor.extract(tokenPayload));
         return getAuthenticationManager().authenticate(new ClinicJwtAuthToken(token));

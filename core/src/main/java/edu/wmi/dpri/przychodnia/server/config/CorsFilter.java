@@ -2,6 +2,7 @@ package edu.wmi.dpri.przychodnia.server.config;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
@@ -14,10 +15,7 @@ public class CorsFilter implements Filter {
 
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
         HttpServletResponse response = (HttpServletResponse) res;
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type");
-        response.setHeader("Access-Control-Max-Age", "3600");
+        setHeaders(response);
         chain.doFilter(req, res);
     }
 
@@ -26,5 +24,15 @@ public class CorsFilter implements Filter {
 
     public void destroy() {
     }
+    public static Authentication doCorsAndReturnNull(HttpServletResponse res) {
+        setHeaders(res);
+        return null;
+    }
 
+    private static void setHeaders(HttpServletResponse res) {
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        res.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
+        res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+        res.setHeader("Access-Control-Max-Age", "3600");
+    }
 }

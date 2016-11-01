@@ -11,6 +11,7 @@ import edu.wmi.dpri.przychodnia.server.security.jwt.JwtTokenExtractor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -88,6 +89,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
+
                 .exceptionHandling()
                 .authenticationEntryPoint(this.authenticationEntryPoint)
 
@@ -100,11 +102,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(LOGIN_ENDPOINT).permitAll()
                 .antMatchers(TOKEN_REFRESH_ENDPOINT).permitAll()
                 .antMatchers(REGISTRATION_ENDPOINT).permitAll()
+                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .and()
                 .authorizeRequests()
-                .antMatchers(TOKEN_BASED_AUTH_ENDPOINTS).authenticated() // Protected API End-points
+                .antMatchers(HttpMethod.DELETE, TOKEN_BASED_AUTH_ENDPOINTS).authenticated()
+                .antMatchers(HttpMethod.POST, TOKEN_BASED_AUTH_ENDPOINTS).authenticated()
+                .antMatchers(HttpMethod.PUT, TOKEN_BASED_AUTH_ENDPOINTS).authenticated()
+                .antMatchers(HttpMethod.GET, TOKEN_BASED_AUTH_ENDPOINTS).authenticated()
                 .and()
                 .addFilterBefore(buildAjaxLoginProcessingFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(buildJwtTokenAuthenticationProcessingFilter(), UsernamePasswordAuthenticationFilter.class);
     }
+
+//    @Override
+//    public void configure(WebSecurity web) throws Exception {
+//        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**");
+//    }
 }

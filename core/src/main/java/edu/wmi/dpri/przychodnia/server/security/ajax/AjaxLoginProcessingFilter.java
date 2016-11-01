@@ -1,6 +1,7 @@
 package edu.wmi.dpri.przychodnia.server.security.ajax;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.wmi.dpri.przychodnia.server.config.CorsFilter;
 import edu.wmi.dpri.przychodnia.server.security.webmodel.LoginWebModel;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.ErrorMessage;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.UnsupportedMethodException;
@@ -48,11 +49,7 @@ public class AjaxLoginProcessingFilter extends AbstractAuthenticationProcessingF
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws AuthenticationException, IOException, ServletException {
         if(HttpMethod.OPTIONS.name().equals(request.getMethod())) {
-            response.setHeader("Access-Control-Allow-Origin", "*");
-            response.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
-            response.setHeader("Access-Control-Allow-Headers", "Content-Type");
-            response.setHeader("Access-Control-Max-Age", "3600");
-            return null;
+            return CorsFilter.doCorsAndReturnNull(response);
         }
 
         if (!HttpMethod.POST.name().equals(request.getMethod())) {
