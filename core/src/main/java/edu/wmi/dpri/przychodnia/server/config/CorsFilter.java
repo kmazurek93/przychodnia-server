@@ -1,6 +1,5 @@
 package edu.wmi.dpri.przychodnia.server.config;
 
-import org.springframework.context.annotation.Profile;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -11,7 +10,6 @@ import java.io.IOException;
 
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
-@Profile({"local", "alfa", "bravo", "charlie", "secure"}) //allow cross-origin requests only when testing locally
 public class CorsFilter implements Filter {
 
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {

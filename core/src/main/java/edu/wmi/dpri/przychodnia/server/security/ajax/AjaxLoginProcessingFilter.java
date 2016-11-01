@@ -47,6 +47,14 @@ public class AjaxLoginProcessingFilter extends AbstractAuthenticationProcessingF
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws AuthenticationException, IOException, ServletException {
+        if(HttpMethod.OPTIONS.name().equals(request.getMethod())) {
+            response.setHeader("Access-Control-Allow-Origin", "*");
+            response.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
+            response.setHeader("Access-Control-Allow-Headers", "Content-Type");
+            response.setHeader("Access-Control-Max-Age", "3600");
+            return null;
+        }
+
         if (!HttpMethod.POST.name().equals(request.getMethod())) {
             ErrorMessage errorMessage = new ErrorMessage(405,
                     AUTHENTICATION_METHOD_NOT_SUPPORTED);
