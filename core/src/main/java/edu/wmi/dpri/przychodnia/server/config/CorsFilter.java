@@ -11,7 +11,7 @@ import java.io.IOException;
 
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
-@Profile("local") //allow cross-origin requests only when testing locally
+@Profile({"local", "alfa", "bravo", "charlie", "secure"}) //allow cross-origin requests only when testing locally
 public class CorsFilter implements Filter {
 
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
