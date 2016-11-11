@@ -5,7 +5,7 @@ import edu.wmi.dpri.przychodnia.server.exceptionmanagement.mappers.*;
 import edu.wmi.dpri.przychodnia.server.security.webapi.SecurityApiImpl;
 import edu.wmi.dpri.przychodnia.server.usermanagement.web.api.AddressWebApiImpl;
 import edu.wmi.dpri.przychodnia.server.usermanagement.web.api.IdTypeManagementWebApiImpl;
-import edu.wmi.dpri.przychodnia.server.usermanagement.web.api.RegistrationWebApiImpl;
+import edu.wmi.dpri.przychodnia.server.usermanagement.web.api.PublicWebApiImpl;
 import edu.wmi.dpri.przychodnia.server.usermanagement.web.api.UserConnectionWebApiImpl;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
@@ -24,7 +24,7 @@ public class GlobalJerseyConfig extends ResourceConfig {
         //user management
         register(IdTypeManagementWebApiImpl.class);
         register(AddressWebApiImpl.class);
-        register(RegistrationWebApiImpl.class);
+        register(PublicWebApiImpl.class);
         register(UserConnectionWebApiImpl.class);
         //security
         register(SecurityApiImpl.class);

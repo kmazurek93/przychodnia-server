@@ -38,8 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String LOGIN_ENDPOINT = "/security/login";
     private static final String TOKEN_BASED_AUTH_ENDPOINTS = "/**";
     private static final String TOKEN_REFRESH_ENDPOINT = "/security/auth/token";
-    private static final String REGISTRATION_ENDPOINT = "/public/**";
-
+    private static final String PUBLIC_ENDPOINT = "/public/**";
     @Inject
     private RestAuthenticationEntryPoint authenticationEntryPoint;
     @Inject
@@ -66,7 +65,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     protected JwtAuthenticationProcessingFilter buildJwtTokenAuthenticationProcessingFilter() throws Exception {
-        List<String> pathsToSkip = Arrays.asList(TOKEN_REFRESH_ENDPOINT, LOGIN_ENDPOINT, REGISTRATION_ENDPOINT);
+        List<String> pathsToSkip = Arrays.asList(TOKEN_REFRESH_ENDPOINT, LOGIN_ENDPOINT, PUBLIC_ENDPOINT);
         SkipPathRequestMatcher matcher = new SkipPathRequestMatcher(pathsToSkip, TOKEN_BASED_AUTH_ENDPOINTS);
         JwtAuthenticationProcessingFilter filter
                 = new JwtAuthenticationProcessingFilter(failureHandler, jwtTokenExtractor, matcher);
@@ -101,7 +100,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(LOGIN_ENDPOINT).permitAll()
                 .antMatchers(TOKEN_REFRESH_ENDPOINT).permitAll()
-                .antMatchers(REGISTRATION_ENDPOINT).permitAll()
+                .antMatchers(PUBLIC_ENDPOINT).permitAll()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .and()
                 .authorizeRequests()

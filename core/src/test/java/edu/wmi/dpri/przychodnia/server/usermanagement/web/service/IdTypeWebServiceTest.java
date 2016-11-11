@@ -2,7 +2,7 @@ package edu.wmi.dpri.przychodnia.server.usermanagement.web.service;
 
 import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.IdTypeWebModel;
 import edu.wmi.dpri.przychodnia.server.entity.IdType;
-import edu.wmi.dpri.przychodnia.server.usermanagement.function.IdTypeToIdTypeWebModelFunction;
+import edu.wmi.dpri.przychodnia.server.usermanagement.function.IdTypeToWebModelFunction;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.IdTypeService;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +26,7 @@ public class IdTypeWebServiceTest {
     @Mock
     private IdTypeService idTypeService;
     @Mock
-    private IdTypeToIdTypeWebModelFunction function;
+    private IdTypeToWebModelFunction function;
     @InjectMocks
     private IdTypeWebService tested;
 

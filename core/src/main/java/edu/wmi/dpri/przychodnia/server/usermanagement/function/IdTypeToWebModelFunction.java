@@ -11,7 +11,7 @@ import static edu.wmi.dpri.przychodnia.commons.usermanagement.builder.IdTypeWebM
  * Created by kmazu on 24.08.2016.
  */
 @Component
-public class IdTypeToIdTypeWebModelFunction implements Function<IdType, IdTypeWebModel> {
+public class IdTypeToWebModelFunction implements Function<IdType, IdTypeWebModel> {
     @Override
     public IdTypeWebModel apply(IdType idType) {
         return anIdTypeWebModel().withId(idType.getId()).withName(idType.getName()).build();

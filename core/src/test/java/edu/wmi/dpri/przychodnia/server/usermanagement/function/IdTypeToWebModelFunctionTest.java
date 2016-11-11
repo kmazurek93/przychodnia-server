@@ -9,11 +9,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Created by kmazu on 24.08.2016.
  */
-public class IdTypeToIdTypeWebModelFunctionTest {
+public class IdTypeToWebModelFunctionTest {
 
 	public static final String PASSPORT = "PASSPORT";
 	public static final int ID = 123;
-	private IdTypeToIdTypeWebModelFunction tested = new IdTypeToIdTypeWebModelFunction();
+	private IdTypeToWebModelFunction tested = new IdTypeToWebModelFunction();
 
 	@Test
 	public void apply() throws Exception {

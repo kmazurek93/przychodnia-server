@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
 
 /**
  * Created by lupus on 18.10.16.
@@ -18,6 +21,11 @@ public class SexService {
     @Transactional(readOnly = true)
     public Sex findOne(Integer id) {
         return sexRepository.findOne(id);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Sex> getAll() {
+        return newArrayList(sexRepository.findAll());
     }
 }
 

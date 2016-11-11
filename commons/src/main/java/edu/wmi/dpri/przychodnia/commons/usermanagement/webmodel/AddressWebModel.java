@@ -7,7 +7,6 @@ import javax.validation.constraints.NotNull;
  */
 public class AddressWebModel {
 
-	@NotNull
 	private Long id;
 	@NotNull
 	private String country;

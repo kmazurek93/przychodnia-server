@@ -2,7 +2,7 @@ package edu.wmi.dpri.przychodnia.server.usermanagement.web.service;
 
 import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.IdTypeWebModel;
 import edu.wmi.dpri.przychodnia.server.entity.IdType;
-import edu.wmi.dpri.przychodnia.server.usermanagement.function.IdTypeToIdTypeWebModelFunction;
+import edu.wmi.dpri.przychodnia.server.usermanagement.function.IdTypeToWebModelFunction;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.IdTypeService;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ public class IdTypeWebService {
     private IdTypeService idTypeService;
 
     @Inject
-    private IdTypeToIdTypeWebModelFunction function;
+    private IdTypeToWebModelFunction function;
 
     public IdTypeWebModel getOne(Integer id) {
         IdType entity = idTypeService.getById(id);
