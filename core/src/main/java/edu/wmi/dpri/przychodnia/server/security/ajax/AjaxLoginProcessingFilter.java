@@ -49,7 +49,7 @@ public class AjaxLoginProcessingFilter extends AbstractAuthenticationProcessingF
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws AuthenticationException, IOException, ServletException {
         if(HttpMethod.OPTIONS.name().equals(request.getMethod())) {
-            return CorsFilter.doCorsAndReturnNull(response);
+            return CorsFilter.doCorsAndReturnNull(request, response);
         }
 
         if (!HttpMethod.POST.name().equals(request.getMethod())) {

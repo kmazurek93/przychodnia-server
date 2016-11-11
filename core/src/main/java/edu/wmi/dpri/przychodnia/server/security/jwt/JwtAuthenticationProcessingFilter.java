@@ -39,7 +39,7 @@ public class JwtAuthenticationProcessingFilter extends AbstractAuthenticationPro
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws AuthenticationException, IOException, ServletException {
         if (request.getMethod().equals(HttpMethod.OPTIONS.name())) {
-            return CorsFilter.doCorsAndReturnNull(response);
+            return CorsFilter.doCorsAndReturnNull(request, response);
         }
         String tokenPayload = request.getHeader(WebSecurityConfig.JWT_TOKEN_HEADER_PARAM);
         RawAccessJwtToken token = new RawAccessJwtToken(jwtTokenExtractor.extract(tokenPayload));
