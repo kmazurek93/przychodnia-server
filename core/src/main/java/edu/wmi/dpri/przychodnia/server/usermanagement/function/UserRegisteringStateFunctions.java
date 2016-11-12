@@ -42,6 +42,7 @@ public class UserRegisteringStateFunctions {
                 .withIdType(state.getTargetIdType())
                 .withSex(state.getTargetSex())
                 .withPESEL(personalData.getPesel())
+                .withTelephone(personalData.getTelephone())
                 .build();
     }
 

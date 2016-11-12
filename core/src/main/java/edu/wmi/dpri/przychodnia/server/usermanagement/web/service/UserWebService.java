@@ -1,5 +1,6 @@
 package edu.wmi.dpri.przychodnia.server.usermanagement.web.service;
 
+import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.UserDataWebModel;
 import edu.wmi.dpri.przychodnia.server.entity.User;
 import edu.wmi.dpri.przychodnia.server.usermanagement.function.UserRegisteringStateFunctions;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.UserService;
@@ -25,4 +26,9 @@ public class UserWebService {
         User savedUser = userService.saveUser(user);
         state.setSavedUser(savedUser);
     }
+
+    public void updateUserData(UserDataWebModel userDataWebModel) {
+
+    }
+
 }

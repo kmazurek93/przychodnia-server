@@ -22,6 +22,7 @@ public final class PersonBuilder {
     private Address address;
     private Address mailingAddress;
     private Sex sex;
+    private String telephone;
     private List<User> users = newArrayList();
 
     private PersonBuilder() {
@@ -29,6 +30,11 @@ public final class PersonBuilder {
 
     public static PersonBuilder aPerson() {
         return new PersonBuilder();
+    }
+
+    public PersonBuilder withTelephone(String telephone) {
+        this.telephone = telephone;
+        return this;
     }
 
     public PersonBuilder withPESEL(String PESEL) {

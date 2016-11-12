@@ -58,6 +58,9 @@ public class Person {
     @JoinColumn(name = "sex_id")
     private Sex sex;
 
+    @Column(name = "telehone")
+    private String telephone;
+
     @OneToMany(targetEntity = User.class, mappedBy = "person")
     private List<User> users = newArrayList();
 
@@ -155,5 +158,13 @@ public class Person {
 
     public void setUsers(List<User> users) {
         this.users = users;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 }
