@@ -141,9 +141,9 @@ INSERT INTO sex(id, name) VALUES
 INSERT INTO id_type(id, name) VALUES
 (1, 'Dowód osobisty RP'),(2, 'Paszport');
 
-INSERT INTO person(pesel, first_name, last_name, birth_place, birth_date, id_number, id_type, address_id, sex_id)
+INSERT INTO person(pesel, first_name, last_name, birth_place, birth_date, id_number, id_type, address_id, sex_id, telephone)
 VALUES
-('XXXXXXXXXXX', 'Super', 'Admin', 'Poznań', '1970-01-01', 'AAA000000', 1, 1, 1);
+('XXXXXXXXXXX', 'Super', 'Admin', 'Poznań', '1970-01-01', 'AAA000000', 1, 1, 1, '123456789');
 
 INSERT INTO role(id, name) VALUES
 (1, 'ROLE_ADMIN'), (2, 'ROLE_USER'), (3, 'ROLE_DOCTOR'), (4, 'ROLE_PATIENT'), (5, 'ROLE_STAFF');
