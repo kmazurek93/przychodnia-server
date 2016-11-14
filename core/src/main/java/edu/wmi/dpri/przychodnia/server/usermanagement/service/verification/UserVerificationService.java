@@ -3,6 +3,7 @@ package edu.wmi.dpri.przychodnia.server.usermanagement.service.verification;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.ConflictException;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.ErrorMessage;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.generators.ErrorMessageGenerator;
+import edu.wmi.dpri.przychodnia.server.security.model.UserContext;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.PersonService;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.UserService;
 import org.apache.commons.collections4.CollectionUtils;
@@ -63,6 +64,7 @@ public class UserVerificationService {
         return !CollectionUtils.intersection(assignedRoles, roles).isEmpty();
     }
 
+    @SuppressWarnings("unchecked")
     private List<String> getAssignedRolesAsStringList() {
         Authentication authentication = getUserContextFromSecurityContextHolder();
         List<GrantedAuthority> authorities = (List<GrantedAuthority>) authentication.getAuthorities();
@@ -73,5 +75,11 @@ public class UserVerificationService {
 
     private Authentication getUserContextFromSecurityContextHolder() {
         return SecurityContextHolder.getContext().getAuthentication();
+    }
+
+    public boolean verifyIfIdIsEqual(Long userId) {
+        Authentication authentication = getUserContextFromSecurityContextHolder();
+        UserContext principal = (UserContext) authentication.getPrincipal();
+        return principal.getUserId().equals(userId);
     }
 }

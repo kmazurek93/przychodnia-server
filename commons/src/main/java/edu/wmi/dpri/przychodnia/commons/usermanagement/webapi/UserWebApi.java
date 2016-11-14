@@ -1,6 +1,8 @@
 package edu.wmi.dpri.przychodnia.commons.usermanagement.webapi;
 
 import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.UserCrudWebModel;
+import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.UserSearchResult;
+import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.UserSearchWebModel;
 
 import javax.ws.rs.*;
 
@@ -16,12 +18,10 @@ public interface UserWebApi {
     String USERS = "/users";
 
 
-
-
     @GET
     @Produces(APPLICATION_JSON)
     @Path("/{id}")
-    UserCrudWebModel getUserById(@PathParam("id") Integer id);
+    UserCrudWebModel getUserById(@PathParam("id") Long id);
 
     @PUT
     @Path("/{id}")
@@ -31,6 +31,11 @@ public interface UserWebApi {
 
     @DELETE
     @Path("/{id}")
-    void deleteUser(@PathParam("id") Integer id);
+    void archivizeUser(@PathParam("id") Long id);
 
+    @POST
+    @Produces(APPLICATION_JSON)
+    @Consumes(APPLICATION_JSON)
+    //if model is null then return ALL.
+    UserSearchResult queryUsers(UserSearchWebModel model);
 }

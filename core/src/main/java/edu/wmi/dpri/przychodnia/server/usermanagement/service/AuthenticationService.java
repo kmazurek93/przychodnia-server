@@ -1,13 +1,10 @@
 package edu.wmi.dpri.przychodnia.server.usermanagement.service;
 
 import edu.wmi.dpri.przychodnia.server.entity.User;
-import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.ErrorMessage;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-
-import static edu.wmi.dpri.przychodnia.server.exceptionmanagement.generators.ErrorMessageGenerator.getAuthenticationErrorMessage;
 
 /**
  * Created by lupus on 22.10.16.
@@ -16,7 +13,7 @@ import static edu.wmi.dpri.przychodnia.server.exceptionmanagement.generators.Err
 public class AuthenticationService {
 
     public static final String BAD_USERNAME_OR_PASSWORD_MSG = "BAD_USERNAME_OR_PASSWORD";
-    public static final ErrorMessage BAD_USERNAME_OR_PASSWORD = getAuthenticationErrorMessage(BAD_USERNAME_OR_PASSWORD_MSG);
+    public static final String EXPIRED_ACCOUNT_MSG = "EXPIRED_ACCOUNT_MSG";
     @Inject
     private UserService userService;
     @Inject
@@ -34,6 +31,10 @@ public class AuthenticationService {
         User user = userService.getUserByLogin(username);
         if (user == null) {
             throw new BadCredentialsException(BAD_USERNAME_OR_PASSWORD_MSG);
+        }
+        if (!user.isActive()) {
+            throw new BadCredentialsException(EXPIRED_ACCOUNT_MSG);
+
         }
         if (passwordService.isLoginValid(password, user)) {
             return user;

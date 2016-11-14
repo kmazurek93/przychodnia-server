@@ -5,10 +5,20 @@ package edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel;
  */
 public class UserDataSimpleModel {
     private Long userId;
-    private String pesel;
     private String name;
+    private String pesel;
     private String email;
+    private String telephone;
+    private String address;
+    private String mailingAddress;
 
+    public String getMailingAddress() {
+        return mailingAddress;
+    }
+
+    public void setMailingAddress(String mailingAddress) {
+        this.mailingAddress = mailingAddress;
+    }
 
     public Long getUserId() {
         return userId;
@@ -34,4 +44,27 @@ public class UserDataSimpleModel {
         this.email = email;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }

@@ -3,10 +3,7 @@ package edu.wmi.dpri.przychodnia.server.config;
 import com.fasterxml.jackson.jaxrs.base.JsonMappingExceptionMapper;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.mappers.*;
 import edu.wmi.dpri.przychodnia.server.security.webapi.SecurityApiImpl;
-import edu.wmi.dpri.przychodnia.server.usermanagement.web.api.AddressWebApiImpl;
-import edu.wmi.dpri.przychodnia.server.usermanagement.web.api.IdTypeManagementWebApiImpl;
-import edu.wmi.dpri.przychodnia.server.usermanagement.web.api.PublicWebApiImpl;
-import edu.wmi.dpri.przychodnia.server.usermanagement.web.api.UserConnectionWebApiImpl;
+import edu.wmi.dpri.przychodnia.server.usermanagement.web.api.*;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
 import org.springframework.context.annotation.Configuration;
@@ -26,6 +23,7 @@ public class GlobalJerseyConfig extends ResourceConfig {
         register(AddressWebApiImpl.class);
         register(PublicWebApiImpl.class);
         register(UserConnectionWebApiImpl.class);
+        register(UserWebApiImpl.class);
         //security
         register(SecurityApiImpl.class);
 

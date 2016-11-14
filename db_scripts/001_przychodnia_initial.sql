@@ -1,14 +1,14 @@
-DROP USER IF EXISTS przychodnia_test;
+DROP USER IF EXISTS przychodnia;
 ;
-DROP DATABASE IF EXISTS `przychodnia_test`;
+DROP DATABASE IF EXISTS `przychodnia`;
 ;
-CREATE DATABASE IF NOT EXISTS `przychodnia_test` DEFAULT CHARACTER SET = 'utf8' DEFAULT COLLATE = 'utf8_polish_ci';
+CREATE DATABASE IF NOT EXISTS `przychodnia` DEFAULT CHARACTER SET = 'utf8' DEFAULT COLLATE = 'utf8_polish_ci';
 ;
-CREATE USER IF NOT EXISTS 'przychodnia_test'@'localhost' IDENTIFIED BY 'przychodnia_test' PASSWORD EXPIRE NEVER;
+CREATE USER IF NOT EXISTS 'przychodnia'@'localhost' IDENTIFIED BY 'przychodnia' PASSWORD EXPIRE NEVER;
 ;
-USE przychodnia_test;
+USE przychodnia;
 ;
-GRANT ALL PRIVILEGES ON `przychodnia_test`.* TO 'przychodnia_test'@'%' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON `przychodnia`.* TO 'przychodnia'@'%' WITH GRANT OPTION;
 ;
 
 CREATE TABLE `action_log`(
@@ -131,7 +131,7 @@ ADD CONSTRAINT fk_u_pesel
 FOREIGN KEY (pesel)
 REFERENCES person(pesel);
 
-USE przychodnia_test;
+USE przychodnia;
 
 INSERT INTO address(id, country, province, city, street, house, apartment, postcode)
 VALUES

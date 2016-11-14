@@ -9,6 +9,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,6 +19,8 @@ import org.springframework.stereotype.Component;
 import javax.inject.Inject;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static edu.wmi.dpri.przychodnia.server.usermanagement.service.AuthenticationService.EXPIRED_ACCOUNT_MSG;
 
 /**
  * Created by lupus on 22.10.16.
@@ -43,6 +46,9 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
         User userByLogin = userService.getUserByLogin(username);
+        if (!userByLogin.isActive()) {
+            throw new BadCredentialsException(EXPIRED_ACCOUNT_MSG);
+        }
         UserContext context = UserContext.create(username, userByLogin.getId(), authorities);
 
         return new ClinicJwtAuthToken(context, context.getAuthorities());

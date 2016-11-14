@@ -4,12 +4,13 @@ import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.creation.UserLin
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.ErrorMessage;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.auth.ForbiddenException;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.generators.ErrorMessageGenerator;
-import edu.wmi.dpri.przychodnia.server.security.model.RoleAuthority;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.UserConnectionHelperService;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.verification.UserVerificationService;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+
+import static edu.wmi.dpri.przychodnia.server.security.model.RoleAuthority.STAFF_OR_ADMIN;
 
 /**
  * Created by lupus on 29.10.16.
@@ -25,8 +26,8 @@ public class UserConnectionWebService {
     private UserConnectionHelperService userConnectionHelperService;
 
     public void connectUsers(UserLinkingUnlinkingWebModel model) {
-        boolean hasCorrectAuthority = userVerificationService.verifyIfHasAnyAuthorityOf(RoleAuthority.STAFF_OR_ADMIN);
-        if (hasCorrectAuthority) {
+        boolean isEligible = userVerificationService.verifyIfHasAnyAuthorityOf(STAFF_OR_ADMIN);
+        if (isEligible) {
             userConnectionHelperService.connectUsers(model);
         } else {
             throwForbiddenException();
@@ -34,8 +35,8 @@ public class UserConnectionWebService {
     }
 
     public void removeConnection(UserLinkingUnlinkingWebModel model) {
-        boolean hasCorrectAuthority = userVerificationService.verifyIfHasAnyAuthorityOf(RoleAuthority.STAFF_OR_ADMIN);
-        if (hasCorrectAuthority) {
+        boolean isEligible = userVerificationService.verifyIfHasAnyAuthorityOf(STAFF_OR_ADMIN);
+        if (isEligible) {
             userConnectionHelperService.unlinkUsers(model);
         } else {
             throwForbiddenException();
