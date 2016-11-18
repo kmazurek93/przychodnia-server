@@ -21,9 +21,9 @@ public class UserWebApiImpl implements UserWebApi {
     }
 
     @Override
-    public UserCrudWebModel updateUser(Integer id, UserCrudWebModel model) {
+    public UserCrudWebModel updateUser(Long id, UserCrudWebModel model) {
         //TODO
-        return null;
+        return userWebService.updateUserData(id, model);
     }
 
     @Override

@@ -20,7 +20,7 @@ public class UserToUserDataWebModelFunction implements Function<User, UserDataWe
     public UserDataWebModel apply(User input) {
         return anUserDataWebModel().withEmailAddress(input.getEmailAddress()).withId(input.getId())
                 .withPassword(input.getPassword()).withRoles(handleRoles(input.getRoles()))
-                .withUsername(input.getLogin()).build();
+                .withUsername(input.getLogin()).withActive(input.isActive()).build();
     }
 
     private List<String> handleRoles(List<Role> roles) {

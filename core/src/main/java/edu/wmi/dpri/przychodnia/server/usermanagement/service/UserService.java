@@ -1,5 +1,6 @@
 package edu.wmi.dpri.przychodnia.server.usermanagement.service;
 
+import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.UserDataWebModel;
 import edu.wmi.dpri.przychodnia.server.entity.User;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.ErrorMessage;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.NotFoundException;
@@ -21,6 +22,8 @@ public class UserService {
 
     @Inject
     private UserRepository userRepository;
+    @Inject
+    private RoleService roleService;
 
     @Transactional
     public User saveUser(User user) {
@@ -87,4 +90,20 @@ public class UserService {
         byId.setActive(false);
         userRepository.save(byId);
     }
+
+    @Transactional
+    public void updateUser(UserDataWebModel userData, boolean isAdminOrStaff) {
+        User user = userRepository.findOne(userData.getId());
+        if (isAdminOrStaff) {
+            List<String> roles = userData.getRoles();
+            if (roles != null) {
+                user.setRoles(roleService.findByNameIn(roles));
+            }
+            user.setLogin(userData.getUsername());
+            user.setActive(userData.isActive());
+        }
+        user.setEmailAddress(userData.getEmailAddress());
+        userRepository.save(user);
+    }
+
 }

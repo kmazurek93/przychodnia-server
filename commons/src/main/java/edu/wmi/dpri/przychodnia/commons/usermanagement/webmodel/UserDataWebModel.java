@@ -18,6 +18,7 @@ public class UserDataWebModel {
     @NotNull
     private String emailAddress;
     private List<String> roles = DEFAULT_ROLES_FOR_NEW_USER;
+    private boolean active;
 
     public Long getId() {
         return id;
@@ -57,5 +58,13 @@ public class UserDataWebModel {
 
     public void setRoles(List<String> roles) {
         this.roles = roles;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

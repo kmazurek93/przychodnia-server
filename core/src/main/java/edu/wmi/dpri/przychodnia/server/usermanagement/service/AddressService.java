@@ -21,6 +21,8 @@ public class AddressService {
 
     @Inject
     private AddressRepository repository;
+    @Inject
+    private UserService userService;
 
     @Transactional
     public Address saveAddress(Address toSave) {
@@ -33,6 +35,19 @@ public class AddressService {
         throwExceptionIfNull(toUpdate.getId(), address, ExceptionCause.MODIFICATION, Address.class);
         updateValues(address, toUpdate);
         return repository.save(address);
+    }
+
+    @Transactional
+    public Address createOrUpdateMailingAddress(AddressWebModel toCreateOrUpdate) {
+        Address address = repository.findOne(toCreateOrUpdate.getId());
+        if (address == null) {
+            address = new Address();
+            updateValues(address, toCreateOrUpdate);
+            return repository.save(address);
+        } else {
+            updateValues(address, toCreateOrUpdate);
+            return repository.save(address);
+        }
     }
 
     private void updateValues(Address address, AddressWebModel toUpdate) {

@@ -15,6 +15,7 @@ public final class UserDataWebModelBuilder {
     private String password;
     private String emailAddress;
     private List<String> roles = DEFAULT_ROLES_FOR_NEW_USER;
+    private boolean active;
 
     private UserDataWebModelBuilder() {
     }
@@ -48,6 +49,11 @@ public final class UserDataWebModelBuilder {
         return this;
     }
 
+    public UserDataWebModelBuilder withActive(boolean active) {
+        this.active = active;
+        return this;
+    }
+
     public UserDataWebModel build() {
         UserDataWebModel userDataWebModel = new UserDataWebModel();
         userDataWebModel.setId(id);
@@ -55,6 +61,7 @@ public final class UserDataWebModelBuilder {
         userDataWebModel.setPassword(password);
         userDataWebModel.setEmailAddress(emailAddress);
         userDataWebModel.setRoles(roles);
+        userDataWebModel.setActive(active);
         return userDataWebModel;
     }
 }

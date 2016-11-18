@@ -27,7 +27,7 @@ public interface UserWebApi {
     @Path("/{id}")
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
-    UserCrudWebModel updateUser(@PathParam("id") Integer id, UserCrudWebModel model);
+    UserCrudWebModel updateUser(@PathParam("id") Long id, UserCrudWebModel model);
 
     @DELETE
     @Path("/{id}")

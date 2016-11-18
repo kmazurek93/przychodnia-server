@@ -1,12 +1,16 @@
 package edu.wmi.dpri.przychodnia.server.usermanagement.web.service;
 
-import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.*;
+import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.UserCrudWebModel;
+import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.UserDataSimpleModel;
+import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.UserSearchResult;
+import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.UserSearchWebModel;
 import edu.wmi.dpri.przychodnia.server.entity.User;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.ErrorMessage;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.auth.UnauthorizedException;
 import edu.wmi.dpri.przychodnia.server.usermanagement.function.UserRegisteringStateFunctions;
 import edu.wmi.dpri.przychodnia.server.usermanagement.function.UserToUserCrudWebModelFunction;
 import edu.wmi.dpri.przychodnia.server.usermanagement.function.UserToUserDataSimpleModelFunction;
+import edu.wmi.dpri.przychodnia.server.usermanagement.service.UserAllDataUpdateService;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.UserService;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.verification.UserVerificationService;
 import edu.wmi.dpri.przychodnia.server.usermanagement.state.UserRegisteringState;
@@ -29,13 +33,12 @@ public class UserWebService {
     public static final ErrorMessage FORBIDDEN_ERROR_MESSAGE = getForbiddenErrorMessage(INSUFFICIENT_PRIVILEGES);
     @Inject
     private UserRegisteringStateFunctions userRegisteringStateFunctions;
-
     @Inject
     private UserService userService;
-
+    @Inject
+    private UserAllDataUpdateService userAllDataUpdateService;
     @Inject
     private UserToUserDataSimpleModelFunction simpleModelFunction;
-
     @Inject
     private UserVerificationService userVerificationService;
     @Inject
@@ -47,8 +50,9 @@ public class UserWebService {
         state.setSavedUser(savedUser);
     }
 
-    public void updateUserData(UserDataWebModel userDataWebModel) {
-//TODO
+    public UserCrudWebModel updateUserData(Long pathId, UserCrudWebModel userCrudWebModel) {
+        userAllDataUpdateService.updateUserData(pathId, userCrudWebModel);
+        return crudWebModelFunction.apply(userService.getUserById(pathId));
     }
 
     public UserCrudWebModel getUserCompleteData(Long userId) {
