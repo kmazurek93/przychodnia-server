@@ -77,10 +77,12 @@ public class UserWebService {
                 return anUserSearchResult().withUsers(userDataSimpleModels).withAmountOfPages(-1).build();
             } else {
                 List<User> foundUsers = userSearchService.queryAll(model);
-                int amountOfPages = foundUsers.size() / model.getSize() + 1;
-                sortAndSelectUsers(foundUsers, model.getPage(), amountOfPages, model.getSize());
+                int amountOfPages = foundUsers.size() % model.getSize() != 0 ?
+                        foundUsers.size() / model.getSize() + 1 :
+                        foundUsers.size() / model.getSize();
+                List<User> users = sortAndSelectUsers(foundUsers, model.getPage(), amountOfPages, model.getSize());
                 List<UserDataSimpleModel> userDataSimpleModels =
-                        simpleModelFunction.applyToList(foundUsers);
+                        simpleModelFunction.applyToList(users);
                 return anUserSearchResult().withUsers(userDataSimpleModels).withAmountOfPages(amountOfPages).build();
             }
         } else {
@@ -89,13 +91,13 @@ public class UserWebService {
         }
     }
 
-    private void sortAndSelectUsers(List<User> foundUsers, Integer pageNo, int amountOfPages, Integer pageSize) {
+    private List<User> sortAndSelectUsers(List<User> foundUsers, Integer pageNo, int amountOfPages, Integer pageSize) {
         foundUsers.sort((o1, o2) -> o1.getId().compareTo(o2.getId()));
         int startIndex = pageNo * pageSize;
-        int endIndex = startIndex + pageSize + 1;
-        foundUsers = endIndex > foundUsers.size() ?
-                foundUsers.subList(startIndex, endIndex) : foundUsers.subList(startIndex, foundUsers.size());
-
+        int endIndex = startIndex + pageSize;
+        foundUsers = endIndex > foundUsers.size() ? foundUsers.subList(startIndex, foundUsers.size())
+                : foundUsers.subList(startIndex, endIndex);
+        return foundUsers;
     }
 
     public void archivizeUser(Long id) {
