@@ -15,7 +15,7 @@ import java.util.List;
 public interface PersonRepository extends CrudRepository<Person, String> {
 
     @Query("Select p from Person p inner join fetch p.users where p.firstName like :name " +
-            "or p.middleName like :name or p.name like :name or p.telephone like :telephone")
+            "or p.middleName like :name or p.lastName like :name or p.telephone like :telephone")
     List<Person> searchQueryOnNamesAndPhone(@Param("name") String likeName,
                                             @Param("telephone") String likeTelephone);
 }
