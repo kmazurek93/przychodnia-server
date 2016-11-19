@@ -14,7 +14,8 @@ import java.util.List;
 @Repository
 public interface AddressRepository extends CrudRepository<Address, Long> {
 
-    @Query("select a from Address a where a.country like :likeString " +
+    @Query("select a from Address a inner join fetch a.persons " +
+            "where a.country like :likeString " +
             "or a.province like :likeString or a.city like :likeString " +
             "or a.street like :likeString or a.house like :likeString " +
             "or a.house like :likeString or a.apartment like :likeString " +

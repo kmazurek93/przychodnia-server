@@ -1,7 +1,9 @@
 package edu.wmi.dpri.przychodnia.server.repository;
 
 import edu.wmi.dpri.przychodnia.server.entity.User;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,8 +24,8 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     List<User> findByIdIn(Set<Long> ids);
 
-
-    List<User> findByEmailAddressLike(String likeEmail);
+    @Query("select u from User u inner join fetch u.person where u.emailAddress like :likeEmail ")
+    List<User> findByEmailAddressLike(@Param("likeEmail") String likeEmail);
 
 
 

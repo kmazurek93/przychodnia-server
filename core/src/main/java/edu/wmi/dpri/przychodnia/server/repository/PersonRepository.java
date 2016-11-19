@@ -1,7 +1,9 @@
 package edu.wmi.dpri.przychodnia.server.repository;
 
 import edu.wmi.dpri.przychodnia.server.entity.Person;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,7 +14,8 @@ import java.util.List;
 @Repository
 public interface PersonRepository extends CrudRepository<Person, String> {
 
-    List<Person> findByFirstNameLikeOrMiddleNameLikeOrLastNameLikeOrTelephoneLike(
-            String fName, String mName, String lName, String telephone
-    );
+    @Query("Select p from Person p inner join fetch p.users where p.firstName like :name " +
+            "or p.middleName like :name or p.name like :name or p.telephone like :telephone")
+    List<Person> searchQueryOnNamesAndPhone(@Param("name") String likeName,
+                                            @Param("telephone") String likeTelephone);
 }

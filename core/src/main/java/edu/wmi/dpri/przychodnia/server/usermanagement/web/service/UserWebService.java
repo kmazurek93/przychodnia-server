@@ -11,6 +11,7 @@ import edu.wmi.dpri.przychodnia.server.usermanagement.function.UserRegisteringSt
 import edu.wmi.dpri.przychodnia.server.usermanagement.function.UserToUserCrudWebModelFunction;
 import edu.wmi.dpri.przychodnia.server.usermanagement.function.UserToUserDataSimpleModelFunction;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.UserAllDataUpdateService;
+import edu.wmi.dpri.przychodnia.server.usermanagement.service.UserSearchService;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.UserService;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.verification.UserVerificationService;
 import edu.wmi.dpri.przychodnia.server.usermanagement.state.UserRegisteringState;
@@ -43,6 +44,8 @@ public class UserWebService {
     private UserVerificationService userVerificationService;
     @Inject
     private UserToUserCrudWebModelFunction crudWebModelFunction;
+    @Inject
+    private UserSearchService userSearchService;
 
     public void handleAddingUserDuringRegistration(UserRegisteringState state) {
         User user = userRegisteringStateFunctions.createUserToSaveFromState(state);
@@ -73,11 +76,13 @@ public class UserWebService {
                         simpleModelFunction.applyToList(userService.getAllInitializedUsers());
                 return anUserSearchResult().withUsers(userDataSimpleModels).withAmountOfPages(-1).build();
             } else {
-                //TODO handle searching by given params. <scheduled 18.11 - 20.11>
-                return null;
+                List<User> foundUsers = userSearchService.queryAll(model);
+                List<UserDataSimpleModel> userDataSimpleModels =
+                        simpleModelFunction.applyToList(foundUsers);
+                return anUserSearchResult().withUsers(userDataSimpleModels).withAmountOfPages(-1).build();
             }
         } else {
-            //TODO search in doctors/staff
+            //TODO search in doctors/staff scheduled <20.11>
             throw new UnauthorizedException(FORBIDDEN_ERROR_MESSAGE);
         }
     }

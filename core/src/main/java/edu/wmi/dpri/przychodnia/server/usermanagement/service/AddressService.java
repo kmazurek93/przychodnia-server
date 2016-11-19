@@ -12,6 +12,7 @@ import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static edu.wmi.dpri.przychodnia.server.exceptionmanagement.NotFoundExceptionThrower.throwExceptionIfNull;
+import static org.hibernate.Hibernate.initialize;
 
 /**
  * Created by lupus on 22.09.16.
@@ -77,5 +78,13 @@ public class AddressService {
     @Transactional
     public List<Address> getAll() {
         return newArrayList(repository.findAll());
+    }
+
+
+    @Transactional(readOnly = true)
+    public List<Address> searchQueryOnAll(String likeString) {
+        List<Address> addresses = repository.searchQueryOnAll(likeString);
+        addresses.forEach(adr -> initialize(adr.getPersonsWithMailingAddress()));
+        return addresses;
     }
 }
