@@ -66,17 +66,18 @@ public class UserWebService {
     }
 
     public UserSearchResult queryUsers(UserSearchWebModel model) {
-        boolean isEligible = userVerificationService.verifyIfHasAnyAuthorityOf(STAFF_OR_ADMIN);
-        if (isEligible) {
+        boolean isAdminOrStaff = userVerificationService.verifyIfHasAnyAuthorityOf(STAFF_OR_ADMIN);
+        if (isAdminOrStaff) {
             if (model == null) {
                 List<UserDataSimpleModel> userDataSimpleModels =
                         simpleModelFunction.applyToList(userService.getAllInitializedUsers());
                 return anUserSearchResult().withUsers(userDataSimpleModels).withAmountOfPages(-1).build();
             } else {
-                //TODO handle searching. <scheduled 18.11 - 20.11>
+                //TODO handle searching by given params. <scheduled 18.11 - 20.11>
                 return null;
             }
         } else {
+            //TODO search in doctors/staff
             throw new UnauthorizedException(FORBIDDEN_ERROR_MESSAGE);
         }
     }

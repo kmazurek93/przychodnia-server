@@ -167,4 +167,9 @@ public class Person {
     public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
+
+    @Transient
+    public User getUserIfExists() {
+        return this.users != null && !this.users.isEmpty() ? this.users.get(0) : null;
+    }
 }

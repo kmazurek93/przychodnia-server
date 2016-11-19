@@ -22,7 +22,6 @@ public class UserWebApiImpl implements UserWebApi {
 
     @Override
     public UserCrudWebModel updateUser(Long id, UserCrudWebModel model) {
-        //TODO
         return userWebService.updateUserData(id, model);
     }
 
@@ -33,7 +32,6 @@ public class UserWebApiImpl implements UserWebApi {
 
     @Override
     public UserSearchResult queryUsers(UserSearchWebModel model) {
-
         return userWebService.queryUsers(model);
     }
 
