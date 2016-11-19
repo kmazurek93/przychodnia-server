@@ -77,14 +77,25 @@ public class UserWebService {
                 return anUserSearchResult().withUsers(userDataSimpleModels).withAmountOfPages(-1).build();
             } else {
                 List<User> foundUsers = userSearchService.queryAll(model);
+                int amountOfPages = foundUsers.size() / model.getSize() + 1;
+                sortAndSelectUsers(foundUsers, model.getPage(), amountOfPages, model.getSize());
                 List<UserDataSimpleModel> userDataSimpleModels =
                         simpleModelFunction.applyToList(foundUsers);
-                return anUserSearchResult().withUsers(userDataSimpleModels).withAmountOfPages(-1).build();
+                return anUserSearchResult().withUsers(userDataSimpleModels).withAmountOfPages(amountOfPages).build();
             }
         } else {
             //TODO search in doctors/staff scheduled <20.11>
             throw new UnauthorizedException(FORBIDDEN_ERROR_MESSAGE);
         }
+    }
+
+    private void sortAndSelectUsers(List<User> foundUsers, Integer pageNo, int amountOfPages, Integer pageSize) {
+        foundUsers.sort((o1, o2) -> o1.getId().compareTo(o2.getId()));
+        int startIndex = pageNo * pageSize;
+        int endIndex = startIndex + pageSize + 1;
+        foundUsers = endIndex > foundUsers.size() ?
+                foundUsers.subList(startIndex, endIndex) : foundUsers.subList(startIndex, foundUsers.size());
+
     }
 
     public void archivizeUser(Long id) {

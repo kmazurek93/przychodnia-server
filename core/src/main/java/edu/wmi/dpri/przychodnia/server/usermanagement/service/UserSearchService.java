@@ -42,7 +42,6 @@ public class UserSearchService {
         if (byAddress.isEmpty() || byEmail.isEmpty() || byPerson.isEmpty() || byRole.isEmpty()) {
             return newArrayList();
         }
-
         return getIntersectionOfAllLists(byEmail, byAddress, byPerson, byRole);
     }
 
