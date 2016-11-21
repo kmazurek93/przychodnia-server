@@ -5,7 +5,11 @@ import edu.wmi.dpri.przychodnia.server.entity.Address;
 import edu.wmi.dpri.przychodnia.server.entity.Person;
 import edu.wmi.dpri.przychodnia.server.entity.Role;
 import edu.wmi.dpri.przychodnia.server.entity.User;
+import edu.wmi.dpri.przychodnia.server.usermanagement.service.model.SetsForSearch;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
@@ -13,7 +17,9 @@ import java.util.List;
 import java.util.Set;
 
 import static com.google.common.collect.Lists.newArrayList;
+import static edu.wmi.dpri.przychodnia.server.security.model.RoleAuthority.STAFF_OR_ADMIN;
 import static jersey.repackaged.com.google.common.collect.Sets.newHashSet;
+import static org.springframework.data.domain.Sort.Direction.ASC;
 
 /**
  * Created by lupus on 19.11.16.
@@ -21,6 +27,7 @@ import static jersey.repackaged.com.google.common.collect.Sets.newHashSet;
 @Component
 public class UserSearchService {
 
+    public static final Sort SORT_BY_ID_ASCENDING = new Sort(ASC, "id");
     @Inject
     private AddressService addressService;
     @Inject
@@ -30,19 +37,40 @@ public class UserSearchService {
     @Inject
     private RoleService roleService;
 
+    public Page<User> queryForUsers(UserSearchWebModel model) {
+        fillPercentSigns(model);
+        SetsForSearch setsForSearch = getSetsForSearchBase(model);
+        setsForSearch.setByRole(getDoctorsAndStaffIds());
+        return getIntersectionOrEmptyList(setsForSearch, model);
+    }
 
-    public List<User> queryAll(UserSearchWebModel userSearchWebModel) {
-        fillPercentSigns(userSearchWebModel);
+    public Page<User> queryAll(UserSearchWebModel model) {
+        fillPercentSigns(model);
+        SetsForSearch setsForSearch = getSetsForSearchBase(model);
+        setsForSearch.setByRole(getUserIdsFromFoundRoleList(model));
+        return getIntersectionOrEmptyList(setsForSearch, model);
 
-        Set<Long> byEmail = getUserIdsFromFoundUsersByMail(userSearchWebModel);
-        Set<Long> byAddress = getUsersFromFoundAddressList(userSearchWebModel);
-        Set<Long> byPerson = getUserIdssFromFoundPersonList(userSearchWebModel);
-        Set<Long> byRole = getUserIdsFromFoundRoleList(userSearchWebModel);
+    }
 
-        if (byAddress.isEmpty() || byEmail.isEmpty() || byPerson.isEmpty() || byRole.isEmpty()) {
-            return newArrayList();
-        }
-        return getIntersectionOfAllLists(byEmail, byAddress, byPerson, byRole);
+    private SetsForSearch getSetsForSearchBase(UserSearchWebModel model) {
+        SetsForSearch setsForSearch = new SetsForSearch();
+        setsForSearch.setByEmail(getUserIdsFromFoundUsersByMail(model));
+        setsForSearch.setByAddress(getUsersFromFoundAddressList(model));
+        setsForSearch.setByPerson(getUserIdsFromFoundPersonList(model));
+        return setsForSearch;
+    }
+
+    private Page<User> getIntersectionOrEmptyList(SetsForSearch setsForSearch, UserSearchWebModel model) {
+        return getIntersectionOfAllLists(setsForSearch, model);
+    }
+
+    private Page<User> getIntersectionOfAllLists(SetsForSearch setsForSearch, UserSearchWebModel model) {
+        Set<Long> allIds = newHashSet(setsForSearch.getByEmail());
+        allIds.retainAll(setsForSearch.getByAddress());
+        allIds.retainAll(setsForSearch.getByPerson());
+        allIds.retainAll(setsForSearch.getByRole());
+        PageRequest pageRequest = new PageRequest(model.getPage(), model.getSize(), SORT_BY_ID_ASCENDING);
+        return userService.findByIdIn(allIds, pageRequest);
     }
 
     private Set<Long> getUserIdsFromFoundUsersByMail(UserSearchWebModel userSearchWebModel) {
@@ -53,17 +81,6 @@ public class UserSearchService {
         return byEmail;
     }
 
-    private List<User> getIntersectionOfAllLists(
-            Set<Long> byEmail, Set<Long> byAddress,
-            Set<Long> byPerson, Set<Long> byRole) {
-        Set<Long> allIds = newHashSet(byEmail);
-        allIds.retainAll(byAddress);
-        allIds.retainAll(byPerson);
-        allIds.retainAll(byRole);
-
-        return userService.findByIdIn(allIds);
-    }
-
     private void fillPercentSigns(UserSearchWebModel userSearchWebModel) {
         userSearchWebModel.setTelephone(StringUtils.join("%", userSearchWebModel.getTelephone(), "%"));
         userSearchWebModel.setAddress(StringUtils.join("%", userSearchWebModel.getAddress(), "%"));
@@ -72,7 +89,7 @@ public class UserSearchService {
         userSearchWebModel.setRole(StringUtils.join("%", userSearchWebModel.getRole(), "%"));
     }
 
-    private Set<Long> getUserIdssFromFoundPersonList(UserSearchWebModel userSearchWebModel) {
+    private Set<Long> getUserIdsFromFoundPersonList(UserSearchWebModel userSearchWebModel) {
         List<Person> list = personService
                 .searchQueryOnNamesAndPhone(userSearchWebModel.getName(), userSearchWebModel.getTelephone());
         if (list.isEmpty()) {
@@ -93,11 +110,7 @@ public class UserSearchService {
     private Set<Long> getUserIdsFromFoundRoleList(UserSearchWebModel userSearchWebModel) {
         List<Role> list = roleService
                 .queryLikeName(userSearchWebModel.getRole());
-        Set<Long> ids = newHashSet();
-        List<User> users = newArrayList();
-        list.forEach(role -> users.addAll(role.getUsers()));
-        users.forEach(u -> ids.add(u.getId()));
-        return ids;
+        return getUserIdsFromRoles(list);
     }
 
     private Set<Long> getUsersFromFoundAddressList(UserSearchWebModel userSearchWebModel) {
@@ -108,6 +121,19 @@ public class UserSearchService {
             ids.addAll(getUserIdsFromPersons(address.getPersons()));
             ids.addAll(getUserIdsFromPersons(address.getPersonsWithMailingAddress()));
         });
+        return ids;
+    }
+
+    private Set<Long> getDoctorsAndStaffIds() {
+        List<Role> list = roleService.findByNameIn(STAFF_OR_ADMIN);
+        return getUserIdsFromRoles(list);
+    }
+
+    private Set<Long> getUserIdsFromRoles(List<Role> list) {
+        Set<Long> ids = newHashSet();
+        List<User> users = newArrayList();
+        list.forEach(role -> users.addAll(role.getUsers()));
+        users.forEach(u -> ids.add(u.getId()));
         return ids;
     }
 }

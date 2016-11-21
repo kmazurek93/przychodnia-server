@@ -6,6 +6,8 @@ import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.ErrorMessa
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.NotFoundException;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.generators.ErrorMessageGenerator;
 import edu.wmi.dpri.przychodnia.server.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -107,10 +109,17 @@ public class UserService {
         userRepository.save(user);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<User> findByIdIn(Set<Long> ids) {
         List<User> byIdIn = userRepository.findByIdIn(ids);
         byIdIn.forEach(this::initializeChildEntities);
+        return byIdIn;
+    }
+
+    @Transactional(readOnly = true)
+    public Page<User> findByIdIn(Set<Long> ids, PageRequest pageRequest) {
+        Page<User> byIdIn = userRepository.findByIdIn(ids, pageRequest);
+        byIdIn.getContent().forEach(this::initializeChildEntities);
         return byIdIn;
     }
 

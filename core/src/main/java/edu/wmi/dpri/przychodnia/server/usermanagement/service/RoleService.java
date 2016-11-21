@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.inject.Inject;
 import java.util.List;
 
+import static org.hibernate.Hibernate.initialize;
+
 /**
  * Created by lupus on 18.10.16.
  */
@@ -24,8 +26,12 @@ public class RoleService {
 
     @Transactional(readOnly = true)
     public List<Role> findByNameIn(List<String> names) {
-        return roleRepository.findByNameIn(names);
+
+        List<Role> roles = roleRepository.findByNameIn(names);
+        roles.forEach(role -> initialize(role.getUsers()));
+        return roles;
     }
+
 
     @Transactional(readOnly = true)
     public List<Role> queryLikeName(String name) {

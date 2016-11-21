@@ -10,4 +10,5 @@ out/*
 out
 build/*
 */build
-
+*.jar
+*/*.jar
