@@ -11,6 +11,7 @@ import edu.wmi.dpri.przychodnia.server.usermanagement.function.UserRegisteringSt
 import edu.wmi.dpri.przychodnia.server.usermanagement.function.UserToUserCrudWebModelFunction;
 import edu.wmi.dpri.przychodnia.server.usermanagement.function.UserToUserDataSimpleModelFunction;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.UserAllDataUpdateService;
+import edu.wmi.dpri.przychodnia.server.usermanagement.service.UserSearchService;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.UserService;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.verification.UserVerificationService;
 import edu.wmi.dpri.przychodnia.server.usermanagement.state.UserRegisteringState;
@@ -43,6 +44,8 @@ public class UserWebService {
     private UserVerificationService userVerificationService;
     @Inject
     private UserToUserCrudWebModelFunction crudWebModelFunction;
+    @Inject
+    private UserSearchService userSearchService;
 
     public void handleAddingUserDuringRegistration(UserRegisteringState state) {
         User user = userRegisteringStateFunctions.createUserToSaveFromState(state);
@@ -66,19 +69,35 @@ public class UserWebService {
     }
 
     public UserSearchResult queryUsers(UserSearchWebModel model) {
-        boolean isEligible = userVerificationService.verifyIfHasAnyAuthorityOf(STAFF_OR_ADMIN);
-        if (isEligible) {
+        boolean isAdminOrStaff = userVerificationService.verifyIfHasAnyAuthorityOf(STAFF_OR_ADMIN);
+        if (isAdminOrStaff) {
             if (model == null) {
                 List<UserDataSimpleModel> userDataSimpleModels =
                         simpleModelFunction.applyToList(userService.getAllInitializedUsers());
                 return anUserSearchResult().withUsers(userDataSimpleModels).withAmountOfPages(-1).build();
             } else {
-                //TODO handle searching. <scheduled 18.11 - 20.11>
-                return null;
+                List<User> foundUsers = userSearchService.queryAll(model);
+                int amountOfPages = foundUsers.size() % model.getSize() != 0 ?
+                        foundUsers.size() / model.getSize() + 1 :
+                        foundUsers.size() / model.getSize();
+                List<User> users = sortAndSelectUsers(foundUsers, model.getPage(), amountOfPages, model.getSize());
+                List<UserDataSimpleModel> userDataSimpleModels =
+                        simpleModelFunction.applyToList(users);
+                return anUserSearchResult().withUsers(userDataSimpleModels).withAmountOfPages(amountOfPages).build();
             }
         } else {
+            //TODO search in doctors/staff scheduled <20.11>
             throw new UnauthorizedException(FORBIDDEN_ERROR_MESSAGE);
         }
+    }
+
+    private List<User> sortAndSelectUsers(List<User> foundUsers, Integer pageNo, int amountOfPages, Integer pageSize) {
+        foundUsers.sort((o1, o2) -> o1.getId().compareTo(o2.getId()));
+        int startIndex = pageNo * pageSize;
+        int endIndex = startIndex + pageSize;
+        foundUsers = endIndex > foundUsers.size() ? foundUsers.subList(startIndex, foundUsers.size())
+                : foundUsers.subList(startIndex, endIndex);
+        return foundUsers;
     }
 
     public void archivizeUser(Long id) {

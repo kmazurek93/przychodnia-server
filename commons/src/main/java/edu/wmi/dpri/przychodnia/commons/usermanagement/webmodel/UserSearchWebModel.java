@@ -10,6 +10,7 @@ public class UserSearchWebModel {
     private String mail;
     private String address;
     private String role;
+    private String telephone;
 
     public Integer getPage() {
         return page;
@@ -57,5 +58,13 @@ public class UserSearchWebModel {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 }

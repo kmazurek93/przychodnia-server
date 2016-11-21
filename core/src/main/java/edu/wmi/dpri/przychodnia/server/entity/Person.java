@@ -39,9 +39,11 @@ public class Person {
     @Column(name = "id_number", nullable = false, length = 40)
     private String idNumber;
 
+
     @ManyToOne(targetEntity = IdType.class)
     @JoinColumn(name = "id_type")
     private IdType idType;
+
 
     @ManyToOne(targetEntity = Address.class)
     @JoinColumn(name = "address_id")
@@ -50,6 +52,7 @@ public class Person {
     @ManyToOne(targetEntity = Address.class)
     @JoinColumn(name = "mailing_address_id")
     private Address mailingAddress;
+
 
     @ManyToOne(targetEntity = Sex.class)
     @JoinColumn(name = "sex_id")
@@ -169,6 +172,11 @@ public class Person {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    @Transient
+    public User getUserIfExists() {
+        return this.users != null && !this.users.isEmpty() ? this.users.get(0) : null;
     }
 
     public Person() {

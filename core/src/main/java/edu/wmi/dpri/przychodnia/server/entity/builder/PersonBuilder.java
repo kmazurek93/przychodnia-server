@@ -111,6 +111,7 @@ public final class PersonBuilder {
         person.setMailingAddress(mailingAddress);
         person.setSex(sex);
         person.setUsers(users);
+        person.setTelephone(telephone);
         return person;
     }
 }

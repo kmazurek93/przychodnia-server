@@ -24,7 +24,6 @@ public class UserRegisteringStateFunctions {
     private PasswordService passwordService;
 
     public Person createPersonToSaveFromState(UserRegisteringState state) {
-        Person person = new Person();
         PersonalDataWebModel personalData = getPersonalData(state);
         return createPerson(state, personalData);
 

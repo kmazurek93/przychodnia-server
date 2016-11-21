@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.Set;
 
 import static org.hibernate.Hibernate.initialize;
 
@@ -106,4 +107,15 @@ public class UserService {
         userRepository.save(user);
     }
 
+    @Transactional
+    public List<User> findByIdIn(Set<Long> ids) {
+        List<User> byIdIn = userRepository.findByIdIn(ids);
+        byIdIn.forEach(this::initializeChildEntities);
+        return byIdIn;
+    }
+
+    @Transactional(readOnly = true)
+    public List<User> findByEmailAddressLike(String likeEmail) {
+        return userRepository.findByEmailAddressLike(likeEmail);
+    }
 }

@@ -26,4 +26,9 @@ public class RoleService {
     public List<Role> findByNameIn(List<String> names) {
         return roleRepository.findByNameIn(names);
     }
+
+    @Transactional(readOnly = true)
+    public List<Role> queryLikeName(String name) {
+        return roleRepository.findByNameLike(name);
+    }
 }

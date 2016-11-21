@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.List;
 
 import static edu.wmi.dpri.przychodnia.server.exceptionmanagement.NotFoundExceptionThrower.throwExceptionIfNull;
 
@@ -73,5 +74,10 @@ public class PersonService {
         }
         person.setTelephone(personalData.getTelephone());
         personRepository.save(person);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Person> searchQueryOnNamesAndPhone(String likeName, String likeTelephone) {
+        return personRepository.searchQueryOnNamesAndPhone(likeName, likeTelephone);
     }
 }
