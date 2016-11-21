@@ -19,7 +19,6 @@ public class AddressCreationWebModel {
     private String city;
     @NotNull
     private String country;
-    @NotNull
     private String province;
 
     public String getCountry() {

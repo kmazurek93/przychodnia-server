@@ -15,6 +15,7 @@ import edu.wmi.dpri.przychodnia.server.usermanagement.service.UserSearchService;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.UserService;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.verification.UserVerificationService;
 import edu.wmi.dpri.przychodnia.server.usermanagement.state.UserRegisteringState;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -76,18 +77,19 @@ public class UserWebService {
                         simpleModelFunction.applyToList(userService.getAllInitializedUsers());
                 return anUserSearchResult().withUsers(userDataSimpleModels).withAmountOfPages(-1).build();
             } else {
-                List<User> foundUsers = userSearchService.queryAll(model);
-                int amountOfPages = foundUsers.size() % model.getSize() != 0 ?
-                        foundUsers.size() / model.getSize() + 1 :
-                        foundUsers.size() / model.getSize();
-                List<User> users = sortAndSelectUsers(foundUsers, model.getPage(), amountOfPages, model.getSize());
+                Page<User> foundUsers = userSearchService.queryAll(model);
+
                 List<UserDataSimpleModel> userDataSimpleModels =
-                        simpleModelFunction.applyToList(users);
-                return anUserSearchResult().withUsers(userDataSimpleModels).withAmountOfPages(amountOfPages).build();
+                        simpleModelFunction.applyToList(foundUsers.getContent());
+                return anUserSearchResult().withUsers(userDataSimpleModels)
+                        .withAmountOfPages(foundUsers.getTotalPages()).build();
             }
         } else {
-            //TODO search in doctors/staff scheduled <20.11>
-            throw new UnauthorizedException(FORBIDDEN_ERROR_MESSAGE);
+            Page<User> foundDoctorsAndStaff = userSearchService.queryForUsers(model);
+            List<UserDataSimpleModel> userDataSimpleModels =
+                    simpleModelFunction.applyToList(foundDoctorsAndStaff.getContent());
+            return anUserSearchResult().withUsers(userDataSimpleModels)
+                    .withAmountOfPages(foundDoctorsAndStaff.getTotalPages()).build();
         }
     }
 
