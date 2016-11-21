@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * Created by kmazu on 03.07.2016.
  */
 @Repository
-public interface SexRepository extends CrudRepository<Sex, Integer> {
+public interface SexRepository extends CrudRepository<Sex, Long> {
 }

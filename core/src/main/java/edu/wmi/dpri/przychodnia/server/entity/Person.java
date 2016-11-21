@@ -13,37 +13,35 @@ import static com.google.common.collect.Lists.newArrayList;
  * Created by kmazu on 12.06.2016.
  */
 @Entity
-@Table(name = "person")
+@Table(name = "persons")
 public class Person {
 
     @Id
-    @Column(name = "pesel")
+    @Column(name = "pesel", length = 11)
     private String PESEL;
 
-    @Column(name = "first_name", nullable = false)
+    @Column(name = "first_name", nullable = false, length = 100)
     private String firstName;
 
-    @Column(name = "middle_name", nullable = true)
+    @Column(name = "middle_name", length = 100)
     private String middleName;
 
-    @Column(name = "last_name", nullable = false)
+    @Column(name = "last_name", nullable = false, length = 100)
     private String lastName;
 
-    @Column(name = "birth_date", nullable = false)
+    @Column(name = "birthdate", nullable = false)
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private DateTime birthDate;
 
-    @Column(name = "birth_place", nullable = false)
+    @Column(name = "birthplace", nullable = false, length = 100)
     private String birthPlace;
 
-    @Column(name = "id_number", nullable = false)
+    @Column(name = "id_number", nullable = false, length = 40)
     private String idNumber;
-
 
     @ManyToOne(targetEntity = IdType.class)
     @JoinColumn(name = "id_type")
     private IdType idType;
-
 
     @ManyToOne(targetEntity = Address.class)
     @JoinColumn(name = "address_id")
@@ -53,16 +51,21 @@ public class Person {
     @JoinColumn(name = "mailing_address_id")
     private Address mailingAddress;
 
-
     @ManyToOne(targetEntity = Sex.class)
     @JoinColumn(name = "sex_id")
     private Sex sex;
 
-    @Column(name = "telephone")
+    @Column(name = "telephone", length = 20)
     private String telephone;
 
     @OneToMany(targetEntity = User.class, mappedBy = "person")
     private List<User> users = newArrayList();
+
+    @OneToOne(targetEntity = Employee.class, mappedBy = "person")
+    private Employee employee;
+
+    @OneToOne(targetEntity = Patient.class, mappedBy = "person")
+    private Patient patient;
 
     public String getPESEL() {
         return PESEL;
@@ -166,5 +169,24 @@ public class Person {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
+    }
+
+    public Person() {
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 }

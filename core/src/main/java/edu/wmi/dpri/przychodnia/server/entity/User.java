@@ -8,25 +8,25 @@ import java.util.Set;
  * Created by khartv on 17.05.2016.
  */
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "login", nullable = false, unique = true)
+    @Column(name = "login", nullable = false, unique = true, length = 50)
     private String login;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password", nullable = false, length = 1000)
     private String password;
 
-    @Column(name = "email_address", unique = true, nullable = false)
+    @Column(name = "email_address", unique = true, nullable = false, length = 100)
     private String emailAddress;
 
     @Column(name = "active")
-    private boolean active;
+    private Boolean active;
 
     @ManyToOne(targetEntity = Person.class)
     @JoinColumn(name = "pesel")
@@ -114,13 +114,15 @@ public class User {
         this.password = password;
     }
 
-    public boolean isActive() {
+    public Boolean isActive() {
         return active;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(Boolean active) {
         this.active = active;
     }
 
-
+    public Boolean getActive() {
+        return active;
+    }
 }

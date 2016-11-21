@@ -19,7 +19,7 @@ public class IdTypeWebService {
     @Inject
     private IdTypeToWebModelFunction function;
 
-    public IdTypeWebModel getOne(Integer id) {
+    public IdTypeWebModel getOne(Long id) {
         IdType entity = idTypeService.getById(id);
         return function.apply(entity);
     }
@@ -34,7 +34,7 @@ public class IdTypeWebService {
         return function.apply(entityUpdated);
     }
 
-    public Response deleteOne(Integer id) {
+    public Response deleteOne(Long id) {
         return idTypeService.deleteIdType(id);
     }
 

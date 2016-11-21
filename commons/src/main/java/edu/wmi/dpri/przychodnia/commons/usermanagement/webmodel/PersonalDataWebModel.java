@@ -20,9 +20,9 @@ public class PersonalDataWebModel {
     @NotNull
     private String idNumber;
     @NotNull
-    private Integer idTypeNo;
+    private Long idTypeNo;
     @NotNull
-    private Integer sexId;
+    private Long sexId;
     private String telephone;
 
     public String getTelephone() {
@@ -89,19 +89,19 @@ public class PersonalDataWebModel {
         this.idNumber = idNumber;
     }
 
-    public Integer getIdTypeNo() {
+    public Long getIdTypeNo() {
         return idTypeNo;
     }
 
-    public void setIdTypeNo(Integer idTypeNo) {
+    public void setIdTypeNo(Long idTypeNo) {
         this.idTypeNo = idTypeNo;
     }
 
-    public Integer getSexId() {
+    public Long getSexId() {
         return sexId;
     }
 
-    public void setSexId(Integer sexId) {
+    public void setSexId(Long sexId) {
         this.sexId = sexId;
     }
 }

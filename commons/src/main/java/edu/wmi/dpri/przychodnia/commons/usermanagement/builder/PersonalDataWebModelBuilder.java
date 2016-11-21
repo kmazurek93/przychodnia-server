@@ -13,8 +13,8 @@ public final class PersonalDataWebModelBuilder {
     private Long birthDate;
     private String birthPlace;
     private String idNumber;
-    private Integer idTypeNo;
-    private Integer sexId;
+    private Long idTypeNo;
+    private Long sexId;
     private String telephone;
 
     private PersonalDataWebModelBuilder() {
@@ -59,12 +59,12 @@ public final class PersonalDataWebModelBuilder {
         return this;
     }
 
-    public PersonalDataWebModelBuilder withIdTypeNo(Integer idTypeNo) {
+    public PersonalDataWebModelBuilder withIdTypeNo(Long idTypeNo) {
         this.idTypeNo = idTypeNo;
         return this;
     }
 
-    public PersonalDataWebModelBuilder withSexId(Integer sexId) {
+    public PersonalDataWebModelBuilder withSexId(Long sexId) {
         this.sexId = sexId;
         return this;
     }

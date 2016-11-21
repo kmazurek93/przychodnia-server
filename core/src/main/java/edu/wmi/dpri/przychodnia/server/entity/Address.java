@@ -9,7 +9,7 @@ import static com.google.common.collect.Lists.newArrayList;
  * Created by kmazu on 12.06.2016.
  */
 @Entity
-@Table(name = "address")
+@Table(name = "addresses")
 public class Address {
 
     @Id
@@ -17,25 +17,25 @@ public class Address {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "country", nullable = false)
+    @Column(name = "country", nullable = false, length = 50)
     private String country;
 
-    @Column(name = "province", nullable = false)
+    @Column(name = "province", length = 50)
     private String province;
 
-    @Column(name = "city", nullable = false)
+    @Column(name = "city", nullable = false, length = 75)
     private String city;
 
-    @Column(name = "street", nullable = false)
+    @Column(name = "street", nullable = false, length = 100)
     private String street;
 
-    @Column(name = "house", nullable = false)
+    @Column(name = "house", nullable = false, length = 10)
     private String house;
 
-    @Column(name = "apartment")
+    @Column(name = "apartment", length = 10)
     private String apartment;
 
-    @Column(name = "postcode", nullable = false)
+    @Column(name = "postcode", length = 15)
     private String postCode;
 
     @OneToMany(targetEntity = Person.class, mappedBy = "address", cascade = CascadeType.PERSIST)

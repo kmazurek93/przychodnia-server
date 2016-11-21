@@ -19,7 +19,7 @@ public class IdTypeManagementWebApiImpl implements IdTypeManagementWebApi {
     private IdTypeWebService idTypeWebService;
 
     @Override
-    public IdTypeWebModel getOne(Integer id) {
+    public IdTypeWebModel getOne(Long id) {
         return idTypeWebService.getOne(id);
     }
 
@@ -34,7 +34,7 @@ public class IdTypeManagementWebApiImpl implements IdTypeManagementWebApi {
     }
 
     @Override
-    public Response deleteOne(Integer id) {
+    public Response deleteOne(Long id) {
         return idTypeWebService.deleteOne(id);
     }
 

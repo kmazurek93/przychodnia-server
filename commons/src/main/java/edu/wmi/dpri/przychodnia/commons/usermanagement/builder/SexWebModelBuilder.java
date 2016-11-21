@@ -6,7 +6,7 @@ import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.SexWebModel;
  * Created by kmazu on 06.07.2016.
  */
 public final class SexWebModelBuilder {
-    private Integer id;
+    private Long id;
     private String name;
 
     private SexWebModelBuilder() {
@@ -16,7 +16,7 @@ public final class SexWebModelBuilder {
         return new SexWebModelBuilder();
     }
 
-    public SexWebModelBuilder withId(Integer id) {
+    public SexWebModelBuilder withId(Long id) {
         this.id = id;
         return this;
     }

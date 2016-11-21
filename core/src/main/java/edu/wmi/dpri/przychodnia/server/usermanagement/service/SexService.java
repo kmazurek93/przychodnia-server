@@ -19,7 +19,7 @@ public class SexService {
     private SexRepository sexRepository;
 
     @Transactional(readOnly = true)
-    public Sex findOne(Integer id) {
+    public Sex findOne(Long id) {
         return sexRepository.findOne(id);
     }
 
