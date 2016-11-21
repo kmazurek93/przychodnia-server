@@ -33,12 +33,12 @@ public class User {
     private Person person;
 
     @ManyToMany
-    @JoinTable(name = "user_connection", joinColumns = @JoinColumn(name = "parent_id"),
+    @JoinTable(name = "user_connections", joinColumns = @JoinColumn(name = "parent_id"),
             inverseJoinColumns = @JoinColumn(name = "child_id"))
     private Set<User> parentUsers;
 
     @ManyToMany
-    @JoinTable(name = "user_connection", joinColumns = @JoinColumn(name = "child_id"),
+    @JoinTable(name = "user_connections", joinColumns = @JoinColumn(name = "child_id"),
             inverseJoinColumns = @JoinColumn(name = "parent_id"))
     private Set<User> childUsers;
 

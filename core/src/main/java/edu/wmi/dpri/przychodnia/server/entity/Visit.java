@@ -44,6 +44,7 @@ public class Visit {
     @OneToMany(targetEntity = Visit.class, mappedBy = "associatedVisit")
     private List<Visit> visitsAssociatedWith;
 
+    @Lob
     @Column(name = "comment")
     private String comment;
 
