@@ -61,7 +61,6 @@ CREATE TABLE `addresses` (
   `modified_by` bigint(20) unsigned DEFAULT NULL,
   `deleted_at` datetime(6) DEFAULT NULL,
   `deleted_by` bigint(20) unsigned DEFAULT NULL,
-  `active` bit(1) DEFAULT b'1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -416,3 +415,108 @@ CREATE TABLE `visits` (
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2016-11-22  0:32:36
+-- Dumping data for table `action_log`
+--
+
+LOCK TABLES `action_logs` WRITE;
+/*!40000 ALTER TABLE `action_logs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `action_logs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `address`
+--
+
+LOCK TABLES `addresses` WRITE;
+/*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
+INSERT INTO `addresses` (id, country, province, city, street, house, apartment, postcode)
+VALUES (1,'Polska','Wielkopolskie','Poznań','Umultowska','87',NULL,'61-600'),
+(2,'Polska','Wielkopolskie','Poznań','Umultowska','87',NULL,'61-601'),(3,'Niemcy','Nordrhein-Westfallen','Hamburg','Unter den Linden','23','3','1233'),(4,'NIemcy','Nordrhein-Westfallen','Hamburg','Unter den Linden','12A','33','123124'),(5,'Polska','Świętokrzyskie','Kielce','Pocieszka','118',NULL,'25-520'),(6,'Polska','Świętokrzyskie','Kielce','Pocieszka','118',NULL,'25-520'),(7,'Polska','Śląskie','Sosnowiec','Kowalskiego Piotra','82',NULL,'41-219'),(8,'Polska','Śląskie','Sosnowiec','Kowalskiego Piotra','82',NULL,'41-219'),(9,'Polska','Lubelskie','Lublin','Brezy Tadeusza','140','8','20-448'),(10,'Polska','Lubelskie','Lublin','Brezy Tadeusza','140','8','20-448'),(11,'Polska','Śląskie','Wrocław','Zielona','80','4','54-044'),(12,'Polska','Śląskie','Wrocław','Zielona','80','4','54-044'),(13,'Polska','Kujawsko-Pomorskie','Bydgoszcz','Abrahama Romana','92','13d','85-318'),(14,'Polska','Kujawsko-Pomorskie','Bydgoszcz','Abrahama Romana','92','13d','85-318'),(15,'Polska','Śląskie','Gliwice','Bakowa','18',NULL,'44-100'),(16,'Polska','Śląskie','Gliwice','Bakowa','18',NULL,'44-100');
+/*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `id_type`
+--
+
+LOCK TABLES `id_types` WRITE;
+/*!40000 ALTER TABLE `id_types` DISABLE KEYS */;
+INSERT INTO `id_types` (id, name) VALUES (1,'Dowód osobisty RP'),(2,'Paszport');
+/*!40000 ALTER TABLE `id_types` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `person`
+--
+
+LOCK TABLES `persons` WRITE;
+/*!40000 ALTER TABLE `persons` DISABLE KEYS */;
+INSERT INTO `persons` (pesel, first_name, middle_name, last_name, birthdate, birthplace,
+id_number, id_type, address_id, mailing_address_id, sex_id, telephone)
+VALUES
+('12345678901','Super','Ekstra','User','1990-01-18','Poznań','AAA123456',2,2,NULL,1,NULL),
+('73110572051','Justyn',NULL,'Czarnecki','1973-11-05','Sosnowiec','SOJ886221',1,7,8,1,NULL),
+('78062095548','Lucyna',NULL,'Kalinowska','1978-07-20','Wrocław','IJF345290',1,11,12,2,'+48884316341'),('86122267525','Zofia','','Olszewska','1986-12-22','Kielce','ACZ886332',1,5,6,2,NULL),('89022228751','Anastazy',NULL,'Kaczmarek','1989-02-22','Bydgoszcz','UJD882772',1,13,14,1,'+48677619852'),('92010610582','Klara',NULL,'Wojciechowska','1992-01-06','Gliwice','CXZ003243',1,15,16,2,'+48695573892'),('94122160151','Kacper','Jan','Kowalczyk','1994-12-21','Lublin','BDF127733',1,9,10,1,'+48882169975'),('XXXXXXXXXXX','Super',NULL,'Admin','1970-01-01','Poznań','AAA000000',1,1,NULL,1,'123456789');
+/*!40000 ALTER TABLE `persons` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `role`
+--
+
+LOCK TABLES `roles` WRITE;
+/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+INSERT INTO `roles` (id, name) VALUES (1,'ROLE_ADMIN'),(3,'ROLE_DOCTOR'),(4,'ROLE_PATIENT'),(5,'ROLE_STAFF'),(2,'ROLE_USER');
+/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `sex`
+--
+
+LOCK TABLES `sexes` WRITE;
+/*!40000 ALTER TABLE `sexes` DISABLE KEYS */;
+INSERT INTO `sexes` (id, name) VALUES (2,'K'),(1,'M');
+/*!40000 ALTER TABLE `sexes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users`  (id, login, password,  email_address, active, pesel)
+VALUES (1,'admin','JRqnd8lI1tMhnt3it8gY4w==','admin@przychodnia.com','','XXXXXXXXXXX'),(2,'user12','hWm3qKxSxTvZaz7P1gwYrg==','user@przychodnia.com','','12345678901'),(3,'user1973','O8pU7w+TimIQb4g6ZXg6mQ==','JustynCzarnecki@dayrep.com','','73110572051'),(4,'user1986','LfMVHKJd2w/tBHWAkr2slg==','Zofcia229@dayrep.com','','86122267525'),(5,'user1994','l50zIyttK1SMjz4nSkpVQg==','KacperKowalczyk@armyspy.com','','94122160151'),(6,'doctor78','806agdlV0to/NajelOi86g==','LucynaKalinowska@przychodnia.com','','78062095548'),(7,'doctor89','/W0FU3hK3p3yHYPEgxXe0A==','AnastazyKaczmarek@przychodnia.com','','89022228751'),(8,'staff92','Ja6TE0j2A4iV/IFSy3I2aQ==','KlaraWojciechowska@przychodnia.com','','92010610582');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `user_connection`
+--
+
+LOCK TABLES `user_connections` WRITE;
+/*!40000 ALTER TABLE `user_connections` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user_connections` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping data for table `user_roles`
+--
+
+LOCK TABLES `user_roles` WRITE;
+/*!40000 ALTER TABLE `user_roles` DISABLE KEYS */;
+INSERT INTO `user_roles` (user_id, role_id) VALUES (1,1),(1,2),(1,5),(2,4),(2,2),(3,4),(3,2),(4,4),(4,2),(5,4),(5,2),(6,2),(7,2),(8,2),(8,5),(6,3),(7,3);
+/*!40000 ALTER TABLE `user_roles` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2016-11-22 17:34:05
