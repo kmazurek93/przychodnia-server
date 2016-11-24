@@ -6,15 +6,15 @@ import javax.validation.constraints.NotNull;
  * Created by kmazu on 06.07.2016.
  */
 public class SexWebModel {
-    private Integer id;
+    private Long id;
     @NotNull
     private String name;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

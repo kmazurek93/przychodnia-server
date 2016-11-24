@@ -10,7 +10,7 @@ import javax.persistence.*;
  * Created by lupus on 10.09.16.
  */
 @Entity
-@Table(name = "action_log")
+@Table(name = "action_logs")
 public class ActionLog {
 
     @Id
@@ -21,7 +21,7 @@ public class ActionLog {
     @Column(name = "user_id")
     private Long userId;
 
-    @Column(name = "entity_id")
+    @Column(name = "entity_id", length = 30)
     private String entityId;
 
     @Enumerated
@@ -82,4 +82,9 @@ public class ActionLog {
     public void setActionType(ActionType actionType) {
         this.actionType = actionType;
     }
+
+    public ActionLog() {
+    }
+
+
 }

@@ -25,7 +25,7 @@ public class IdTypeService {
     private IdTypeRepository idTypeRepository;
 
     @Transactional(readOnly = true)
-    public IdType getById(Integer id) {
+    public IdType getById(Long id) {
         IdType foundEntity = idTypeRepository.findOne(id);
         throwExceptionIfNull(id, foundEntity, ExceptionCause.RETRIEVAL,
                 IdType.class);
@@ -49,7 +49,7 @@ public class IdTypeService {
     }
 
     @Transactional
-    public Response deleteIdType(Integer id) {
+    public Response deleteIdType(Long id) {
         IdType foundEntity = idTypeRepository.findOne(id);
         throwExceptionIfNull(id, foundEntity, ExceptionCause.DELETION,
                 IdType.class);

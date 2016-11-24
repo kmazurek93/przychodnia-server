@@ -24,7 +24,7 @@ public interface IdTypeManagementWebApi {
     @GET
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    IdTypeWebModel getOne(@PathParam("id") Integer id);
+    IdTypeWebModel getOne(@PathParam("id") Long id);
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -37,7 +37,7 @@ public interface IdTypeManagementWebApi {
     IdTypeWebModel updateIdType(@NotNull @Valid IdTypeWebModel toUpdate);
 
     @DELETE
-    Response deleteOne(@QueryParam("id") @NotNull Integer id);
+    Response deleteOne(@QueryParam("id") @NotNull Long id);
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)

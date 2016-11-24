@@ -4,24 +4,25 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * Created by kmazu on 12.06.2016.
+ * Created by khartv on 21.11.2016.
  */
 @Entity
-@Table(name = "sexes")
-public class Sex {
+@Table(name = "positions")
+public class Position {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false, unique = true, length = 50)
+    @Column(name = "name", nullable = false, unique = true, length = 100)
     private String name;
 
-    @OneToMany(targetEntity = Person.class, mappedBy = "sex")
-    private List<Person> persons;
+    @OneToMany(targetEntity = Hire.class, mappedBy = "position")
+    private List<Hire> hiresWithPosition;
 
-    public Sex() {}
+    public Position() {
+    }
 
     public Long getId() {
         return id;
@@ -39,12 +40,12 @@ public class Sex {
         this.name = name;
     }
 
-    public List<Person> getPersons() {
-        return persons;
+    public List<Hire> getHiresWithPosition() {
+        return hiresWithPosition;
     }
 
-    public void setPersons(List<Person> persons) {
-        this.persons = persons;
+    public void setHiresWithPosition(List<Hire> hiresWithPosition) {
+        this.hiresWithPosition = hiresWithPosition;
     }
 
 

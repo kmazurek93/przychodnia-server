@@ -4,11 +4,11 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
- * Created by kmazu on 12.06.2016.
+ * Created by khartv on 21.11.2016.
  */
 @Entity
-@Table(name = "id_types")
-public class IdType {
+@Table(name = "specialisations")
+public class Specialisation {
 
     @Id
     @Column(name = "id")
@@ -18,10 +18,11 @@ public class IdType {
     @Column(name = "name", nullable = false, unique = true, length = 100)
     private String name;
 
-    @OneToMany(targetEntity = Person.class, mappedBy = "idType")
-    private List<Person> persons;
+    @ManyToMany
+    @JoinTable(name = "doctors_specialisations", joinColumns = @JoinColumn(name = "specialisation_id"), inverseJoinColumns = @JoinColumn(name = "doctor_id"))
+    private List<Doctor> doctors;
 
-    public IdType() {
+    public Specialisation() {
     }
 
     public Long getId() {
@@ -40,12 +41,12 @@ public class IdType {
         this.name = name;
     }
 
-    public List<Person> getPersons() {
-        return persons;
+    public List<Doctor> getDoctors() {
+        return doctors;
     }
 
-    public void setPersons(List<Person> persons) {
-        this.persons = persons;
+    public void setDoctors(List<Doctor> doctors) {
+        this.doctors = doctors;
     }
 
 

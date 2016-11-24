@@ -12,3 +12,7 @@ build/*
 */build
 *.jar
 */*.jar
+*.jar
+*.war
+*/*.war
+

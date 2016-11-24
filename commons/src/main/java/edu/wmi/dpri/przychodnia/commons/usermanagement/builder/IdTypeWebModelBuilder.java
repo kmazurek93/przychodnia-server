@@ -6,7 +6,7 @@ import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.IdTypeWebModel;
  * Created by kmazu on 06.07.2016.
  */
 public final class IdTypeWebModelBuilder {
-    private Integer id;
+    private Long id;
     private String name;
 
     private IdTypeWebModelBuilder() {
@@ -16,7 +16,7 @@ public final class IdTypeWebModelBuilder {
         return new IdTypeWebModelBuilder();
     }
 
-    public IdTypeWebModelBuilder withId(Integer id) {
+    public IdTypeWebModelBuilder withId(Long id) {
         this.id = id;
         return this;
     }
