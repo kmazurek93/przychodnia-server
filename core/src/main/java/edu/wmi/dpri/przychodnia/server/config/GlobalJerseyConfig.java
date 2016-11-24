@@ -24,6 +24,7 @@ public class GlobalJerseyConfig extends ResourceConfig {
         register(PublicWebApiImpl.class);
         register(UserConnectionWebApiImpl.class);
         register(UserWebApiImpl.class);
+        register(RoleManagementWebApiImpl.class);
         //security
         register(SecurityApiImpl.class);
 

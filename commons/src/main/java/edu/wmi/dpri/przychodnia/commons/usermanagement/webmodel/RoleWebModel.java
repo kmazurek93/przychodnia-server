@@ -7,7 +7,6 @@ import javax.validation.constraints.NotNull;
  */
 public class RoleWebModel {
 
-    @NotNull
     private Integer id;
     @NotNull
     private String name;
