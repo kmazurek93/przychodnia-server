@@ -26,6 +26,20 @@ public class Doctor {
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
+    @ManyToMany(mappedBy = "doctors", targetEntity = Doctor.class)
+    @JoinTable(name = "doctor_availability",
+            joinColumns = @JoinColumn(name = "doctor_id"),
+            inverseJoinColumns = @JoinColumn(name = "availability_id"))
+    private List<Availability> availabilities;
+
+    public List<Availability> getAvailabilities() {
+        return availabilities;
+    }
+
+    public void setAvailabilities(List<Availability> availabilities) {
+        this.availabilities = availabilities;
+    }
+
     public Doctor() {
     }
 
