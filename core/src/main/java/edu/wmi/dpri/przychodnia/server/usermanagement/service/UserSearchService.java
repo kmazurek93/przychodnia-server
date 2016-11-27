@@ -87,11 +87,14 @@ public class UserSearchService {
         userSearchWebModel.setMail(join("%", userSearchWebModel.getMail(), "%"));
         userSearchWebModel.setName(join("%", userSearchWebModel.getName(), "%"));
         userSearchWebModel.setRole(join("%", userSearchWebModel.getRole(), "%"));
+        userSearchWebModel.setPesel(join("%", userSearchWebModel.getPesel(), "%"));
     }
 
     private Set<Long> getUserIdsFromFoundPersonList(UserSearchWebModel userSearchWebModel) {
         List<Person> list = personService
-                .searchQueryOnNamesAndPhone(userSearchWebModel.getName(), userSearchWebModel.getTelephone());
+                .searchQueryOnNamesAndPhoneAndPesel(userSearchWebModel.getName(),
+                        userSearchWebModel.getTelephone(),
+                        userSearchWebModel.getPesel());
         if (list.isEmpty()) {
             return newHashSet();
         }

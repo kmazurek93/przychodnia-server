@@ -77,7 +77,7 @@ public class PersonService {
 	}
 
 	@Transactional(readOnly = true)
-	public List<Person> searchQueryOnNamesAndPhone(String likeName, String likeTelephone) {
-		return personRepository.searchQueryOnNamesAndPhone(likeName, likeTelephone);
+	public List<Person> searchQueryOnNamesAndPhoneAndPesel(String likeName, String likeTelephone, String pesel) {
+		return personRepository.searchQueryOnNamesAndPhoneAndPesel(likeName, likeTelephone, pesel);
 	}
 }
