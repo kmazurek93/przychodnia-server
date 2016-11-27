@@ -203,7 +203,7 @@ CREATE TABLE `persons` (
   `address_id` bigint(20) unsigned NOT NULL,
   `mailing_address_id` bigint(20) unsigned DEFAULT NULL,
   `sex_id` bigint(20) unsigned NOT NULL,
-  `telephone` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
+  `telephone` varchar(20) CHARACTER SET utf8 NOT NULL,
   `dead` bit(1) DEFAULT b'0',
   `created_at` datetime(6) DEFAULT NULL,
   `created_by` bigint(20) unsigned DEFAULT NULL,
