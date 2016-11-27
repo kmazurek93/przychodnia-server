@@ -6,7 +6,6 @@ import edu.wmi.dpri.przychodnia.server.entity.Person;
 import edu.wmi.dpri.przychodnia.server.entity.Role;
 import edu.wmi.dpri.przychodnia.server.entity.User;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.model.SetsForSearch;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -19,6 +18,7 @@ import java.util.Set;
 import static com.google.common.collect.Lists.newArrayList;
 import static edu.wmi.dpri.przychodnia.server.security.model.RoleAuthority.STAFF_OR_ADMIN;
 import static jersey.repackaged.com.google.common.collect.Sets.newHashSet;
+import static org.apache.commons.lang3.StringUtils.join;
 import static org.springframework.data.domain.Sort.Direction.ASC;
 
 /**
@@ -82,11 +82,11 @@ public class UserSearchService {
     }
 
     private void fillPercentSigns(UserSearchWebModel userSearchWebModel) {
-        userSearchWebModel.setTelephone(StringUtils.join("%", userSearchWebModel.getTelephone(), "%"));
-        userSearchWebModel.setAddress(StringUtils.join("%", userSearchWebModel.getAddress(), "%"));
-        userSearchWebModel.setMail(StringUtils.join("%", userSearchWebModel.getMail(), "%"));
-        userSearchWebModel.setName(StringUtils.join("%", userSearchWebModel.getName(), "%"));
-        userSearchWebModel.setRole(StringUtils.join("%", userSearchWebModel.getRole(), "%"));
+        userSearchWebModel.setTelephone(join("%", userSearchWebModel.getTelephone(), "%"));
+        userSearchWebModel.setAddress(join("%", userSearchWebModel.getAddress(), "%"));
+        userSearchWebModel.setMail(join("%", userSearchWebModel.getMail(), "%"));
+        userSearchWebModel.setName(join("%", userSearchWebModel.getName(), "%"));
+        userSearchWebModel.setRole(join("%", userSearchWebModel.getRole(), "%"));
     }
 
     private Set<Long> getUserIdsFromFoundPersonList(UserSearchWebModel userSearchWebModel) {

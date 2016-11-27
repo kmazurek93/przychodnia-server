@@ -18,10 +18,11 @@ public class PasswordServiceTest {
 
     @Test
     public void createSaltedHash() throws Exception {
-        String username = "staff92";
-        String passwd = "staff123";
+        String username = "admin";
+        String passwd = "2xglcah1";
         Base64.Encoder encoder = Base64.getEncoder();
         String passwdEncoded = encoder.encodeToString(passwd.getBytes());
+        out.println(passwdEncoded);
         String saltedHash = tested.createSaltedHash(passwdEncoded, username);
         out.println(saltedHash);
     }

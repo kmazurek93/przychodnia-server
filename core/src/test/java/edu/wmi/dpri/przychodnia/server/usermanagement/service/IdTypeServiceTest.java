@@ -23,8 +23,8 @@ import static org.mockito.MockitoAnnotations.initMocks;
 public class IdTypeServiceTest {
 
     public static final String NEW_NAME = "new name";
-    public static final int MODIFIED_ID_TYPE_ID = 123;
-    private static final Integer ID = 5555;
+    public static final long MODIFIED_ID_TYPE_ID = 123;
+    private static final Long ID = 5555L;
     @Mock
     private IdTypeRepository idTypeRepository;
     @InjectMocks
