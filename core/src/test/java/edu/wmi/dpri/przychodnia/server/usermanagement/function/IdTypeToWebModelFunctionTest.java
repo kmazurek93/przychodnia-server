@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class IdTypeToWebModelFunctionTest {
 
 	public static final String PASSPORT = "PASSPORT";
-	public static final int ID = 123;
+	public static final long ID = 123;
 	private IdTypeToWebModelFunction tested = new IdTypeToWebModelFunction();
 
 	@Test

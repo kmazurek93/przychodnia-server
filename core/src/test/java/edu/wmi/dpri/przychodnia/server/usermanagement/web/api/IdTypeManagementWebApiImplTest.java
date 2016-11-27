@@ -19,7 +19,7 @@ import static org.mockito.MockitoAnnotations.initMocks;
  */
 public class IdTypeManagementWebApiImplTest {
 
-	private static final Integer ID_TYPE_ID = 2341;
+	private static final Long ID_TYPE_ID = 2341L;
 	@Mock
 	private IdTypeWebService idTypeWebService;
 	@InjectMocks

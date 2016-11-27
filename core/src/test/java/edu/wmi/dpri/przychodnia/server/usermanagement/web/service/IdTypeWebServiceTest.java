@@ -22,7 +22,7 @@ import static org.mockito.MockitoAnnotations.initMocks;
  */
 public class IdTypeWebServiceTest {
 
-    private static final Integer ID = 650;
+    private static final Long ID = 650L;
     @Mock
     private IdTypeService idTypeService;
     @Mock

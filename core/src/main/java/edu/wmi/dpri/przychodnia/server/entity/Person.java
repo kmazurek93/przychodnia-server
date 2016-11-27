@@ -58,7 +58,7 @@ public class Person {
     @JoinColumn(name = "sex_id")
     private Sex sex;
 
-    @Column(name = "telephone", length = 20)
+    @Column(name = "telephone", length = 20, nullable = false)
     private String telephone;
 
     @OneToMany(targetEntity = User.class, mappedBy = "person")
