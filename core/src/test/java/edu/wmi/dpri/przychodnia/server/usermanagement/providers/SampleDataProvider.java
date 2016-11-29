@@ -32,10 +32,10 @@ public class SampleDataProvider {
 
         Role one = new Role();
         one.setName(USER);
-        one.setId(1);
+        one.setId(1L);
         Role two = new Role();
         two.setName(PATIENT);
-        two.setId(2);
+        two.setId(2L);
         return newArrayList(one, two);
     }
 

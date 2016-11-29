@@ -1,5 +1,6 @@
 package edu.wmi.dpri.przychodnia.server.usermanagement.internal;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
 import java.util.Set;
@@ -22,5 +23,12 @@ public class SetTest {
         setOne.retainAll(setThree);
 
         assertThat(setOne).containsOnlyElementsOf(newHashSet(12, 13, 14));
+    }
+
+    @Test
+
+    public void stringUtilsTest() {
+        String out = StringUtils.join("%", null, "%");
+        assertThat(out).isEqualTo("%%");
     }
 }

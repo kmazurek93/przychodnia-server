@@ -93,15 +93,6 @@ public class UserWebService {
         }
     }
 
-    private List<User> sortAndSelectUsers(List<User> foundUsers, Integer pageNo, int amountOfPages, Integer pageSize) {
-        foundUsers.sort((o1, o2) -> o1.getId().compareTo(o2.getId()));
-        int startIndex = pageNo * pageSize;
-        int endIndex = startIndex + pageSize;
-        foundUsers = endIndex > foundUsers.size() ? foundUsers.subList(startIndex, foundUsers.size())
-                : foundUsers.subList(startIndex, endIndex);
-        return foundUsers;
-    }
-
     public void archivizeUser(Long id) {
         boolean isUserIdCorrect = userVerificationService.verifyIfIdIsEqual(id);
         boolean isAdminOrStaff = userVerificationService.verifyIfHasAnyAuthorityOf(STAFF_OR_ADMIN);
