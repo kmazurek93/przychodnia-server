@@ -26,6 +26,10 @@ public class Doctor {
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
+    @ManyToMany
+    @JoinTable(name = "doctors_availabilities", joinColumns = @JoinColumn(name = "doctor_id"), inverseJoinColumns = @JoinColumn(name = "availability_id"))
+    private List<Doctor> availabilities;
+
     public Doctor() {
     }
 
@@ -61,5 +65,11 @@ public class Doctor {
         this.employee = employee;
     }
 
+    public List<Doctor> getAvailabilities() {
+        return availabilities;
+    }
 
+    public void setAvailabilities(List<Doctor> availabilities) {
+        this.availabilities = availabilities;
+    }
 }
