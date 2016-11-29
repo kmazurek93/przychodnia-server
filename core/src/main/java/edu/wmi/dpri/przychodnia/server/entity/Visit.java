@@ -1,5 +1,6 @@
 package edu.wmi.dpri.przychodnia.server.entity;
 
+import edu.wmi.dpri.przychodnia.server.entity.enums.VisitStatusType;
 import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -19,6 +20,10 @@ public class Visit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne(targetEntity = TimeWindow.class)
+    @JoinColumn(name = "time_window_id")
+    private TimeWindow timeWindow;
+
     @ManyToOne(targetEntity = Patient.class)
     @JoinColumn(name = "patient_id")
     private Patient patient;
@@ -31,11 +36,9 @@ public class Visit {
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private DateTime date;
 
-    @Column(name = "window", nullable = false)
-    private Integer window;
-
-    @Column(name = "happened")
-    private Boolean happened;
+    @Enumerated
+    @Column(name = "status")
+    private VisitStatusType status;
 
     @ManyToOne(targetEntity = Visit.class)
     @JoinColumn(name = "associated_visit")
@@ -83,26 +86,6 @@ public class Visit {
         this.date = date;
     }
 
-    public Integer getWindow() {
-        return window;
-    }
-
-    public void setWindow(Integer window) {
-        this.window = window;
-    }
-
-    public Boolean isHappened() {
-        return happened;
-    }
-
-    public Boolean getHappened() {
-        return happened;
-    }
-
-    public void setHappened(Boolean happened) {
-        this.happened = happened;
-    }
-
     public Visit getAssociatedVisit() {
         return associatedVisit;
     }
@@ -125,5 +108,21 @@ public class Visit {
 
     public void setVisitsAssociatedWith(List<Visit> visitsAssociatedWith) {
         this.visitsAssociatedWith = visitsAssociatedWith;
+    }
+
+    public TimeWindow getTimeWindow() {
+        return timeWindow;
+    }
+
+    public void setTimeWindow(TimeWindow timeWindow) {
+        this.timeWindow = timeWindow;
+    }
+
+    public VisitStatusType getStatus() {
+        return status;
+    }
+
+    public void setStatus(VisitStatusType status) {
+        this.status = status;
     }
 }
