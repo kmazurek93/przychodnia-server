@@ -2,6 +2,8 @@ package edu.wmi.dpri.przychodnia.server.entity;
 
 import edu.wmi.dpri.przychodnia.server.entity.enums.ActionType;
 import edu.wmi.dpri.przychodnia.server.entity.enums.EntityType;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.joda.time.DateTime;
 
 import javax.persistence.*;
@@ -9,6 +11,9 @@ import javax.persistence.*;
 /**
  * Created by lupus on 10.09.16.
  */
+
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "action_logs")
 public class ActionLog {
@@ -34,57 +39,5 @@ public class ActionLog {
 
     @Column(name = "action_date")
     private DateTime actionDate;
-
-    public DateTime getActionDate() {
-        return actionDate;
-    }
-
-    public void setActionDate(DateTime actionDate) {
-        this.actionDate = actionDate;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public String getEntityId() {
-        return entityId;
-    }
-
-    public void setEntityId(String entityId) {
-        this.entityId = entityId;
-    }
-
-    public EntityType getEntityType() {
-        return entityType;
-    }
-
-    public void setEntityType(EntityType entityType) {
-        this.entityType = entityType;
-    }
-
-    public ActionType getActionType() {
-        return actionType;
-    }
-
-    public void setActionType(ActionType actionType) {
-        this.actionType = actionType;
-    }
-
-    public ActionLog() {
-    }
-
 
 }

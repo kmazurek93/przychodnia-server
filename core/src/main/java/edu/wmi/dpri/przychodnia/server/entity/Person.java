@@ -1,5 +1,7 @@
 package edu.wmi.dpri.przychodnia.server.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -12,6 +14,9 @@ import static com.google.common.collect.Lists.newArrayList;
 /**
  * Created by kmazu on 12.06.2016.
  */
+
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "persons")
 public class Person {
@@ -70,131 +75,9 @@ public class Person {
     @OneToOne(targetEntity = Patient.class, mappedBy = "person")
     private Patient patient;
 
-    public String getPESEL() {
-        return PESEL;
-    }
-
-    public void setPESEL(String PESEL) {
-        this.PESEL = PESEL;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public DateTime getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(DateTime birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public String getBirthPlace() {
-        return birthPlace;
-    }
-
-    public void setBirthPlace(String birthPlace) {
-        this.birthPlace = birthPlace;
-    }
-
-    public String getIdNumber() {
-        return idNumber;
-    }
-
-    public void setIdNumber(String idNumber) {
-        this.idNumber = idNumber;
-    }
-
-    public IdType getIdType() {
-        return idType;
-    }
-
-    public void setIdType(IdType idType) {
-        this.idType = idType;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
-
-    public Address getMailingAddress() {
-        return mailingAddress;
-    }
-
-    public void setMailingAddress(Address mailingAddress) {
-        this.mailingAddress = mailingAddress;
-    }
-
-    public Sex getSex() {
-        return sex;
-    }
-
-    public void setSex(Sex sex) {
-        this.sex = sex;
-    }
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
     @Transient
     public User getUserIfExists() {
         return this.users != null && !this.users.isEmpty() ? this.users.get(0) : null;
     }
 
-    public Person() {
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
-    public Patient getPatient() {
-        return patient;
-    }
-
-    public void setPatient(Patient patient) {
-        this.patient = patient;
-    }
 }

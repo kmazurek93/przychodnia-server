@@ -1,11 +1,17 @@
 package edu.wmi.dpri.przychodnia.server.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.List;
 
 /**
  * Created by khartv on 21.11.2016.
  */
+
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "specialisations")
 public class Specialisation {
@@ -21,33 +27,6 @@ public class Specialisation {
     @ManyToMany
     @JoinTable(name = "doctors_specialisations", joinColumns = @JoinColumn(name = "specialisation_id"), inverseJoinColumns = @JoinColumn(name = "doctor_id"))
     private List<Doctor> doctors;
-
-    public Specialisation() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Doctor> getDoctors() {
-        return doctors;
-    }
-
-    public void setDoctors(List<Doctor> doctors) {
-        this.doctors = doctors;
-    }
 
 
 }

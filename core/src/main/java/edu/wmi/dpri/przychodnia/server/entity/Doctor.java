@@ -1,11 +1,17 @@
 package edu.wmi.dpri.przychodnia.server.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.List;
 
 /**
  * Created by khartv on 21.11.2016.
  */
+
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "doctors")
 public class Doctor {
@@ -29,47 +35,4 @@ public class Doctor {
     @ManyToMany
     @JoinTable(name = "doctors_availabilities", joinColumns = @JoinColumn(name = "doctor_id"), inverseJoinColumns = @JoinColumn(name = "availability_id"))
     private List<Doctor> availabilities;
-
-    public Doctor() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public List<Specialisation> getSpecialisations() {
-        return specialisations;
-    }
-
-    public void setSpecialisations(List<Specialisation> specialisations) {
-        this.specialisations = specialisations;
-    }
-
-    public List<Visit> getVisits() {
-        return visits;
-    }
-
-    public void setVisits(List<Visit> visits) {
-        this.visits = visits;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
-    public List<Doctor> getAvailabilities() {
-        return availabilities;
-    }
-
-    public void setAvailabilities(List<Doctor> availabilities) {
-        this.availabilities = availabilities;
-    }
 }

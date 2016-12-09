@@ -15,7 +15,7 @@ public class IdTypeClient extends GenericRestClient<IdTypeManagementWebApi> {
         super(url, IdTypeManagementWebApi.class);
     }
 
-    public IdTypeWebModel getOne(Integer id) {
+    public IdTypeWebModel getOne(Long id) {
         return resource.getOne(id);
     }
 
@@ -27,7 +27,7 @@ public class IdTypeClient extends GenericRestClient<IdTypeManagementWebApi> {
         return resource.updateIdType(toUpdate);
     }
 
-    public Response deleteOne(Integer id) {
+    public Response deleteOne(Long id) {
         return resource.deleteOne(id);
     }
 }

@@ -1,5 +1,7 @@
 package edu.wmi.dpri.przychodnia.server.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -9,6 +11,9 @@ import java.math.BigDecimal;
 /**
  * Created by khartv on 21.11.2016.
  */
+
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name = "hires")
 public class Hire {
@@ -40,65 +45,6 @@ public class Hire {
     @ManyToOne(targetEntity = Employee.class)
     @JoinColumn(name = "supervisor")
     private Employee supervisor;
-
-    public Hire() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
-    public DateTime getDateStart() {
-        return dateStart;
-    }
-
-    public void setDateStart(DateTime dateStart) {
-        this.dateStart = dateStart;
-    }
-
-    public DateTime getDateEnd() {
-        return dateEnd;
-    }
-
-    public void setDateEnd(DateTime dateEnd) {
-        this.dateEnd = dateEnd;
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
-    }
-
-    public BigDecimal getSalary() {
-        return salary;
-    }
-
-    public void setSalary(BigDecimal salary) {
-        this.salary = salary;
-    }
-
-    public Employee getSupervisor() {
-        return supervisor;
-    }
-
-    public void setSupervisor(Employee supervisor) {
-        this.supervisor = supervisor;
-    }
 
 
 }

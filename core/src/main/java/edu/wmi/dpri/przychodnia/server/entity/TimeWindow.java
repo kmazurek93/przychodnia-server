@@ -1,5 +1,7 @@
 package edu.wmi.dpri.przychodnia.server.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -9,6 +11,9 @@ import java.util.List;
 /**
  * Created by khartv on 29.11.2016.
  */
+
+@Data
+@NoArgsConstructor
 @Entity
 @Table(name="time_windows")
 public class TimeWindow {
@@ -37,62 +42,4 @@ public class TimeWindow {
     @OneToMany(targetEntity = Availability.class, mappedBy = "endTimeWindow")
     List<Availability> AvailabilitiesEndingInTimewindow;
 
-    public TimeWindow() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Integer getOrder() {
-        return order;
-    }
-
-    public void setOrder(Integer order) {
-        this.order = order;
-    }
-
-    public DateTime getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(DateTime startTime) {
-        this.startTime = startTime;
-    }
-
-    public DateTime getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(DateTime endTime) {
-        this.endTime = endTime;
-    }
-
-    public List<Visit> getVisitsInTimewindow() {
-        return visitsInTimewindow;
-    }
-
-    public void setVisitsInTimewindow(List<Visit> visitsInTimewindow) {
-        this.visitsInTimewindow = visitsInTimewindow;
-    }
-
-    public List<Availability> getAvailabilitiesStartingInTimewindow() {
-        return AvailabilitiesStartingInTimewindow;
-    }
-
-    public void setAvailabilitiesStartingInTimewindow(List<Availability> availabilitiesStartingInTimewindow) {
-        AvailabilitiesStartingInTimewindow = availabilitiesStartingInTimewindow;
-    }
-
-    public List<Availability> getAvailabilitiesEndingInTimewindow() {
-        return AvailabilitiesEndingInTimewindow;
-    }
-
-    public void setAvailabilitiesEndingInTimewindow(List<Availability> availabilitiesEndingInTimewindow) {
-        AvailabilitiesEndingInTimewindow = availabilitiesEndingInTimewindow;
-    }
 }
