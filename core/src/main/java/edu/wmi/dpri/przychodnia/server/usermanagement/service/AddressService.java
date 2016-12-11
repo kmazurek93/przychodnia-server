@@ -41,15 +41,20 @@ public class AddressService {
     }
 
     @Transactional
-    public Address createOrUpdateMailingAddress(AddressWebModel toCreateOrUpdate) {
-        Address address = repository.findOne(toCreateOrUpdate.getId());
+    public void createOrUpdateMailingAddress(AddressWebModel toCreateOrUpdate) {
+        Address address = null;
+        if (toCreateOrUpdate.getId() != null) {
+            address = repository.findOne(toCreateOrUpdate.getId());
+        }
         if (address == null) {
             address = new Address();
             updateValues(address, toCreateOrUpdate);
-            return repository.save(address);
+            Address saved = repository.save(address);
+            toCreateOrUpdate.setId(saved.getId());
         } else {
             updateValues(address, toCreateOrUpdate);
-            return repository.save(address);
+            Address saved = repository.save(address);
+            toCreateOrUpdate.setId(saved.getId());
         }
     }
 

@@ -22,6 +22,7 @@ import static edu.wmi.dpri.przychodnia.server.security.model.RoleAuthority.STAFF
 @Component
 public class RoleWebService {
 
+    public static final String INSUFFICIENT_PRIVILEGES = "INSUFFICIENT_PRIVILEGES";
     @Inject
     private RoleService roleService;
     @Inject
@@ -36,7 +37,7 @@ public class RoleWebService {
                     .stream().map(Role::getName)
                     .collect(Collectors.toList());
         } else {
-            throw new ForbiddenException(getForbiddenErrorMessage("INSUFFICIENT_PRIVILEGES"));
+            throw new ForbiddenException(getForbiddenErrorMessage(INSUFFICIENT_PRIVILEGES));
         }
     }
 
@@ -46,7 +47,7 @@ public class RoleWebService {
             roleAssigningService.assignRole(roleAssignmentWebModel);
             return Response.noContent().build();
         } else {
-            throw new ForbiddenException(getForbiddenErrorMessage("INSUFFICIENT_PRIVILEGES"));
+            throw new ForbiddenException(getForbiddenErrorMessage(INSUFFICIENT_PRIVILEGES));
         }
     }
 
@@ -56,7 +57,7 @@ public class RoleWebService {
             roleAssigningService.unassignRole(roleAssignmentWebModel);
             return Response.noContent().build();
         } else {
-            throw new ForbiddenException(getForbiddenErrorMessage("INSUFFICIENT_PRIVILEGES"));
+            throw new ForbiddenException(getForbiddenErrorMessage(INSUFFICIENT_PRIVILEGES));
         }
     }
 

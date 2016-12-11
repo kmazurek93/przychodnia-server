@@ -36,4 +36,7 @@ public class BaseUserData {
 
     @Column(name = "telephone")
     @Getter String telephone;
+
+    @Column(name = "name")
+    @Getter String name;
 }

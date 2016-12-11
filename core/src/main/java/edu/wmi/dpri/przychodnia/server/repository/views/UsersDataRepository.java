@@ -20,16 +20,19 @@ public interface UsersDataRepository
     @Query("SELECT ud FROM UsersData ud WHERE ud.login like :likeLogin " +
             "and ud.email like :likeMail and ud.pesel like :likePesel " +
             "and ud.telephone like :likeTelephone and " +
-            "(ud.address like :likeAddress or ud.mailingAddress like :likeAddress)")
+            "(ud.address like :likeAddress or ud.mailingAddress like :likeAddress) " +
+            "and ud.name like :likeName")
     public List<UsersData> queryOnAll(@Param("likeLogin") String likeLogin, @Param("likeMail") String likeMail,
                                       @Param("likeTelephone") String likeTelephone, @Param("likeAddress") String likeAddress,
-                                      @Param("likePesel") String likePesel);
+                                      @Param("likePesel") String likePesel, @Param("likeName") String likeName);
 
     @Query("SELECT ud FROM UsersData ud WHERE ud.login like :likeLogin " +
             "and ud.email like :likeMail and ud.pesel like :likePesel " +
             "and ud.telephone like :likeTelephone and " +
-            "(ud.address like :likeAddress or ud.mailingAddress like :likeAddress)")
+            "(ud.address like :likeAddress or ud.mailingAddress like :likeAddress)" +
+            "and ud.name like :likeName")
     public Page<UsersData> queryOnAllPageable(@Param("likeLogin") String likeLogin, @Param("likeMail") String likeMail,
                                               @Param("likeTelephone") String likeTelephone, @Param("likeAddress") String likeAddress,
-                                              @Param("likePesel") String likePesel, Pageable pageRequest);
+                                              @Param("likePesel") String likePesel, @Param("likeName") String likeName,
+                                              Pageable pageRequest);
 }

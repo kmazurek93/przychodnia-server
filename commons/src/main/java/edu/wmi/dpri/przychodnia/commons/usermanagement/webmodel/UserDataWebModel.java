@@ -1,5 +1,9 @@
 package edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -8,6 +12,9 @@ import static edu.wmi.dpri.przychodnia.commons.usermanagement.UserManagementCons
 /**
  * Created by lupus on 18.10.16.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
+@Data
+@NoArgsConstructor
 public class UserDataWebModel {
     private Long id;
 
@@ -20,51 +27,4 @@ public class UserDataWebModel {
     private List<String> roles = DEFAULT_ROLES_FOR_NEW_USER;
     private boolean active;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
-    }
-
-    public List<String> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<String> roles) {
-        this.roles = roles;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
 }

@@ -34,7 +34,7 @@ public class UserAllDataUpdateService {
         personService.updatePerson(userDataWebModel.getPersonalData(), isAdminOrStaff);
         addressService.updateAddress(userDataWebModel.getAddress());
         if (userDataWebModel.getMailingAddress() != null) {
-            addressService.updateAddress(userDataWebModel.getMailingAddress());
+            addressService.createOrUpdateMailingAddress(userDataWebModel.getMailingAddress());
         }
     }
 }

@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.16, for Linux (x86_64)
 --
--- Host: 127.0.0.1    Database: przychodnia_poligon
+-- Host: localhost    Database: przychodnia_test
 -- ------------------------------------------------------
--- Server version	5.7.15-log
+-- Server version	5.7.16-10
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -18,7 +18,7 @@
 --
 -- Table structure for table `action_logs`
 --
-SET FOREIGN_KEY_CHECKS=0;
+
 DROP TABLE IF EXISTS `action_logs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -103,7 +103,7 @@ CREATE TABLE `availabilities` (
   KEY `availabilities_time_windows2_idx` (`end_time_window`),
   CONSTRAINT `availabilities_time_windows1` FOREIGN KEY (`start_time_window`) REFERENCES `time_windows` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `availabilities_time_windows2` FOREIGN KEY (`end_time_window`) REFERENCES `time_windows` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -112,6 +112,7 @@ CREATE TABLE `availabilities` (
 
 LOCK TABLES `availabilities` WRITE;
 /*!40000 ALTER TABLE `availabilities` DISABLE KEYS */;
+INSERT INTO `availabilities` VALUES (1,1,1,16,'2016-01-01','2017-12-31'),(2,1,21,36,'2016-01-01','2017-12-31'),(3,2,1,16,'2016-01-01','2017-12-31'),(4,2,21,36,'2016-01-01','2017-12-31'),(5,3,1,16,'2016-01-01','2017-12-31'),(6,3,21,36,'2016-01-01','2017-12-31'),(7,4,1,16,'2016-01-01','2017-12-31'),(8,4,21,36,'2016-01-01','2017-12-31'),(9,5,1,16,'2016-01-01','2017-12-31'),(10,5,21,36,'2016-01-01','2017-12-31'),(11,6,1,48,'2016-01-01','2017-12-31'),(12,7,1,48,'2016-01-01','2017-12-31');
 /*!40000 ALTER TABLE `availabilities` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -123,7 +124,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
 DELIMITER ;;
-  /*!50003 CREATE*/ /*!50017 DEFINER=`przychodnia_poligon`@`localhost`*/ /*!50003 TRIGGER `przychodnia_poligon`.`availabilities_BEFORE_INSERT` BEFORE INSERT ON `availabilities` FOR EACH ROW
+  /*!50003 CREATE*/ /*!50017 DEFINER=`przychodnia_test`@`localhost`*/ /*!50003 TRIGGER `przychodnia_test`.`availabilities_BEFORE_INSERT` BEFORE INSERT ON `availabilities` FOR EACH ROW
   BEGIN
     IF NEW.WEEKDAY not in(
       1,
@@ -151,7 +152,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
 DELIMITER ;;
-  /*!50003 CREATE*/ /*!50017 DEFINER=`przychodnia_poligon`@`localhost`*/ /*!50003 TRIGGER `przychodnia_poligon`.`availabilities_BEFORE_UPDATE` BEFORE UPDATE ON `availabilities` FOR EACH ROW
+  /*!50003 CREATE*/ /*!50017 DEFINER=`przychodnia_test`@`localhost`*/ /*!50003 TRIGGER `przychodnia_test`.`availabilities_BEFORE_UPDATE` BEFORE UPDATE ON `availabilities` FOR EACH ROW
   BEGIN
     IF NEW.WEEKDAY not in(
       1,
@@ -184,7 +185,7 @@ CREATE TABLE `doctors` (
   PRIMARY KEY (`id`),
   KEY `doctors_employees_idx` (`employee_id`),
   CONSTRAINT `doctors_employees` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -193,6 +194,7 @@ CREATE TABLE `doctors` (
 
 LOCK TABLES `doctors` WRITE;
 /*!40000 ALTER TABLE `doctors` DISABLE KEYS */;
+INSERT INTO `doctors` VALUES (1,1),(2,2);
 /*!40000 ALTER TABLE `doctors` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -212,7 +214,7 @@ CREATE TABLE `doctors_availabilities` (
   KEY `doctors_availabilities_availabilities_idx` (`availability_id`),
   CONSTRAINT `doctors_availabilities_availabilities` FOREIGN KEY (`availability_id`) REFERENCES `availabilities` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `doctors_availabilities_doctors` FOREIGN KEY (`doctor_id`) REFERENCES `doctors` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -221,6 +223,7 @@ CREATE TABLE `doctors_availabilities` (
 
 LOCK TABLES `doctors_availabilities` WRITE;
 /*!40000 ALTER TABLE `doctors_availabilities` DISABLE KEYS */;
+INSERT INTO `doctors_availabilities` VALUES (1,1,1),(2,1,4),(3,1,5),(4,1,7),(5,1,9),(6,2,2),(7,2,3),(8,2,6),(9,2,8),(10,2,10);
 /*!40000 ALTER TABLE `doctors_availabilities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -246,7 +249,7 @@ CREATE TABLE `doctors_specialisations` (
   KEY `doctors_specialisations_specialisations_idx` (`specialisation_id`),
   CONSTRAINT `doctors_specialisations_doctors` FOREIGN KEY (`doctor_id`) REFERENCES `doctors` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `doctors_specialisations_specialisations` FOREIGN KEY (`specialisation_id`) REFERENCES `specialisations` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -255,6 +258,7 @@ CREATE TABLE `doctors_specialisations` (
 
 LOCK TABLES `doctors_specialisations` WRITE;
 /*!40000 ALTER TABLE `doctors_specialisations` DISABLE KEYS */;
+INSERT INTO `doctors_specialisations` VALUES (1,1,1,NULL,NULL,NULL,NULL,NULL,NULL),(2,2,1,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `doctors_specialisations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -271,7 +275,7 @@ CREATE TABLE `employees` (
   PRIMARY KEY (`id`),
   KEY `employees_persons_idx` (`pesel`),
   CONSTRAINT `employees_persons` FOREIGN KEY (`pesel`) REFERENCES `persons` (`pesel`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -280,6 +284,7 @@ CREATE TABLE `employees` (
 
 LOCK TABLES `employees` WRITE;
 /*!40000 ALTER TABLE `employees` DISABLE KEYS */;
+INSERT INTO `employees` VALUES (1,'78062095548'),(2,'89022228751'),(3,'92010610582'),(4,'XXXXXXXXXXX');
 /*!40000 ALTER TABLE `employees` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -305,7 +310,7 @@ CREATE TABLE `hires` (
   CONSTRAINT `hires_employees1` FOREIGN KEY (`employee_id`) REFERENCES `employees` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `hires_employees2` FOREIGN KEY (`supervisor`) REFERENCES `employees` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `hires_positions` FOREIGN KEY (`position_id`) REFERENCES `positions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -314,6 +319,7 @@ CREATE TABLE `hires` (
 
 LOCK TABLES `hires` WRITE;
 /*!40000 ALTER TABLE `hires` DISABLE KEYS */;
+INSERT INTO `hires` VALUES (1,4,'2016-01-01','2040-12-31',1,8000.00,NULL),(2,3,'2016-01-01','2020-12-31',2,3000.00,1),(3,1,'2016-01-01','2030-12-31',4,5000.00,1),(4,2,'2016-01-01','2030-12-31',4,5000.00,1);
 /*!40000 ALTER TABLE `hires` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -361,7 +367,7 @@ CREATE TABLE `patients` (
   PRIMARY KEY (`id`),
   KEY `patients_persons_idx` (`pesel`),
   CONSTRAINT `patients_persons` FOREIGN KEY (`pesel`) REFERENCES `persons` (`pesel`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -370,6 +376,7 @@ CREATE TABLE `patients` (
 
 LOCK TABLES `patients` WRITE;
 /*!40000 ALTER TABLE `patients` DISABLE KEYS */;
+INSERT INTO `patients` VALUES (1,'12345678901',NULL,NULL,NULL,NULL,NULL,NULL),(2,'73110572051',NULL,NULL,NULL,NULL,NULL,NULL),(3,'86122267525',NULL,NULL,NULL,NULL,NULL,NULL),(4,'94122160151',NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `patients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -438,7 +445,7 @@ CREATE TABLE `positions` (
   `deleted_at` datetime(6) DEFAULT NULL,
   `deleted_by` bigint(20) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -447,6 +454,7 @@ CREATE TABLE `positions` (
 
 LOCK TABLES `positions` WRITE;
 /*!40000 ALTER TABLE `positions` DISABLE KEYS */;
+INSERT INTO `positions` VALUES (1,'administrator',NULL,NULL,NULL,NULL,NULL,NULL),(2,'rejestrator',NULL,NULL,NULL,NULL,NULL,NULL),(3,'dyrektor',NULL,NULL,NULL,NULL,NULL,NULL),(4,'lekarz',NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `positions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -518,7 +526,7 @@ CREATE TABLE `specialisations` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(256) COLLATE utf8_polish_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -527,6 +535,7 @@ CREATE TABLE `specialisations` (
 
 LOCK TABLES `specialisations` WRITE;
 /*!40000 ALTER TABLE `specialisations` DISABLE KEYS */;
+INSERT INTO `specialisations` VALUES (1,'pediatra');
 /*!40000 ALTER TABLE `specialisations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -545,7 +554,7 @@ CREATE TABLE `time_windows` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `order_UNIQUE` (`order`),
   UNIQUE KEY `time_unique` (`start_time`,`end_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -554,6 +563,7 @@ CREATE TABLE `time_windows` (
 
 LOCK TABLES `time_windows` WRITE;
 /*!40000 ALTER TABLE `time_windows` DISABLE KEYS */;
+INSERT INTO `time_windows` VALUES (1,0,'0000-00-00 08:00:00.000000','0000-00-00 08:15:00.000000'),(2,1,'0000-00-00 08:15:00.000000','0000-00-00 08:15:00.000000'),(3,2,'0000-00-00 08:30:00.000000','0000-00-00 08:15:00.000000'),(4,3,'0000-00-00 08:45:00.000000','0000-00-00 09:00:00.000000'),(5,4,'0000-00-00 09:00:00.000000','0000-00-00 09:15:00.000000'),(6,5,'0000-00-00 09:15:00.000000','0000-00-00 09:30:00.000000'),(7,6,'0000-00-00 09:30:00.000000','0000-00-00 09:45:00.000000'),(8,7,'0000-00-00 09:45:00.000000','0000-00-00 10:00:00.000000'),(9,8,'0000-00-00 10:00:00.000000','0000-00-00 10:15:00.000000'),(10,9,'0000-00-00 10:15:00.000000','0000-00-00 10:30:00.000000'),(11,10,'0000-00-00 10:30:00.000000','0000-00-00 10:45:00.000000'),(12,11,'0000-00-00 10:45:00.000000','0000-00-00 11:00:00.000000'),(13,12,'0000-00-00 11:00:00.000000','0000-00-00 11:15:00.000000'),(14,13,'0000-00-00 11:15:00.000000','0000-00-00 11:30:00.000000'),(15,14,'0000-00-00 11:30:00.000000','0000-00-00 11:45:00.000000'),(16,15,'0000-00-00 11:45:00.000000','0000-00-00 12:00:00.000000'),(17,16,'0000-00-00 12:00:00.000000','0000-00-00 12:15:00.000000'),(18,17,'0000-00-00 12:15:00.000000','0000-00-00 12:30:00.000000'),(19,18,'0000-00-00 12:30:00.000000','0000-00-00 12:45:00.000000'),(20,19,'0000-00-00 12:45:00.000000','0000-00-00 13:00:00.000000'),(21,20,'0000-00-00 13:00:00.000000','0000-00-00 13:15:00.000000'),(22,21,'0000-00-00 13:15:00.000000','0000-00-00 13:30:00.000000'),(23,22,'0000-00-00 13:30:00.000000','0000-00-00 13:45:00.000000'),(24,23,'0000-00-00 13:45:00.000000','0000-00-00 14:00:00.000000'),(25,24,'0000-00-00 14:00:00.000000','0000-00-00 14:15:00.000000'),(26,25,'0000-00-00 14:15:00.000000','0000-00-00 14:30:00.000000'),(27,26,'0000-00-00 14:30:00.000000','0000-00-00 14:45:00.000000'),(28,27,'0000-00-00 14:45:00.000000','0000-00-00 15:00:00.000000'),(29,28,'0000-00-00 15:00:00.000000','0000-00-00 15:15:00.000000'),(30,29,'0000-00-00 15:15:00.000000','0000-00-00 15:30:00.000000'),(31,30,'0000-00-00 15:30:00.000000','0000-00-00 15:45:00.000000'),(32,31,'0000-00-00 15:45:00.000000','0000-00-00 16:00:00.000000'),(33,32,'0000-00-00 16:00:00.000000','0000-00-00 16:15:00.000000'),(34,33,'0000-00-00 16:15:00.000000','0000-00-00 16:30:00.000000'),(35,34,'0000-00-00 16:30:00.000000','0000-00-00 16:45:00.000000'),(36,35,'0000-00-00 16:45:00.000000','0000-00-00 17:00:00.000000'),(37,36,'0000-00-00 17:00:00.000000','0000-00-00 17:15:00.000000'),(38,37,'0000-00-00 17:15:00.000000','0000-00-00 17:30:00.000000'),(39,38,'0000-00-00 17:30:00.000000','0000-00-00 17:45:00.000000'),(40,39,'0000-00-00 17:45:00.000000','0000-00-00 18:00:00.000000'),(41,40,'0000-00-00 18:00:00.000000','0000-00-00 18:15:00.000000'),(42,41,'0000-00-00 18:15:00.000000','0000-00-00 18:30:00.000000'),(43,42,'0000-00-00 18:30:00.000000','0000-00-00 18:45:00.000000'),(44,43,'0000-00-00 18:45:00.000000','0000-00-00 19:00:00.000000'),(45,44,'0000-00-00 19:00:00.000000','0000-00-00 19:15:00.000000'),(46,45,'0000-00-00 19:15:00.000000','0000-00-00 19:30:00.000000'),(47,46,'0000-00-00 19:30:00.000000','0000-00-00 19:45:00.000000'),(48,47,'0000-00-00 19:45:00.000000','0000-00-00 20:00:00.000000');
 /*!40000 ALTER TABLE `time_windows` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -672,6 +682,7 @@ SET character_set_client = utf8;
                                                1 AS `email_address`,
                                                1 AS `pesel`,
                                                1 AS `user_id`,
+                                               1 AS `name`,
                                                1 AS `address`,
                                                1 AS `mailing_address`,
                                                1 AS `telephone`*/;
@@ -691,6 +702,7 @@ SET character_set_client = utf8;
                                               1 AS `email_address`,
                                               1 AS `pesel`,
                                               1 AS `user_id`,
+                                              1 AS `name`,
                                               1 AS `address`,
                                               1 AS `mailing_address`,
                                               1 AS `telephone`*/;
@@ -710,6 +722,7 @@ SET character_set_client = utf8;
                                            1 AS `email_address`,
                                            1 AS `pesel`,
                                            1 AS `user_id`,
+                                           1 AS `name`,
                                            1 AS `address`,
                                            1 AS `mailing_address`,
                                            1 AS `telephone`*/;
@@ -759,11 +772,7 @@ LOCK TABLES `visits` WRITE;
 UNLOCK TABLES;
 
 --
--- Dumping events for database 'przychodnia_poligon'
---
-
---
--- Dumping routines for database 'przychodnia_poligon'
+-- Dumping routines for database 'przychodnia_test'
 --
 /*!50003 DROP FUNCTION IF EXISTS `func_inc_var_session` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -775,7 +784,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
 DELIMITER ;;
-CREATE DEFINER=`przychodnia_poligon`@`localhost` FUNCTION `func_inc_var_session`() RETURNS int(11)
+CREATE DEFINER=`przychodnia_test`@`localhost` FUNCTION `func_inc_var_session`() RETURNS int(11)
   begin
     SET @var := IFNULL(@var,0) + 1;
     return @var;
@@ -795,7 +804,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`przychodnia_poligon`@`localhost` PROCEDURE `doctor_calendar`(doctor_id BIGINT, date_start DATE, date_end DATE)
+CREATE DEFINER=`przychodnia_test`@`localhost` PROCEDURE `doctor_calendar`(doctor_id BIGINT, date_start DATE, date_end DATE)
   BEGIN
     SELECT
       DATE_ADD(date_start, INTERVAL c.number DAY) AS DATE
@@ -854,8 +863,8 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8 */;
 /*!50001 SET collation_connection      = utf8_general_ci */;
   /*!50001 CREATE ALGORITHM=UNDEFINED */
-  /*!50013 DEFINER=`przychodnia_poligon`@`localhost` SQL SECURITY DEFINER */
-  /*!50001 VIEW `v_employees_data` AS select `e`.`id` AS `id`,`u`.`login` AS `login`,`u`.`email_address` AS `email_address`,`u`.`pesel` AS `pesel`,`u`.`id` AS `user_id`,concat(`a`.`street`,' ',`a`.`house`,if(isnull(`a`.`apartment`),'',concat('/',`a`.`apartment`)),' ',`a`.`postcode`,' ',`a`.`city`,' ',coalesce(`a`.`province`,''),' ',`a`.`country`) AS `address`,concat(`ma`.`street`,' ',`ma`.`house`,if(isnull(`ma`.`apartment`),'',concat('/',`ma`.`apartment`)),' ',`ma`.`postcode`,' ',`ma`.`city`,' ',coalesce(`ma`.`province`,''),' ',`ma`.`country`) AS `mailing_address`,`pe`.`telephone` AS `telephone` from ((((`employees` `e` left join `users` `u` on((`u`.`pesel` = `e`.`pesel`))) left join `persons` `pe` on((`pe`.`pesel` = `e`.`pesel`))) left join `addresses` `a` on((`a`.`id` = `pe`.`address_id`))) left join `addresses` `ma` on((`ma`.`id` = `pe`.`mailing_address_id`))) */;
+  /*!50013 DEFINER=`przychodnia_test`@`localhost` SQL SECURITY DEFINER */
+  /*!50001 VIEW `v_employees_data` AS select `e`.`id` AS `id`,`u`.`login` AS `login`,`u`.`email_address` AS `email_address`,`u`.`pesel` AS `pesel`,`u`.`id` AS `user_id`,concat(`pe`.`first_name`,' ',`pe`.`last_name`) AS `name`,concat(`a`.`street`,' ',`a`.`house`,if(isnull(`a`.`apartment`),'',concat('/',`a`.`apartment`)),' ',`a`.`postcode`,' ',`a`.`city`,' ',coalesce(`a`.`province`,''),' ',`a`.`country`) AS `address`,concat(`ma`.`street`,' ',`ma`.`house`,if(isnull(`ma`.`apartment`),'',concat('/',`ma`.`apartment`)),' ',`ma`.`postcode`,' ',`ma`.`city`,' ',coalesce(`ma`.`province`,''),' ',`ma`.`country`) AS `mailing_address`,`pe`.`telephone` AS `telephone` from ((((`employees` `e` left join `users` `u` on((`u`.`pesel` = `e`.`pesel`))) left join `persons` `pe` on((`pe`.`pesel` = `e`.`pesel`))) left join `addresses` `a` on((`a`.`id` = `pe`.`address_id`))) left join `addresses` `ma` on((`ma`.`id` = `pe`.`mailing_address_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -872,8 +881,8 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8 */;
 /*!50001 SET collation_connection      = utf8_general_ci */;
   /*!50001 CREATE ALGORITHM=UNDEFINED */
-  /*!50013 DEFINER=`przychodnia_poligon`@`localhost` SQL SECURITY DEFINER */
-  /*!50001 VIEW `v_patients_data` AS select `pa`.`id` AS `id`,`u`.`login` AS `login`,`u`.`email_address` AS `email_address`,`u`.`pesel` AS `pesel`,`u`.`id` AS `user_id`,concat(`a`.`street`,' ',`a`.`house`,if(isnull(`a`.`apartment`),'',concat('/',`a`.`apartment`)),' ',`a`.`postcode`,' ',`a`.`city`,' ',coalesce(`a`.`province`,''),' ',`a`.`country`) AS `address`,concat(`ma`.`street`,' ',`ma`.`house`,if(isnull(`ma`.`apartment`),'',concat('/',`ma`.`apartment`)),' ',`ma`.`postcode`,' ',`ma`.`city`,' ',coalesce(`ma`.`province`,''),' ',`ma`.`country`) AS `mailing_address`,`pe`.`telephone` AS `telephone` from ((((`patients` `pa` left join `users` `u` on((`u`.`pesel` = `pa`.`pesel`))) left join `persons` `pe` on((`pe`.`pesel` = `pa`.`pesel`))) left join `addresses` `a` on((`a`.`id` = `pe`.`address_id`))) left join `addresses` `ma` on((`ma`.`id` = `pe`.`mailing_address_id`))) */;
+  /*!50013 DEFINER=`przychodnia_test`@`localhost` SQL SECURITY DEFINER */
+  /*!50001 VIEW `v_patients_data` AS select `pa`.`id` AS `id`,`u`.`login` AS `login`,`u`.`email_address` AS `email_address`,`u`.`pesel` AS `pesel`,`u`.`id` AS `user_id`,concat(`pe`.`first_name`,' ',`pe`.`last_name`) AS `name`,concat(`a`.`street`,' ',`a`.`house`,if(isnull(`a`.`apartment`),'',concat('/',`a`.`apartment`)),' ',`a`.`postcode`,' ',`a`.`city`,' ',coalesce(`a`.`province`,''),' ',`a`.`country`) AS `address`,concat(`ma`.`street`,' ',`ma`.`house`,if(isnull(`ma`.`apartment`),'',concat('/',`ma`.`apartment`)),' ',`ma`.`postcode`,' ',`ma`.`city`,' ',coalesce(`ma`.`province`,''),' ',`ma`.`country`) AS `mailing_address`,`pe`.`telephone` AS `telephone` from ((((`patients` `pa` left join `users` `u` on((`u`.`pesel` = `pa`.`pesel`))) left join `persons` `pe` on((`pe`.`pesel` = `pa`.`pesel`))) left join `addresses` `a` on((`a`.`id` = `pe`.`address_id`))) left join `addresses` `ma` on((`ma`.`id` = `pe`.`mailing_address_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -890,8 +899,8 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8 */;
 /*!50001 SET collation_connection      = utf8_general_ci */;
   /*!50001 CREATE ALGORITHM=UNDEFINED */
-  /*!50013 DEFINER=`przychodnia_poligon`@`localhost` SQL SECURITY DEFINER */
-  /*!50001 VIEW `v_users_data` AS select `u`.`id` AS `id`,`u`.`login` AS `login`,`u`.`email_address` AS `email_address`,`u`.`pesel` AS `pesel`,`u`.`id` AS `user_id`,concat(`a`.`street`,' ',`a`.`house`,if(isnull(`a`.`apartment`),'',concat('/',`a`.`apartment`)),' ',`a`.`postcode`,' ',`a`.`city`,' ',coalesce(`a`.`province`,''),' ',`a`.`country`) AS `address`,concat(`ma`.`street`,' ',`ma`.`house`,if(isnull(`ma`.`apartment`),'',concat('/',`ma`.`apartment`)),' ',`ma`.`postcode`,' ',`ma`.`city`,' ',coalesce(`ma`.`province`,''),' ',`ma`.`country`) AS `mailing_address`,`pe`.`telephone` AS `telephone` from (((`users` `u` left join `persons` `pe` on((`pe`.`pesel` = `u`.`pesel`))) left join `addresses` `a` on((`a`.`id` = `pe`.`address_id`))) left join `addresses` `ma` on((`ma`.`id` = `pe`.`mailing_address_id`))) */;
+  /*!50013 DEFINER=`przychodnia_test`@`localhost` SQL SECURITY DEFINER */
+  /*!50001 VIEW `v_users_data` AS select `u`.`id` AS `id`,`u`.`login` AS `login`,`u`.`email_address` AS `email_address`,`u`.`pesel` AS `pesel`,`u`.`id` AS `user_id`,concat(`pe`.`first_name`,' ',`pe`.`last_name`) AS `name`,concat(`a`.`street`,' ',`a`.`house`,if(isnull(`a`.`apartment`),'',concat('/',`a`.`apartment`)),' ',`a`.`postcode`,' ',`a`.`city`,' ',coalesce(`a`.`province`,''),' ',`a`.`country`) AS `address`,concat(`ma`.`street`,' ',`ma`.`house`,if(isnull(`ma`.`apartment`),'',concat('/',`ma`.`apartment`)),' ',`ma`.`postcode`,' ',`ma`.`city`,' ',coalesce(`ma`.`province`,''),' ',`ma`.`country`) AS `mailing_address`,`pe`.`telephone` AS `telephone` from (((`users` `u` left join `persons` `pe` on((`pe`.`pesel` = `u`.`pesel`))) left join `addresses` `a` on((`a`.`id` = `pe`.`address_id`))) left join `addresses` `ma` on((`ma`.`id` = `pe`.`mailing_address_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -905,100 +914,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-INSERT INTO `patients` (id, pesel) VALUES
-  (1, '12345678901'),
-  (2, '73110572051'),
-  (3, '86122267525'),
-  (4, '94122160151');
-INSERT INTO `employees` (id, pesel) VALUES
-  ('1', '78062095548'),
-  ('2', '89022228751'),
-  ('3', '92010610582'),
-  ('4', 'XXXXXXXXXXX');
-INSERT INTO `positions` (id, name) VALUES
-  (1, 'administrator'),
-  (2, 'rejestrator'),
-  (3, 'dyrektor'),
-  (4, 'lekarz');
-INSERT INTO hires (id, employee_id, date_start, date_end, position_id, salary, supervisor) VALUES
-  (1, 4, '2016-01-01', '2040-12-31', 1, 8000, NULL),
-  (2, 3, '2016-01-01', '2020-12-31', 2, 3000, 1),
-  (3, 1, '2016-01-01', '2030-12-31', 4, 5000, 1),
-  (4, 2, '2016-01-01', '2030-12-31', 4, 5000, 1);
-INSERT INTO `doctors` (id, employee_id) VALUES
-  (1, 1), (2,2);
-INSERT INTO `specialisations` (id, name) VALUES
-  (1, 'pediatra');
-INSERT INTO `doctors_specialisations` (id, doctor_id, specialisation_id) VALUES
-  (1, 1, 1), (2, 2, 1);
-
-INSERT INTO `time_windows` (id, `order`, start_time, end_time) VALUES
-  (1, 0, '0000-00-00 08:00:00', '0000-00-00 08:15:00'),
-  (2, 1, '0000-00-00 08:15:00', '0000-00-00 08:15:00'),
-  (3, 2, '0000-00-00 08:30:00', '0000-00-00 08:15:00'),
-  (4, 3, '0000-00-00 08:45:00', '0000-00-00 09:00:00'),
-  (5, 4, '0000-00-00 09:00:00', '0000-00-00 09:15:00'),
-  (6, 5, '0000-00-00 09:15:00', '0000-00-00 09:30:00'),
-  (7, 6, '0000-00-00 09:30:00', '0000-00-00 09:45:00'),
-  (8, 7, '0000-00-00 09:45:00', '0000-00-00 10:00:00'),
-  (9, 8, '0000-00-00 10:00:00', '0000-00-00 10:15:00'),
-  (10, 9, '0000-00-00 10:15:00', '0000-00-00 10:30:00'),
-  (11, 10, '0000-00-00 10:30:00', '0000-00-00 10:45:00'),
-  (12, 11, '0000-00-00 10:45:00', '0000-00-00 11:00:00'),
-  (13, 12, '0000-00-00 11:00:00', '0000-00-00 11:15:00'),
-  (14, 13, '0000-00-00 11:15:00', '0000-00-00 11:30:00'),
-  (15, 14, '0000-00-00 11:30:00', '0000-00-00 11:45:00'),
-  (16, 15, '0000-00-00 11:45:00', '0000-00-00 12:00:00'),
-  (17, 16, '0000-00-00 12:00:00', '0000-00-00 12:15:00'),
-  (18, 17, '0000-00-00 12:15:00', '0000-00-00 12:30:00'),
-  (19, 18, '0000-00-00 12:30:00', '0000-00-00 12:45:00'),
-  (20, 19, '0000-00-00 12:45:00', '0000-00-00 13:00:00'),
-  (21, 20, '0000-00-00 13:00:00', '0000-00-00 13:15:00'),
-  (22, 21, '0000-00-00 13:15:00', '0000-00-00 13:30:00'),
-  (23, 22, '0000-00-00 13:30:00', '0000-00-00 13:45:00'),
-  (24, 23, '0000-00-00 13:45:00', '0000-00-00 14:00:00'),
-  (25, 24, '0000-00-00 14:00:00', '0000-00-00 14:15:00'),
-  (26, 25, '0000-00-00 14:15:00', '0000-00-00 14:30:00'),
-  (27, 26, '0000-00-00 14:30:00', '0000-00-00 14:45:00'),
-  (28, 27, '0000-00-00 14:45:00', '0000-00-00 15:00:00'),
-  (29, 28, '0000-00-00 15:00:00', '0000-00-00 15:15:00'),
-  (30, 29, '0000-00-00 15:15:00', '0000-00-00 15:30:00'),
-  (31, 30, '0000-00-00 15:30:00', '0000-00-00 15:45:00'),
-  (32, 31, '0000-00-00 15:45:00', '0000-00-00 16:00:00'),
-  (33, 32, '0000-00-00 16:00:00', '0000-00-00 16:15:00'),
-  (34, 33, '0000-00-00 16:15:00', '0000-00-00 16:30:00'),
-  (35, 34, '0000-00-00 16:30:00', '0000-00-00 16:45:00'),
-  (36, 35, '0000-00-00 16:45:00', '0000-00-00 17:00:00'),
-  (37, 36, '0000-00-00 17:00:00', '0000-00-00 17:15:00'),
-  (38, 37, '0000-00-00 17:15:00', '0000-00-00 17:30:00'),
-  (39, 38, '0000-00-00 17:30:00', '0000-00-00 17:45:00'),
-  (40, 39, '0000-00-00 17:45:00', '0000-00-00 18:00:00'),
-  (41, 40, '0000-00-00 18:00:00', '0000-00-00 18:15:00'),
-  (42, 41, '0000-00-00 18:15:00', '0000-00-00 18:30:00'),
-  (43, 42, '0000-00-00 18:30:00', '0000-00-00 18:45:00'),
-  (44, 43, '0000-00-00 18:45:00', '0000-00-00 19:00:00'),
-  (45, 44, '0000-00-00 19:00:00', '0000-00-00 19:15:00'),
-  (46, 45, '0000-00-00 19:15:00', '0000-00-00 19:30:00'),
-  (47, 46, '0000-00-00 19:30:00', '0000-00-00 19:45:00'),
-  (48, 47, '0000-00-00 19:45:00', '0000-00-00 20:00:00');
-
-INSERT INTO `availabilities` (id, weekday, start_time_window, end_time_window, date_start, date_end) VALUES
-  (1, 1, 1, 16, '2016-01-01', '2017-12-31'),
-  (2, 1, 21, 36, '2016-01-01', '2017-12-31'),
-  (3, 2, 1, 16, '2016-01-01', '2017-12-31'),
-  (4, 2, 21, 36, '2016-01-01', '2017-12-31'),
-  (5, 3, 1, 16, '2016-01-01', '2017-12-31'),
-  (6, 3, 21, 36, '2016-01-01', '2017-12-31'),
-  (7, 4, 1, 16, '2016-01-01', '2017-12-31'),
-  (8, 4, 21, 36, '2016-01-01', '2017-12-31'),
-  (9, 5, 1, 16, '2016-01-01', '2017-12-31'),
-  (10, 5, 21, 36, '2016-01-01', '2017-12-31'),
-  (11, 6, 1, 48, '2016-01-01', '2017-12-31'),
-  (12, 7, 1, 48, '2016-01-01', '2017-12-31');
-
-INSERT INTO `doctors_availabilities` (doctor_id, availability_id) VALUES
-  (1, 1), (1, 4), (1, 5), (1, 7), (1, 9),
-  (2, 2), (2, 3), (2, 6), (2, 8), (2, 10);
-
-SET FOREIGN_KEY_CHECKS=1;
--- Dump completed on 2016-11-30 21:26:07
+-- Dump completed on 2016-12-11 16:45:23

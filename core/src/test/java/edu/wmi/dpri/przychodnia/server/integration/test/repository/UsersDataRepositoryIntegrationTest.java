@@ -41,7 +41,7 @@ public class UsersDataRepositoryIntegrationTest {
     @Test
     public void shouldDoProperSearchQuery() {
         //when
-        List<UsersData> usersDatas = tested.queryOnAll(LIKE_LOGIN_ADMIN, LIKE_EMPTY, LIKE_EMPTY, LIKE_EMPTY, LIKE_EMPTY);
+        List<UsersData> usersDatas = tested.queryOnAll(LIKE_LOGIN_ADMIN, LIKE_EMPTY, LIKE_EMPTY, LIKE_EMPTY, LIKE_EMPTY, LIKE_EMPTY);
         // then
         assertThat(usersDatas).hasSize(1);
     }
@@ -51,7 +51,7 @@ public class UsersDataRepositoryIntegrationTest {
         // when
         Page<UsersData> usersDatas = tested.queryOnAllPageable(
                 LIKE_EMPTY, LIKE_EMPTY, LIKE_EMPTY, LIKE_EMPTY,
-                LIKE_EMPTY, new PageRequest(0, 3, SORT_BY_ID_ASCENDING));
+                LIKE_EMPTY, LIKE_EMPTY, new PageRequest(0, 3, SORT_BY_ID_ASCENDING));
         // then
         assertThat(usersDatas.getContent()).hasSize(3);
         assertThat(usersDatas.getTotalPages()).isEqualTo(3);

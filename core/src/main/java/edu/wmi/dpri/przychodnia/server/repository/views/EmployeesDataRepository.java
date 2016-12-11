@@ -20,17 +20,20 @@ public interface EmployeesDataRepository
     @Query("SELECT ed FROM EmployeesData ed WHERE ed.login like :likeLogin " +
             "and ed.email like :likeMail and ed.pesel like :likePesel " +
             "and ed.telephone like :likeTelephone and " +
-            "(ed.address like :likeAddress or ed.mailingAddress like :likeAddress)")
+            "(ed.address like :likeAddress or ed.mailingAddress like :likeAddress) " +
+            "and ed.name like :likeName")
     public List<EmployeesData> queryOnAll(@Param("likeLogin") String likeLogin, @Param("likeMail") String likeMail,
                                           @Param("likeTelephone") String likeTelephone, @Param("likeAddress") String likeAddress,
-                                          @Param("likePesel") String likePesel);
+                                          @Param("likePesel") String likePesel, @Param("likeName") String likeName);
 
     @Query("SELECT ed FROM EmployeesData ed WHERE ed.login like :likeLogin " +
             "and ed.email like :likeMail and ed.pesel like :likePesel " +
             "and ed.telephone like :likeTelephone and " +
-            "(ed.address like :likeAddress or ed.mailingAddress like :likeAddress)")
+            "(ed.address like :likeAddress or ed.mailingAddress like :likeAddress)" +
+            "and ed.name like :likeName")
     public Page<EmployeesData> queryOnAllPageable(@Param("likeLogin") String likeLogin, @Param("likeMail") String likeMail,
                                                   @Param("likeTelephone") String likeTelephone, @Param("likeAddress") String likeAddress,
-                                                  @Param("likePesel") String likePesel, Pageable pageRequest);
+                                                  @Param("likePesel") String likePesel, @Param("likeName") String likeName,
+                                                  Pageable pageRequest);
 
 }

@@ -1,8 +1,15 @@
 package edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * Created by lupus on 18.10.16.
  */
+@JsonIgnoreProperties(ignoreUnknown = true)
+@Data
+@NoArgsConstructor
 public class RegistrationOutput {
 
     private AddressWebModel address;
@@ -10,35 +17,4 @@ public class RegistrationOutput {
     private PersonalDataWebModel personalDataWebModel;
     private UserDataWebModel userDataWebModel;
 
-    public AddressWebModel getAddress() {
-        return address;
-    }
-
-    public void setAddress(AddressWebModel address) {
-        this.address = address;
-    }
-
-    public AddressWebModel getMailingAddress() {
-        return mailingAddress;
-    }
-
-    public void setMailingAddress(AddressWebModel mailingAddress) {
-        this.mailingAddress = mailingAddress;
-    }
-
-    public PersonalDataWebModel getPersonalDataWebModel() {
-        return personalDataWebModel;
-    }
-
-    public void setPersonalDataWebModel(PersonalDataWebModel personalDataWebModel) {
-        this.personalDataWebModel = personalDataWebModel;
-    }
-
-    public UserDataWebModel getUserDataWebModel() {
-        return userDataWebModel;
-    }
-
-    public void setUserDataWebModel(UserDataWebModel userDataWebModel) {
-        this.userDataWebModel = userDataWebModel;
-    }
 }
