@@ -1,0 +1,25 @@
+SET FOREIGN_KEY_CHECKS=0;
+SET sql_safe_updates = 0;
+DELETE FROM action_logs;
+DELETE FROM addresses;
+DELETE FROM availabilities;
+DELETE FROM doctors;
+DELETE FROM doctors_availabilities;
+DELETE FROM doctors_specialisations;
+DELETE FROM employees;
+DELETE FROM hires;
+DELETE FROM id_types;
+DELETE FROM patients;
+DELETE FROM persons;
+DELETE FROM positions;
+DELETE FROM roles;
+DELETE FROM sexes;
+DELETE FROM specialisations;
+DELETE FROM time_windows;
+DELETE FROM user_connections;
+DELETE FROM user_roles;
+DELETE FROM users;
+DELETE FROM visits;
+
+SET sql_safe_updates = 1;
+SET FOREIGN_KEY_CHECKS=1;
