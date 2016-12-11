@@ -8,6 +8,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.util.List;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 /**
  * Created by khartv on 29.11.2016.
  */
@@ -15,31 +17,31 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name="time_windows")
+@Table(name = "time_windows")
 public class TimeWindow {
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Column(name="order", nullable = false)
+    @Column(name = "order", nullable = false)
     Integer order;
 
-    @Column(name="start_time", nullable = false)
+    @Column(name = "start_time", nullable = false)
     @DateTimeFormat(pattern = "hh24:mi")
     private DateTime startTime;
 
-    @Column(name="end_time", nullable = false)
+    @Column(name = "end_time", nullable = false)
     @DateTimeFormat(pattern = "hh24:mi")
     private DateTime endTime;
 
     @OneToMany(targetEntity = Visit.class, mappedBy = "timeWindow")
-    List<Visit> visitsInTimewindow;
+    List<Visit> visitsInTimewindow = newArrayList();
 
     @OneToMany(targetEntity = Availability.class, mappedBy = "startTimeWindow")
-    List<Availability> AvailabilitiesStartingInTimewindow;
+    List<Availability> AvailabilitiesStartingInTimewindow = newArrayList();
 
     @OneToMany(targetEntity = Availability.class, mappedBy = "endTimeWindow")
-    List<Availability> AvailabilitiesEndingInTimewindow;
+    List<Availability> AvailabilitiesEndingInTimewindow = newArrayList();
 
 }

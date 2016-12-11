@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.List;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 /**
  * Created by khartv on 21.11.2016.
  */
@@ -25,6 +27,6 @@ public class Position {
     private String name;
 
     @OneToMany(targetEntity = Hire.class, mappedBy = "position")
-    private List<Hire> hiresWithPosition;
+    private List<Hire> hiresWithPosition = newArrayList();
 
 }

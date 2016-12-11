@@ -10,6 +10,7 @@ import edu.wmi.dpri.przychodnia.server.repository.views.UsersDataRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
@@ -19,6 +20,7 @@ import static org.springframework.data.domain.Sort.Direction.ASC;
 /**
  * Created by lupus on 11.12.16.
  */
+@Component
 public class SearchService {
     public static final Sort SORT_BY_NAME_ASCENDING = new Sort(ASC, "name");
     public static final String LIKE_ANY_MATCH = "%%";

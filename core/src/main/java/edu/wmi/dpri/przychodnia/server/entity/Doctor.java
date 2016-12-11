@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.List;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 /**
  * Created by khartv on 21.11.2016.
  */
@@ -23,10 +25,10 @@ public class Doctor {
 
     @ManyToMany
     @JoinTable(name = "doctors_specialisations", joinColumns = @JoinColumn(name = "doctor_id"), inverseJoinColumns = @JoinColumn(name = "specialisation_id"))
-    private List<Specialisation> specialisations;
+    private List<Specialisation> specialisations = newArrayList();
 
     @OneToMany(targetEntity = Visit.class, mappedBy = "doctor")
-    private List<Visit> visits;
+    private List<Visit> visits = newArrayList();
 
     @OneToOne(targetEntity = Employee.class)
     @JoinColumn(name = "employee_id")
@@ -34,5 +36,5 @@ public class Doctor {
 
     @ManyToMany
     @JoinTable(name = "doctors_availabilities", joinColumns = @JoinColumn(name = "doctor_id"), inverseJoinColumns = @JoinColumn(name = "availability_id"))
-    private List<Doctor> availabilities;
+    private List<Doctor> availabilities = newArrayList();
 }

@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.List;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 /**
  * Created by khartv on 21.11.2016.
  */
@@ -29,9 +31,9 @@ public class Employee {
     private Doctor doctor;
 
     @OneToMany(targetEntity = Hire.class, mappedBy = "employee")
-    private List<Hire> hiresOfEmployee;
+    private List<Hire> hiresOfEmployee = newArrayList();
 
     @OneToMany(targetEntity = Hire.class, mappedBy = "supervisor")
-    private List<Hire> supervisedHires;
+    private List<Hire> supervisedHires = newArrayList();
 
 }

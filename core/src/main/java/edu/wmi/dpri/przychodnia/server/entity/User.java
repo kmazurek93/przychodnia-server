@@ -9,6 +9,9 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
 
+import static com.google.common.collect.Lists.newArrayList;
+import static jersey.repackaged.com.google.common.collect.Sets.newHashSet;
+
 /**
  * Created by khartv on 17.05.2016.
  */
@@ -43,17 +46,17 @@ public class User {
     @ManyToMany
     @JoinTable(name = "user_connections", joinColumns = @JoinColumn(name = "parent_id"),
             inverseJoinColumns = @JoinColumn(name = "child_id"))
-    private Set<User> parentUsers;
+    private Set<User> parentUsers = newHashSet();
 
     @ManyToMany
     @JoinTable(name = "user_connections", joinColumns = @JoinColumn(name = "child_id"),
             inverseJoinColumns = @JoinColumn(name = "parent_id"))
-    private Set<User> childUsers;
+    private Set<User> childUsers = newHashSet();
 
     @ManyToMany
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> roles;
+    private List<Role> roles = newArrayList();
 
     public Boolean isActive()
     {

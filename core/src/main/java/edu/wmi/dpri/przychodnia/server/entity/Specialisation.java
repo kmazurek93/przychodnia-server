@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.List;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 /**
  * Created by khartv on 21.11.2016.
  */
@@ -26,7 +28,7 @@ public class Specialisation {
 
     @ManyToMany
     @JoinTable(name = "doctors_specialisations", joinColumns = @JoinColumn(name = "specialisation_id"), inverseJoinColumns = @JoinColumn(name = "doctor_id"))
-    private List<Doctor> doctors;
+    private List<Doctor> doctors = newArrayList();
 
 
 }

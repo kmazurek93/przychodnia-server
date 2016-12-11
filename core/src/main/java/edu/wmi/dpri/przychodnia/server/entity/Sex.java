@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.List;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 /**
  * Created by kmazu on 12.06.2016.
  */
@@ -25,5 +27,5 @@ public class Sex {
     private String name;
 
     @OneToMany(targetEntity = Person.class, mappedBy = "sex")
-    private List<Person> persons;
+    private List<Person> persons = newArrayList();
 }

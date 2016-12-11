@@ -22,7 +22,7 @@ public interface PatientsDataRepository
             "and pd.telephone like :likeTelephone and " +
             "(pd.address like :likeAddress or pd.mailingAddress like :likeAddress) " +
             "and pd.name like :likeName")
-    public List<PatientsData> queryOnAll(@Param("likeLogin") String likeLogin, @Param("likeMail") String likeMail,
+    List<PatientsData> queryOnAll(@Param("likeLogin") String likeLogin, @Param("likeMail") String likeMail,
                                          @Param("likeTelephone") String likeTelephone, @Param("likeAddress") String likeAddress,
                                          @Param("likePesel") String likePesel, @Param("likeName") String likeName);
 
@@ -31,7 +31,7 @@ public interface PatientsDataRepository
             "and pd.telephone like :likeTelephone and " +
             "(pd.address like :likeAddress or pd.mailingAddress like :likeAddress)" +
             "and pd.name like :likeName")
-    public Page<PatientsData> queryOnAllPageable(@Param("likeLogin") String likeLogin, @Param("likeMail") String likeMail,
+    Page<PatientsData> queryOnAllPageable(@Param("likeLogin") String likeLogin, @Param("likeMail") String likeMail,
                                                  @Param("likeTelephone") String likeTelephone, @Param("likeAddress") String likeAddress,
                                                  @Param("likePesel") String likePesel, @Param("likeName") String likeName,
                                                  Pageable pageRequest);

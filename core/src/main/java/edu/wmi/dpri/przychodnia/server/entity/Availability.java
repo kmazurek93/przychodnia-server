@@ -7,8 +7,9 @@ import org.joda.time.DateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.sql.Time;
 import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
 
 /**
  * Created by khartv on 29.11.2016.
@@ -47,5 +48,5 @@ public class Availability {
 
     @ManyToMany
     @JoinTable(name = "doctors_availabilities", joinColumns = @JoinColumn(name = "availability_id"), inverseJoinColumns = @JoinColumn(name = "doctor_id"))
-    private List<Doctor> doctors;
+    private List<Doctor> doctors = newArrayList();
 }
