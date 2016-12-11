@@ -21,7 +21,9 @@ public class Visit {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter private Long id;
+    @Getter
+    @Setter
+    private Long id;
 
     @ManyToOne(targetEntity = TimeWindow.class)
     @JoinColumn(name = "time_window_id")

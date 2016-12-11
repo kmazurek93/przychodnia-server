@@ -31,6 +31,8 @@ public class UserWebService {
 
     public static final String INSUFFICIENT_PRIVILEGES = "INSUFFICIENT_PRIVILEGES";
     public static final ErrorMessage FORBIDDEN_ERROR_MESSAGE = getForbiddenErrorMessage(INSUFFICIENT_PRIVILEGES);
+    public static final String SEARCH_TYPE_PATIENT = "SEARCH_TYPE_PATIENT";
+    public static final String SEARCH_TYPE_STAFF = "SEARCH_TYPE_STAFF";
     @Inject
     private UserRegisteringStateFunctions userRegisteringStateFunctions;
     @Inject
@@ -71,9 +73,9 @@ public class UserWebService {
         boolean isAdminOrStaff = userVerificationService.verifyIfHasAnyAuthorityOf(STAFF_OR_ADMIN);
         Page<? extends BaseUserData> result;
         if (isAdminOrStaff) {
-            if (model.getSearchType().equals("PATIENT")) {
+            if (model.getSearchType().equals(SEARCH_TYPE_PATIENT)) {
                 result = userSearchWebService.queryPatients(model);
-            } else if (model.getSearchType().equals("STAFF")) {
+            } else if (model.getSearchType().equals(SEARCH_TYPE_STAFF)) {
                 result = userSearchWebService.queryStaff(model);
             } else {
                 result = userSearchWebService.queryAll(model);
