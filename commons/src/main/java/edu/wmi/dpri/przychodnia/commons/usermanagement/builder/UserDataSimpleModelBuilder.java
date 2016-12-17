@@ -13,8 +13,20 @@ public final class UserDataSimpleModelBuilder {
     private String telephone;
     private String address;
     private String mailingAddress;
+    private Long entityId;
+    private String entityType;
 
     private UserDataSimpleModelBuilder() {
+    }
+
+    public UserDataSimpleModelBuilder withEntityId(Long entityId) {
+        this.entityId = entityId;
+        return this;
+    }
+
+    public UserDataSimpleModelBuilder withEntityType(String entityType) {
+        this.entityType = entityType;
+        return this;
     }
 
     public static UserDataSimpleModelBuilder anUserDataSimpleModel() {
@@ -65,6 +77,8 @@ public final class UserDataSimpleModelBuilder {
         userDataSimpleModel.setTelephone(telephone);
         userDataSimpleModel.setAddress(address);
         userDataSimpleModel.setMailingAddress(mailingAddress);
+        userDataSimpleModel.setEntityId(entityId);
+        userDataSimpleModel.setEntityType(entityType);
         return userDataSimpleModel;
     }
 }

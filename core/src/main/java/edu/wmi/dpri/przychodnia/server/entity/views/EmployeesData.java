@@ -1,8 +1,6 @@
 package edu.wmi.dpri.przychodnia.server.entity.views;
 
-import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.hibernate.annotations.Immutable;
 
@@ -23,6 +21,9 @@ public class EmployeesData extends BaseUserData{
     @Id
     @Column(name = "id")
     @Getter Long id;
+
+    @Column(name = "doctor_id")
+    @Getter Long doctorId;
 
     public EmployeesData() {
         super();

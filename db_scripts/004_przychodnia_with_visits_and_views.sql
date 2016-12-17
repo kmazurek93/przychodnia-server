@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 5.7.16, for Linux (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for Linux (x86_64)
 --
 -- Host: localhost    Database: przychodnia_test
 -- ------------------------------------------------------
@@ -124,7 +124,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
 DELIMITER ;;
-  /*!50003 CREATE*/ /*!50017 DEFINER=`przychodnia_test`@`localhost`*/ /*!50003 TRIGGER `przychodnia_test`.`availabilities_BEFORE_INSERT` BEFORE INSERT ON `availabilities` FOR EACH ROW
+/*!50003 CREATE*/ /*!50017 DEFINER=`przychodnia_test`@`localhost`*/ /*!50003 TRIGGER `przychodnia_test`.`availabilities_BEFORE_INSERT` BEFORE INSERT ON `availabilities` FOR EACH ROW
   BEGIN
     IF NEW.WEEKDAY not in(
       1,
@@ -152,7 +152,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
 DELIMITER ;;
-  /*!50003 CREATE*/ /*!50017 DEFINER=`przychodnia_test`@`localhost`*/ /*!50003 TRIGGER `przychodnia_test`.`availabilities_BEFORE_UPDATE` BEFORE UPDATE ON `availabilities` FOR EACH ROW
+/*!50003 CREATE*/ /*!50017 DEFINER=`przychodnia_test`@`localhost`*/ /*!50003 TRIGGER `przychodnia_test`.`availabilities_BEFORE_UPDATE` BEFORE UPDATE ON `availabilities` FOR EACH ROW
   BEGIN
     IF NEW.WEEKDAY not in(
       1,
@@ -676,16 +676,17 @@ DROP TABLE IF EXISTS `v_employees_data`;
 /*!50001 DROP VIEW IF EXISTS `v_employees_data`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-  /*!50001 CREATE VIEW `v_employees_data` AS SELECT
-                                               1 AS `id`,
-                                               1 AS `login`,
-                                               1 AS `email_address`,
-                                               1 AS `pesel`,
-                                               1 AS `user_id`,
-                                               1 AS `name`,
-                                               1 AS `address`,
-                                               1 AS `mailing_address`,
-                                               1 AS `telephone`*/;
+/*!50001 CREATE VIEW `v_employees_data` AS SELECT
+                                             1 AS `id`,
+                                             1 AS `login`,
+                                             1 AS `email_address`,
+                                             1 AS `pesel`,
+                                             1 AS `user_id`,
+                                             1 AS `name`,
+                                             1 AS `address`,
+                                             1 AS `mailing_address`,
+                                             1 AS `telephone`,
+                                             1 AS `doctor_id`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -696,16 +697,16 @@ DROP TABLE IF EXISTS `v_patients_data`;
 /*!50001 DROP VIEW IF EXISTS `v_patients_data`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-  /*!50001 CREATE VIEW `v_patients_data` AS SELECT
-                                              1 AS `id`,
-                                              1 AS `login`,
-                                              1 AS `email_address`,
-                                              1 AS `pesel`,
-                                              1 AS `user_id`,
-                                              1 AS `name`,
-                                              1 AS `address`,
-                                              1 AS `mailing_address`,
-                                              1 AS `telephone`*/;
+/*!50001 CREATE VIEW `v_patients_data` AS SELECT
+                                            1 AS `id`,
+                                            1 AS `login`,
+                                            1 AS `email_address`,
+                                            1 AS `pesel`,
+                                            1 AS `user_id`,
+                                            1 AS `name`,
+                                            1 AS `address`,
+                                            1 AS `mailing_address`,
+                                            1 AS `telephone`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -716,16 +717,16 @@ DROP TABLE IF EXISTS `v_users_data`;
 /*!50001 DROP VIEW IF EXISTS `v_users_data`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
-  /*!50001 CREATE VIEW `v_users_data` AS SELECT
-                                           1 AS `id`,
-                                           1 AS `login`,
-                                           1 AS `email_address`,
-                                           1 AS `pesel`,
-                                           1 AS `user_id`,
-                                           1 AS `name`,
-                                           1 AS `address`,
-                                           1 AS `mailing_address`,
-                                           1 AS `telephone`*/;
+/*!50001 CREATE VIEW `v_users_data` AS SELECT
+                                         1 AS `id`,
+                                         1 AS `login`,
+                                         1 AS `email_address`,
+                                         1 AS `pesel`,
+                                         1 AS `user_id`,
+                                         1 AS `name`,
+                                         1 AS `address`,
+                                         1 AS `mailing_address`,
+                                         1 AS `telephone`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -862,9 +863,9 @@ DELIMITER ;
 /*!50001 SET character_set_client      = utf8 */;
 /*!50001 SET character_set_results     = utf8 */;
 /*!50001 SET collation_connection      = utf8_general_ci */;
-  /*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50001 CREATE ALGORITHM=UNDEFINED */
   /*!50013 DEFINER=`przychodnia_test`@`localhost` SQL SECURITY DEFINER */
-  /*!50001 VIEW `v_employees_data` AS select `e`.`id` AS `id`,`u`.`login` AS `login`,`u`.`email_address` AS `email_address`,`u`.`pesel` AS `pesel`,`u`.`id` AS `user_id`,concat(`pe`.`first_name`,' ',`pe`.`last_name`) AS `name`,concat(`a`.`street`,' ',`a`.`house`,if(isnull(`a`.`apartment`),'',concat('/',`a`.`apartment`)),' ',`a`.`postcode`,' ',`a`.`city`,' ',coalesce(`a`.`province`,''),' ',`a`.`country`) AS `address`,concat(`ma`.`street`,' ',`ma`.`house`,if(isnull(`ma`.`apartment`),'',concat('/',`ma`.`apartment`)),' ',`ma`.`postcode`,' ',`ma`.`city`,' ',coalesce(`ma`.`province`,''),' ',`ma`.`country`) AS `mailing_address`,`pe`.`telephone` AS `telephone` from ((((`employees` `e` left join `users` `u` on((`u`.`pesel` = `e`.`pesel`))) left join `persons` `pe` on((`pe`.`pesel` = `e`.`pesel`))) left join `addresses` `a` on((`a`.`id` = `pe`.`address_id`))) left join `addresses` `ma` on((`ma`.`id` = `pe`.`mailing_address_id`))) */;
+  /*!50001 VIEW `v_employees_data` AS select `e`.`id` AS `id`,`u`.`login` AS `login`,`u`.`email_address` AS `email_address`,`u`.`pesel` AS `pesel`,`u`.`id` AS `user_id`,concat(`pe`.`first_name`,' ',`pe`.`last_name`) AS `name`,concat(`a`.`street`,' ',`a`.`house`,if(isnull(`a`.`apartment`),'',concat('/',`a`.`apartment`)),' ',`a`.`postcode`,' ',`a`.`city`,' ',coalesce(`a`.`province`,''),' ',`a`.`country`) AS `address`,concat(`ma`.`street`,' ',`ma`.`house`,if(isnull(`ma`.`apartment`),'',concat('/',`ma`.`apartment`)),' ',`ma`.`postcode`,' ',`ma`.`city`,' ',coalesce(`ma`.`province`,''),' ',`ma`.`country`) AS `mailing_address`,`pe`.`telephone` AS `telephone`,`d`.`id` AS `doctor_id` from (((((`employees` `e` left join `users` `u` on((`u`.`pesel` = `e`.`pesel`))) left join `persons` `pe` on((`pe`.`pesel` = `e`.`pesel`))) left join `addresses` `a` on((`a`.`id` = `pe`.`address_id`))) left join `addresses` `ma` on((`ma`.`id` = `pe`.`mailing_address_id`))) left join `doctors` `d` on((`e`.`id` = `d`.`employee_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -880,7 +881,7 @@ DELIMITER ;
 /*!50001 SET character_set_client      = utf8 */;
 /*!50001 SET character_set_results     = utf8 */;
 /*!50001 SET collation_connection      = utf8_general_ci */;
-  /*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50001 CREATE ALGORITHM=UNDEFINED */
   /*!50013 DEFINER=`przychodnia_test`@`localhost` SQL SECURITY DEFINER */
   /*!50001 VIEW `v_patients_data` AS select `pa`.`id` AS `id`,`u`.`login` AS `login`,`u`.`email_address` AS `email_address`,`u`.`pesel` AS `pesel`,`u`.`id` AS `user_id`,concat(`pe`.`first_name`,' ',`pe`.`last_name`) AS `name`,concat(`a`.`street`,' ',`a`.`house`,if(isnull(`a`.`apartment`),'',concat('/',`a`.`apartment`)),' ',`a`.`postcode`,' ',`a`.`city`,' ',coalesce(`a`.`province`,''),' ',`a`.`country`) AS `address`,concat(`ma`.`street`,' ',`ma`.`house`,if(isnull(`ma`.`apartment`),'',concat('/',`ma`.`apartment`)),' ',`ma`.`postcode`,' ',`ma`.`city`,' ',coalesce(`ma`.`province`,''),' ',`ma`.`country`) AS `mailing_address`,`pe`.`telephone` AS `telephone` from ((((`patients` `pa` left join `users` `u` on((`u`.`pesel` = `pa`.`pesel`))) left join `persons` `pe` on((`pe`.`pesel` = `pa`.`pesel`))) left join `addresses` `a` on((`a`.`id` = `pe`.`address_id`))) left join `addresses` `ma` on((`ma`.`id` = `pe`.`mailing_address_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
@@ -898,7 +899,7 @@ DELIMITER ;
 /*!50001 SET character_set_client      = utf8 */;
 /*!50001 SET character_set_results     = utf8 */;
 /*!50001 SET collation_connection      = utf8_general_ci */;
-  /*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50001 CREATE ALGORITHM=UNDEFINED */
   /*!50013 DEFINER=`przychodnia_test`@`localhost` SQL SECURITY DEFINER */
   /*!50001 VIEW `v_users_data` AS select `u`.`id` AS `id`,`u`.`login` AS `login`,`u`.`email_address` AS `email_address`,`u`.`pesel` AS `pesel`,`u`.`id` AS `user_id`,concat(`pe`.`first_name`,' ',`pe`.`last_name`) AS `name`,concat(`a`.`street`,' ',`a`.`house`,if(isnull(`a`.`apartment`),'',concat('/',`a`.`apartment`)),' ',`a`.`postcode`,' ',`a`.`city`,' ',coalesce(`a`.`province`,''),' ',`a`.`country`) AS `address`,concat(`ma`.`street`,' ',`ma`.`house`,if(isnull(`ma`.`apartment`),'',concat('/',`ma`.`apartment`)),' ',`ma`.`postcode`,' ',`ma`.`city`,' ',coalesce(`ma`.`province`,''),' ',`ma`.`country`) AS `mailing_address`,`pe`.`telephone` AS `telephone` from (((`users` `u` left join `persons` `pe` on((`pe`.`pesel` = `u`.`pesel`))) left join `addresses` `a` on((`a`.`id` = `pe`.`address_id`))) left join `addresses` `ma` on((`ma`.`id` = `pe`.`mailing_address_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
@@ -914,4 +915,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-11 16:45:23
+-- Dump completed on 2016-12-17 12:40:50

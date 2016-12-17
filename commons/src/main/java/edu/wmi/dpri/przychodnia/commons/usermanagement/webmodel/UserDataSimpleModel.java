@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class UserDataSimpleModel {
+    private Long entityId;
     private Long userId;
     private String name;
     private String pesel;
@@ -18,6 +19,7 @@ public class UserDataSimpleModel {
     private String telephone;
     private String address;
     private String mailingAddress;
+    private String entityType;
 
 
 }
