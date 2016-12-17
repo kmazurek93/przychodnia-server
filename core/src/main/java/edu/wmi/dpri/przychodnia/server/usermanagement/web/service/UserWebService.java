@@ -73,9 +73,9 @@ public class UserWebService {
         boolean isAdminOrStaff = userVerificationService.verifyIfHasAnyAuthorityOf(STAFF_OR_ADMIN);
         Page<? extends BaseUserData> result;
         if (isAdminOrStaff) {
-            if (model.getSearchType().equals(SEARCH_TYPE_PATIENT)) {
+            if (SEARCH_TYPE_PATIENT.equals(model.getSearchType())) {
                 result = userSearchWebService.queryPatients(model);
-            } else if (model.getSearchType().equals(SEARCH_TYPE_STAFF)) {
+            } else if (SEARCH_TYPE_STAFF.equals(model.getSearchType())) {
                 result = userSearchWebService.queryStaff(model);
             } else {
                 result = userSearchWebService.queryAll(model);

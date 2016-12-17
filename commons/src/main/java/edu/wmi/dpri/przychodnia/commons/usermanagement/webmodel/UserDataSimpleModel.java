@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class UserDataSimpleModel {
+    private Long id;
     private Long entityId;
     private Long userId;
     private String name;

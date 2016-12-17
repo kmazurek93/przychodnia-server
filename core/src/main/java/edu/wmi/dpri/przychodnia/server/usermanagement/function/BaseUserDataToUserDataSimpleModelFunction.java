@@ -37,6 +37,7 @@ public class BaseUserDataToUserDataSimpleModelFunction implements Function<BaseU
                 .withMailingAddress(input.getMailingAddress())
                 .build();
         if (input instanceof EmployeesData) {
+            build.setId(((EmployeesData) input).getId());
             if (((EmployeesData) input).getDoctorId() == null) {
                 build.setEntityId(((EmployeesData) input).getId());
                 build.setEntityType(EMPLOYEE);
@@ -45,9 +46,11 @@ public class BaseUserDataToUserDataSimpleModelFunction implements Function<BaseU
                 build.setEntityType(DOCTOR);
             }
         } else if (input instanceof PatientsData) {
+            build.setId(((PatientsData) input).getId());
             build.setEntityId(((PatientsData) input).getId());
             build.setEntityType(PATIENT);
         } else if (input instanceof UsersData) {
+            build.setId(((UsersData) input).getId());
             build.setEntityId(((UsersData) input).getId());
             build.setEntityType(USER);
         }
