@@ -12,7 +12,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.inject.Inject;
 
-import static java.lang.System.out;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -45,7 +44,7 @@ public class TimeWindowCountServiceTest {
         // when
         Long actual = tested.getMaximumVisitCountForDoctorAndMonth(DOCTOR_ID, DAY);
         //then
-        out.println(actual);
+        assertThat(actual).isEqualTo(352L);
     }
 
 }
