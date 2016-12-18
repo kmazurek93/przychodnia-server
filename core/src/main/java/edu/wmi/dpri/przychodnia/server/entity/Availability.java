@@ -1,6 +1,5 @@
 package edu.wmi.dpri.przychodnia.server.entity;
 
-import edu.wmi.dpri.przychodnia.server.entity.enums.WeekdayType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.joda.time.DateTime;
@@ -26,9 +25,8 @@ public class Availability {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    @Enumerated
     @Column(name="weekday")
-    WeekdayType weekday;
+    Integer weekday;
 
     @ManyToOne(targetEntity = TimeWindow.class)
     @JoinColumn(name = "start_time_window")
@@ -49,4 +47,5 @@ public class Availability {
     @ManyToMany
     @JoinTable(name = "doctors_availabilities", joinColumns = @JoinColumn(name = "availability_id"), inverseJoinColumns = @JoinColumn(name = "doctor_id"))
     private List<Doctor> doctors = newArrayList();
+
 }

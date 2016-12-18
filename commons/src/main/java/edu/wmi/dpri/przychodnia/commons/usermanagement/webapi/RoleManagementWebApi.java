@@ -18,7 +18,6 @@ public interface RoleManagementWebApi {
     String BASE_PATH = "/roles";
 
     @GET
-
     @Produces(APPLICATION_JSON)
     List<String> getAllPossibleRoles();
 

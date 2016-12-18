@@ -36,5 +36,5 @@ public class Doctor {
 
     @ManyToMany
     @JoinTable(name = "doctors_availabilities", joinColumns = @JoinColumn(name = "doctor_id"), inverseJoinColumns = @JoinColumn(name = "availability_id"))
-    private List<Doctor> availabilities = newArrayList();
+    private List<Availability> availabilities = newArrayList();
 }

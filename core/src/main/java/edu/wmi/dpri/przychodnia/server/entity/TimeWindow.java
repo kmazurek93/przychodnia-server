@@ -2,8 +2,7 @@ package edu.wmi.dpri.przychodnia.server.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.joda.time.DateTime;
-import org.springframework.format.annotation.DateTimeFormat;
+import org.joda.time.LocalTime;
 
 import javax.persistence.*;
 import java.util.List;
@@ -27,13 +26,11 @@ public class TimeWindow {
     @Column(name = "order", nullable = false)
     Integer order;
 
-    @Column(name = "start_time", nullable = false)
-    @DateTimeFormat(pattern = "hh24:mi")
-    private DateTime startTime;
+    @Column(name = "start_time", nullable = false, columnDefinition = "TIME")
+    private LocalTime startTime;
 
-    @Column(name = "end_time", nullable = false)
-    @DateTimeFormat(pattern = "hh24:mi")
-    private DateTime endTime;
+    @Column(name = "end_time", nullable = false, columnDefinition = "TIME")
+    private LocalTime endTime;
 
     @OneToMany(targetEntity = Visit.class, mappedBy = "timeWindow")
     List<Visit> visitsInTimewindow = newArrayList();

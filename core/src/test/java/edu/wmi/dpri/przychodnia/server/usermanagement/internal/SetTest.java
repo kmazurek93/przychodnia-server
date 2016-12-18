@@ -31,4 +31,6 @@ public class SetTest {
         String out = StringUtils.join("%", null, "%");
         assertThat(out).isEqualTo("%%");
     }
+
+
 }

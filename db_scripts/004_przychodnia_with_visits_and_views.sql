@@ -549,8 +549,8 @@ DROP TABLE IF EXISTS `time_windows`;
 CREATE TABLE `time_windows` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `order` int(11) NOT NULL,
-  `start_time` datetime(6) NOT NULL,
-  `end_time` datetime(6) NOT NULL,
+  `start_time` time NOT NULL,
+  `end_time` time NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `order_UNIQUE` (`order`),
   UNIQUE KEY `time_unique` (`start_time`,`end_time`)
