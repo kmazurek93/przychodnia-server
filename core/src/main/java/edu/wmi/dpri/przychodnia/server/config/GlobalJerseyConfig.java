@@ -4,6 +4,7 @@ import com.fasterxml.jackson.jaxrs.base.JsonMappingExceptionMapper;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.mappers.*;
 import edu.wmi.dpri.przychodnia.server.security.webapi.SecurityApiImpl;
 import edu.wmi.dpri.przychodnia.server.usermanagement.web.api.*;
+import edu.wmi.dpri.przychodnia.server.visits.web.api.VisitsWebApiImpl;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
 import org.springframework.context.annotation.Configuration;
@@ -27,7 +28,8 @@ public class GlobalJerseyConfig extends ResourceConfig {
         register(RoleManagementWebApiImpl.class);
         //security
         register(SecurityApiImpl.class);
-
+        //visits
+        register(VisitsWebApiImpl.class);
         //mappers
         register(AppExceptionMapper.class);
         register(GenericExceptionMapper.class);

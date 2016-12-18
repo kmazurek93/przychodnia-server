@@ -14,6 +14,21 @@ public class TimeService {
     @Inject
     private NowProvider nowProvider;
 
+    public DateTime getBeginningOfMonth(DateTime day) {
+        return day.dayOfMonth().withMinimumValue().withTime(0, 0, 0, 0);
+    }
+
+    public DateTime getEndOfMonth(DateTime day) {
+        return day.dayOfMonth().withMaximumValue().withTime(23, 59, 59, 999);
+    }
+
+    public DateTime getEndOfDay(DateTime day) {
+        return day.withTime(23, 59, 59, 999);
+    }
+
+    public DateTime getBeginningOfDay(DateTime day) {
+        return day.withTime(0, 0, 0, 0);
+    }
 
     public DateTime getSixMonthsLaterOnEndOfTheMonth(DateTime input) {
         int month = getSixthMontCountingFrom(input.getMonthOfYear());

@@ -1,27 +1,15 @@
 package edu.wmi.dpri.przychodnia.commons.visits.webmodel;
 
-import org.joda.time.DateTime;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Created by lupus on 25.11.16.
  */
+@Data
+@NoArgsConstructor
 public class MonthWebModel {
-    private DateTime monthStart;
+    private Long monthStart;
     private Boolean available;
 
-    public DateTime getMonthStart() {
-        return monthStart;
-    }
-
-    public void setMonthStart(DateTime monthStart) {
-        this.monthStart = monthStart;
-    }
-
-    public Boolean getAvailable() {
-        return available;
-    }
-
-    public void setAvailable(Boolean available) {
-        this.available = available;
-    }
 }
