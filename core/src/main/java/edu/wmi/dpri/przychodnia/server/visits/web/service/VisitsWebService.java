@@ -1,6 +1,7 @@
 package edu.wmi.dpri.przychodnia.server.visits.web.service;
 
 import edu.wmi.dpri.przychodnia.commons.visits.webmodel.AvailableTimeRequestModel;
+import edu.wmi.dpri.przychodnia.commons.visits.webmodel.DayWebModel;
 import edu.wmi.dpri.przychodnia.commons.visits.webmodel.MonthWebModel;
 import edu.wmi.dpri.przychodnia.server.visits.service.DoctorAvailabilityService;
 import edu.wmi.dpri.przychodnia.server.visits.service.TimeService;
@@ -24,19 +25,36 @@ public class VisitsWebService {
     private TimeService timeService;
 
     public List<MonthWebModel> getNextAvailableMonthsForDoctor(AvailableTimeRequestModel model) {
-        List<MonthWebModel> outcome = newArrayList();
+        List<MonthWebModel> monthWebModels = newArrayList();
         DateTime dateTime = new DateTime(model.getDate());
         for (int i = 0; i < 6; i++) {
-            MonthWebModel monthWebModel = new MonthWebModel();
             DateTime beginningOfMonth = timeService
                     .getBeginningOfMonth(dateTime.plusMonths(i));
-            monthWebModel
-                    .setMonthStart(beginningOfMonth.getMillis());
-            monthWebModel
-                    .setAvailable(doctorAvailabilityService
-                            .isAvailableOnMonth(model.getDoctorId(), beginningOfMonth));
-            outcome.add(monthWebModel);
+
+            boolean availableOnMonth = doctorAvailabilityService
+                    .isAvailableOnMonth(model.getDoctorId(), beginningOfMonth);
+            MonthWebModel monthWebModel = new MonthWebModel();
+
+            monthWebModel.setAvailable(availableOnMonth);
+            monthWebModel.setMonthStart(beginningOfMonth.getMillis());
+            monthWebModels.add(monthWebModel);
         }
-        return outcome;
+        return monthWebModels;
+    }
+
+    public List<DayWebModel> getDayAvailabilityForDoctorAndMonth(AvailableTimeRequestModel model) {
+        List<DayWebModel> dayWebModels = newArrayList();
+        DateTime dateTime = new DateTime(model.getDate());
+        DateTime beginningOfMonth = timeService.getBeginningOfMonth(dateTime);
+        DateTime endOfMonth = timeService.getEndOfMonth(dateTime);
+        for (int i = 0; i < endOfMonth.getDayOfMonth(); i++) {
+            DateTime date = beginningOfMonth.plusDays(i);
+            DayWebModel dayWebModel = new DayWebModel();
+            dayWebModel.setAvailable(doctorAvailabilityService
+                    .isAvailableOnMonth(model.getDoctorId(), date));
+            dayWebModel.setDayStart(date.getMillis());
+            dayWebModels.add(dayWebModel);
+        }
+        return dayWebModels;
     }
 }

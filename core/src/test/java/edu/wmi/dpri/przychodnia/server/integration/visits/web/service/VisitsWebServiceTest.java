@@ -1,6 +1,7 @@
 package edu.wmi.dpri.przychodnia.server.integration.visits.web.service;
 
 import edu.wmi.dpri.przychodnia.commons.visits.webmodel.AvailableTimeRequestModel;
+import edu.wmi.dpri.przychodnia.commons.visits.webmodel.DayWebModel;
 import edu.wmi.dpri.przychodnia.commons.visits.webmodel.MonthWebModel;
 import edu.wmi.dpri.przychodnia.server.integration.rule.DbScriptRule;
 import edu.wmi.dpri.przychodnia.server.visits.web.service.VisitsWebService;
@@ -26,6 +27,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class VisitsWebServiceTest {
 
     public static final long DOCTOR_ID = 1L;
+    public static final DateTime DATE_TIME = new DateTime(2016, 7, 1, 0, 0);
     @Inject
     @Rule
     public DbScriptRule dbScriptRule;
@@ -38,13 +40,33 @@ public class VisitsWebServiceTest {
     public void getNextAvailableMonthsForDoctor() throws Exception {
         //given
         AvailableTimeRequestModel model = new AvailableTimeRequestModel();
-        model.setDate(new DateTime(2016, 7, 1, 0, 0).getMillis());
+        model.setDate(DATE_TIME.getMillis());
         model.setDoctorId(DOCTOR_ID);
         //when
         List<MonthWebModel> actual = tested.getNextAvailableMonthsForDoctor(model);
         // then
         assertThat(actual).hasSize(6);
         actual.forEach(o -> assertThat(o.getAvailable()).isTrue());
+        actual.forEach(o -> {
+            DateTime dateTime = new DateTime(o.getMonthStart());
+            assertThat(dateTime.getDayOfMonth()).isEqualTo(1);
+        });
     }
 
+    @Test
+    public void getDayAvailabilityForDoctorAndMonth() throws Exception {
+        // given
+        AvailableTimeRequestModel model = new AvailableTimeRequestModel();
+        model.setDate(DATE_TIME.getMillis());
+        model.setDoctorId(DOCTOR_ID);
+        // when
+        List<DayWebModel> actual = tested.getDayAvailabilityForDoctorAndMonth(model);
+        // then
+        assertThat(actual).hasSize(31);
+        actual.forEach(o -> assertThat(o.getAvailable()).isTrue());
+        for (int i = 0; i < 31; i++) {
+            DateTime day = new DateTime(actual.get(i).getDayStart());
+            assertThat(day.getDayOfMonth()).isEqualTo(i + 1);
+        }
+    }
 }
