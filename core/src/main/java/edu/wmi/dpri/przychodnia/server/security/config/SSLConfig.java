@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Profile;
  * Created by lupus on 22.10.16.
  */
 @Configuration
-@Profile("secure")
+@Profile({"secure","production"})
 public class SSLConfig {
     @Bean
     public EmbeddedServletContainerFactory servletContainer() {

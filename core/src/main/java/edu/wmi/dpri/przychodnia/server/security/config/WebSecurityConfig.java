@@ -32,7 +32,7 @@ import java.util.List;
 @SuppressWarnings("SpringJavaAutowiringInspection")
 @Configuration
 @EnableWebSecurity
-@Profile("secure")
+@Profile({"secure","production"})
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public static final String JWT_TOKEN_HEADER_PARAM = "Authorization";
     private static final String LOGIN_ENDPOINT = "/security/login";

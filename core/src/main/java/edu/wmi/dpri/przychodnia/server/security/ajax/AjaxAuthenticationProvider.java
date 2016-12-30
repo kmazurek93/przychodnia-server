@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
  * Created by lupus on 22.10.16.
  */
 @Component
-@Profile("secure")
+@Profile({"secure","production"})
 public class AjaxAuthenticationProvider implements AuthenticationProvider {
     @Inject
     private AuthenticationService authenticationService;

@@ -17,7 +17,7 @@ import java.util.List;
  * Created by lupus on 22.10.16.
  */
 @Service
-@Profile("secure")
+@Profile({"secure","production"})
 public class SecurityService {
 
     @Inject

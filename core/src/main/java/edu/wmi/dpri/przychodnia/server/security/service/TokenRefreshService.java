@@ -30,7 +30,7 @@ import static edu.wmi.dpri.przychodnia.server.exceptionmanagement.generators.Err
  * Created by lupus on 22.10.16.
  */
 @Component
-@Profile("secure")
+@Profile({"secure","production"})
 public class TokenRefreshService {
 
     @Inject

@@ -26,7 +26,7 @@ import static edu.wmi.dpri.przychodnia.server.usermanagement.service.Authenticat
  * Created by lupus on 22.10.16.
  */
 @Component
-@Profile("secure")
+@Profile({"secure","production"})
 public class JwtAuthenticationProvider implements AuthenticationProvider {
 
     @Inject

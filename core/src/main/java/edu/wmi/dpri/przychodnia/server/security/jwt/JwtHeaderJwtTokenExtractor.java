@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * Created by lupus on 22.10.16.
  */
 @Component
-@Profile("secure")
+@Profile({"secure","production"})
 public class JwtHeaderJwtTokenExtractor implements JwtTokenExtractor {
     public static String HEADER_PREFIX = "Bearer ";
 

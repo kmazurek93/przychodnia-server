@@ -23,7 +23,7 @@ import static edu.wmi.dpri.przychodnia.server.exceptionmanagement.generators.Err
  * Created by lupus on 22.10.16.
  */
 @Component
-@Profile("secure")
+@Profile({"secure","production"})
 public class AjaxAwareAuthenticationFailureHandler implements AuthenticationFailureHandler {
     public static final String AUTH_ERROR = "AUTH_ERROR";
     public static final String BAD_USERNAME_OR_PASSWORD = "BAD_USERNAME_OR_PASSWORD";

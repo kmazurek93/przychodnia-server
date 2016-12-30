@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Profile;
  */
 @Configuration
 @ConfigurationProperties(prefix = "security.jwt")
-@Profile("secure")
+@Profile({"secure","production"})
 public class JwtSettings {
 
     private Integer tokenExpirationTime;
