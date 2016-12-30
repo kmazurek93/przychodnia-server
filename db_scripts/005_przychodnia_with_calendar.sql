@@ -15,6 +15,8 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+SET FOREIGN_KEY_CHECKS=0;
+
 --
 -- Table structure for table `action_logs`
 --
@@ -1271,3 +1273,5 @@ DELIMITER ;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2016-12-23 23:23:04
+
+SET FOREIGN_KEY_CHECKS=1;
