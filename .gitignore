@@ -15,4 +15,5 @@ build/*
 *.jar
 *.war
 */*.war
+.gradle
 
