@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for Linux (x86_64)
 --
--- Host: 185.66.213.14    Database: przychodnia_alfa
+-- Host: localhost    Database: przychodnia_test
 -- ------------------------------------------------------
--- Server version	5.7.16
+-- Server version	5.7.16-10
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -15,8 +15,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-SET FOREIGN_KEY_CHECKS=0;
-
+SET FOREIGN_KEY_CHECKS = 0;
 --
 -- Table structure for table `action_logs`
 --
@@ -152,7 +151,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`przychodnia_alfa`@`localhost`*/ /*!50003 TRIGGER `przychodnia_alfa`.`availabilities_BEFORE_INSERT` BEFORE INSERT ON `availabilities` FOR EACH ROW
+/*!50003 CREATE*/ /*!50017 DEFINER=`przychodnia_test`@`localhost`*/ /*!50003 TRIGGER `przychodnia_test`.`availabilities_BEFORE_INSERT` BEFORE INSERT ON `availabilities` FOR EACH ROW
   BEGIN
     IF NEW.WEEKDAY not in(
       1,
@@ -180,7 +179,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
 DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`przychodnia_alfa`@`localhost`*/ /*!50003 TRIGGER `przychodnia_alfa`.`availabilities_BEFORE_UPDATE` BEFORE UPDATE ON `availabilities` FOR EACH ROW
+/*!50003 CREATE*/ /*!50017 DEFINER=`przychodnia_test`@`localhost`*/ /*!50003 TRIGGER `przychodnia_test`.`availabilities_BEFORE_UPDATE` BEFORE UPDATE ON `availabilities` FOR EACH ROW
   BEGIN
     IF NEW.WEEKDAY not in(
       1,
@@ -199,6 +198,32 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `doctor_calendar_t`
+--
+
+DROP TABLE IF EXISTS `doctor_calendar_t`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `doctor_calendar_t` (
+  `_DATE` date DEFAULT NULL,
+  `tw_order` int(11) DEFAULT NULL,
+  `tw_start_time` time DEFAULT NULL,
+  `tw_end_time` time DEFAULT NULL,
+  `visit_id` bigint(20) DEFAULT NULL,
+  `state` varchar(255) CHARACTER SET utf8 DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `doctor_calendar_t`
+--
+
+LOCK TABLES `doctor_calendar_t` WRITE;
+/*!40000 ALTER TABLE `doctor_calendar_t` DISABLE KEYS */;
+/*!40000 ALTER TABLE `doctor_calendar_t` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `doctors`
@@ -705,16 +730,16 @@ DROP TABLE IF EXISTS `v_employees_data`;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
 /*!50001 CREATE VIEW `v_employees_data` AS SELECT
- 1 AS `id`,
- 1 AS `login`,
- 1 AS `email_address`,
- 1 AS `pesel`,
- 1 AS `user_id`,
- 1 AS `name`,
- 1 AS `address`,
- 1 AS `mailing_address`,
- 1 AS `telephone`,
- 1 AS `doctor_id`*/;
+                                             1 AS `id`,
+                                             1 AS `login`,
+                                             1 AS `email_address`,
+                                             1 AS `pesel`,
+                                             1 AS `user_id`,
+                                             1 AS `name`,
+                                             1 AS `address`,
+                                             1 AS `mailing_address`,
+                                             1 AS `telephone`,
+                                             1 AS `doctor_id`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -726,15 +751,15 @@ DROP TABLE IF EXISTS `v_patients_data`;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
 /*!50001 CREATE VIEW `v_patients_data` AS SELECT
- 1 AS `id`,
- 1 AS `login`,
- 1 AS `email_address`,
- 1 AS `pesel`,
- 1 AS `user_id`,
- 1 AS `name`,
- 1 AS `address`,
- 1 AS `mailing_address`,
- 1 AS `telephone`*/;
+                                            1 AS `id`,
+                                            1 AS `login`,
+                                            1 AS `email_address`,
+                                            1 AS `pesel`,
+                                            1 AS `user_id`,
+                                            1 AS `name`,
+                                            1 AS `address`,
+                                            1 AS `mailing_address`,
+                                            1 AS `telephone`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -746,15 +771,15 @@ DROP TABLE IF EXISTS `v_users_data`;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
 /*!50001 CREATE VIEW `v_users_data` AS SELECT
- 1 AS `id`,
- 1 AS `login`,
- 1 AS `email_address`,
- 1 AS `pesel`,
- 1 AS `user_id`,
- 1 AS `name`,
- 1 AS `address`,
- 1 AS `mailing_address`,
- 1 AS `telephone`*/;
+                                         1 AS `id`,
+                                         1 AS `login`,
+                                         1 AS `email_address`,
+                                         1 AS `pesel`,
+                                         1 AS `user_id`,
+                                         1 AS `name`,
+                                         1 AS `address`,
+                                         1 AS `mailing_address`,
+                                         1 AS `telephone`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -797,16 +822,12 @@ CREATE TABLE `visits` (
 
 LOCK TABLES `visits` WRITE;
 /*!40000 ALTER TABLE `visits` DISABLE KEYS */;
-INSERT INTO `visits` VALUES (1,4,1,'2016-12-30',5,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `visits` VALUES (1,2,1,'2016-12-13',22,1,NULL,'Nieżyt nosa',NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `visits` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Dumping events for database 'przychodnia_alfa'
---
-
---
--- Dumping routines for database 'przychodnia_alfa'
+-- Dumping routines for database 'przychodnia_test'
 --
 /*!50003 DROP FUNCTION IF EXISTS `check_time_window` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -818,9 +839,9 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`przychodnia_alfa`@`%` FUNCTION `check_time_window`(p_doctor_id bigint, p_date date, p_start_time time, p_end_time time) RETURNS varchar(50) CHARSET utf8
-BEGIN
-	DECLARE v_patient_id bigint;
+CREATE DEFINER=`przychodnia_test`@`%` FUNCTION `check_time_window`(p_doctor_id bigint, p_date date, p_start_time time, p_end_time time) RETURNS varchar(50) CHARSET utf8
+  BEGIN
+    DECLARE v_patient_id bigint;
     DECLARE v_availabilities_id bigint;
     DECLARE v_month int;
     DECLARE v_day int;
@@ -831,76 +852,76 @@ BEGIN
     SET v_easter = get_easter_day(year(p_date));
 
     if v_month = 1 and v_day = 1 then
-		return 'new-year';
-	elseif v_month = 1 and v_day = 6 then
-		return '3-kings-day';
-	elseif v_month = 5 and v_day = 1 then
-		return 'labour-day';
-	elseif v_month = 5 and v_day = 3 then
-		return 'constitution-day';
-	elseif v_month = 8 and v_day = 15 then
-		return 'army-day';
-	elseif v_month = 11 and v_day = 1 then
-		return 'all-saints-day';
-	elseif v_month = 11 and v_day = 11 then
-		return 'independence-day';
-	elseif v_month = 12 and v_day = 25 then
-		return 'first-christmas-day';
-	elseif v_month = 12 and v_day = 26 then
-		return 'second-christmas-day';
-	elseif p_date = v_easter then
-		return 'easter';
-	elseif p_date = v_easter + 1 then
-		return 'easter-monday';
-	elseif p_date = v_easter + 49 then
-		return 'pentecost';
-	elseif p_date = v_easter + 60 then
-		return 'corpus-christi';
-	else
-    begin
-		select
-			a.id
-		into
-			v_availabilities_id
+      return 'new-year';
+    elseif v_month = 1 and v_day = 6 then
+      return '3-kings-day';
+    elseif v_month = 5 and v_day = 1 then
+      return 'labour-day';
+    elseif v_month = 5 and v_day = 3 then
+      return 'constitution-day';
+    elseif v_month = 8 and v_day = 15 then
+      return 'army-day';
+    elseif v_month = 11 and v_day = 1 then
+      return 'all-saints-day';
+    elseif v_month = 11 and v_day = 11 then
+      return 'independence-day';
+    elseif v_month = 12 and v_day = 25 then
+      return 'first-christmas-day';
+    elseif v_month = 12 and v_day = 26 then
+      return 'second-christmas-day';
+    elseif p_date = v_easter then
+      return 'easter';
+    elseif p_date = v_easter + 1 then
+      return 'easter-monday';
+    elseif p_date = v_easter + 49 then
+      return 'pentecost';
+    elseif p_date = v_easter + 60 then
+      return 'corpus-christi';
+    else
+      begin
+        select
+          a.id
+        into
+          v_availabilities_id
         from
-			availabilities a
-		where
-			a.id in (select
-					da.availability_id
-				from
-					doctors_availabilities da
-				where
-					da.doctor_id = p_doctor_id) and
-			a.weekday = weekday(p_date) + 1 and
-            a.date_start <= p_date and
-            a.date_end >= p_date
-		limit 1;
+          availabilities a
+        where
+          a.id in (select
+                     da.availability_id
+                   from
+                     doctors_availabilities da
+                   where
+                     da.doctor_id = p_doctor_id) and
+          a.weekday = weekday(p_date) + 1 and
+          a.date_start <= p_date and
+          a.date_end >= p_date
+        limit 1;
 
-		if isnull(v_availabilities_id) then
-			return 'unavailable';
-		else
-        begin
-			select
-				v.patient_id
-			into
-				v_patient_id
-			from
-				visits v
-			where
-				v.doctor_id = p_doctor_id and
-				v.time_window_id = (select tw.id from time_windows tw where tw.start_time = p_start_time and tw.end_time = p_end_time) and
-				v.date = p_date;
+        if isnull(v_availabilities_id) then
+          return 'unavailable';
+        else
+          begin
+            select
+              v.patient_id
+            into
+              v_patient_id
+            from
+              visits v
+            where
+              v.doctor_id = p_doctor_id and
+              v.time_window_id = (select tw.id from time_windows tw where tw.start_time = p_start_time and tw.end_time = p_end_time) and
+              v.date = p_date;
 
-			if isnull(v_patient_id) then
-				return 'free';
-			else
-				return 'occupied';
-			end if;
-		end;
-		end if;
-	end;
-	end if;
-END ;;
+            if isnull(v_patient_id) then
+              return 'free';
+            else
+              return 'occupied';
+            end if;
+          end;
+        end if;
+      end;
+    end if;
+  END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -916,8 +937,8 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`przychodnia_alfa`@`%` FUNCTION `func_inc_var_session`() RETURNS int(11)
-begin
+CREATE DEFINER=`przychodnia_test`@`%` FUNCTION `func_inc_var_session`() RETURNS int(11)
+  begin
     SET @var := IFNULL(@var,0) + 1;
     return @var;
   end ;;
@@ -936,9 +957,9 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`przychodnia_alfa`@`%` FUNCTION `get_easter_day`(p_year int) RETURNS date
-BEGIN
-	DECLARE a, b, c, d, e, f, g, h, i, j, k, l, _month, _day, x int;
+CREATE DEFINER=`przychodnia_test`@`%` FUNCTION `get_easter_day`(p_year int) RETURNS date
+  BEGIN
+    DECLARE a, b, c, d, e, f, g, h, i, j, k, l, _month, _day, x int;
     declare easter_day date;
 
     set x = p_year;
@@ -960,7 +981,7 @@ BEGIN
 
     set easter_day = str_to_date(concat(p_year, '-', _month, '-', _day), '%Y-%m-%d');
     return easter_day;
-END ;;
+  END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -976,112 +997,112 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`przychodnia_alfa`@`%` PROCEDURE `doctor_calendar`(p_doctor_id BIGINT, p_date_start DATE, p_date_end DATE)
-BEGIN
-	SELECT
-		DATE_ADD(p_date_start, INTERVAL c.number DAY) AS _DATE,
-        #d.id AS doctor,
-        #da.id AS doctor_availability,
-        #a.id AS availability,
-		tw.order AS tw_order,
-		tw.start_time AS tw_start_time,
-		tw.end_time AS tw_end_time,
-		v.id AS visit_id,
-		check_time_window(p_doctor_id, DATE_ADD(p_date_start, INTERVAL c.number DAY), tw.start_time, tw.end_time) AS state
-	FROM
-	(((((
-		SELECT
-			singles + tens + hundreds number
-		FROM
-		(
-			SELECT	0 singles UNION ALL
-			SELECT	1 UNION ALL
-			SELECT	2 UNION ALL
-			SELECT	3 UNION ALL
-			SELECT	4 UNION ALL
-			SELECT	5 UNION ALL
-			SELECT	6 UNION ALL
-			SELECT	7 UNION ALL
-			SELECT	8 UNION ALL
-			SELECT	9
-		) singles
-		JOIN
-		(
-            SELECT	0 tens UNION ALL
-			SELECT	10 UNION ALL
-			SELECT	20 UNION ALL
-			SELECT	30 UNION ALL
-			SELECT	40 UNION ALL
-			SELECT	50 UNION ALL
-			SELECT	60 UNION ALL
-			SELECT	70 UNION ALL
-			SELECT	80 UNION ALL
-			SELECT	90
-		) tens
-		JOIN
-		(
-			SELECT	0 hundreds UNION ALL
-			SELECT	100 UNION ALL
-			SELECT	200 UNION ALL
-			SELECT	300 UNION ALL
-			SELECT	400 UNION ALL
-			SELECT	500 UNION ALL
-			SELECT	600 UNION ALL
-			SELECT	700 UNION ALL
-			SELECT	800 UNION ALL
-			SELECT	900
-		) hundreds
-		ORDER BY number DESC
-	) c
-	left join
-		doctors d on
-			d.id = p_doctor_id)
-#	left join
-#		doctors_availabilities da on
-#			da.doctor_id = d.id)
-	left join
-		availabilities a on
-#			a.id = da.availability_id and
-			a.id in
-				(select
-					da.availability_id
-				from
-					doctors_availabilities da
-				where
-					da.doctor_id = d.id) and
-			a.weekday = weekday(DATE_ADD(p_date_start, INTERVAL c.number DAY)) + 1 and
-            a.date_start <= DATE_ADD(p_date_start, INTERVAL c.number DAY) and
-            a.date_end >= DATE_ADD(p_date_start, INTERVAL c.number DAY))
-	left join
-		time_windows tw on
-			(tw.start_time >= (
-				select
-					tw2.start_time
-				from
-					time_windows tw2
-				where
-					id = a.start_time_window) and
-			tw.end_time <= (
-				select
-					tw2.end_time
-				from
-					time_windows tw2
-				where
-					id = a.end_time_window)))
-	left join
-		visits v on
-			v.doctor_id = d.id and
-			v.date = DATE_ADD(p_date_start, INTERVAL c.number DAY) and
-			v.time_window_id = tw.id)
+CREATE DEFINER=`przychodnia_test`@`%` PROCEDURE `doctor_calendar`(p_doctor_id BIGINT, p_date_start DATE, p_date_end DATE)
+  BEGIN
+    SELECT
+      DATE_ADD(p_date_start, INTERVAL c.number DAY) AS _DATE,
+      #d.id AS doctor,
+      #da.id AS doctor_availability,
+      #a.id AS availability,
+      tw.order AS tw_order,
+      tw.start_time AS tw_start_time,
+      tw.end_time AS tw_end_time,
+      v.id AS visit_id,
+      check_time_window(p_doctor_id, DATE_ADD(p_date_start, INTERVAL c.number DAY), tw.start_time, tw.end_time) AS state
+    FROM
+      (((((
+            SELECT
+              singles + tens + hundreds number
+            FROM
+              (
+                SELECT	0 singles UNION ALL
+                SELECT	1 UNION ALL
+                SELECT	2 UNION ALL
+                SELECT	3 UNION ALL
+                SELECT	4 UNION ALL
+                SELECT	5 UNION ALL
+                SELECT	6 UNION ALL
+                SELECT	7 UNION ALL
+                SELECT	8 UNION ALL
+                SELECT	9
+              ) singles
+              JOIN
+              (
+                SELECT	0 tens UNION ALL
+                SELECT	10 UNION ALL
+                SELECT	20 UNION ALL
+                SELECT	30 UNION ALL
+                SELECT	40 UNION ALL
+                SELECT	50 UNION ALL
+                SELECT	60 UNION ALL
+                SELECT	70 UNION ALL
+                SELECT	80 UNION ALL
+                SELECT	90
+              ) tens
+              JOIN
+              (
+                SELECT	0 hundreds UNION ALL
+                SELECT	100 UNION ALL
+                SELECT	200 UNION ALL
+                SELECT	300 UNION ALL
+                SELECT	400 UNION ALL
+                SELECT	500 UNION ALL
+                SELECT	600 UNION ALL
+                SELECT	700 UNION ALL
+                SELECT	800 UNION ALL
+                SELECT	900
+              ) hundreds
+            ORDER BY number DESC
+          ) c
+        left join
+        doctors d on
+                    d.id = p_doctor_id)
+        #	left join
+        #		doctors_availabilities da on
+        #			da.doctor_id = d.id)
+        left join
+        availabilities a on
+                           #			a.id = da.availability_id and
+                           a.id in
+                           (select
+                              da.availability_id
+                            from
+                              doctors_availabilities da
+                            where
+                              da.doctor_id = d.id) and
+                           a.weekday = weekday(DATE_ADD(p_date_start, INTERVAL c.number DAY)) + 1 and
+                           a.date_start <= DATE_ADD(p_date_start, INTERVAL c.number DAY) and
+                           a.date_end >= DATE_ADD(p_date_start, INTERVAL c.number DAY))
+        left join
+        time_windows tw on
+                          (tw.start_time >= (
+                            select
+                              tw2.start_time
+                            from
+                              time_windows tw2
+                            where
+                              id = a.start_time_window) and
+                           tw.end_time <= (
+                             select
+                               tw2.end_time
+                             from
+                               time_windows tw2
+                             where
+                               id = a.end_time_window)))
+        left join
+        visits v on
+                   v.doctor_id = d.id and
+                   v.date = DATE_ADD(p_date_start, INTERVAL c.number DAY) and
+                   v.time_window_id = tw.id)
     WHERE
-		c.number BETWEEN
-			0 AND
-			DATEDIFF(p_date_end, p_date_start)
-	GROUP BY
-		c.number, _DATE, tw_order, tw_start_time, tw_end_time, visit_id, state#, availability, doctor
-	ORDER BY
-		_DATE, tw_start_time;
-END ;;
+      c.number BETWEEN
+      0 AND
+      DATEDIFF(p_date_end, p_date_start)
+    GROUP BY
+      c.number, _DATE, tw_order, tw_start_time, tw_end_time, visit_id, state#, availability, doctor
+    ORDER BY
+      _DATE, tw_start_time;
+  END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1097,112 +1118,112 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`przychodnia_alfa`@`%` PROCEDURE `doctor_calendar2`(p_doctor_id BIGINT, p_date_start DATE, p_date_end DATE)
-BEGIN
-	SELECT
-		DATE_ADD(p_date_start, INTERVAL c.number DAY) AS _DATE,
-        #d.id AS doctor,
-        #da.id AS doctor_availability,
-        #a.id AS availability,
-		tw.order AS tw_order,
-		tw.start_time AS tw_start_time,
-		tw.end_time AS tw_end_time,
-		v.id AS visit_id,
-		check_time_window(p_doctor_id, DATE_ADD(p_date_start, INTERVAL c.number DAY), tw.start_time, tw.end_time) AS state
-	FROM
-	(((((
-		SELECT
-			singles + tens + hundreds number
-		FROM
-		(
-			SELECT	0 singles UNION ALL
-			SELECT	1 UNION ALL
-			SELECT	2 UNION ALL
-			SELECT	3 UNION ALL
-			SELECT	4 UNION ALL
-			SELECT	5 UNION ALL
-			SELECT	6 UNION ALL
-			SELECT	7 UNION ALL
-			SELECT	8 UNION ALL
-			SELECT	9
-		) singles
-		JOIN
-		(
-            SELECT	0 tens UNION ALL
-			SELECT	10 UNION ALL
-			SELECT	20 UNION ALL
-			SELECT	30 UNION ALL
-			SELECT	40 UNION ALL
-			SELECT	50 UNION ALL
-			SELECT	60 UNION ALL
-			SELECT	70 UNION ALL
-			SELECT	80 UNION ALL
-			SELECT	90
-		) tens
-		JOIN
-		(
-			SELECT	0 hundreds UNION ALL
-			SELECT	100 UNION ALL
-			SELECT	200 UNION ALL
-			SELECT	300 UNION ALL
-			SELECT	400 UNION ALL
-			SELECT	500 UNION ALL
-			SELECT	600 UNION ALL
-			SELECT	700 UNION ALL
-			SELECT	800 UNION ALL
-			SELECT	900
-		) hundreds
-		ORDER BY number DESC
-	) c
-	left join
-		doctors d on
-			d.id = p_doctor_id)
-#	left join
-#		doctors_availabilities da on
-#			da.doctor_id = d.id)
-	left join
-		availabilities a on
-#			a.id = da.availability_id and
-			a.id in
-				(select
-					da.availability_id
-				from
-					doctors_availabilities da
-				where
-					da.doctor_id = d.id) and
-			a.weekday = weekday(DATE_ADD(p_date_start, INTERVAL c.number DAY)) + 1 and
-            a.date_start <= DATE_ADD(p_date_start, INTERVAL c.number DAY) and
-            a.date_end >= DATE_ADD(p_date_start, INTERVAL c.number DAY))
-	left join
-		time_windows tw on
-			(tw.start_time >= (
-				select
-					tw2.start_time
-				from
-					time_windows tw2
-				where
-					id = a.start_time_window) and
-			tw.end_time <= (
-				select
-					tw2.end_time
-				from
-					time_windows tw2
-				where
-					id = a.end_time_window)))
-	left join
-		visits v on
-			v.doctor_id = d.id and
-			v.date = DATE_ADD(p_date_start, INTERVAL c.number DAY) and
-			v.time_window_id = tw.id)
+CREATE DEFINER=`przychodnia_test`@`%` PROCEDURE `doctor_calendar2`(p_doctor_id BIGINT, p_date_start DATE, p_date_end DATE)
+  BEGIN
+    SELECT
+      DATE_ADD(p_date_start, INTERVAL c.number DAY) AS _DATE,
+      #d.id AS doctor,
+      #da.id AS doctor_availability,
+      #a.id AS availability,
+      tw.order AS tw_order,
+      tw.start_time AS tw_start_time,
+      tw.end_time AS tw_end_time,
+      v.id AS visit_id,
+      check_time_window(p_doctor_id, DATE_ADD(p_date_start, INTERVAL c.number DAY), tw.start_time, tw.end_time) AS state
+    FROM
+      (((((
+            SELECT
+              singles + tens + hundreds number
+            FROM
+              (
+                SELECT	0 singles UNION ALL
+                SELECT	1 UNION ALL
+                SELECT	2 UNION ALL
+                SELECT	3 UNION ALL
+                SELECT	4 UNION ALL
+                SELECT	5 UNION ALL
+                SELECT	6 UNION ALL
+                SELECT	7 UNION ALL
+                SELECT	8 UNION ALL
+                SELECT	9
+              ) singles
+              JOIN
+              (
+                SELECT	0 tens UNION ALL
+                SELECT	10 UNION ALL
+                SELECT	20 UNION ALL
+                SELECT	30 UNION ALL
+                SELECT	40 UNION ALL
+                SELECT	50 UNION ALL
+                SELECT	60 UNION ALL
+                SELECT	70 UNION ALL
+                SELECT	80 UNION ALL
+                SELECT	90
+              ) tens
+              JOIN
+              (
+                SELECT	0 hundreds UNION ALL
+                SELECT	100 UNION ALL
+                SELECT	200 UNION ALL
+                SELECT	300 UNION ALL
+                SELECT	400 UNION ALL
+                SELECT	500 UNION ALL
+                SELECT	600 UNION ALL
+                SELECT	700 UNION ALL
+                SELECT	800 UNION ALL
+                SELECT	900
+              ) hundreds
+            ORDER BY number DESC
+          ) c
+        left join
+        doctors d on
+                    d.id = p_doctor_id)
+        #	left join
+        #		doctors_availabilities da on
+        #			da.doctor_id = d.id)
+        left join
+        availabilities a on
+                           #			a.id = da.availability_id and
+                           a.id in
+                           (select
+                              da.availability_id
+                            from
+                              doctors_availabilities da
+                            where
+                              da.doctor_id = d.id) and
+                           a.weekday = weekday(DATE_ADD(p_date_start, INTERVAL c.number DAY)) + 1 and
+                           a.date_start <= DATE_ADD(p_date_start, INTERVAL c.number DAY) and
+                           a.date_end >= DATE_ADD(p_date_start, INTERVAL c.number DAY))
+        left join
+        time_windows tw on
+                          (tw.start_time >= (
+                            select
+                              tw2.start_time
+                            from
+                              time_windows tw2
+                            where
+                              id = a.start_time_window) and
+                           tw.end_time <= (
+                             select
+                               tw2.end_time
+                             from
+                               time_windows tw2
+                             where
+                               id = a.end_time_window)))
+        left join
+        visits v on
+                   v.doctor_id = d.id and
+                   v.date = DATE_ADD(p_date_start, INTERVAL c.number DAY) and
+                   v.time_window_id = tw.id)
     WHERE
-		c.number BETWEEN
-			0 AND
-			DATEDIFF(p_date_end, p_date_start)
-	GROUP BY
-		c.number, _DATE, tw_order, tw_start_time, tw_end_time, visit_id, state#, availability, doctor
-	ORDER BY
-		_DATE, tw_start_time;
-END ;;
+      c.number BETWEEN
+      0 AND
+      DATEDIFF(p_date_end, p_date_start)
+    GROUP BY
+      c.number, _DATE, tw_order, tw_start_time, tw_end_time, visit_id, state#, availability, doctor
+    ORDER BY
+      _DATE, tw_start_time;
+  END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
@@ -1221,8 +1242,8 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8 */;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`przychodnia_alfa`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `v_employees_data` AS select `e`.`id` AS `id`,`u`.`login` AS `login`,`u`.`email_address` AS `email_address`,`u`.`pesel` AS `pesel`,`u`.`id` AS `user_id`,concat(`pe`.`first_name`,' ',`pe`.`last_name`) AS `name`,concat(`a`.`street`,' ',`a`.`house`,if(isnull(`a`.`apartment`),'',concat('/',`a`.`apartment`)),' ',`a`.`postcode`,' ',`a`.`city`,' ',coalesce(`a`.`province`,''),' ',`a`.`country`) AS `address`,concat(`ma`.`street`,' ',`ma`.`house`,if(isnull(`ma`.`apartment`),'',concat('/',`ma`.`apartment`)),' ',`ma`.`postcode`,' ',`ma`.`city`,' ',coalesce(`ma`.`province`,''),' ',`ma`.`country`) AS `mailing_address`,`pe`.`telephone` AS `telephone`,`d`.`id` AS `doctor_id` from (((((`employees` `e` left join `users` `u` on((`u`.`pesel` = `e`.`pesel`))) left join `persons` `pe` on((`pe`.`pesel` = `e`.`pesel`))) left join `addresses` `a` on((`a`.`id` = `pe`.`address_id`))) left join `addresses` `ma` on((`ma`.`id` = `pe`.`mailing_address_id`))) left join `doctors` `d` on((`e`.`id` = `d`.`employee_id`))) */;
+  /*!50013 DEFINER=`przychodnia_test`@`localhost` SQL SECURITY DEFINER */
+  /*!50001 VIEW `v_employees_data` AS select `e`.`id` AS `id`,`u`.`login` AS `login`,`u`.`email_address` AS `email_address`,`u`.`pesel` AS `pesel`,`u`.`id` AS `user_id`,concat(`pe`.`first_name`,' ',`pe`.`last_name`) AS `name`,concat(`a`.`street`,' ',`a`.`house`,if(isnull(`a`.`apartment`),'',concat('/',`a`.`apartment`)),' ',`a`.`postcode`,' ',`a`.`city`,' ',coalesce(`a`.`province`,''),' ',`a`.`country`) AS `address`,concat(`ma`.`street`,' ',`ma`.`house`,if(isnull(`ma`.`apartment`),'',concat('/',`ma`.`apartment`)),' ',`ma`.`postcode`,' ',`ma`.`city`,' ',coalesce(`ma`.`province`,''),' ',`ma`.`country`) AS `mailing_address`,`pe`.`telephone` AS `telephone`,`d`.`id` AS `doctor_id` from (((((`employees` `e` left join `users` `u` on((`u`.`pesel` = `e`.`pesel`))) left join `persons` `pe` on((`pe`.`pesel` = `e`.`pesel`))) left join `addresses` `a` on((`a`.`id` = `pe`.`address_id`))) left join `addresses` `ma` on((`ma`.`id` = `pe`.`mailing_address_id`))) left join `doctors` `d` on((`e`.`id` = `d`.`employee_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1239,8 +1260,8 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8 */;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`przychodnia_alfa`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `v_patients_data` AS select `pa`.`id` AS `id`,`u`.`login` AS `login`,`u`.`email_address` AS `email_address`,`u`.`pesel` AS `pesel`,`u`.`id` AS `user_id`,concat(`pe`.`first_name`,' ',`pe`.`last_name`) AS `name`,concat(`a`.`street`,' ',`a`.`house`,if(isnull(`a`.`apartment`),'',concat('/',`a`.`apartment`)),' ',`a`.`postcode`,' ',`a`.`city`,' ',coalesce(`a`.`province`,''),' ',`a`.`country`) AS `address`,concat(`ma`.`street`,' ',`ma`.`house`,if(isnull(`ma`.`apartment`),'',concat('/',`ma`.`apartment`)),' ',`ma`.`postcode`,' ',`ma`.`city`,' ',coalesce(`ma`.`province`,''),' ',`ma`.`country`) AS `mailing_address`,`pe`.`telephone` AS `telephone` from ((((`patients` `pa` left join `users` `u` on((`u`.`pesel` = `pa`.`pesel`))) left join `persons` `pe` on((`pe`.`pesel` = `pa`.`pesel`))) left join `addresses` `a` on((`a`.`id` = `pe`.`address_id`))) left join `addresses` `ma` on((`ma`.`id` = `pe`.`mailing_address_id`))) */;
+  /*!50013 DEFINER=`przychodnia_test`@`localhost` SQL SECURITY DEFINER */
+  /*!50001 VIEW `v_patients_data` AS select `pa`.`id` AS `id`,`u`.`login` AS `login`,`u`.`email_address` AS `email_address`,`u`.`pesel` AS `pesel`,`u`.`id` AS `user_id`,concat(`pe`.`first_name`,' ',`pe`.`last_name`) AS `name`,concat(`a`.`street`,' ',`a`.`house`,if(isnull(`a`.`apartment`),'',concat('/',`a`.`apartment`)),' ',`a`.`postcode`,' ',`a`.`city`,' ',coalesce(`a`.`province`,''),' ',`a`.`country`) AS `address`,concat(`ma`.`street`,' ',`ma`.`house`,if(isnull(`ma`.`apartment`),'',concat('/',`ma`.`apartment`)),' ',`ma`.`postcode`,' ',`ma`.`city`,' ',coalesce(`ma`.`province`,''),' ',`ma`.`country`) AS `mailing_address`,`pe`.`telephone` AS `telephone` from ((((`patients` `pa` left join `users` `u` on((`u`.`pesel` = `pa`.`pesel`))) left join `persons` `pe` on((`pe`.`pesel` = `pa`.`pesel`))) left join `addresses` `a` on((`a`.`id` = `pe`.`address_id`))) left join `addresses` `ma` on((`ma`.`id` = `pe`.`mailing_address_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1257,8 +1278,8 @@ DELIMITER ;
 /*!50001 SET character_set_results     = utf8 */;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`przychodnia_alfa`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `v_users_data` AS select `u`.`id` AS `id`,`u`.`login` AS `login`,`u`.`email_address` AS `email_address`,`u`.`pesel` AS `pesel`,`u`.`id` AS `user_id`,concat(`pe`.`first_name`,' ',`pe`.`last_name`) AS `name`,concat(`a`.`street`,' ',`a`.`house`,if(isnull(`a`.`apartment`),'',concat('/',`a`.`apartment`)),' ',`a`.`postcode`,' ',`a`.`city`,' ',coalesce(`a`.`province`,''),' ',`a`.`country`) AS `address`,concat(`ma`.`street`,' ',`ma`.`house`,if(isnull(`ma`.`apartment`),'',concat('/',`ma`.`apartment`)),' ',`ma`.`postcode`,' ',`ma`.`city`,' ',coalesce(`ma`.`province`,''),' ',`ma`.`country`) AS `mailing_address`,`pe`.`telephone` AS `telephone` from (((`users` `u` left join `persons` `pe` on((`pe`.`pesel` = `u`.`pesel`))) left join `addresses` `a` on((`a`.`id` = `pe`.`address_id`))) left join `addresses` `ma` on((`ma`.`id` = `pe`.`mailing_address_id`))) */;
+  /*!50013 DEFINER=`przychodnia_test`@`localhost` SQL SECURITY DEFINER */
+  /*!50001 VIEW `v_users_data` AS select `u`.`id` AS `id`,`u`.`login` AS `login`,`u`.`email_address` AS `email_address`,`u`.`pesel` AS `pesel`,`u`.`id` AS `user_id`,concat(`pe`.`first_name`,' ',`pe`.`last_name`) AS `name`,concat(`a`.`street`,' ',`a`.`house`,if(isnull(`a`.`apartment`),'',concat('/',`a`.`apartment`)),' ',`a`.`postcode`,' ',`a`.`city`,' ',coalesce(`a`.`province`,''),' ',`a`.`country`) AS `address`,concat(`ma`.`street`,' ',`ma`.`house`,if(isnull(`ma`.`apartment`),'',concat('/',`ma`.`apartment`)),' ',`ma`.`postcode`,' ',`ma`.`city`,' ',coalesce(`ma`.`province`,''),' ',`ma`.`country`) AS `mailing_address`,`pe`.`telephone` AS `telephone` from (((`users` `u` left join `persons` `pe` on((`pe`.`pesel` = `u`.`pesel`))) left join `addresses` `a` on((`a`.`id` = `pe`.`address_id`))) left join `addresses` `ma` on((`ma`.`id` = `pe`.`mailing_address_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -1272,6 +1293,5 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-23 23:23:04
-
-SET FOREIGN_KEY_CHECKS=1;
+-- Dump completed on 2016-12-31 15:04:18
+SET FOREIGN_KEY_CHECKS = 1;

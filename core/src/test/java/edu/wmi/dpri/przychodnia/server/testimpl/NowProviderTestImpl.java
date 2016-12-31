@@ -1,4 +1,4 @@
-package edu.wmi.dpri.przychodnia.server.integration.testimpl;
+package edu.wmi.dpri.przychodnia.server.testimpl;
 
 import edu.wmi.dpri.przychodnia.server.visits.service.NowProvider;
 import org.joda.time.DateTime;

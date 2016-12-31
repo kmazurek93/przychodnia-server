@@ -1,4 +1,4 @@
-package edu.wmi.dpri.przychodnia.server.integration.test.repository;
+package edu.wmi.dpri.przychodnia.server.repository;
 
 import edu.wmi.dpri.przychodnia.server.entity.views.UsersData;
 import edu.wmi.dpri.przychodnia.server.integration.rule.DbScriptRule;

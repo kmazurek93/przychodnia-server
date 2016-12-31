@@ -1,7 +1,6 @@
-package edu.wmi.dpri.przychodnia.server.integration.visits.service;
+package edu.wmi.dpri.przychodnia.server.visits.service;
 
 import edu.wmi.dpri.przychodnia.server.integration.rule.DbScriptRule;
-import edu.wmi.dpri.przychodnia.server.visits.service.TimeWindowCountService;
 import org.joda.time.DateTime;
 import org.junit.Rule;
 import org.junit.Test;
@@ -20,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles({"integration", "secure"})
-public class TimeWindowCountServiceTest {
+public class TimeWindowCountServiceIntegTest {
 
     public static final long DOCTOR_ID = 1L;
     public static final DateTime DAY = new DateTime(2016, 12, 13, 14, 59);

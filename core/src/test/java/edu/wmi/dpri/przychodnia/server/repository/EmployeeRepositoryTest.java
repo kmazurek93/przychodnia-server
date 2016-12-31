@@ -1,8 +1,7 @@
-package edu.wmi.dpri.przychodnia.server.integration.test.repository;
+package edu.wmi.dpri.przychodnia.server.repository;
 
 import edu.wmi.dpri.przychodnia.server.entity.Employee;
 import edu.wmi.dpri.przychodnia.server.integration.rule.DbScriptRule;
-import edu.wmi.dpri.przychodnia.server.repository.EmployeeRepository;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;

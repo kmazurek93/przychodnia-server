@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AvailableTimeRequestModel {
     private Long doctorId;
-    private Long date;
-
+    private Long startDate;
+    private Long endDate;
 }

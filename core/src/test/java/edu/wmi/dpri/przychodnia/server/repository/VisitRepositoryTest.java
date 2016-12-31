@@ -1,8 +1,6 @@
-package edu.wmi.dpri.przychodnia.server.integration.test.repository;
+package edu.wmi.dpri.przychodnia.server.repository;
 
 import edu.wmi.dpri.przychodnia.server.integration.rule.DbScriptRule;
-import edu.wmi.dpri.przychodnia.server.repository.AvailabilityRepository;
-import edu.wmi.dpri.przychodnia.server.repository.VisitRepository;
 import edu.wmi.dpri.przychodnia.server.visits.service.NowProvider;
 import org.joda.time.DateTime;
 import org.junit.Rule;

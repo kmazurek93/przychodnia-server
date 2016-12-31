@@ -15,6 +15,7 @@ DELETE FROM positions;
 DELETE FROM roles;
 DELETE FROM sexes;
 DELETE FROM specialisations;
+DELETE FROM admission_windows;
 DELETE FROM time_windows;
 DELETE FROM user_connections;
 DELETE FROM user_roles;
