@@ -5,9 +5,9 @@ package edu.wmi.dpri.przychodnia.commons.visits.webmodel;
  */
 public class AvailabilityStatus {
 
-    public static final String FREE = "free";
     public static final String UNAVAILABLE = "unavailable";
     public static final String NEW_YEAR = "new-year";
+    public static final String FREE = "free";
     public static final String THREE_KINGS_DAY = "3-kings-day";
     public static final String ALL_SAINTS_DAY = "all-saints-day";
     public static final String ARMY_DAY = "army-day";

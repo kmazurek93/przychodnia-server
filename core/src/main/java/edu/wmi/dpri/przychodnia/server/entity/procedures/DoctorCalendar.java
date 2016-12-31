@@ -26,6 +26,8 @@ import java.io.Serializable;
 public class DoctorCalendar implements Serializable {
 
     @Id
+    @Column(name = "id")
+    Long id;
     @Column(name = "_DATE")
     LocalDate date;
     @Column(name = "tw_order")

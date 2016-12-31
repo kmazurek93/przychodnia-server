@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 5.7.17, for Linux (x86_64)
 --
--- Host: localhost    Database: przychodnia_test
+-- Host: 185.66.213.14    Database: przychodnia_test
 -- ------------------------------------------------------
--- Server version	5.7.16-10
+-- Server version	5.7.16
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -15,12 +15,11 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-GRANT SELECT ON mysql.proc TO 'przychodnia_test'@'%';
-
-SET FOREIGN_KEY_CHECKS = 0;
 --
 -- Table structure for table `action_logs`
 --
+GRANT SELECT ON mysql.proc TO 'przychodnia_test'@'%';
+SET FOREIGN_KEY_CHECKS = 0;
 
 DROP TABLE IF EXISTS `action_logs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -209,12 +208,14 @@ DROP TABLE IF EXISTS `doctor_calendar_t`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `doctor_calendar_t` (
+  `id` bigint(20) NOT NULL,
   `_DATE` date DEFAULT NULL,
   `tw_order` int(11) DEFAULT NULL,
   `tw_start_time` time DEFAULT NULL,
   `tw_end_time` time DEFAULT NULL,
   `visit_id` bigint(20) DEFAULT NULL,
-  `state` varchar(255) CHARACTER SET utf8 DEFAULT NULL
+  `state` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1002,6 +1003,7 @@ DELIMITER ;;
 CREATE DEFINER=`przychodnia_test`@`%` PROCEDURE `doctor_calendar`(p_doctor_id BIGINT, p_date_start DATE, p_date_end DATE)
   BEGIN
     SELECT
+      UUID_SHORT() AS id,
       DATE_ADD(p_date_start, INTERVAL c.number DAY) AS _DATE,
       #d.id AS doctor,
       #da.id AS doctor_availability,
@@ -1123,6 +1125,7 @@ DELIMITER ;;
 CREATE DEFINER=`przychodnia_test`@`%` PROCEDURE `doctor_calendar2`(p_doctor_id BIGINT, p_date_start DATE, p_date_end DATE)
   BEGIN
     SELECT
+      UUID_SHORT() AS id,
       DATE_ADD(p_date_start, INTERVAL c.number DAY) AS _DATE,
       #d.id AS doctor,
       #da.id AS doctor_availability,
@@ -1295,5 +1298,5 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-31 15:04:18
+-- Dump completed on 2016-12-31 16:13:52
 SET FOREIGN_KEY_CHECKS = 1;
