@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class DoctorCalendarToSimpleAvailabilityModelFunction
         implements Function<DoctorCalendar, SimpleAvailabilityWebModel> {
 
-    public static final String HOUR_PATTERN = "hh:mm";
+    public static final String HOUR_PATTERN = "HH:mm";
     public static final String DAY_START = "00:00";
     public static final String DAY_END = "23:59";
 
