@@ -1,6 +1,6 @@
 package edu.wmi.dpri.przychodnia.server.visits.web.service;
 
-import edu.wmi.dpri.przychodnia.commons.visits.webmodel.AvailableTimeRequestModel;
+import edu.wmi.dpri.przychodnia.commons.visits.webmodel.CalendarRequestModel;
 import edu.wmi.dpri.przychodnia.commons.visits.webmodel.SimpleAvailabilityWebModel;
 import edu.wmi.dpri.przychodnia.server.visits.service.DoctorCalendarService;
 import org.joda.time.DateTime;
@@ -24,7 +24,7 @@ public class DoctorCalendarWebService {
     private DoctorCalendarService doctorCalendarService;
 
 
-    public Map<String, List<SimpleAvailabilityWebModel>> getDoctorCalendar(AvailableTimeRequestModel model) {
+    public Map<String, List<SimpleAvailabilityWebModel>> getDoctorCalendar(CalendarRequestModel model) {
         Map<String, List<SimpleAvailabilityWebModel>> map = newHashMap();
         fillMapDays(map, model);
         List<SimpleAvailabilityWebModel> calendar = doctorCalendarService.getDoctorsCalendar(model);
@@ -37,7 +37,7 @@ public class DoctorCalendarWebService {
         calendar.forEach(o -> map.get(o.getDate()).add(o));
     }
 
-    private void fillMapDays(Map<String, List<SimpleAvailabilityWebModel>> map, AvailableTimeRequestModel model) {
+    private void fillMapDays(Map<String, List<SimpleAvailabilityWebModel>> map, CalendarRequestModel model) {
         DateTime startDate = new DateTime(model.getStartDate());
         DateTime endDate = new DateTime(model.getEndDate());
         Interval interval = new Interval(startDate, endDate);

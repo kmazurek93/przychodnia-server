@@ -1,7 +1,10 @@
 package edu.wmi.dpri.przychodnia.server.repository;
 
+import edu.wmi.dpri.przychodnia.commons.visits.enums.VisitStatusType;
 import edu.wmi.dpri.przychodnia.server.entity.Visit;
-import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +16,13 @@ import java.util.List;
 @Repository
 public interface VisitRepository extends CrudRepository<Visit, Long> {
 
-    Long countByDoctorIdAndDateBetween(Long doctorId, DateTime from, DateTime to);
+    Long countByDoctorIdAndDateBetween(Long doctorId, LocalDate from, LocalDate to);
 
-    List<Visit> findByDoctorIdAndDateBetween(Long doctorId, DateTime from, DateTime to);
+    List<Visit> findByDoctorIdAndDateBetween(Long doctorId, LocalDate from, LocalDate to);
+
+    List<Visit> findByPatientIdAndDateAfterAndStatus(Long patientId, LocalDate from, VisitStatusType status, Sort sort);
+
+    List<Visit> findByDoctorIdAndDateAfterAndStatus(Long patientId, LocalDate from, VisitStatusType status, Sort sort);
+
+    List<Visit> findByDoctorIdAndDateAndTimeWindowStartTime(Long doctorId, LocalDate date, LocalTime startTime);
 }

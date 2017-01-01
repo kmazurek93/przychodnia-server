@@ -3,6 +3,7 @@ package edu.wmi.dpri.przychodnia.server.usermanagement.web.service;
 import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.RegistrationOutput;
 import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.creation.RegistrationInputWebModel;
 import edu.wmi.dpri.przychodnia.server.usermanagement.function.AddressToAddressWebModelFunction;
+import edu.wmi.dpri.przychodnia.server.usermanagement.service.PatientService;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.verification.UserVerificationService;
 import edu.wmi.dpri.przychodnia.server.usermanagement.state.UserRegisteringState;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,8 @@ public class RegistrationWebService {
     private AddressToAddressWebModelFunction addressFunction;
     @Inject
     private UserVerificationService userVerificationService;
+    @Inject
+    private PatientService patientService;
 
     public RegistrationOutput registerUserAndReturnOutput(RegistrationInputWebModel input) {
         verifyIfProvidedEmailAndUsernameAndPeselAreUnique(input);
@@ -49,6 +52,7 @@ public class RegistrationWebService {
         addressWebService.handleAddingAddressesDuringRegistration(state);
         personWebService.handleAddingPersonDuringRegistration(state);
         userWebService.handleAddingUserDuringRegistration(state);
+        patientService.addPatient(state);
     }
 
     private RegistrationOutput createRegistrationOutput(RegistrationInputWebModel input, UserRegisteringState state) {

@@ -61,6 +61,7 @@ dependencies {
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.26'
     compile 'org.jboss.logging:jboss-logging:3.3.0.Final'
     compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.7.0'
+    compile group: 'javax.mail', name: 'mail', version: '1.5.0-b01'
 
     compile('org.projectlombok:lombok:1.16.12')
 

@@ -49,7 +49,7 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
         if (!userByLogin.isActive()) {
             throw new BadCredentialsException(EXPIRED_ACCOUNT_MSG);
         }
-        UserContext context = UserContext.create(username, userByLogin.getId(), authorities);
+        UserContext context = UserContext.create(userByLogin, authorities);
 
         return new ClinicJwtAuthToken(context, context.getAuthorities());
     }

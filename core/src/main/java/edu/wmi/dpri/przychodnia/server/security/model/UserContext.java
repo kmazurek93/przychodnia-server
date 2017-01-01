@@ -1,5 +1,7 @@
 package edu.wmi.dpri.przychodnia.server.security.model;
 
+import edu.wmi.dpri.przychodnia.server.entity.*;
+import lombok.Getter;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -8,44 +10,54 @@ import java.util.List;
 /**
  * Created by lupus on 22.10.16.
  */
+
 public class UserContext {
-    private String username;
-    private Long userId;
-    private List<GrantedAuthority> authorities;
+    @Getter
+    private final String username;
+    @Getter
+    private final Long userId;
+    @Getter
+    private final Long doctorId;
+    @Getter
+    private final Long patientId;
+    @Getter
+    private final Long employeeId;
+    @Getter
+    private final String pesel;
+    @Getter
+    private final List<GrantedAuthority> authorities;
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    private UserContext(String username, Long userId, List<GrantedAuthority> authorities) {
-        this.username = username;
+    private UserContext(User user, List<GrantedAuthority> authorities) {
+        this.username = user.getLogin();
         this.authorities = authorities;
-        this.userId = userId;
+        this.userId = user.getId();
+        Person person = user.getPerson();
+        Employee employee = person.getEmployee();
+        Patient patient = person.getPatient();
+        this.pesel = person.getPESEL();
+        if (patient != null) {
+            this.patientId = patient.getId();
+        } else {
+            this.patientId = null;
+        }
+        if (employee != null) {
+            this.employeeId = employee.getId();
+            Doctor doctor = employee.getDoctor();
+            if (doctor != null) {
+                this.doctorId = doctor.getId();
+            } else {
+                this.doctorId = null;
+            }
+        } else {
+            this.employeeId = null;
+            this.doctorId = null;
+        }
     }
 
-    public static UserContext create(String username, Long userId, List<GrantedAuthority> authorities) {
-        if (StringUtils.isBlank(username) || userId == null)
-            throw new IllegalArgumentException("Username is blank: " + username);
-        return new UserContext(username, userId, authorities);
+    public static UserContext create(User user, List<GrantedAuthority> authorities) {
+        if (StringUtils.isBlank(user.getLogin()) || user.getId() == null)
+            throw new IllegalArgumentException("Username is blank");
+        return new UserContext(user, authorities);
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public List<GrantedAuthority> getAuthorities() {
-        return authorities;
-    }
-
-    public void setAuthorities(List<GrantedAuthority> authorities) {
-        this.authorities = authorities;
-    }
 }

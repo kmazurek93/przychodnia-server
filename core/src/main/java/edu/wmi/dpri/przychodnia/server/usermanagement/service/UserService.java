@@ -6,14 +6,11 @@ import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.ErrorMessa
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.NotFoundException;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.generators.ErrorMessageGenerator;
 import edu.wmi.dpri.przychodnia.server.repository.UserRepository;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.List;
-import java.util.Set;
 
 import static org.hibernate.Hibernate.initialize;
 
@@ -49,15 +46,13 @@ public class UserService {
         initialize(user.getPerson().getMailingAddress());
         initialize(user.getPerson().getIdType());
         initialize(user.getPerson().getSex());
+        initialize(user.getPerson().getPatient());
+        initialize(user.getPerson().getEmployee());
+        if (user.getPerson().getEmployee() != null) {
+            initialize(user.getPerson().getEmployee().getDoctor());
+        }
         //TODO initialize rest <if you find anything>
 
-    }
-
-    @Transactional(readOnly = true)
-    public List<User> getAllInitializedUsers() {
-        List<User> all = userRepository.findByActiveTrue();
-        all.forEach(this::initializeChildEntities);
-        return all;
     }
 
     @Transactional(readOnly = true)
@@ -107,24 +102,5 @@ public class UserService {
         }
         user.setEmailAddress(userData.getEmailAddress());
         userRepository.save(user);
-    }
-
-    @Transactional(readOnly = true)
-    public List<User> findByIdIn(Set<Long> ids) {
-        List<User> byIdIn = userRepository.findByIdIn(ids);
-        byIdIn.forEach(this::initializeChildEntities);
-        return byIdIn;
-    }
-
-    @Transactional(readOnly = true)
-    public Page<User> findByIdIn(Set<Long> ids, PageRequest pageRequest) {
-        Page<User> byIdIn = userRepository.findByIdIn(ids, pageRequest);
-        byIdIn.getContent().forEach(this::initializeChildEntities);
-        return byIdIn;
-    }
-
-    @Transactional(readOnly = true)
-    public List<User> findByEmailAddressLike(String likeEmail) {
-        return userRepository.findByEmailAddressLike(likeEmail);
     }
 }

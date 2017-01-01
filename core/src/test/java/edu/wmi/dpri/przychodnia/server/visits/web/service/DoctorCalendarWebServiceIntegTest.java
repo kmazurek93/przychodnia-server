@@ -1,6 +1,6 @@
 package edu.wmi.dpri.przychodnia.server.visits.web.service;
 
-import edu.wmi.dpri.przychodnia.commons.visits.webmodel.AvailableTimeRequestModel;
+import edu.wmi.dpri.przychodnia.commons.visits.webmodel.CalendarRequestModel;
 import edu.wmi.dpri.przychodnia.commons.visits.webmodel.SimpleAvailabilityWebModel;
 import edu.wmi.dpri.przychodnia.server.integration.rule.DbScriptRule;
 import org.joda.time.DateTime;
@@ -12,7 +12,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.inject.Inject;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -39,7 +38,7 @@ public class DoctorCalendarWebServiceIntegTest {
     @Test
     public void getDoctorCalendar() throws Exception {
         //given
-        AvailableTimeRequestModel model = new AvailableTimeRequestModel();
+        CalendarRequestModel model = new CalendarRequestModel();
         model.setDoctorId(1L);
         model.setStartDate(new DateTime(START_DATE).getMillis());
         model.setEndDate(new DateTime(END_DATE).getMillis());

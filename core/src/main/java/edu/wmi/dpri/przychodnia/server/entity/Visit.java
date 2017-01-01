@@ -1,8 +1,11 @@
 package edu.wmi.dpri.przychodnia.server.entity;
 
-import edu.wmi.dpri.przychodnia.server.entity.enums.VisitStatusType;
-import lombok.*;
-import org.joda.time.DateTime;
+import edu.wmi.dpri.przychodnia.commons.visits.enums.VisitStatusType;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -39,7 +42,7 @@ public class Visit {
 
     @Column(name = "date", nullable = false)
     @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private DateTime date;
+    private LocalDate date;
 
     @Enumerated
     @Column(name = "status")

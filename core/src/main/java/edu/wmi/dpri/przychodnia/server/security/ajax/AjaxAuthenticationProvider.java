@@ -1,6 +1,6 @@
 package edu.wmi.dpri.przychodnia.server.security.ajax;
 
-import edu.wmi.dpri.przychodnia.server.entity.User;
+import edu.wmi.dpri.przychodnia.server.entity.*;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.ErrorMessage;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.auth.AuthenticationAppException;
 import edu.wmi.dpri.przychodnia.server.security.model.UserContext;
@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
  * Created by lupus on 22.10.16.
  */
 @Component
-@Profile({"secure","production"})
+@Profile({"secure", "production"})
 public class AjaxAuthenticationProvider implements AuthenticationProvider {
     @Inject
     private AuthenticationService authenticationService;
@@ -48,10 +48,11 @@ public class AjaxAuthenticationProvider implements AuthenticationProvider {
                 .map(authority -> new SimpleGrantedAuthority(authority.getName()))
                 .collect(Collectors.toList());
 
-        UserContext userContext = UserContext.create(user.getLogin(), user.getId(), authorities);
-
+        UserContext userContext = UserContext.create(user, authorities);
         return new UsernamePasswordAuthenticationToken(userContext, null, userContext.getAuthorities());
     }
+
+
 
     @Override
     public boolean supports(Class<?> authentication) {

@@ -34,14 +34,22 @@ public class SecurityService {
         User user = userService.getUserByLogin(context.getUsername());
         fillPersonalData(contextWebModel, user);
         fillRoles(contextWebModel, context);
+        fillIds(contextWebModel, context);
         return contextWebModel;
+    }
+
+    private void fillIds(UserContextWebModel contextWebModel, UserContext context) {
+        contextWebModel.setDoctorId(context.getDoctorId());
+        contextWebModel.setEmployeeId(context.getEmployeeId());
+        contextWebModel.setPatientId(context.getPatientId());
+        contextWebModel.setUserId(context.getUserId());
     }
 
     private void fillPersonalData(UserContextWebModel contextWebModel, User user) {
         Person person = user.getPerson();
         contextWebModel.setFirstName(person.getFirstName());
         contextWebModel.setLastName(person.getLastName());
-        contextWebModel.setUserId(user.getId());
+        contextWebModel.setPesel(person.getPESEL());
     }
 
     private void fillRoles(UserContextWebModel contextWebModel, UserContext context) {
@@ -51,7 +59,7 @@ public class SecurityService {
         );
     }
 
-    private UserContext getUserContextFromContextHolder() {
+    public UserContext getUserContextFromContextHolder() {
         return (UserContext) SecurityContextHolder.getContext()
                 .getAuthentication()
                 .getPrincipal();

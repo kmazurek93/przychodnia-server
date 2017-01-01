@@ -2,7 +2,7 @@ package edu.wmi.dpri.przychodnia.server.repository;
 
 import edu.wmi.dpri.przychodnia.server.integration.rule.DbScriptRule;
 import edu.wmi.dpri.przychodnia.server.visits.service.NowProvider;
-import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class VisitRepositoryTest {
 
     public static final long DOCTOR_ID = 1L;
-    public static final DateTime END_DATE = new DateTime(2016, 12, 31, 23, 59);
+    public static final LocalDate END_DATE = new LocalDate(2016, 12, 31);
     @Inject
     private VisitRepository tested;
     @Inject
@@ -39,9 +39,9 @@ public class VisitRepositoryTest {
     @Test
     public void shouldCountVisitsProperly() {
         //when
-        Long actual = tested.countByDoctorIdAndDateBetween(DOCTOR_ID, nowProvider.now(), END_DATE);
+        Long actual = tested.countByDoctorIdAndDateBetween(DOCTOR_ID, new LocalDate(nowProvider.now()), END_DATE);
         // then
-        assertThat(actual).isEqualTo(1L);
+        assertThat(actual).isEqualTo(5L);
     }
 
 

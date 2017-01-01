@@ -1,6 +1,6 @@
 package edu.wmi.dpri.przychodnia.server.visits.service;
 
-import edu.wmi.dpri.przychodnia.commons.visits.webmodel.AvailableTimeRequestModel;
+import edu.wmi.dpri.przychodnia.commons.visits.webmodel.CalendarRequestModel;
 import edu.wmi.dpri.przychodnia.commons.visits.webmodel.SimpleAvailabilityWebModel;
 import edu.wmi.dpri.przychodnia.server.entity.procedures.DoctorCalendar;
 import edu.wmi.dpri.przychodnia.server.visits.function.DoctorCalendarToSimpleAvailabilityModelFunction;
@@ -24,8 +24,14 @@ public class DoctorCalendarService {
     @Inject
     private DoctorCalendarToSimpleAvailabilityModelFunction function;
 
+
+    public List<SimpleAvailabilityWebModel> getDoctorsCalendar(CalendarRequestModel model) {
+        List<DoctorCalendar> results = getDoctorCalendar(model);
+        return function.convertAll(results);
+    }
+
     @SuppressWarnings("unchecked")
-    public List<SimpleAvailabilityWebModel> getDoctorsCalendar(AvailableTimeRequestModel model) {
+    public List<DoctorCalendar> getDoctorCalendar(CalendarRequestModel model) {
         StoredProcedureQuery query = entityManager
                 .createNamedStoredProcedureQuery("getCalendarOfADoctor");
 
@@ -33,8 +39,7 @@ public class DoctorCalendarService {
         query.setParameter("p_date_start", getStringDate(model.getStartDate()));
         query.setParameter("p_date_end", getStringDate(model.getEndDate()));
         query.execute();
-        List<DoctorCalendar> results = query.getResultList();
-        return function.convertAll(results);
+        return (List<DoctorCalendar>) query.getResultList();
     }
 
     private String getStringDate(Long instant) {

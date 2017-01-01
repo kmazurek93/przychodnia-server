@@ -1,6 +1,6 @@
 package edu.wmi.dpri.przychodnia.server.visits.service;
 
-import edu.wmi.dpri.przychodnia.commons.visits.webmodel.AvailableTimeRequestModel;
+import edu.wmi.dpri.przychodnia.commons.visits.webmodel.CalendarRequestModel;
 import edu.wmi.dpri.przychodnia.commons.visits.webmodel.SimpleAvailabilityWebModel;
 import edu.wmi.dpri.przychodnia.server.integration.rule.DbScriptRule;
 import org.joda.time.DateTime;
@@ -37,7 +37,7 @@ public class DoctorCalendarServiceIntegrationTest {
     @Test
     public void getDocotrsCalendar() throws Exception {
         //given
-        AvailableTimeRequestModel model = new AvailableTimeRequestModel();
+        CalendarRequestModel model = new CalendarRequestModel();
         model.setDoctorId(1L);
         model.setStartDate(new DateTime(START_DATE).getMillis());
         model.setEndDate(new DateTime(END_DATE).getMillis());
