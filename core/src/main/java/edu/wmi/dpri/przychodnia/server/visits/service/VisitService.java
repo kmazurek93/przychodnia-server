@@ -112,10 +112,10 @@ public class VisitService {
     }
 
     @Transactional
-    public Visit updateVisit(FullVisitWebModel fullVisitWebModel) {
+    public Visit updateVisit(FullVisitWebModel fullVisitWebModel, boolean isAdminOrStaff) {
         Visit visit = repository.findOne(fullVisitWebModel.getVisitId());
         throwExceptionIfNull(fullVisitWebModel.getVisitId(), visit, ExceptionCause.MODIFICATION, Visit.class);
-        if (isNotOwnedByDoctor(visit)) {
+        if (isNotOwnedByDoctor(visit) && !isAdminOrStaff) {
             ErrorMessage errorMessage = getForbiddenErrorMessage("VISIT_NOT_OWNED");
             throw new ForbiddenException(errorMessage);
         }

@@ -134,10 +134,11 @@ public class VisitsWebService {
     }
 
     public FullVisitWebModel alterVisit(Long visitId, FullVisitWebModel fullVisitWebModel) {
-        boolean isEligible = userVerificationService.verifyIfHasAnyAuthorityOf(newArrayList(ROLE_ADMIN, ROLE_DOCTOR, ROLE_STAFF));
-        if (isEligible) {
+        boolean isAdminOrStaff = userVerificationService.verifyIfHasAnyAuthorityOf(newArrayList(ROLE_ADMIN, ROLE_STAFF));
+        boolean isDoctor = userVerificationService.verifyIfHasAuthority(ROLE_DOCTOR);
+        if (isAdminOrStaff || isDoctor) {
             fullVisitWebModel.setVisitId(visitId);
-            Visit visit = visitService.updateVisit(fullVisitWebModel);
+            Visit visit = visitService.updateVisit(fullVisitWebModel, isAdminOrStaff);
             return fullDetailsModelFunction.apply(visit);
         }
         ErrorMessage errorMessage = getForbiddenErrorMessage("INSUFFICIENT_PRIVILEGES");

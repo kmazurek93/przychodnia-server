@@ -16,7 +16,7 @@ import static jersey.repackaged.com.google.common.collect.Lists.newArrayList;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class FullVisitWebModel extends SimpleVisitWebModel{
+public class FullVisitWebModel extends SimpleVisitWebModel {
     private String doctorName;
     private String comment;
     private Long parentVisitId;
