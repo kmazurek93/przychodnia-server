@@ -19,7 +19,7 @@ public class VisitQueryModel {
     private String type;
     @NotNull
     private Long from;
-    //not needed for request
+    //not needed for some requests
     private Long doctorId;
     private Long patientId;
 

@@ -19,7 +19,7 @@ import javax.inject.Inject;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles({"integration", "secure"})
-public class VisitCreationServiceIntegTest {
+public class VisitCreationAndAvailabilityServiceIntegTest {
 
     public static final DateTime FREE_DATE = new DateTime(2016, 12, 14, 9, 30);
     public static final DateTime OCCUPIED_DATE = new DateTime(2016, 12, 14, 8, 0);
@@ -31,7 +31,7 @@ public class VisitCreationServiceIntegTest {
     public DbScriptRule rule;
 
     @Inject
-    private VisitCreationService tested;
+    private VisitCreationAndAvailabilityService tested;
 
     @Test
     public void shouldCheckIfWindowIsAvailable() throws Exception {

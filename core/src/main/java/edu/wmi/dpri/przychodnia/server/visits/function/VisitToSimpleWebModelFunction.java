@@ -32,7 +32,7 @@ public class VisitToSimpleWebModelFunction implements Function<Visit, SimpleVisi
         return outcome;
     }
 
-    private void fillDates(Visit input, SimpleVisitWebModel outcome) {
+    public void fillDates(Visit input, SimpleVisitWebModel outcome) {
         LocalDate date = input.getDate();
         DateTime dateTime = new DateTime(date.getYear(), date.getMonthOfYear(), date.getDayOfMonth(), 0, 0);
         LocalTime endTime = input.getTimeWindow().getEndTime();

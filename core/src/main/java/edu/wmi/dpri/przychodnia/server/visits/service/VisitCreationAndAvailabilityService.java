@@ -28,7 +28,7 @@ import static org.hibernate.Hibernate.initialize;
  * Created by lupus on 01.01.17.
  */
 @Component
-public class VisitCreationService {
+public class VisitCreationAndAvailabilityService {
     @Inject
     private VisitRepository visitRepository;
     @Inject

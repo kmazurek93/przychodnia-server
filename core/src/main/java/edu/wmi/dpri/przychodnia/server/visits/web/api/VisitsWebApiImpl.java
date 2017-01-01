@@ -43,32 +43,37 @@ public class VisitsWebApiImpl implements VisitsWebApi {
     }
 
     @Override
+    public PatientHistoryPage getPatientsVisits(PatientHistoryQueryModel model) {
+        return visitsWebService.getPatientHistory(model);
+    }
+
+    @Override
     public SimpleVisitWebModel createNewVisit(SimpleVisitWebModel visitRequest) {
         return visitsWebService.createNewVisit(visitRequest);
     }
 
     @Override
     public SimpleVisitWebModel alterVisitStatus(Long visitId, VisitStatusChangeModel visitStatusChangeModel) {
-        return null;
+        return visitsWebService.changeStatus(visitId, visitStatusChangeModel);
     }
 
     @Override
     public FullVisitWebModel getVisitDetails(Long visitId) {
-        return null;
+        return visitsWebService.getVisitDetails(visitId);
     }
 
     @Override
     public FullVisitWebModel alterVisit(Long visitId, FullVisitWebModel fullVisitWebModel) {
-        return null;
+        return visitsWebService.alterVisit(visitId, fullVisitWebModel);
     }
 
     @Override
     public SimpleVisitWebModel changeVisitDate(VisitDateChangeModel model) {
-        return null;
+        return visitsWebService.changeVisitDate(model);
     }
 
     @Override
     public void removeVisit(Long id) {
-
+        visitsWebService.removeVisit(id);
     }
 }

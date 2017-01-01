@@ -21,6 +21,8 @@ public interface VisitsWebApi {
     String MONTHS = "/months";
     String DAYS = "/days";
     String CALENDAR = "/calendar";
+    String PATIENT_HISTORY = "/patientHistory";
+    String MY = "/my";
 
     @POST
     @Path(MONTHS)
@@ -45,7 +47,6 @@ public interface VisitsWebApi {
     @Consumes(APPLICATION_JSON)
     SimpleVisitWebModel createNewVisit(SimpleVisitWebModel visitRequest);
 
-    //TODO accept/decline /email should be sent/
     //TODO not sure if should be used
     @PUT
     @Path("/status/{id}")
@@ -54,32 +55,32 @@ public interface VisitsWebApi {
     SimpleVisitWebModel alterVisitStatus(@PathParam("id") @NotNull Long visitId, VisitStatusChangeModel visitStatusChangeModel);
 
     @POST
-    @Path("/my")
+    @Path(MY)
     @Produces(APPLICATION_JSON)
-    List<SimpleVisitWebModel> getAllOwnVisits(VisitQueryModel model);
+    List<SimpleVisitWebModel> getAllOwnVisits(@NotNull VisitQueryModel model);
 
-    //todo get visit details
+    @POST
+    @Path(PATIENT_HISTORY)
+    PatientHistoryPage getPatientsVisits(@NotNull PatientHistoryQueryModel model);
+
     @GET
     @Path("/{id}")
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
     FullVisitWebModel getVisitDetails(@PathParam("id") @NotNull Long visitId);
 
-    //todo edit visit - doctor only.
     @PUT
     @Path("/{id}")
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
     FullVisitWebModel alterVisit(@PathParam("id") @NotNull Long visitId, @NotNull FullVisitWebModel fullVisitWebModel);
 
-    //TODO changeDate
     @PUT
     @Path("/changeDate")
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
     SimpleVisitWebModel changeVisitDate(@NotNull @Valid VisitDateChangeModel model);
 
-    //TODO remove
     @DELETE
     @Path("/{id}")
     void removeVisit(@PathParam("id") Long id);

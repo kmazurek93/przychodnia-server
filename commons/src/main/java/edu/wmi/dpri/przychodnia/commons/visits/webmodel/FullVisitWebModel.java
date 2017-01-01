@@ -1,11 +1,12 @@
 package edu.wmi.dpri.przychodnia.commons.visits.webmodel;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import edu.wmi.dpri.przychodnia.commons.visits.enums.VisitStatusType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotNull;
+import java.util.List;
+
+import static jersey.repackaged.com.google.common.collect.Lists.newArrayList;
 
 /**
  * Created by lupus on 01.01.17.
@@ -13,16 +14,9 @@ import javax.validation.constraints.NotNull;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class FullVisitWebModel {
-    @NotNull
-    private String patientPesel;
-    @NotNull
-    private Long doctorId;
-    @NotNull
-    private Long date;
-    private Long timeWindowId;
-    @NotNull
-    private VisitStatusType status;
-    private Long associatedVisitId;
+public class FullVisitWebModel extends SimpleVisitWebModel{
+    private String doctorName;
     private String comment;
+    private Long parentVisitId;
+    private List<Long> childVisitsIds = newArrayList();
 }

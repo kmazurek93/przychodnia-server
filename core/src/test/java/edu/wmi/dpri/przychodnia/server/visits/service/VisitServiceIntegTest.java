@@ -1,6 +1,7 @@
 package edu.wmi.dpri.przychodnia.server.visits.service;
 
 import edu.wmi.dpri.przychodnia.commons.visits.enums.VisitStatusType;
+import edu.wmi.dpri.przychodnia.commons.visits.webmodel.PatientHistoryQueryModel;
 import edu.wmi.dpri.przychodnia.commons.visits.webmodel.VisitQueryModel;
 import edu.wmi.dpri.przychodnia.server.entity.Visit;
 import edu.wmi.dpri.przychodnia.server.integration.rule.DbScriptRule;
@@ -10,6 +11,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -28,6 +30,7 @@ public class VisitServiceIntegTest {
 
     public static final long DOCTOR_ID = 1L;
     public static final long PATIENT_ID = 2L;
+    public static final String PESEL = "73110572051";
     @Rule
     @Inject
     public DbScriptRule dbScriptRule;
@@ -74,6 +77,19 @@ public class VisitServiceIntegTest {
         model.setDoctorId(DOCTOR_ID);
         model.setPatientId(PATIENT_ID);
         return model;
+    }
+
+    @Test
+    public void shouldGetPatientHistory() {
+        PatientHistoryQueryModel model = new PatientHistoryQueryModel();
+        model.setPage(0);
+        model.setSize(100);
+        model.setPesel(PESEL);
+        //when
+        Page<Visit> actual = tested.getPatientHistory(model);
+        //then
+        assertThat(actual).isNotNull();
+        assertThat(actual.getContent()).hasSize(4);
     }
 
 }
