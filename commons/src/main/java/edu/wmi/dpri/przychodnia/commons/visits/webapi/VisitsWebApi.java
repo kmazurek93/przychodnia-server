@@ -57,10 +57,12 @@ public interface VisitsWebApi {
     @POST
     @Path(MY)
     @Produces(APPLICATION_JSON)
+    @Consumes(APPLICATION_JSON)
     List<SimpleVisitWebModel> getAllOwnVisits(@NotNull VisitQueryModel model);
 
     @POST
-    @Path(PATIENT_HISTORY)
+    @Produces(APPLICATION_JSON)
+    @Consumes(APPLICATION_JSON)
     PatientHistoryPage getPatientsVisits(@NotNull PatientHistoryQueryModel model);
 
     @GET
