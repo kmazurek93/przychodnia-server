@@ -30,9 +30,14 @@ public class VisitToFullDetailsModelFunction implements Function<Visit, FullVisi
         function.fillDates(input, outcome);
         outcome.setStatus(input.getStatus());
         outcome.setComment(input.getComment());
-        outcome.setParentVisitId(input.getAssociatedVisit().getId());
+        outcome.setParentVisitId(getAssociatedVisitIdOrNull(input));
         outcome.setChildVisitsIds(createChildVisitsId(input));
         return outcome;
+    }
+
+    private Long getAssociatedVisitIdOrNull(Visit input) {
+        Visit associatedVisit = input.getAssociatedVisit();
+        return associatedVisit != null ? associatedVisit.getId() : null;
     }
 
     private List<Long> createChildVisitsId(Visit input) {
