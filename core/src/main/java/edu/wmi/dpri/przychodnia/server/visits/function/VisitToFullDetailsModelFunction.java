@@ -32,6 +32,7 @@ public class VisitToFullDetailsModelFunction implements Function<Visit, FullVisi
         outcome.setComment(input.getComment());
         outcome.setParentVisitId(getAssociatedVisitIdOrNull(input));
         outcome.setChildVisitsIds(createChildVisitsId(input));
+        outcome.setVisitId(input.getId());
         return outcome;
     }
 
