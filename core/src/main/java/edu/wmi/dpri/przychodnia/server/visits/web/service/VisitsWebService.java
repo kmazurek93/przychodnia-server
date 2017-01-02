@@ -121,13 +121,24 @@ public class VisitsWebService {
     }
 
     public PatientHistoryPage getPatientHistory(PatientHistoryQueryModel model) {
-        boolean isEligible = userVerificationService.verifyIfHasAnyAuthorityOf(newArrayList(ROLE_ADMIN, ROLE_DOCTOR, ROLE_STAFF));
-        if (isEligible) {
+        boolean isAdminOrStaffOrDoctor = userVerificationService.verifyIfHasAnyAuthorityOf(newArrayList(ROLE_ADMIN, ROLE_DOCTOR, ROLE_STAFF));
+        if (isAdminOrStaffOrDoctor) {
             Page<Visit> visits = visitService.getPatientHistory(model);
             PatientHistoryPage page = new PatientHistoryPage();
             page.setVisits(function.convertAll(visits.getContent()));
             page.setNumberOfPages(visits.getTotalPages());
             return page;
+        } else {
+            boolean isPatient = userVerificationService.verifyIfHasAuthority(ROLE_PATIENT);
+            boolean hasPatientId = getUserContext().getPatientId() != null;
+            if (isPatient && hasPatientId) {
+                model.setPesel(getUserContext().getPesel());
+                Page<Visit> visits = visitService.getPatientHistory(model);
+                PatientHistoryPage page = new PatientHistoryPage();
+                page.setVisits(function.convertAll(visits.getContent()));
+                page.setNumberOfPages(visits.getTotalPages());
+                return page;
+            }
         }
         ErrorMessage errorMessage = getForbiddenErrorMessage("INSUFFICIENT_PRIVILEGES");
         throw new ForbiddenException(errorMessage);
