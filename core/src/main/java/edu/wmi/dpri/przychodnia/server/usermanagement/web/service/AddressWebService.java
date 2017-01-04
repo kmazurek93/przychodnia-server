@@ -2,7 +2,7 @@ package edu.wmi.dpri.przychodnia.server.usermanagement.web.service;
 
 import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.AddressWebModel;
 import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.creation.AddressCreationWebModel;
-import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.creation.RegistrationInputWebModel;
+import edu.wmi.dpri.przychodnia.commons.publics.webmodel.RegistrationInputWebModel;
 import edu.wmi.dpri.przychodnia.server.entity.Address;
 import edu.wmi.dpri.przychodnia.server.usermanagement.function.AddressCreationWebModelToAddressFunction;
 import edu.wmi.dpri.przychodnia.server.usermanagement.function.AddressToAddressWebModelFunction;

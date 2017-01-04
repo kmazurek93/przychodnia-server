@@ -1,6 +1,6 @@
 package edu.wmi.dpri.przychodnia.server.usermanagement.web.service;
 
-import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.creation.RegistrationInputWebModel;
+import edu.wmi.dpri.przychodnia.commons.publics.webmodel.RegistrationInputWebModel;
 import edu.wmi.dpri.przychodnia.server.entity.IdType;
 import edu.wmi.dpri.przychodnia.server.entity.Role;
 import edu.wmi.dpri.przychodnia.server.entity.Sex;

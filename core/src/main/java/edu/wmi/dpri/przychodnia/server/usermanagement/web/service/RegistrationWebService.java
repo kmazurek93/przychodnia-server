@@ -1,7 +1,7 @@
 package edu.wmi.dpri.przychodnia.server.usermanagement.web.service;
 
 import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.RegistrationOutput;
-import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.creation.RegistrationInputWebModel;
+import edu.wmi.dpri.przychodnia.commons.publics.webmodel.RegistrationInputWebModel;
 import edu.wmi.dpri.przychodnia.server.usermanagement.function.AddressToAddressWebModelFunction;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.PatientService;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.verification.UserVerificationService;

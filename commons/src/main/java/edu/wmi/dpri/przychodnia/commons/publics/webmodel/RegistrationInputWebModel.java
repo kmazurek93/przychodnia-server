@@ -1,8 +1,9 @@
-package edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.creation;
+package edu.wmi.dpri.przychodnia.commons.publics.webmodel;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.PersonalDataWebModel;
 import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.UserDataWebModel;
+import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.creation.AddressCreationWebModel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
