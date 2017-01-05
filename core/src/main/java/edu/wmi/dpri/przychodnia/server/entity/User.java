@@ -37,7 +37,8 @@ public class User {
     private String emailAddress;
 
     @Column(name = "active")
-    @Getter(AccessLevel.NONE) private Boolean active;
+    @Getter(AccessLevel.NONE)
+    private Boolean active;
 
     @ManyToOne(targetEntity = Person.class)
     @JoinColumn(name = "pesel")
@@ -58,8 +59,10 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles = newArrayList();
 
-    public Boolean isActive()
-    {
+    @OneToMany(targetEntity = News.class, mappedBy = "author")
+    private List<News> newsAuthored = newArrayList();
+
+    public Boolean isActive() {
         return active;
     }
 }

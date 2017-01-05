@@ -2,6 +2,7 @@ package edu.wmi.dpri.przychodnia.server.config;
 
 import com.fasterxml.jackson.jaxrs.base.JsonMappingExceptionMapper;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.mappers.*;
+import edu.wmi.dpri.przychodnia.server.publics.web.api.PublicWebApiImpl;
 import edu.wmi.dpri.przychodnia.server.security.webapi.SecurityApiImpl;
 import edu.wmi.dpri.przychodnia.server.usermanagement.web.api.*;
 import edu.wmi.dpri.przychodnia.server.visits.web.api.VisitsWebApiImpl;

@@ -4,7 +4,6 @@ import edu.wmi.dpri.przychodnia.server.entity.User;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.ErrorMessage;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.auth.AuthenticationAppException;
 import edu.wmi.dpri.przychodnia.server.security.config.JwtSettings;
-import edu.wmi.dpri.przychodnia.server.security.config.WebSecurityConfig;
 import edu.wmi.dpri.przychodnia.server.security.jwt.JwtTokenExtractor;
 import edu.wmi.dpri.przychodnia.server.security.jwt.JwtTokenFactory;
 import edu.wmi.dpri.przychodnia.server.security.jwt.model.JwtToken;
@@ -12,6 +11,7 @@ import edu.wmi.dpri.przychodnia.server.security.jwt.model.RawAccessJwtToken;
 import edu.wmi.dpri.przychodnia.server.security.jwt.model.RefreshToken;
 import edu.wmi.dpri.przychodnia.server.security.jwt.verifier.TokenVerifier;
 import edu.wmi.dpri.przychodnia.server.security.model.UserContext;
+import edu.wmi.dpri.przychodnia.server.security.webapi.RefreshTokenModel;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.UserService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,8 +19,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,8 +42,8 @@ public class TokenRefreshService {
     @Inject
     private JwtTokenFactory tokenFactory;
 
-    public JwtToken refreshToken(HttpServletRequest request, HttpServletResponse response) {
-        String tokenPayload = tokenExtractor.extract(request.getHeader(WebSecurityConfig.JWT_TOKEN_HEADER_PARAM));
+    public JwtToken refreshToken(RefreshTokenModel refreshTokenModel) {
+        String tokenPayload = tokenExtractor.extract(refreshTokenModel.getRefreshToken());
 
         RawAccessJwtToken rawToken = new RawAccessJwtToken(tokenPayload);
         RefreshToken refreshToken = RefreshToken.create(rawToken, jwtSettings.getTokenSigningKey())

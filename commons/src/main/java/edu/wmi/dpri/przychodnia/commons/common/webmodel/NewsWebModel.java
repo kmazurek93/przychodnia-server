@@ -16,4 +16,5 @@ public class NewsWebModel {
     private String content;
     private String type;
     private Long timestamp;
+    private String author;
 }

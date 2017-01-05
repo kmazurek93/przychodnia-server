@@ -8,9 +8,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.core.Context;
 
 /**
  * Created by lupus on 22.10.16.
@@ -21,13 +18,13 @@ public class SecurityApiImpl implements SecurityApi {
 
     @Inject
     private TokenRefreshService tokenRefreshService;
-
     @Inject
     private SecurityService securityService;
 
+
     @Override
-    public JwtToken refreshToken(@Context HttpServletRequest request, @Context HttpServletResponse response) {
-        return tokenRefreshService.refreshToken(request, response);
+    public JwtToken refreshToken(RefreshTokenModel model) {
+        return tokenRefreshService.refreshToken(model);
     }
 
     @Override

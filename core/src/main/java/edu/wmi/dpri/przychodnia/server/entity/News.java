@@ -33,8 +33,11 @@ public class News {
     @Column(name = "news_date")
     private DateTime newsDate;
 
-    @Column(name = "authorId")
-    private Long authorId;
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name = "author_id")
+    private User author;
 
+    @Column(name = "anonymous", nullable = false)
+    private Boolean anonymous;
 
 }
