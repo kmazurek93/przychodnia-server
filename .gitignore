@@ -17,4 +17,4 @@ build/*
 */*.war
 .gradle
 
-createWar.sh
+#createWar.sh

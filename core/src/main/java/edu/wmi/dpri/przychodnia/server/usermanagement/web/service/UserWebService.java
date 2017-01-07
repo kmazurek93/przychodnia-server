@@ -1,6 +1,7 @@
 package edu.wmi.dpri.przychodnia.server.usermanagement.web.service;
 
 import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.UserCrudWebModel;
+import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.UserDataSimpleModel;
 import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.UserSearchResult;
 import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.UserSearchWebModel;
 import edu.wmi.dpri.przychodnia.server.entity.User;
@@ -18,6 +19,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+
+import java.util.List;
 
 import static edu.wmi.dpri.przychodnia.commons.usermanagement.builder.UserSearchResultBuilder.anUserSearchResult;
 import static edu.wmi.dpri.przychodnia.server.exceptionmanagement.generators.ErrorMessageGenerator.getForbiddenErrorMessage;
@@ -83,8 +86,21 @@ public class UserWebService {
         } else {
             result = userSearchWebService.queryStaff(model);
         }
-        return anUserSearchResult().withUsers(userDataSimpleModelFunction.convertAll(result.getContent()))
+        List<? extends BaseUserData> content = result.getContent();
+        List<UserDataSimpleModel> users = userDataSimpleModelFunction.convertAll(content);
+        obfuscateDataIfNecessary(users, isAdminOrStaff);
+        return anUserSearchResult().withUsers(users)
                 .withAmountOfPages(result.getTotalPages()).build();
+    }
+
+    private void obfuscateDataIfNecessary(List<UserDataSimpleModel> result, boolean isAdminOrStaff) {
+        if(isAdminOrStaff) {
+            result.forEach(o -> {
+                o.setAddress(null);
+                o.setMailingAddress(null);
+                o.setPesel(null);
+            });
+        }
     }
 
     public void archivizeUser(Long id) {
