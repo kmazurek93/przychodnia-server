@@ -94,7 +94,7 @@ public class UserWebService {
     }
 
     private void obfuscateDataIfNecessary(List<UserDataSimpleModel> result, boolean isAdminOrStaff) {
-        if(isAdminOrStaff) {
+        if(!isAdminOrStaff) {
             result.forEach(o -> {
                 o.setAddress(null);
                 o.setMailingAddress(null);
