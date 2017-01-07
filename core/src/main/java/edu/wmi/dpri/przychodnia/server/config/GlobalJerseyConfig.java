@@ -32,8 +32,8 @@ public class GlobalJerseyConfig extends ResourceConfig {
         //visits
         register(VisitsWebApiImpl.class);
         //mappers
-        register(AppExceptionMapper.class);
         register(GenericExceptionMapper.class);
+        register(AppExceptionMapper.class);
         register(NotFoundExceptionMapper.class);
         register(JsonMappingExceptionMapper.class);
         register(ConstraintViolationExceptionMapper.class);

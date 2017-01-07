@@ -2,6 +2,8 @@ package edu.wmi.dpri.przychodnia.server.exceptionmanagement.mappers;
 
 import com.fasterxml.jackson.databind.JsonMappingException;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.ErrorMessage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -13,8 +15,12 @@ import javax.ws.rs.ext.Provider;
  */
 @Provider
 public class JsonMappingExceptionMapper implements ExceptionMapper<JsonMappingException> {
+    private static final Logger logger = LoggerFactory.getLogger(JsonMappingExceptionMapper.class);
+
     @Override
+
     public Response toResponse(JsonMappingException ex) {
+        logger.error("JsonMappingException: ", ex);
         ErrorMessage errorMessage = new ErrorMessage();
         setHttpStatus(ex, errorMessage);
         errorMessage.setMessage(ex.getMessage().split("at")[0]);
