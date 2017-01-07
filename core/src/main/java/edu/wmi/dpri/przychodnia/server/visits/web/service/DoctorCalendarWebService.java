@@ -34,7 +34,15 @@ public class DoctorCalendarWebService {
 
     private void fillMapLists(Map<String, List<SimpleAvailabilityWebModel>> map,
                               List<SimpleAvailabilityWebModel> calendar) {
-        calendar.forEach(o -> map.get(o.getDate()).add(o));
+        calendar.forEach(o -> {
+            List<SimpleAvailabilityWebModel> models = map.get(o.getDate());
+            if (models != null) {
+                models.add(o);
+            } else {
+                map.put(o.getDate(), newArrayList());
+                map.get(o.getDate()).add(o);
+            }
+        });
     }
 
     private void fillMapDays(Map<String, List<SimpleAvailabilityWebModel>> map, CalendarRequestModel model) {
