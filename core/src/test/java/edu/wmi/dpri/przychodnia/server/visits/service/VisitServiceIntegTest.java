@@ -6,6 +6,7 @@ import edu.wmi.dpri.przychodnia.commons.visits.webmodel.VisitQueryModel;
 import edu.wmi.dpri.przychodnia.server.entity.Visit;
 import edu.wmi.dpri.przychodnia.server.integration.rule.DbScriptRule;
 import org.joda.time.DateTime;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
@@ -38,6 +39,14 @@ public class VisitServiceIntegTest {
     @Inject
     private VisitService tested;
 
+    @Before
+    public void before() {
+        try {
+            dbScriptRule.before();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+    }
     @Test
     @Ignore
     public void countVisitsByDoctorOnMonth() throws Exception {
@@ -51,7 +60,7 @@ public class VisitServiceIntegTest {
         //when
         Page<Visit> actual = tested.getOwnDoctorVisits(model);
         //then
-        assertThat(actual.getContent()).hasSize(5);
+        assertThat(actual.getContent()).hasSize(4);
 
     }
 
@@ -66,9 +75,8 @@ public class VisitServiceIntegTest {
         assertThat(content).isNotEmpty();
         assertThat(content.get(0).getTimeWindow().getId()).isEqualTo(22L);
         assertThat(content.get(1).getTimeWindow().getId()).isEqualTo(1L);
-        assertThat(content.get(2).getTimeWindow().getId()).isEqualTo(2L);
-        assertThat(content.get(3).getTimeWindow().getId()).isEqualTo(3L);
-        assertThat(content).hasSize(4);
+        assertThat(content.get(2).getTimeWindow().getId()).isEqualTo(3L);
+        assertThat(content).hasSize(3);
     }
 
     private VisitQueryModel getVisitQueryModel() {
@@ -78,7 +86,7 @@ public class VisitServiceIntegTest {
         model.setDoctorId(DOCTOR_ID);
         model.setPatientId(PATIENT_ID);
         model.setPage(0);
-        model.setSize(10);
+        model.setSize(100);
         return model;
     }
 

@@ -22,11 +22,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.inject.Inject;
-import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.google.common.collect.Lists.newArrayList;
-import static edu.wmi.dpri.przychodnia.server.security.model.RoleAuthority.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -40,7 +37,6 @@ public class VisitDateChangeServiceTest {
     public static final long VISIT_ID = 5L;
     public static final long PATIENT_ID = 2L;
     public static final LocalTime EXPECTED_VISIT_TIME = new LocalTime(9, 30);
-    private static final List<String> ROLES = newArrayList(ROLE_ADMIN, ROLE_DOCTOR, ROLE_STAFF);
     public static final long USER_ID = 3L;
     public static final DateTime FREE_DATE = new DateTime(2016, 12, 14, 9, 30, 0);
     public static final DateTime OCCUPIED_DATE = new DateTime(2016, 12, 14, 8, 30, 0);
