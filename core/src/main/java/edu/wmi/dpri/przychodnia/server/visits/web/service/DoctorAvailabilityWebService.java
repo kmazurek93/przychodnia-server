@@ -26,6 +26,7 @@ public class DoctorAvailabilityWebService {
     private DoctorAvailabilityService doctorAvailabilityService;
     @Inject
     private TimeService timeService;
+
     @Inject
     private DoctorCalendarToSimpleAvailabilityModelFunction function;
     @PersistenceContext
@@ -37,6 +38,8 @@ public class DoctorAvailabilityWebService {
         for (int i = 0; i < 6; i++) {
             DateTime beginningOfMonth = timeService
                     .getBeginningOfMonth(dateTime.plusMonths(i));
+
+
 
             boolean availableOnMonth = doctorAvailabilityService
                     .isAvailableOnMonth(model.getDoctorId(), beginningOfMonth);

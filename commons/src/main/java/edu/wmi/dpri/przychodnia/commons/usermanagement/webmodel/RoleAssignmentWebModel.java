@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * Created by lupus on 24.11.16.
@@ -17,5 +18,5 @@ public class RoleAssignmentWebModel {
     @NotNull
     private Long userId;
     @NotNull
-    private String role;
+    private List<String> roles;
 }

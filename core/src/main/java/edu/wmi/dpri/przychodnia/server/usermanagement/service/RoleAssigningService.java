@@ -23,15 +23,19 @@ public class RoleAssigningService {
 
     public void assignRole(RoleAssignmentWebModel model) {
         User user = userService.getUserById(model.getUserId());
-        Role role = roleService.findByName(model.getRole());
-        throwExceptionIfNull(model.getRole(), role, ExceptionCause.RETRIEVAL, Role.class);
-        roleService.assignRole(user, role);
+        for(String r : model.getRoles()) {
+            Role role = roleService.findByName(r);
+            throwExceptionIfNull(r, role, ExceptionCause.RETRIEVAL, Role.class);
+            roleService.assignRole(user, role);
+        }
 
     }
     public void unassignRole(RoleAssignmentWebModel model) {
         User user = userService.getUserById(model.getUserId());
-        Role role = roleService.findByName(model.getRole());
-        throwExceptionIfNull(model.getRole(), role, ExceptionCause.RETRIEVAL, Role.class);
-        roleService.unassignRole(user, role);
+        for(String r : model.getRoles()) {
+            Role role = roleService.findByName(r);
+            throwExceptionIfNull(r, role, ExceptionCause.RETRIEVAL, Role.class);
+            roleService.unassignRole(user, role);
+        }
     }
 }

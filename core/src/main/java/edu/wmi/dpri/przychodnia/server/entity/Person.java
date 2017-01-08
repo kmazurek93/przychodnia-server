@@ -44,11 +44,9 @@ public class Person {
     @Column(name = "id_number", nullable = false, length = 40)
     private String idNumber;
 
-
     @ManyToOne(targetEntity = IdType.class)
     @JoinColumn(name = "id_type")
     private IdType idType;
-
 
     @ManyToOne(targetEntity = Address.class)
     @JoinColumn(name = "address_id")
@@ -57,7 +55,6 @@ public class Person {
     @ManyToOne(targetEntity = Address.class)
     @JoinColumn(name = "mailing_address_id")
     private Address mailingAddress;
-
 
     @ManyToOne(targetEntity = Sex.class)
     @JoinColumn(name = "sex_id")
