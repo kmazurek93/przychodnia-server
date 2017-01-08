@@ -1,10 +1,13 @@
 package edu.wmi.dpri.przychodnia.server.visits.service;
 
 import edu.wmi.dpri.przychodnia.commons.visits.enums.VisitStatusType;
+import edu.wmi.dpri.przychodnia.commons.visits.webmodel.FullVisitWebModel;
 import edu.wmi.dpri.przychodnia.commons.visits.webmodel.PatientHistoryQueryModel;
 import edu.wmi.dpri.przychodnia.commons.visits.webmodel.VisitQueryModel;
 import edu.wmi.dpri.przychodnia.server.entity.Visit;
+import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.auth.ForbiddenException;
 import edu.wmi.dpri.przychodnia.server.integration.rule.DbScriptRule;
+import edu.wmi.dpri.przychodnia.server.usermanagement.providers.SampleSecurityContextProvider;
 import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Rule;
@@ -31,13 +34,17 @@ public class VisitServiceIntegTest {
     public static final long DOCTOR_ID = 1L;
     public static final long PATIENT_ID = 2L;
     public static final String PESEL = "73110572051";
+    public static final long USER_ID = 3L;
+    public static final long VISIT_ID = 5L;
+    public static final long DOCTOR_ID1 = 1L;
     @Rule
     @Inject
     public DbScriptRule dbScriptRule;
 
     @Inject
     private VisitService tested;
-
+    @Inject
+    private SampleSecurityContextProvider securityContextProvider;
     @Before
     public void before() {
         try {
@@ -96,6 +103,17 @@ public class VisitServiceIntegTest {
         //then
         assertThat(actual).isNotNull();
         assertThat(actual.getContent()).hasSize(4);
+    }
+    @Test(expected = ForbiddenException.class)
+    public void shouldNotAllowVisitModificationIfNotDoctorAndNotStaff() {
+        securityContextProvider.createSampleContextForUser(USER_ID);
+        FullVisitWebModel model = new FullVisitWebModel();
+        model.setDoctorId(DOCTOR_ID1);
+        model.setComment("123");
+        model.setVisitId(VISIT_ID);
+        // when
+        tested.updateVisit(model, false);
+        //then exception
     }
 
 }

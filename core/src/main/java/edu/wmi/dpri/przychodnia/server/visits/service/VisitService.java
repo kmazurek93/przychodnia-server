@@ -12,7 +12,6 @@ import edu.wmi.dpri.przychodnia.server.repository.VisitRepository;
 import edu.wmi.dpri.przychodnia.server.security.model.UserContext;
 import edu.wmi.dpri.przychodnia.server.security.service.SecurityService;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.verification.UserVerificationService;
-import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -45,13 +44,6 @@ public class VisitService {
     private UserVerificationService userVerificationService;
 
     private static final Sort sortByDateAndTimeWindow = new Sort(ASC, "date", "timeWindow.startTime");
-
-    @Transactional(readOnly = true)
-    public Long countVisitsByDoctorOnMonth(Long doctorId, DateTime day) {
-        LocalDate beginning = new LocalDate(timeService.getBeginningOfMonth(day).getMillis());
-        LocalDate end = new LocalDate(timeService.getEndOfMonth(day).getMillis());
-        return repository.countByDoctorIdAndDateBetween(doctorId, beginning, end);
-    }
 
     @Transactional(readOnly = true)
     public Visit findById(Long id) {

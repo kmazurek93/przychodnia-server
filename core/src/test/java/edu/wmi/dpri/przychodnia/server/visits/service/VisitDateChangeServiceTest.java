@@ -34,6 +34,7 @@ public class VisitDateChangeServiceTest {
     public static final long USER_ID = 3L;
     public static final DateTime FREE_DATE = new DateTime(2016, 12, 14, 9, 30, 0);
     public static final DateTime OCCUPIED_DATE = new DateTime(2016, 12, 14, 8, 30, 0);
+    public static final long VISIT_TWO_ID = 1L;
 
     @Rule
     @Inject
@@ -70,14 +71,28 @@ public class VisitDateChangeServiceTest {
     @Test(expected = ForbiddenException.class)
     public void shouldNotChangeVisitDateIfWindowIsOccupied() {
         //given
-        VisitDateChangeModel model = new VisitDateChangeModel();
-        model.setVisitId(VISIT_ID);
-        model.setNewStartDate(OCCUPIED_DATE.getMillis());
-
-        sampleSecurityContextProvider.createSampleContextForUser(USER_ID);
+        VisitDateChangeModel model = createSampleModel(VISIT_ID);
 
         //when
         tested.changeVisitDate(model);
         //then exception should be thrown
+    }
+    @Test(expected = ForbiddenException.class)
+    public void shouldNotChangeDateIfVisitHappened() {
+        //given
+        VisitDateChangeModel model = createSampleModel(VISIT_TWO_ID);
+
+        //when
+        tested.changeVisitDate(model);
+        //then exception should be thrown
+    }
+
+    private VisitDateChangeModel createSampleModel(Long visitId) {
+        VisitDateChangeModel model = new VisitDateChangeModel();
+        model.setVisitId(visitId);
+        model.setNewStartDate(OCCUPIED_DATE.getMillis());
+
+        sampleSecurityContextProvider.createSampleContextForUser(USER_ID);
+        return model;
     }
 }
