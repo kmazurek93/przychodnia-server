@@ -4,6 +4,7 @@ import edu.wmi.dpri.przychodnia.commons.visits.webmodel.AvailableTimeRequestMode
 import edu.wmi.dpri.przychodnia.commons.visits.webmodel.DayWebModel;
 import edu.wmi.dpri.przychodnia.commons.visits.webmodel.MonthWebModel;
 import edu.wmi.dpri.przychodnia.server.integration.rule.DbScriptRule;
+import edu.wmi.dpri.przychodnia.server.visits.service.NowProvider;
 import org.joda.time.DateTime;
 import org.junit.Rule;
 import org.junit.Test;
@@ -34,6 +35,8 @@ public class DoctorAvailabilityWebServiceTest {
     @Inject
     private DoctorAvailabilityWebService tested;
 
+    @Inject
+    private NowProvider nowProvider;
 
     @Test
     public void getNextAvailableMonthsForDoctor() throws Exception {
@@ -45,10 +48,12 @@ public class DoctorAvailabilityWebServiceTest {
         List<MonthWebModel> actual = tested.getNextAvailableMonthsForDoctor(model);
         // then
         assertThat(actual).hasSize(6);
-        actual.forEach(o -> assertThat(o.getAvailable()).isTrue());
         actual.forEach(o -> {
-            DateTime dateTime = new DateTime(o.getMonthStart());
-            assertThat(dateTime.getDayOfMonth()).isEqualTo(1);
+            if(new DateTime(o.getMonthStart()).isBefore(nowProvider.now())) {
+                assertThat(o.getAvailable()).isFalse();
+            } else {
+                assertThat(o.getAvailable()).isTrue();
+            }
         });
     }
 
@@ -62,10 +67,12 @@ public class DoctorAvailabilityWebServiceTest {
         List<DayWebModel> actual = tested.getDayAvailabilityForDoctorAndMonth(model);
         // then
         assertThat(actual).hasSize(31);
-        actual.forEach(o -> assertThat(o.getAvailable()).isTrue());
-        for (int i = 0; i < 31; i++) {
-            DateTime day = new DateTime(actual.get(i).getDayStart());
-            assertThat(day.getDayOfMonth()).isEqualTo(i + 1);
-        }
+        actual.forEach(o -> {
+            if(new DateTime(o.getDayStart()).isBefore(nowProvider.now())) {
+                assertThat(o.getAvailable()).isFalse();
+            } else {
+                assertThat(o.getAvailable()).isTrue();
+            }
+        });
     }
 }

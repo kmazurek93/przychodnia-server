@@ -58,7 +58,7 @@ public class DoctorAvailabilityWebService {
             DateTime date = beginningOfMonth.plusDays(i);
             DayWebModel dayWebModel = new DayWebModel();
             dayWebModel.setAvailable(doctorAvailabilityService
-                    .isAvailableOnMonth(model.getDoctorId(), date));
+                    .isAvailableOnDay(model.getDoctorId(), date));
             dayWebModel.setDayStart(date.getMillis());
             dayWebModels.add(dayWebModel);
         }

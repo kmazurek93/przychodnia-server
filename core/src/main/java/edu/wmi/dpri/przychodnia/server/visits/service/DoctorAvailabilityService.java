@@ -1,9 +1,13 @@
 package edu.wmi.dpri.przychodnia.server.visits.service;
 
+import edu.wmi.dpri.przychodnia.commons.visits.webmodel.CalendarRequestModel;
+import edu.wmi.dpri.przychodnia.server.entity.procedures.DoctorCalendar;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by lupus on 18.12.16.
@@ -11,17 +15,45 @@ import javax.inject.Inject;
 @Component
 public class DoctorAvailabilityService {
 
+    public static final String FREE = "free";
     @Inject
-    private TimeWindowCountService timeWindowCountService;
+    private DoctorCalendarService doctorCalendarService;
     @Inject
-    private VisitService visitService;
+    private NowProvider nowProvider;
 
     public boolean isAvailableOnMonth(Long doctorId, DateTime date) {
-        Long maximumVisitCountForDoctorAndMonth =
-                timeWindowCountService.getMaximumVisitCountForDoctorAndMonth(doctorId, date);
-        Long savedVisitsOfDoctor = visitService.countVisitsByDoctorOnMonth(doctorId, date);
+        DateTime dateEnd = date.dayOfMonth().withMaximumValue();
 
-        return (maximumVisitCountForDoctorAndMonth - savedVisitsOfDoctor) > 0;
+        if (date.isBefore(nowProvider.now()) && dateEnd.isBefore(nowProvider.now())) {
+            return false;
+        }
+
+        CalendarRequestModel model = new CalendarRequestModel();
+        model.setDoctorId(doctorId);
+        model.setStartDate(date.getMillis());
+        model.setEndDate(dateEnd.getMillis());
+        List<DoctorCalendar> doctorCalendar = doctorCalendarService.getDoctorCalendar(model);
+
+        List<DoctorCalendar> filtered = doctorCalendar.stream()
+                .filter(o -> FREE.equals(o.getState())).collect(Collectors.toList());
+
+        return filtered.size() > 0;
+
     }
 
+    public boolean isAvailableOnDay(Long doctorId, DateTime day) {
+        if (day.isBefore(nowProvider.now())) {
+            return false;
+        }
+        CalendarRequestModel model = new CalendarRequestModel();
+        model.setDoctorId(doctorId);
+        model.setStartDate(day.getMillis());
+        model.setEndDate(day.getMillis());
+        List<DoctorCalendar> doctorCalendar = doctorCalendarService.getDoctorCalendar(model);
+
+        List<DoctorCalendar> filtered = doctorCalendar.stream()
+                .filter(o -> FREE.equals(o.getState())).collect(Collectors.toList());
+
+        return filtered.size() > 0;
+    }
 }
