@@ -22,5 +22,7 @@ public class VisitQueryModel {
     //not needed for some requests
     private Long doctorId;
     private Long patientId;
+    private Integer page;
+    private Integer size;
 
 }

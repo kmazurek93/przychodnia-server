@@ -1,5 +1,6 @@
 package edu.wmi.dpri.przychodnia.server.visits.web.service;
 
+import edu.wmi.dpri.przychodnia.commons.common.webmodel.SimplePage;
 import edu.wmi.dpri.przychodnia.commons.visits.webmodel.*;
 import edu.wmi.dpri.przychodnia.server.entity.Visit;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.ErrorMessage;
@@ -42,8 +43,8 @@ public class VisitsWebService {
     @Inject
     private VisitDateChangeService visitDateChangeService;
 
-    public List<SimpleVisitWebModel> getOwnVisits(VisitQueryModel model) {
-        List<Visit> visits;
+    public SimplePage<SimpleVisitWebModel> getOwnVisits(VisitQueryModel model) {
+        Page<Visit> visits;
         switch (model.getType()) {
             case "DOCTOR":
                 visits = getOwnDoctorVisits(model);
@@ -54,10 +55,14 @@ public class VisitsWebService {
             default:
                 visits = getOwnPatientVisits(model);
         }
-        return function.convertAll(visits);
+        List<SimpleVisitWebModel> converted = function.convertAll(visits.getContent());
+        SimplePage<SimpleVisitWebModel> output = new SimplePage<>();
+        output.setNumberOfPages(visits.getTotalPages());
+        output.setList(converted);
+        return output;
     }
 
-    private List<Visit> getOwnDoctorVisits(VisitQueryModel model) {
+    private Page<Visit> getOwnDoctorVisits(VisitQueryModel model) {
         boolean isDoctor = userVerificationService.verifyIfHasAuthority(ROLE_DOCTOR);
         UserContext userContext = getUserContext();
         if (isDoctor && userContext.getDoctorId() != null) {
@@ -68,7 +73,7 @@ public class VisitsWebService {
         throw new ForbiddenException(errorMessage);
     }
 
-    private List<Visit> getOwnPatientVisits(VisitQueryModel model) {
+    private Page<Visit> getOwnPatientVisits(VisitQueryModel model) {
         boolean isPatient = userVerificationService.verifyIfHasAuthority(ROLE_PATIENT);
         UserContext userContext = getUserContext();
         if (isPatient && userContext.getPatientId() != null) {

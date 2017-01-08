@@ -1,5 +1,6 @@
 package edu.wmi.dpri.przychodnia.server.visits.web.api;
 
+import edu.wmi.dpri.przychodnia.commons.common.webmodel.SimplePage;
 import edu.wmi.dpri.przychodnia.commons.visits.webapi.VisitsWebApi;
 import edu.wmi.dpri.przychodnia.commons.visits.webmodel.*;
 import edu.wmi.dpri.przychodnia.server.visits.web.service.DoctorAvailabilityWebService;
@@ -14,6 +15,7 @@ import java.util.Map;
  * Created by lupus on 17.12.16.
  */
 public class VisitsWebApiImpl implements VisitsWebApi {
+
     @Inject
     private DoctorAvailabilityWebService doctorAvailabilityWebService;
     @Inject
@@ -38,7 +40,7 @@ public class VisitsWebApiImpl implements VisitsWebApi {
     }
 
     @Override
-    public List<SimpleVisitWebModel> getAllOwnVisits(VisitQueryModel model) {
+    public SimplePage<SimpleVisitWebModel> getAllOwnVisits(VisitQueryModel model) {
         return visitsWebService.getOwnVisits(model);
     }
 

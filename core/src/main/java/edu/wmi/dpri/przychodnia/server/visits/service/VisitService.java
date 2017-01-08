@@ -63,25 +63,25 @@ public class VisitService {
     }
 
     @Transactional(readOnly = true)
-    public List<Visit> getOwnDoctorVisits(VisitQueryModel model) {
+    public Page<Visit> getOwnDoctorVisits(VisitQueryModel model) {
 
-        List<Visit> result = repository
+        Page<Visit> result = repository
                 .findByDoctorIdAndDateAfterAndStatus(model.getDoctorId(),
                         new LocalDate(model.getFrom()),
                         model.getStatus(),
-                        sortByDateAndTimeWindow);
-        initializeChildEntities(result);
+                        new PageRequest(model.getPage(), model.getSize(), sortByDateAndTimeWindow));
+        initializeChildEntities(result.getContent());
         return result;
     }
 
     @Transactional(readOnly = true)
-    public List<Visit> getOwnPatientVisits(VisitQueryModel model) {
-        List<Visit> result = repository
+    public Page<Visit> getOwnPatientVisits(VisitQueryModel model) {
+        Page<Visit> result = repository
                 .findByPatientIdAndDateAfterAndStatus(model.getPatientId(),
                         new LocalDate(model.getFrom()),
                         model.getStatus(),
-                        sortByDateAndTimeWindow);
-        initializeChildEntities(result);
+                        new PageRequest(model.getPage(), model.getSize(), sortByDateAndTimeWindow));
+        initializeChildEntities(result.getContent());
         return result;
     }
 

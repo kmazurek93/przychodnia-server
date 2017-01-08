@@ -1,5 +1,6 @@
 package edu.wmi.dpri.przychodnia.commons.visits.webapi;
 
+import edu.wmi.dpri.przychodnia.commons.common.webmodel.SimplePage;
 import edu.wmi.dpri.przychodnia.commons.visits.webmodel.*;
 
 import javax.validation.Valid;
@@ -58,7 +59,7 @@ public interface VisitsWebApi {
     @Path(MY)
     @Produces(APPLICATION_JSON)
     @Consumes(APPLICATION_JSON)
-    List<SimpleVisitWebModel> getAllOwnVisits(@NotNull VisitQueryModel model);
+    SimplePage<SimpleVisitWebModel> getAllOwnVisits(@NotNull VisitQueryModel model);
 
     @POST
     @Path(PATIENT_HISTORY)

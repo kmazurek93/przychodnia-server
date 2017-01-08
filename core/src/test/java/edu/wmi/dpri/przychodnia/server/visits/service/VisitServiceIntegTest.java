@@ -49,9 +49,9 @@ public class VisitServiceIntegTest {
         //given
         VisitQueryModel model = getVisitQueryModel();
         //when
-        List<Visit> actual = tested.getOwnDoctorVisits(model);
+        Page<Visit> actual = tested.getOwnDoctorVisits(model);
         //then
-        assertThat(actual).hasSize(5);
+        assertThat(actual.getContent()).hasSize(5);
 
     }
 
@@ -60,14 +60,15 @@ public class VisitServiceIntegTest {
         //given
         VisitQueryModel model = getVisitQueryModel();
         //when
-        List<Visit> actual = tested.getOwnPatientVisits(model);
+        Page<Visit> actual = tested.getOwnPatientVisits(model);
         //then
-        assertThat(actual).isNotEmpty();
-        assertThat(actual.get(0).getTimeWindow().getId()).isEqualTo(22L);
-        assertThat(actual.get(1).getTimeWindow().getId()).isEqualTo(1L);
-        assertThat(actual.get(2).getTimeWindow().getId()).isEqualTo(2L);
-        assertThat(actual.get(3).getTimeWindow().getId()).isEqualTo(3L);
-        assertThat(actual).hasSize(4);
+        List<Visit> content = actual.getContent();
+        assertThat(content).isNotEmpty();
+        assertThat(content.get(0).getTimeWindow().getId()).isEqualTo(22L);
+        assertThat(content.get(1).getTimeWindow().getId()).isEqualTo(1L);
+        assertThat(content.get(2).getTimeWindow().getId()).isEqualTo(2L);
+        assertThat(content.get(3).getTimeWindow().getId()).isEqualTo(3L);
+        assertThat(content).hasSize(4);
     }
 
     private VisitQueryModel getVisitQueryModel() {
@@ -76,6 +77,8 @@ public class VisitServiceIntegTest {
         model.setStatus(VisitStatusType.HAPPENED);
         model.setDoctorId(DOCTOR_ID);
         model.setPatientId(PATIENT_ID);
+        model.setPage(0);
+        model.setSize(10);
         return model;
     }
 
