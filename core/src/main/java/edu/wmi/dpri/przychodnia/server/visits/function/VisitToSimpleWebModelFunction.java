@@ -24,8 +24,9 @@ public class VisitToSimpleWebModelFunction implements Function<Visit, SimpleVisi
     public SimpleVisitWebModel apply(Visit input) {
         SimpleVisitWebModel outcome = new SimpleVisitWebModel();
         outcome.setDoctorId(input.getDoctor().getId());
+        outcome.setDoctorName(createDoctorName(input));
         outcome.setStatus(input.getStatus());
-        outcome.setPatientName(createName(input));
+        outcome.setPatientName(createPatientName(input));
         outcome.setPatientPesel(input.getPatient().getPerson().getPESEL());
         outcome.setVisitId(input.getId());
         fillDates(input, outcome);
@@ -43,8 +44,13 @@ public class VisitToSimpleWebModelFunction implements Function<Visit, SimpleVisi
         outcome.setEnd(endDate.getMillis());
     }
 
-    private String createName(Visit input) {
+    private String createPatientName(Visit input) {
         Person person = input.getPatient().getPerson();
+        return StringUtils.join(person.getFirstName(), " ", person.getLastName());
+    }
+
+    private String createDoctorName(Visit input) {
+        Person person = input.getDoctor().getEmployee().getPerson();
         return StringUtils.join(person.getFirstName(), " ", person.getLastName());
     }
 

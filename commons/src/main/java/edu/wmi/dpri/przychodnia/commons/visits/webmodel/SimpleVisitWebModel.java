@@ -17,6 +17,7 @@ public class SimpleVisitWebModel {
     private Long visitId;
     @NotNull
     private Long doctorId;
+    private String doctorName;
     @NotNull
     private String patientPesel;
     private String patientName;
