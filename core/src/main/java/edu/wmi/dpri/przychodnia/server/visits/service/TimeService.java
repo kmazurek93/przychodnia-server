@@ -22,14 +22,6 @@ public class TimeService {
         return day.dayOfMonth().withMaximumValue().withTime(23, 59, 59, 999);
     }
 
-    public DateTime getEndOfDay(DateTime day) {
-        return day.withTime(23, 59, 59, 999);
-    }
-
-    public DateTime getBeginningOfDay(DateTime day) {
-        return day.withTime(0, 0, 0, 0);
-    }
-
     public DateTime getSixMonthsLaterOnEndOfTheMonth(DateTime input) {
         int month = getSixthMontCountingFrom(input.getMonthOfYear());
         int year = getProperYearForEndDate(input.getYear(), input.getMonthOfYear());

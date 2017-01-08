@@ -223,7 +223,7 @@ INSERT INTO `visits` VALUES (1,2,1,'2016-12-13',22,1,NULL,'Nieżyt nosa',NULL,NU
   (2, 2, 1, '2016-12-14', 1, 1, NULL, 'Ból brzucha', NULL, NULL, NULL, NULL, NULL, NULL),
   (3, 2, 1, '2016-12-14', 3, 1, NULL, 'Ból brzucha1', NULL, NULL, NULL, NULL, NULL, NULL),
   (4, 1, 1, '2016-12-14', 6, 1, NULL, 'Ból brzucha2', NULL, NULL, NULL, NULL, NULL, NULL),
-  (5, 2, 1, '2016-12-14', 2, 1, NULL, 'Ból brzucha3', NULL, NULL, NULL, NULL, NULL, NULL);
+  (5, 2, 1, '2016-12-14', 2, 0, NULL, 'Ból brzucha3', NULL, NULL, NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `visits` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
