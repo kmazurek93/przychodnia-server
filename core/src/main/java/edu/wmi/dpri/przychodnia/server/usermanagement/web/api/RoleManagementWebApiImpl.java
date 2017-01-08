@@ -30,4 +30,9 @@ public class RoleManagementWebApiImpl implements RoleManagementWebApi {
     public Response unassignRole(RoleAssignmentWebModel roleAssignmentWebModel) {
         return roleWebService.unassignRole(roleAssignmentWebModel);
     }
+
+    @Override
+    public Response editRoles(RoleAssignmentWebModel roleAssignmentWebModel) {
+        return roleWebService.editRoles(roleAssignmentWebModel);
+    }
 }

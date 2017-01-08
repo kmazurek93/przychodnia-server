@@ -68,4 +68,23 @@ public class RoleService {
         role.getUsers().removeIf(u -> u.getId().equals(user.getId()));
         roleRepository.save(role);
     }
+
+    @Transactional
+    public void editRoles(User user, List<Role> roles) {
+        List<Role> userRoles = user.getRoles();
+        for(Role ur : userRoles)
+        {
+            if(!roles.contains(ur)) {
+                unassignRole(user, ur);
+            }
+        }
+
+        for(Role r : roles)
+        {
+            if(!userRoles.contains(r))
+            {
+                assignRole(user, r);
+            }
+        }
+    }
 }

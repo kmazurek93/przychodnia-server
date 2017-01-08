@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
 
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
 import static edu.wmi.dpri.przychodnia.server.exceptionmanagement.NotFoundExceptionThrower.throwExceptionIfNull;
 
 /**
@@ -37,5 +40,18 @@ public class RoleAssigningService {
             throwExceptionIfNull(r, role, ExceptionCause.RETRIEVAL, Role.class);
             roleService.unassignRole(user, role);
         }
+    }
+
+    public void editRoles(RoleAssignmentWebModel model) {
+        User user = userService.getUserById(model.getUserId());
+
+        List<Role> roles = newArrayList();
+
+        for(String r : model.getRoles()) {
+            Role role = roleService.findByName(r);
+            throwExceptionIfNull(r, role, ExceptionCause.RETRIEVAL, Role.class);
+            roles.add(role);
+        }
+        roleService.editRoles(user, roles);
     }
 }

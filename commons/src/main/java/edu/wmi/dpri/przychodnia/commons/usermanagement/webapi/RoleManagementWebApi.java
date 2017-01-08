@@ -31,4 +31,8 @@ public interface RoleManagementWebApi {
     @Consumes(APPLICATION_JSON)
     Response unassignRole(RoleAssignmentWebModel roleAssignmentWebModel);
 
+    @POST
+    @Path("/edit")
+    @Consumes(APPLICATION_JSON)
+    Response editRoles(RoleAssignmentWebModel roleAssignmentWebModel);
 }

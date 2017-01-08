@@ -61,4 +61,13 @@ public class RoleWebService {
         }
     }
 
+    public Response editRoles(RoleAssignmentWebModel roleAssignmentWebModel) {
+        boolean isAdminOrStaff = userVerificationService.verifyIfHasAnyAuthorityOf(STAFF_OR_ADMIN);
+        if (isAdminOrStaff) {
+            roleAssigningService.editRoles(roleAssignmentWebModel);
+            return Response.noContent().build();
+        } else {
+            throw new ForbiddenException(getForbiddenErrorMessage(INSUFFICIENT_PRIVILEGES));
+        }
+    }
 }
