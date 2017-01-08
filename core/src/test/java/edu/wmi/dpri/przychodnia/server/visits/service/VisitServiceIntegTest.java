@@ -7,7 +7,6 @@ import edu.wmi.dpri.przychodnia.server.entity.Visit;
 import edu.wmi.dpri.przychodnia.server.integration.rule.DbScriptRule;
 import org.joda.time.DateTime;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -47,11 +46,7 @@ public class VisitServiceIntegTest {
             throwable.printStackTrace();
         }
     }
-    @Test
-    @Ignore
-    public void countVisitsByDoctorOnMonth() throws Exception {
 
-    }
 
     @Test
     public void getOwnDoctorVisits() throws Exception {

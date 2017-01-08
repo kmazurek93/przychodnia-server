@@ -1,13 +1,11 @@
 package edu.wmi.dpri.przychodnia.server.visits.service;
 
 import edu.wmi.dpri.przychodnia.commons.visits.webmodel.VisitDateChangeModel;
-import edu.wmi.dpri.przychodnia.server.entity.User;
 import edu.wmi.dpri.przychodnia.server.entity.Visit;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.auth.ForbiddenException;
 import edu.wmi.dpri.przychodnia.server.integration.rule.DbScriptRule;
 import edu.wmi.dpri.przychodnia.server.repository.VisitRepository;
-import edu.wmi.dpri.przychodnia.server.security.jwt.ClinicJwtAuthToken;
-import edu.wmi.dpri.przychodnia.server.security.model.UserContext;
+import edu.wmi.dpri.przychodnia.server.usermanagement.providers.SampleSecurityContextProvider;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.UserService;
 import org.joda.time.DateTime;
 import org.joda.time.LocalTime;
@@ -15,14 +13,10 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.inject.Inject;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -52,6 +46,8 @@ public class VisitDateChangeServiceTest {
     private VisitRepository repository;
     @Inject
     private UserService userService;
+    @Inject
+    private SampleSecurityContextProvider sampleSecurityContextProvider;
 
     @Test
     public void shouldChangeVisitDate() throws Exception {
@@ -60,10 +56,7 @@ public class VisitDateChangeServiceTest {
         model.setVisitId(VISIT_ID);
         model.setNewStartDate(FREE_DATE.getMillis());
 
-        UserContext userContext = createUserContext();
-        SecurityContext ctxt = SecurityContextHolder.createEmptyContext();
-        ctxt.setAuthentication(new ClinicJwtAuthToken(userContext, userContext.getAuthorities()));
-        SecurityContextHolder.setContext(ctxt);
+        sampleSecurityContextProvider.createSampleContextForUser(USER_ID);
 
         //when
         Visit visit = tested.changeVisitDate(model);
@@ -74,14 +67,6 @@ public class VisitDateChangeServiceTest {
         assertThat(visit.getTimeWindow().getStartTime()).isEqualTo(EXPECTED_VISIT_TIME);
     }
 
-    private UserContext createUserContext() {
-        User userById = userService.getUserById(USER_ID);
-        return UserContext.create(userById, userById.getRoles().stream()
-                .map(authority -> new SimpleGrantedAuthority(authority.getName()))
-                .collect(Collectors.toList()));
-    }
-
-
     @Test(expected = ForbiddenException.class)
     public void shouldNotChangeVisitDateIfWindowIsOccupied() {
         //given
@@ -89,10 +74,7 @@ public class VisitDateChangeServiceTest {
         model.setVisitId(VISIT_ID);
         model.setNewStartDate(OCCUPIED_DATE.getMillis());
 
-        UserContext userContext = createUserContext();
-        SecurityContext ctxt = SecurityContextHolder.createEmptyContext();
-        ctxt.setAuthentication(new ClinicJwtAuthToken(userContext, userContext.getAuthorities()));
-        SecurityContextHolder.setContext(ctxt);
+        sampleSecurityContextProvider.createSampleContextForUser(USER_ID);
 
         //when
         tested.changeVisitDate(model);

@@ -17,7 +17,7 @@ public class GenericRestClient<T> {
 
     public GenericRestClient(String url, Class<T> apiClass) {
         ClientConfig cc = new ClientConfig();
-        Client client = (Client)((Client)ClientBuilder.newClient(cc).register(new JacksonFeature())).property("jersey.config.client.suppressHttpComplianceValidation", Boolean.valueOf(true));
+        Client client = ClientBuilder.newClient(cc).register(new JacksonFeature()).property("jersey.config.client.suppressHttpComplianceValidation", Boolean.valueOf(true));
         this.target = client.target(url);
         this.resource = WebResourceFactory.newResource(apiClass, this.target);
     }

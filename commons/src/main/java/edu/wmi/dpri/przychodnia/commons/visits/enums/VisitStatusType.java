@@ -7,7 +7,7 @@ public enum VisitStatusType {
     NEW(0), HAPPENED(1), HOME_VISIT(2), CANCELLED(3);
     private int ordinal;
 
-    private VisitStatusType(int ordinal) {
+    VisitStatusType(int ordinal) {
         this.ordinal = ordinal;
     }
 

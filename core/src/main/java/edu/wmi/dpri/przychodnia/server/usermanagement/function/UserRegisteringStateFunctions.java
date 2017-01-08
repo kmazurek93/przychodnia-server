@@ -50,7 +50,6 @@ public class UserRegisteringStateFunctions {
     }
 
     public User createUserToSaveFromState(UserRegisteringState state) {
-        User user = new User();
         UserDataWebModel userDataWebModel = getUserDataWebModel(state);
         return createUser(userDataWebModel, state);
     }

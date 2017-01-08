@@ -15,6 +15,7 @@ import static edu.wmi.dpri.przychodnia.server.entity.builder.UserBuilder.anUser;
 /**
  * Created by kmazu on 24.08.2016.
  */
+
 public class SampleDataProvider {
 
     public static final String APARTMENT = "445";
