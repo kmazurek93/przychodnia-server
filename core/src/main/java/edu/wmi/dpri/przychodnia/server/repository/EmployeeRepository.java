@@ -15,4 +15,5 @@ public interface EmployeeRepository extends CrudRepository<Employee, Long> {
     @Query("select e from Employee e inner join fetch e.doctor d where d.id=:id")
     Employee findByDoctorId(@Param("id") Long doctorId);
 
+    Employee findByPersonPESEL(String pesel);
 }

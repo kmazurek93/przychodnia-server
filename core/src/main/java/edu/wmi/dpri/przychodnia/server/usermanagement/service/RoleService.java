@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
+import static edu.wmi.dpri.przychodnia.server.security.model.RoleAuthority.*;
 import static org.hibernate.Hibernate.initialize;
 
 /**
@@ -20,6 +21,8 @@ public class RoleService {
 
     @Inject
     private RoleRepository roleRepository;
+    @Inject
+    private RoleAndDbRelationService roleAndDbRelationService;
 
     @Transactional(readOnly = true)
     public Role findByName(String name) {
@@ -40,16 +43,26 @@ public class RoleService {
         return newArrayList(roleRepository.findAll());
     }
 
-    @Transactional(readOnly = true)
-    public List<Role> queryLikeName(String name) {
-        return roleRepository.findByNameLike(name);
-    }
-
     @Transactional
     public void assignRole(User user, Role role) {
+        String name = role.getName();
+        switch (name) {
+            case ROLE_STAFF:
+            case ROLE_ADMIN:
+                roleAndDbRelationService.addAsEmployee(user);
+                break;
+            case ROLE_PATIENT:
+                roleAndDbRelationService.addAsPatient(user);
+                break;
+            case ROLE_DOCTOR:
+                roleAndDbRelationService.addAsEmployee(user);
+                roleAndDbRelationService.addAsDoctor(user);
+                break;
+        }
         role.getUsers().add(user);
         roleRepository.save(role);
     }
+
     @Transactional
     public void unassignRole(User user, Role role) {
         role.getUsers().removeIf(u -> u.getId().equals(user.getId()));
