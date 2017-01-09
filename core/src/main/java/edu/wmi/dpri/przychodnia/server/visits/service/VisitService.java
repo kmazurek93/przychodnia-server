@@ -98,13 +98,15 @@ public class VisitService {
     @Transactional
     public Page<Visit> getPatientHistory(PatientHistoryQueryModel model) {
 
-        return repository
+        Page<Visit> result = repository
                 .findByPatientPersonPESELAndStatus(
                         model.getPesel(),
                         VisitStatusType.HAPPENED,
                         new PageRequest(model.getPage(),
                                 model.getSize(),
                                 sortByDateAndTimeWindowDesc));
+        initializeChildEntities(result.getContent());
+        return result;
     }
 
     @Transactional
