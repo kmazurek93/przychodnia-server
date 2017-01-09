@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.google.common.collect.Lists.newArrayList;
 import static edu.wmi.dpri.przychodnia.server.security.model.RoleAuthority.*;
@@ -92,7 +93,17 @@ public class RoleService {
     public void editRoles(User user, List<Role> rolesToAssign) {
         List<Role> allRoles = newArrayList(roleRepository.findAll());
         List<Role> rolesToUnassign = newArrayList(allRoles);
-        rolesToUnassign.removeAll(rolesToAssign);
+        List<Role> rolesToRemove = newArrayList();
+        for(Role r: rolesToUnassign) {
+            String name = r.getName();
+            List<Role> collect = rolesToAssign
+                    .stream().filter(o -> o.getName().equals(name))
+                    .collect(Collectors.toList());
+            if(!collect.isEmpty()) {
+                rolesToRemove.add(r);
+            }
+        }
+        rolesToUnassign.removeAll(rolesToRemove);
 
         for (Role ur : rolesToUnassign) {
             unassignRole(user, ur);
