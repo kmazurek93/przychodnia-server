@@ -33,7 +33,9 @@ public class RoleAndDbRelationService {
         if (employee == null) {
             employee = new Employee();
             employee.setPerson(person);
-            employeeRepository.save(employee);
+            employee = employeeRepository.save(employee);
+            person.setEmployee(employee);
+            personRepository.savePerson(person);
         }
     }
 
@@ -52,10 +54,14 @@ public class RoleAndDbRelationService {
     public void addAsDoctor(User user) {
         Person person = user.getPerson();
         Employee employee = person.getEmployee();
+        if(employee == null) {
+        	addAsEmployee(user);
+        	employee = person.getEmployee();
+        }
         Doctor doctor = new Doctor();
         doctor.setEmployee(employee);
         doctor.setSpecialisations(newArrayList());
-        doctorRepository.save(doctor);
+        doctor = doctorRepository.save(doctor);
     }
 
 }
