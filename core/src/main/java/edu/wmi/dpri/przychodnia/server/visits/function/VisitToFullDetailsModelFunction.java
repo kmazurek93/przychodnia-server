@@ -42,10 +42,11 @@ public class VisitToFullDetailsModelFunction implements Function<Visit, FullVisi
     }
 
     private List<Long> createChildVisitsId(Visit input) {
-        return input.getVisitsAssociatedWith()
-                .stream()
-                .map(Visit::getId)
-                .collect(Collectors.toList());
+        List<Visit> childVisits = input.getVisitsAssociatedWith();
+        return childVisits == null ? null : childVisits
+                                                .stream()
+                                                .map(Visit::getId)
+                                                .collect(Collectors.toList());
     }
 
     private String createName(Person person) {
