@@ -65,7 +65,7 @@ public class RoleService {
 
     @Transactional
     public void unassignRole(User user, Role role) {
-    	Role roleFromRepo = roleRepository.findOne(role.getId());
+    	Role roleFromRepo = roleRepository.findOne(role.getId().longValue());
         roleFromRepo.getUsers().removeIf(u -> u.getId().equals(user.getId()));
         roleRepository.save(roleFromRepo);
     }
