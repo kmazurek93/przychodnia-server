@@ -37,6 +37,7 @@ public class RoleAndDbRelationService {
         if (employee == null) {
             employee = new Employee();
             employee.setPerson(person);
+            employee.setActive(true);
             employee = employeeRepository.save(employee);
             person.setEmployee(employee);
             personRepository.save(person);
@@ -49,6 +50,7 @@ public class RoleAndDbRelationService {
         Patient patient = person.getPatient();
         if (patient == null) {
             patient = new Patient();
+            patient.setActive(true);
             patient.setPerson(person);
             patientRepository.save(patient);
         }
@@ -64,6 +66,7 @@ public class RoleAndDbRelationService {
         }
         Doctor doctor = new Doctor();
         doctor.setEmployee(employee);
+        doctor.setActive(true);
         doctor.setSpecialisations(newArrayList());
         doctorRepository.save(doctor);
     }
