@@ -35,7 +35,7 @@ public class RoleAndDbRelationService {
             employee.setPerson(person);
             employee = employeeRepository.save(employee);
             person.setEmployee(employee);
-            personRepository.savePerson(person);
+            personRepository.save(person);
         }
     }
 
