@@ -39,7 +39,6 @@ public class RoleAndDbRelationService {
             employee.setPerson(person);
             employee.setActive(true);
             person.setEmployee(employee);
-            personRepository.save(person);
             employeeRepository.save(employee);
         } else {
             employee.setActive(true);
@@ -90,12 +89,12 @@ public class RoleAndDbRelationService {
         Employee employee = person.getEmployee();
         if (employee != null) {
             employee.setActive(false);
+            employeeRepository.save(employee);
             Doctor doctor = employee.getDoctor();
             if (doctor != null) {
                 doctor.setActive(false);
                 doctorRepository.save(doctor);
             }
-            employeeRepository.save(employee);
         }
     }
 
