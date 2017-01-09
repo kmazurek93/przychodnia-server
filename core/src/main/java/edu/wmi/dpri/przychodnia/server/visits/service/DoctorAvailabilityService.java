@@ -42,7 +42,8 @@ public class DoctorAvailabilityService {
     }
 
     public boolean isAvailableOnDay(Long doctorId, DateTime day) {
-        if (day.isBefore(nowProvider.now())) {
+        DateTime now = nowProvider.now();
+        if (day.isBefore(now.minuteOfHour().withMinimumValue().hourOfDay().withMinimumValue())) {
             return false;
         }
         CalendarRequestModel model = new CalendarRequestModel();
