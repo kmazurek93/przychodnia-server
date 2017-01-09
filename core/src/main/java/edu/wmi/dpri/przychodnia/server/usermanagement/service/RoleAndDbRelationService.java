@@ -38,9 +38,12 @@ public class RoleAndDbRelationService {
             employee = new Employee();
             employee.setPerson(person);
             employee.setActive(true);
-            employee = employeeRepository.save(employee);
             person.setEmployee(employee);
             personRepository.save(person);
+            employeeRepository.save(employee);
+        } else {
+            employee.setActive(true);
+            employeeRepository.save(employee);
         }
     }
 
@@ -52,8 +55,10 @@ public class RoleAndDbRelationService {
             patient = new Patient();
             patient.setActive(true);
             patient.setPerson(person);
-            patientRepository.save(patient);
+        } else {
+            patient.setActive(true);
         }
+        patientRepository.save(patient);
     }
 
     @Transactional
@@ -63,11 +68,19 @@ public class RoleAndDbRelationService {
         if (employee == null) {
             addAsEmployee(user);
             employee = person.getEmployee();
+        } else {
+            employee.setActive(true);
+            employeeRepository.save(employee);
         }
-        Doctor doctor = new Doctor();
-        doctor.setEmployee(employee);
-        doctor.setActive(true);
-        doctor.setSpecialisations(newArrayList());
+        Doctor doctor = employee.getDoctor();
+        if (doctor == null) {
+            doctor = new Doctor();
+            doctor.setEmployee(employee);
+            doctor.setActive(true);
+            doctor.setSpecialisations(newArrayList());
+        } else {
+            doctor.setActive(true);
+        }
         doctorRepository.save(doctor);
     }
 
