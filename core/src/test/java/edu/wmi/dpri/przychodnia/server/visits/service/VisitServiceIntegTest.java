@@ -102,7 +102,7 @@ public class VisitServiceIntegTest {
         Page<Visit> actual = tested.getPatientHistory(model);
         //then
         assertThat(actual).isNotNull();
-        assertThat(actual.getContent()).hasSize(4);
+        assertThat(actual.getContent()).hasSize(3);
     }
     @Test(expected = ForbiddenException.class)
     public void shouldNotAllowVisitModificationIfNotDoctorAndNotStaff() {

@@ -1,5 +1,6 @@
 package edu.wmi.dpri.przychodnia.server.visits.service;
 
+import edu.wmi.dpri.przychodnia.commons.visits.enums.VisitStatusType;
 import edu.wmi.dpri.przychodnia.commons.visits.webmodel.FullVisitWebModel;
 import edu.wmi.dpri.przychodnia.commons.visits.webmodel.PatientHistoryQueryModel;
 import edu.wmi.dpri.przychodnia.commons.visits.webmodel.VisitQueryModel;
@@ -27,6 +28,7 @@ import static edu.wmi.dpri.przychodnia.server.exceptionmanagement.NotFoundExcept
 import static edu.wmi.dpri.przychodnia.server.exceptionmanagement.generators.ErrorMessageGenerator.getForbiddenErrorMessage;
 import static org.hibernate.Hibernate.initialize;
 import static org.springframework.data.domain.Sort.Direction.ASC;
+import static org.springframework.data.domain.Sort.Direction.DESC;
 
 /**
  * Created by lupus on 18.12.16.
@@ -44,6 +46,7 @@ public class VisitService {
     private UserVerificationService userVerificationService;
 
     private static final Sort sortByDateAndTimeWindow = new Sort(ASC, "date", "timeWindow.startTime");
+    private static final Sort sortByDateAndTimeWindowDesc = new Sort(DESC, "date", "timeWindow.startTime");
 
     @Transactional(readOnly = true)
     public Visit findById(Long id) {
@@ -96,11 +99,12 @@ public class VisitService {
     public Page<Visit> getPatientHistory(PatientHistoryQueryModel model) {
 
         return repository
-                .findByPatientPersonPESEL(
+                .findByPatientPersonPESELAndStatus(
                         model.getPesel(),
+                        VisitStatusType.HAPPENED,
                         new PageRequest(model.getPage(),
                                 model.getSize(),
-                                sortByDateAndTimeWindow));
+                                sortByDateAndTimeWindowDesc));
     }
 
     @Transactional

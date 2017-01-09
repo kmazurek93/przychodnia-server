@@ -130,7 +130,7 @@ public class VisitsWebService {
         if (isAdminOrStaffOrDoctor) {
             Page<Visit> visits = visitService.getPatientHistory(model);
             PatientHistoryPage page = new PatientHistoryPage();
-            page.setVisits(function.convertAll(visits.getContent()));
+            page.setVisits(fullDetailsModelFunction.convertAll(visits.getContent()));
             page.setNumberOfPages(visits.getTotalPages());
             return page;
         } else {
@@ -140,7 +140,7 @@ public class VisitsWebService {
                 model.setPesel(getUserContext().getPesel());
                 Page<Visit> visits = visitService.getPatientHistory(model);
                 PatientHistoryPage page = new PatientHistoryPage();
-                page.setVisits(function.convertAll(visits.getContent()));
+                page.setVisits(fullDetailsModelFunction.convertAll(visits.getContent()));
                 page.setNumberOfPages(visits.getTotalPages());
                 return page;
             }

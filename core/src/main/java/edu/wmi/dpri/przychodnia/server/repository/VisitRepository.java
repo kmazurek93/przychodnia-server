@@ -20,7 +20,7 @@ public interface VisitRepository extends CrudRepository<Visit, Long>, PagingAndS
 
     Long countByDoctorIdAndDateBetween(Long doctorId, LocalDate from, LocalDate to);
 
-    Page<Visit> findByPatientPersonPESEL(String pesel, Pageable pageable);
+    Page<Visit> findByPatientPersonPESELAndStatus(String pesel,VisitStatusType status,  Pageable pageable);
 
     List<Visit> findByDoctorIdAndDateBetween(Long doctorId, LocalDate from, LocalDate to);
 

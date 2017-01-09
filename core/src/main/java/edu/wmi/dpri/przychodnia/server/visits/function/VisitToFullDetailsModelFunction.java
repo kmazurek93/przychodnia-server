@@ -51,4 +51,8 @@ public class VisitToFullDetailsModelFunction implements Function<Visit, FullVisi
     private String createName(Person person) {
         return StringUtils.join(person.getFirstName(), " ", person.getLastName());
     }
+
+    public List<FullVisitWebModel> convertAll(List<Visit> content) {
+        return content.stream().map(this::apply).collect(Collectors.toList());
+    }
 }

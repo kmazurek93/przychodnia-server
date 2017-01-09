@@ -14,5 +14,5 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PatientHistoryPage {
     private Integer numberOfPages;
-    private List<SimpleVisitWebModel> visits;
+    private List<FullVisitWebModel> visits;
 }
