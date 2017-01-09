@@ -17,13 +17,22 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "v_employees_data")
 @Immutable
-public class EmployeesData extends BaseUserData{
+public class EmployeesData extends BaseUserData {
     @Id
     @Column(name = "id")
-    @Getter Long id;
+    @Getter
+    Long id;
 
     @Column(name = "doctor_id")
-    @Getter Long doctorId;
+    @Getter
+    Long doctorId;
+    @Column(name = "employee_active")
+    @Getter
+    Boolean employeeActive;
+
+    @Column(name = "doctor_active")
+    @Getter
+    Boolean doctorActive;
 
     public EmployeesData() {
         super();

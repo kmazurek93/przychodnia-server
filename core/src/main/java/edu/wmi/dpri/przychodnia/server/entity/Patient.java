@@ -27,6 +27,9 @@ public class Patient {
     @JoinColumn(name = "pesel")
     private Person person;
 
+    @Column(name = "active")
+    private Boolean active;
+
     @OneToMany(targetEntity = Visit.class, mappedBy = "patient")
     private List<Visit> visits = newArrayList();
 

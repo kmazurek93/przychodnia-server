@@ -7,7 +7,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static com.google.common.collect.Lists.newArrayList;
+import static edu.wmi.dpri.przychodnia.server.security.model.RoleAuthority.ROLE_STAFF;
 
 /**
  * Created by lupus on 08.01.17.
@@ -54,14 +58,64 @@ public class RoleAndDbRelationService {
     public void addAsDoctor(User user) {
         Person person = user.getPerson();
         Employee employee = person.getEmployee();
-        if(employee == null) {
-        	addAsEmployee(user);
-        	employee = person.getEmployee();
+        if (employee == null) {
+            addAsEmployee(user);
+            employee = person.getEmployee();
         }
         Doctor doctor = new Doctor();
         doctor.setEmployee(employee);
         doctor.setSpecialisations(newArrayList());
-        doctor = doctorRepository.save(doctor);
+        doctorRepository.save(doctor);
     }
 
+    @Transactional
+    public void removeStaffPrivileges(User user) {
+        Person person = user.getPerson();
+        Employee employee = person.getEmployee();
+        if (employee != null) {
+            employee.setActive(false);
+            Doctor doctor = employee.getDoctor();
+            if (doctor != null) {
+                doctor.setActive(false);
+                doctorRepository.save(doctor);
+            }
+            employeeRepository.save(employee);
+        }
+    }
+
+    @Transactional
+    public void removeDoctorPrivileges(User user) {
+        Person person = user.getPerson();
+        Employee employee = person.getEmployee();
+        if (employee != null) {
+            Doctor doctor = employee.getDoctor();
+            if (doctor != null) {
+                doctor.setActive(false);
+                doctorRepository.save(doctor);
+            }
+            employeeRepository.save(employee);
+        }
+    }
+
+    @Transactional
+    public void removePatientPrivileges(User user) {
+        Person person = user.getPerson();
+        Patient patient = person.getPatient();
+        if (patient != null) {
+            patient.setActive(false);
+            patientRepository.save(patient);
+        }
+    }
+
+    @Transactional
+    public void removeAdminPrivileges(User user) {
+        List<Role> roles = user.getRoles();
+        List<Role> staffRoles = roles.stream()
+                .filter(o -> o.getName().equals(ROLE_STAFF))
+                .collect(Collectors.toList());
+        if (staffRoles.isEmpty()) {
+            removeStaffPrivileges(user);
+        }
+
+    }
 }

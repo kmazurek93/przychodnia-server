@@ -38,7 +38,8 @@ public class BaseUserDataToUserDataSimpleModelFunction implements Function<BaseU
                 .build();
         if (input instanceof EmployeesData) {
             build.setId(((EmployeesData) input).getId());
-            if (((EmployeesData) input).getDoctorId() == null) {
+            if (((EmployeesData) input).getDoctorId() == null
+                    || isFalseOrNull(((EmployeesData) input).getDoctorActive())) {
                 build.setEntityId(((EmployeesData) input).getId());
                 build.setEntityType(EMPLOYEE);
             } else {
@@ -59,5 +60,9 @@ public class BaseUserDataToUserDataSimpleModelFunction implements Function<BaseU
 
     public List<UserDataSimpleModel> convertAll(Collection<? extends BaseUserData> input) {
         return input.stream().map(this::apply).collect(Collectors.toList());
+    }
+
+    private boolean isFalseOrNull(Boolean b) {
+        return b == null || !b;
     }
 }

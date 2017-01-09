@@ -66,7 +66,24 @@ public class RoleService {
 
     @Transactional
     public void unassignRole(User user, Role role) {
-    	Role roleFromRepo = roleRepository.findOne(role.getId());
+        Role roleFromRepo = roleRepository.findOne(role.getId());
+        String name = roleFromRepo.getName();
+        switch (name) {
+            case ROLE_ADMIN:
+                roleAndDbRelationService.removeAdminPrivileges(user);
+                break;
+            case ROLE_STAFF:
+                roleAndDbRelationService.removeStaffPrivileges(user);
+                break;
+            case ROLE_PATIENT:
+                roleAndDbRelationService.removePatientPrivileges(user);
+                break;
+            case ROLE_DOCTOR:
+                roleAndDbRelationService.removeDoctorPrivileges(user);
+                break;
+            default:
+                return;
+        }
         roleFromRepo.getUsers().removeIf(u -> u.getId().equals(user.getId()));
         roleRepository.save(roleFromRepo);
     }
@@ -74,17 +91,14 @@ public class RoleService {
     @Transactional
     public void editRoles(User user, List<Role> roles) {
         List<Role> userRoles = user.getRoles();
-        for(Role ur : userRoles)
-        {
-            if(!roles.contains(ur)) {
+        for (Role ur : userRoles) {
+            if (!roles.contains(ur)) {
                 unassignRole(user, ur);
             }
         }
 
-        for(Role r : roles)
-        {
-            if(!userRoles.contains(r))
-            {
+        for (Role r : roles) {
+            if (!userRoles.contains(r)) {
                 assignRole(user, r);
             }
         }

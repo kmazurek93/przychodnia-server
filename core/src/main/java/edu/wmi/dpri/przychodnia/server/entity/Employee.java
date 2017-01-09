@@ -26,6 +26,8 @@ public class Employee {
     @OneToOne(targetEntity = Person.class)
     @JoinColumn(name = "pesel")
     private Person person;
+    @Column(name = "active")
+    private Boolean active;
 
     @OneToOne(targetEntity = Doctor.class, mappedBy = "employee")
     private Doctor doctor;

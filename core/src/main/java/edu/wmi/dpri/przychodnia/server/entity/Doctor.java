@@ -23,6 +23,9 @@ public class Doctor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "active")
+    private Boolean active;
+
     @ManyToMany
     @JoinTable(name = "doctors_specialisations", joinColumns = @JoinColumn(name = "doctor_id"), inverseJoinColumns = @JoinColumn(name = "specialisation_id"))
     private List<Specialisation> specialisations = newArrayList();
