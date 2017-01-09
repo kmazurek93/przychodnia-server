@@ -34,7 +34,7 @@ public class Doctor {
     private List<Visit> visits = newArrayList();
 
     @OneToOne(targetEntity = Employee.class)
-    @JoinColumn(name = "employee_id")
+    @JoinColumn(name = "employee_id", unique = true)
     private Employee employee;
 
     @ManyToMany

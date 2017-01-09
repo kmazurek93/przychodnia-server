@@ -24,7 +24,7 @@ public class Employee {
     private Long id;
 
     @OneToOne(targetEntity = Person.class)
-    @JoinColumn(name = "pesel")
+    @JoinColumn(name = "pesel", unique = true)
     private Person person;
     @Column(name = "active")
     private Boolean active;
