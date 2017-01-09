@@ -59,13 +59,14 @@ public class RoleService {
                 roleAndDbRelationService.addAsDoctor(user);
                 break;
         }
-        role.getUsers().add(user);
-        roleRepository.save(role);
+        Role roleFromRepo = roleRepository.findOne(role.getId());
+        roleFromRepo.getUsers().add(user);
+        roleRepository.save(roleFromRepo);
     }
 
     @Transactional
     public void unassignRole(User user, Role role) {
-    	Role roleFromRepo = roleRepository.findOne(role.getId().longValue());
+    	Role roleFromRepo = roleRepository.findOne(role.getId());
         roleFromRepo.getUsers().removeIf(u -> u.getId().equals(user.getId()));
         roleRepository.save(roleFromRepo);
     }
