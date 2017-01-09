@@ -1,14 +1,15 @@
 package edu.wmi.dpri.przychodnia.server.visits.function;
 
+import com.google.common.base.Function;
 import edu.wmi.dpri.przychodnia.commons.visits.webmodel.FullVisitWebModel;
 import edu.wmi.dpri.przychodnia.server.entity.Person;
 import edu.wmi.dpri.przychodnia.server.entity.Visit;
+import edu.wmi.dpri.przychodnia.server.visits.utils.VisitUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
 public class VisitToFullDetailsModelFunction implements Function<Visit, FullVisitWebModel> {
 
     @Inject
-    private VisitToSimpleWebModelFunction function;
+    private VisitUtils visitUtils;
 
     @Override
     public FullVisitWebModel apply(Visit input) {
@@ -27,7 +28,7 @@ public class VisitToFullDetailsModelFunction implements Function<Visit, FullVisi
         outcome.setPatientName(createName(input.getPatient().getPerson()));
         outcome.setDoctorId(input.getDoctor().getId());
         outcome.setDoctorName(createName(input.getDoctor().getEmployee().getPerson()));
-        function.fillDates(input, outcome);
+        visitUtils.fillDates(input, outcome);
         outcome.setStatus(input.getStatus());
         outcome.setComment(input.getComment());
         outcome.setParentVisitId(getAssociatedVisitIdOrNull(input));
