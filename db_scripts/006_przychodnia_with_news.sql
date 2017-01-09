@@ -26,7 +26,7 @@ DROP TABLE IF EXISTS `action_logs`;
 CREATE TABLE `action_logs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint(20) unsigned DEFAULT NULL,
-  `entity_id` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `entity_id` nvarchar(30) CHARACTER SET utf8 NOT NULL,
   `entity_type` int(11) NOT NULL,
   `action_type` int(11) NOT NULL,
   `action_date` datetime(6) NOT NULL,
@@ -58,13 +58,13 @@ DROP TABLE IF EXISTS `addresses`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `addresses` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `country` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `province` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `city` varchar(75) CHARACTER SET utf8 NOT NULL,
-  `street` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `house` varchar(10) CHARACTER SET utf8 NOT NULL,
-  `apartment` varchar(10) CHARACTER SET utf8 DEFAULT NULL,
-  `postcode` varchar(15) CHARACTER SET utf8 NOT NULL,
+  `country` nvarchar(50) CHARACTER SET utf8 NOT NULL,
+  `province` nvarchar(50) CHARACTER SET utf8 NOT NULL,
+  `city` nvarchar(75) CHARACTER SET utf8 NOT NULL,
+  `street` nvarchar(100) CHARACTER SET utf8 NOT NULL,
+  `house` nvarchar(10) CHARACTER SET utf8 NOT NULL,
+  `apartment` nvarchar(10) CHARACTER SET utf8 DEFAULT NULL,
+  `postcode` nvarchar(15) CHARACTER SET utf8 NOT NULL,
   `created_at` datetime(6) DEFAULT NULL,
   `created_by` bigint(20) unsigned DEFAULT NULL,
   `modified_at` datetime(6) DEFAULT NULL,
@@ -213,7 +213,7 @@ CREATE TABLE `doctor_calendar_t` (
   `tw_start_time` time DEFAULT NULL,
   `tw_end_time` time DEFAULT NULL,
   `visit_id` bigint(20) DEFAULT NULL,
-  `state` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `state` nvarchar(255) CHARACTER SET utf8 DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -326,7 +326,7 @@ DROP TABLE IF EXISTS `employees`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `employees` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `pesel` varchar(11) CHARACTER SET utf8 NOT NULL,
+  `pesel` nvarchar(11) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`),
   KEY `employees_persons_idx` (`pesel`),
   CONSTRAINT `employees_persons` FOREIGN KEY (`pesel`) REFERENCES `persons` (`pesel`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -387,7 +387,7 @@ DROP TABLE IF EXISTS `id_types`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `id_types` (
   `id` bigint(20) unsigned NOT NULL,
-  `name` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `name` nvarchar(100) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
@@ -412,10 +412,10 @@ DROP TABLE IF EXISTS `news`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `news` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `title` nvarchar(255) CHARACTER SET utf8 NOT NULL,
   `content` longtext COLLATE utf8_polish_ci NOT NULL,
   `news_date` datetime NOT NULL,
-  `type` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `type` nvarchar(30) CHARACTER SET utf8 NOT NULL,
   `author_id` bigint(20) DEFAULT NULL,
   `anonymous` bit(1) NOT NULL DEFAULT b'1',
   PRIMARY KEY (`id`)
@@ -441,7 +441,7 @@ DROP TABLE IF EXISTS `patients`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `patients` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `pesel` varchar(11) CHARACTER SET utf8 DEFAULT NULL,
+  `pesel` nvarchar(11) CHARACTER SET utf8 DEFAULT NULL,
   `created_at` datetime(6) DEFAULT NULL,
   `created_by` bigint(20) unsigned DEFAULT NULL,
   `modified_at` datetime(6) DEFAULT NULL,
@@ -472,18 +472,18 @@ DROP TABLE IF EXISTS `persons`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `persons` (
-  `pesel` varchar(11) CHARACTER SET utf8 NOT NULL,
-  `first_name` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `middle_name` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
-  `last_name` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `pesel` nvarchar(11) CHARACTER SET utf8 NOT NULL,
+  `first_name` nvarchar(100) CHARACTER SET utf8 NOT NULL,
+  `middle_name` nvarchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `last_name` nvarchar(100) CHARACTER SET utf8 NOT NULL,
   `birthdate` date NOT NULL,
-  `birthplace` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `id_number` varchar(40) CHARACTER SET utf8 NOT NULL,
+  `birthplace` nvarchar(100) CHARACTER SET utf8 NOT NULL,
+  `id_number` nvarchar(40) CHARACTER SET utf8 NOT NULL,
   `id_type` bigint(20) unsigned NOT NULL,
   `address_id` bigint(20) unsigned NOT NULL,
   `mailing_address_id` bigint(20) unsigned DEFAULT NULL,
   `sex_id` bigint(20) unsigned NOT NULL,
-  `telephone` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `telephone` nvarchar(20) CHARACTER SET utf8 NOT NULL,
   `dead` bit(1) DEFAULT b'0',
   `created_at` datetime(6) DEFAULT NULL,
   `created_by` bigint(20) unsigned DEFAULT NULL,
@@ -521,7 +521,7 @@ DROP TABLE IF EXISTS `positions`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `positions` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(256) COLLATE utf8_polish_ci DEFAULT NULL,
+  `name` nvarchar(256) COLLATE utf8_polish_ci DEFAULT NULL,
   `created_at` datetime(6) DEFAULT NULL,
   `created_by` bigint(20) unsigned DEFAULT NULL,
   `modified_at` datetime(6) DEFAULT NULL,
@@ -551,7 +551,7 @@ DROP TABLE IF EXISTS `roles`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `roles` (
   `id` bigint(20) unsigned NOT NULL,
-  `name` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `name` nvarchar(50) CHARACTER SET utf8 NOT NULL,
   `created_at` datetime(6) DEFAULT NULL,
   `created_by` bigint(20) unsigned DEFAULT NULL,
   `modified_at` datetime(6) DEFAULT NULL,
@@ -583,7 +583,7 @@ DROP TABLE IF EXISTS `sexes`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sexes` (
   `id` bigint(20) unsigned NOT NULL,
-  `name` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `name` nvarchar(50) CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
@@ -608,7 +608,7 @@ DROP TABLE IF EXISTS `specialisations`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `specialisations` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(256) COLLATE utf8_polish_ci NOT NULL,
+  `name` nvarchar(256) COLLATE utf8_polish_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -723,11 +723,11 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `login` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `password` varchar(1000) CHARACTER SET utf8 NOT NULL,
-  `email_address` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `login` nvarchar(50) CHARACTER SET utf8 NOT NULL,
+  `password` nvarchar(1000) CHARACTER SET utf8 NOT NULL,
+  `email_address` nvarchar(100) CHARACTER SET utf8 NOT NULL,
   `active` bit(1) NOT NULL DEFAULT b'0',
-  `pesel` varchar(11) CHARACTER SET utf8 NOT NULL,
+  `pesel` nvarchar(11) CHARACTER SET utf8 NOT NULL,
   `created_at` datetime(6) DEFAULT NULL,
   `created_by` bigint(20) unsigned DEFAULT NULL,
   `modified_at` datetime(6) DEFAULT NULL,
@@ -870,7 +870,7 @@ UNLOCK TABLES;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`przychodnia_alfa`@`%` FUNCTION `check_time_window`(p_doctor_id bigint, p_date date, p_start_time time, p_end_time time) RETURNS varchar(50) CHARSET utf8
+CREATE DEFINER=`przychodnia_alfa`@`%` FUNCTION `check_time_window`(p_doctor_id bigint, p_date date, p_start_time time, p_end_time time) RETURNS nvarchar(50) CHARSET utf8
   BEGIN
     DECLARE v_patient_id bigint;
     DECLARE v_availabilities_id bigint;
