@@ -89,18 +89,17 @@ public class RoleService {
     }
 
     @Transactional
-    public void editRoles(User user, List<Role> roles) {
-        List<Role> userRoles = user.getRoles();
-        for (Role ur : userRoles) {
-            if (!roles.contains(ur)) {
-                unassignRole(user, ur);
-            }
+    public void editRoles(User user, List<Role> rolesToAssign) {
+        List<Role> allRoles = newArrayList(roleRepository.findAll());
+        List<Role> rolesToUnassign = newArrayList(allRoles);
+        rolesToUnassign.removeAll(rolesToAssign);
+
+        for (Role ur : rolesToUnassign) {
+            unassignRole(user, ur);
         }
 
-        for (Role r : roles) {
-            if (!userRoles.contains(r)) {
-                assignRole(user, r);
-            }
+        for (Role r : rolesToAssign) {
+            assignRole(user, r);
         }
     }
 }
