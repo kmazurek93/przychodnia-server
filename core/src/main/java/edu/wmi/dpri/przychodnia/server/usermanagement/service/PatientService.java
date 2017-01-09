@@ -18,6 +18,7 @@ public class PatientService {
     public void addPatient(UserRegisteringState state) {
         Patient patient = new Patient();
         patient.setPerson(state.getSavedPerson());
+        patient.setActive(true);
         patientRepository.save(patient);
     }
 }
