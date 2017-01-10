@@ -16,7 +16,7 @@ public class LocalTimeLocalDateConcatenationTest {
 
     public static final String DATE = "2016-12-31";
     public static final String TIME = "08:30";
-    public static final String PATTERN = "hh:mm";
+    public static final String PATTERN = "HH:mm";
 
     @Test
     public void testTimeDate() {
