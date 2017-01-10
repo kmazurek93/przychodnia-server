@@ -5,10 +5,12 @@ import edu.wmi.dpri.przychodnia.server.entity.Visit;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by khartv on 09.01.2017.
  */
+@Component
 public class VisitUtils {
 
     public void fillDates(Visit input, SimpleVisitWebModel outcome) {

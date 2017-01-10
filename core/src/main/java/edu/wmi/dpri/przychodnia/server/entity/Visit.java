@@ -11,6 +11,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.util.List;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 /**
  * Created by khartv on 21.11.2016.
  */
@@ -53,7 +55,7 @@ public class Visit {
     private Visit associatedVisit;
 
     @OneToMany(targetEntity = Visit.class, mappedBy = "associatedVisit")
-    private List<Visit> visitsAssociatedWith;
+    private List<Visit> visitsAssociatedWith = newArrayList();
 
     @Lob
     @Column(name = "comment")
