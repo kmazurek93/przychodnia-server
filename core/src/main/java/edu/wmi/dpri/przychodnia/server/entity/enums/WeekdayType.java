@@ -11,6 +11,9 @@ public enum WeekdayType {
     WeekdayType(int i) {
         this.value = i;
     }
+    public int getValue() {
+        return value;
+    }
     public static WeekdayType fromInt(int i) {
         if(i<1 || i>7) throw new IllegalArgumentException();
         int j = i -1;

@@ -4,6 +4,7 @@ import edu.wmi.dpri.przychodnia.commons.availability.webmodel.DoctorAvailability
 import edu.wmi.dpri.przychodnia.server.entity.Availability;
 import edu.wmi.dpri.przychodnia.server.entity.Doctor;
 import edu.wmi.dpri.przychodnia.server.entity.TimeWindow;
+import edu.wmi.dpri.przychodnia.server.entity.enums.WeekdayType;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.ExceptionCause;
 import edu.wmi.dpri.przychodnia.server.repository.AvailabilityRepository;
 import edu.wmi.dpri.przychodnia.server.repository.DoctorRepository;
@@ -64,6 +65,8 @@ public class AvailabilityService {
         TimeWindow end = timeWindowRepository.findOne(model.getTimeWindowEndId());
         throwExceptionIfNull(model.getTimeWindowEndId(), end, ExceptionCause.CREATION, TimeWindow.class);
         Availability availability = new Availability();
+        WeekdayType weekdayType = WeekdayType.valueOf(model.getWeekday());
+        availability.setWeekday(weekdayType.getValue());
         availability.getDoctors().add(doctor);
         availability.setStartTimeWindow(start);
         availability.setEndTimeWindow(end);
@@ -96,6 +99,8 @@ public class AvailabilityService {
         availability.setEndTimeWindow(end);
         availability.setDateStart(new DateTime(model.getValidFrom()));
         availability.setDateEnd(new DateTime(model.getValidTo()));
+        WeekdayType weekdayType = WeekdayType.valueOf(model.getWeekday());
+        availability.setWeekday(weekdayType.getValue());
         Availability saved = availabilityRepository.save(availability);
         initializeChildEntities(saved);
         return saved;
@@ -109,7 +114,7 @@ public class AvailabilityService {
         List<Availability> filtered = availabilities.stream()
                 .filter(o -> o.getId().equals(availabilityId))
                 .collect(Collectors.toList());
-        if(filtered.isEmpty()) {
+        if (filtered.isEmpty()) {
             throwExceptionIfNull(availabilityId, null, ExceptionCause.MODIFICATION, Availability.class);
         }
         doctor.getAvailabilities().remove(filtered.get(0));
