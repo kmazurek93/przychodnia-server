@@ -53,8 +53,9 @@ public class NewsWebService {
         boolean isAdmin = userVerificationService.verifyIfHasAuthority(ROLE_ADMIN);
         if(isAdmin) {
             newsService.deleteNews(id);
+        } else {
+            ErrorMessage errorMessage = getForbiddenErrorMessage("INSUFFICIENT_PRIVILEGES");
+            throw new ForbiddenException(errorMessage);
         }
-        ErrorMessage errorMessage = getForbiddenErrorMessage("INSUFFICIENT_PRIVILEGES");
-        throw new ForbiddenException(errorMessage);
     }
 }
