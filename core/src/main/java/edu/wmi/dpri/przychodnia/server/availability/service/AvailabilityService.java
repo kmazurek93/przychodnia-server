@@ -94,7 +94,6 @@ public class AvailabilityService {
         throwExceptionIfNull(model.getTimeWindowStartId(), start, ExceptionCause.CREATION, TimeWindow.class);
         TimeWindow end = timeWindowRepository.findOne(model.getTimeWindowEndId());
         throwExceptionIfNull(model.getTimeWindowEndId(), end, ExceptionCause.CREATION, TimeWindow.class);
-        availability.getDoctors().add(doctor);
         availability.setStartTimeWindow(start);
         availability.setEndTimeWindow(end);
         availability.setDateStart(new DateTime(model.getValidFrom()));
