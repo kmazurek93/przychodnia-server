@@ -27,7 +27,7 @@ public interface NewsWebApi {
     @Path(NEWS)
     NewsCrudModel updateNews(NewsCrudModel model);
 
-    @POST
+    @DELETE
     @Consumes(APPLICATION_JSON)
     @Produces(APPLICATION_JSON)
     @Path("/news/{id}")
