@@ -60,9 +60,10 @@ public class VisitService {
     @Transactional(readOnly = true)
     public Page<Visit> getOwnDoctorVisits(VisitQueryModel model) {
 
+        LocalDate from = new LocalDate(model.getFrom()).minusDays(1);
         Page<Visit> result = repository
                 .findByDoctorIdAndDateAfterAndStatus(model.getDoctorId(),
-                        new LocalDate(model.getFrom()),
+                        from,
                         model.getStatus(),
                         new PageRequest(model.getPage(), model.getSize(), sortByDateAndTimeWindow));
         initializeChildEntities(result.getContent());
@@ -71,9 +72,10 @@ public class VisitService {
 
     @Transactional(readOnly = true)
     public Page<Visit> getOwnPatientVisits(VisitQueryModel model) {
+        LocalDate from = new LocalDate(model.getFrom()).minusDays(1);
         Page<Visit> result = repository
                 .findByPatientIdAndDateAfterAndStatus(model.getPatientId(),
-                        new LocalDate(model.getFrom()),
+                        from,
                         model.getStatus(),
                         new PageRequest(model.getPage(), model.getSize(), sortByDateAndTimeWindow));
         initializeChildEntities(result.getContent());

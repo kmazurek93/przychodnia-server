@@ -16,5 +16,6 @@ build/*
 *.war
 */*.war
 .gradle
-
+classes/*
 #createWar.sh
+

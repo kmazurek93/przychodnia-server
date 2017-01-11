@@ -4,6 +4,7 @@ import com.google.common.base.Function;
 import edu.wmi.dpri.przychodnia.commons.availability.webmodel.DoctorAvailabilityWebModel;
 import edu.wmi.dpri.przychodnia.server.entity.Availability;
 import edu.wmi.dpri.przychodnia.server.entity.enums.WeekdayType;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,6 +12,7 @@ import java.util.stream.Collectors;
 /**
  * Created by lupus on 10.01.17.
  */
+@Component
 public class AvailabilityToWebModelFunction implements Function<Availability, DoctorAvailabilityWebModel> {
 
     @Override

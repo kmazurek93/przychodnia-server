@@ -83,7 +83,7 @@ public class VisitServiceIntegTest {
 
     private VisitQueryModel getVisitQueryModel() {
         VisitQueryModel model = new VisitQueryModel();
-        model.setFrom(new DateTime(2016, 12, 1, 0, 0).getMillis());
+        model.setFrom(new DateTime(2016, 12, 13, 0, 0).getMillis());
         model.setStatus(VisitStatusType.HAPPENED);
         model.setDoctorId(DOCTOR_ID);
         model.setPatientId(PATIENT_ID);
