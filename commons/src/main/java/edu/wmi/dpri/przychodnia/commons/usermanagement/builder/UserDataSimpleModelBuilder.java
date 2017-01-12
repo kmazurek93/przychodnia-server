@@ -2,9 +2,7 @@ package edu.wmi.dpri.przychodnia.commons.usermanagement.builder;
 
 import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.UserDataSimpleModel;
 
-/**
- * Created by lupus on 14.11.16.
- */
+
 public final class UserDataSimpleModelBuilder {
     private Long userId;
     private String name;

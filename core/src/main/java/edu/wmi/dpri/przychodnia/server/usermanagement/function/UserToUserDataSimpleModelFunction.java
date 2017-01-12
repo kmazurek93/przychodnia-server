@@ -13,9 +13,7 @@ import java.util.stream.Collectors;
 import static edu.wmi.dpri.przychodnia.commons.usermanagement.builder.UserDataSimpleModelBuilder.anUserDataSimpleModel;
 import static org.apache.commons.lang3.StringUtils.join;
 
-/**
- * Created by lupus on 14.11.16.
- */
+
 @Component
 public class UserToUserDataSimpleModelFunction implements Function<User, UserDataSimpleModel> {
 

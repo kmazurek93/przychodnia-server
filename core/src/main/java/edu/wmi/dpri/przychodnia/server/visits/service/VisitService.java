@@ -30,9 +30,7 @@ import static org.hibernate.Hibernate.initialize;
 import static org.springframework.data.domain.Sort.Direction.ASC;
 import static org.springframework.data.domain.Sort.Direction.DESC;
 
-/**
- * Created by lupus on 18.12.16.
- */
+
 @Component
 public class VisitService {
 

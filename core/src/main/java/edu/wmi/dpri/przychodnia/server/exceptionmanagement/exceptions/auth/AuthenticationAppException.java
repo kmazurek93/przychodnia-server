@@ -4,9 +4,7 @@ import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.ErrorMessa
 import org.springframework.security.core.AuthenticationException;
 
 
-/**
- * Created by lupus on 22.10.16.
- */
+
 public class AuthenticationAppException extends AuthenticationException {
     private static final long serialVersionUID = -85599334534387947L;
 

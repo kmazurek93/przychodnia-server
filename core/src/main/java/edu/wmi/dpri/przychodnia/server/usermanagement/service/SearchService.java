@@ -17,9 +17,7 @@ import javax.inject.Inject;
 
 import static org.springframework.data.domain.Sort.Direction.ASC;
 
-/**
- * Created by lupus on 11.12.16.
- */
+
 @Component
 public class SearchService {
     public static final Sort SORT_BY_NAME_ASCENDING = new Sort(ASC, "name");

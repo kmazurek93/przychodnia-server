@@ -4,9 +4,7 @@ package edu.wmi.dpri.przychodnia.server.exceptionmanagement.generators;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.ErrorMessage;
 import org.apache.commons.lang3.StringUtils;
 
-/**
- * Created by kmazu on 19.06.2016.
- */
+
 public class ErrorMessageGenerator {
 
     private static final String ALREADY_EXISTS = " already exists";

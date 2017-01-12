@@ -25,9 +25,7 @@ import static edu.wmi.dpri.przychodnia.commons.visits.webmodel.AvailabilityStatu
 import static edu.wmi.dpri.przychodnia.server.exceptionmanagement.generators.ErrorMessageGenerator.getForbiddenErrorMessage;
 import static org.hibernate.Hibernate.initialize;
 
-/**
- * Created by lupus on 01.01.17.
- */
+
 @Component
 public class VisitCreationAndAvailabilityService {
     @Inject

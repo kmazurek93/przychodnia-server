@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.NotNull;
 
-/**
- * Created by lupus on 22.10.16.
- */
+
 public class LoginWebModel {
     @NotNull
     private String username;

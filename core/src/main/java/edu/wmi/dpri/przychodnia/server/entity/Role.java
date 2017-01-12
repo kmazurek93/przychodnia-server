@@ -8,9 +8,7 @@ import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
 
-/**
- * Created by kmazu on 12.06.2016.
- */
+
 
 @Data
 @NoArgsConstructor

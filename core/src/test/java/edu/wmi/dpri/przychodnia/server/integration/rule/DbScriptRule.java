@@ -15,9 +15,7 @@ import java.sql.SQLException;
 
 import static org.junit.Assert.fail;
 
-/**
- * Created by lupus on 11.12.16.
- */
+
 @Component
 public class DbScriptRule extends ExternalResource {
     private static final String TEST_DATA_SQL = "test_data.sql";

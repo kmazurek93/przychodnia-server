@@ -16,9 +16,7 @@ import java.util.List;
 import static edu.wmi.dpri.przychodnia.commons.publics.webapi.PublicWebApi.BASE_PATH;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
-/**
- * Created by kmazu on 02.07.2016.
- */
+
 @Path(BASE_PATH)
 public interface PublicWebApi {
     String BASE_PATH = "/public";

@@ -12,9 +12,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by kmazu on 03.07.2016.
- */
+
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Long>, PagingAndSortingRepository<User, Long> {

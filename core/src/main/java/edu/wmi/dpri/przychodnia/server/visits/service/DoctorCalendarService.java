@@ -13,9 +13,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.StoredProcedureQuery;
 import java.util.List;
 
-/**
- * Created by lupus on 31.12.16.
- */
+
 @Component
 public class DoctorCalendarService {
 

@@ -1,6 +1,5 @@
 package edu.wmi.dpri.przychodnia.server.usermanagement.web.service;
 
-import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.PersonalDataWebModel;
 import edu.wmi.dpri.przychodnia.server.entity.Person;
 import edu.wmi.dpri.przychodnia.server.usermanagement.function.UserRegisteringStateFunctions;
 import edu.wmi.dpri.przychodnia.server.usermanagement.service.PersonService;
@@ -9,9 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 
-/**
- * Created by lupus on 18.10.16.
- */
+
 @Service
 public class PersonWebService {
 
@@ -26,8 +23,5 @@ public class PersonWebService {
         state.setSavedPerson(savedPerson);
     }
 
-    public void updatePersonalData(PersonalDataWebModel personalDataWebModel) {
-        //TODO
-    }
 
 }

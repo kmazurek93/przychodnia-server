@@ -9,9 +9,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 
-/**
- * Created by lupus on 22.10.16.
- */
+
 public class UnsupportedMethodExceptionMapper implements
         ExceptionMapper<UnsupportedMethodException>  {
     private static final Logger logger = LoggerFactory.getLogger(UnsupportedMethodExceptionMapper.class);

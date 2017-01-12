@@ -7,9 +7,7 @@ import org.junit.Test;
 import static edu.wmi.dpri.przychodnia.server.usermanagement.providers.SampleDataProvider.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * Created by lupus on 22.09.16.
- */
+
 public class AddressCreationWebModelToAddressFunctionTest {
 
 

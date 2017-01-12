@@ -16,9 +16,7 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Created by lupus on 22.10.16.
- */
+
 @Service
 public class UserVerificationService {
     private static final String USERNAME = "USERNAME";

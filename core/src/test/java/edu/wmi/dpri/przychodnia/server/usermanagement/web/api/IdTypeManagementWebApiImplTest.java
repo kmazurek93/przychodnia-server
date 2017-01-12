@@ -14,9 +14,7 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-/**
- * Created by kmazu on 07.09.2016.
- */
+
 public class IdTypeManagementWebApiImplTest {
 
 	private static final Long ID_TYPE_ID = 2341L;

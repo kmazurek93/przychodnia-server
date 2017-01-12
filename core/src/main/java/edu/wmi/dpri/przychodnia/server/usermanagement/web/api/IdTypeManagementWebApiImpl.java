@@ -9,9 +9,7 @@ import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-/**
- * Created by kmazu on 07.09.2016.
- */
+
 @Service
 public class IdTypeManagementWebApiImpl implements IdTypeManagementWebApi {
 

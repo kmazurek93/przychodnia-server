@@ -8,9 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-/**
- * Created by khartv on 21.11.2016.
- */
+
 
 @Data
 @NoArgsConstructor

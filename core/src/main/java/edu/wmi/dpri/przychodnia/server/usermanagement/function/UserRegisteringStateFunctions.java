@@ -14,9 +14,7 @@ import javax.inject.Inject;
 import static edu.wmi.dpri.przychodnia.server.entity.builder.PersonBuilder.aPerson;
 import static edu.wmi.dpri.przychodnia.server.entity.builder.UserBuilder.anUser;
 
-/**
- * Created by lupus on 18.10.16.
- */
+
 @Component
 public class UserRegisteringStateFunctions {
 

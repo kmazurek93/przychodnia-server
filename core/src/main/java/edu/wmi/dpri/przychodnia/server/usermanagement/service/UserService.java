@@ -14,9 +14,7 @@ import java.util.List;
 
 import static org.hibernate.Hibernate.initialize;
 
-/**
- * Created by lupus on 21.10.16.
- */
+
 @Service
 public class UserService {
 
@@ -51,7 +49,6 @@ public class UserService {
         if (user.getPerson().getEmployee() != null) {
             initialize(user.getPerson().getEmployee().getDoctor());
         }
-        //TODO initialize rest <if you find anything>
 
     }
 

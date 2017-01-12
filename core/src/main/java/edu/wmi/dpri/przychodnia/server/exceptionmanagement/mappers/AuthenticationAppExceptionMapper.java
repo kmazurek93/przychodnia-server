@@ -6,9 +6,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 
-/**
- * Created by lupus on 22.10.16.
- */
+
 public class AuthenticationAppExceptionMapper implements ExceptionMapper<AuthenticationAppException> {
 
     @Override

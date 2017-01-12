@@ -7,9 +7,7 @@ import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
 
-/**
- * Created by lupus on 22.10.16.
- */
+
 @Data
 @NoArgsConstructor
 public class UserContextWebModel {

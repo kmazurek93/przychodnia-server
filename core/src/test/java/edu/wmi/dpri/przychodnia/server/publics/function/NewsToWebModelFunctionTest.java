@@ -12,9 +12,7 @@ import org.junit.Test;
 import static edu.wmi.dpri.przychodnia.server.publics.function.NewsToWebModelFunction.ZESPOL_PRZYCHODNI;
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
-/**
- * Created by lupus on 05.01.17.
- */
+
 public class NewsToWebModelFunctionTest {
 
     public static final String TITLE = "Title";

@@ -16,9 +16,7 @@ import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
 
-/**
- * Created by lupus on 17.12.16.
- */
+
 @Component
 public class DoctorAvailabilityWebService {
 

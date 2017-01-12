@@ -16,9 +16,7 @@ import java.util.List;
 
 import static edu.wmi.dpri.przychodnia.server.exceptionmanagement.NotFoundExceptionThrower.throwExceptionIfNull;
 
-/**
- * Created by lupus on 18.10.16.
- */
+
 @Service
 public class PersonService {
 

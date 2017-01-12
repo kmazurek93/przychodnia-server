@@ -13,9 +13,7 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 import java.util.Set;
 
-/**
- * Created by lupus on 10.05.16.
- */
+
 @Provider
 public class ConstraintViolationExceptionMapper implements ExceptionMapper<ConstraintViolationException> {
     private static final Logger logger = LoggerFactory.getLogger(ConstraintViolationExceptionMapper.class);

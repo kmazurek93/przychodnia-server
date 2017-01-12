@@ -7,9 +7,7 @@ import lombok.ToString;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
-/**
- * Created by khartv on 30.11.2016.
- */
+
 
 @ToString
 @NoArgsConstructor

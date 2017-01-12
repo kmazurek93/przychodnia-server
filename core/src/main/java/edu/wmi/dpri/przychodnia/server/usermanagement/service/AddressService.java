@@ -16,9 +16,7 @@ import static com.google.common.collect.Lists.newArrayList;
 import static edu.wmi.dpri.przychodnia.server.exceptionmanagement.NotFoundExceptionThrower.throwExceptionIfNull;
 import static org.hibernate.Hibernate.initialize;
 
-/**
- * Created by lupus on 22.09.16.
- */
+
 @Service
 public class AddressService {
 

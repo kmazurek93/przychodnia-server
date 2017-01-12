@@ -14,9 +14,7 @@ import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-/**
- * Created by lupus on 22.09.16.
- */
+
 public class AddressServiceTest {
 
     public static final String NEWCOUNTRY = "NEWCOUNTRY";

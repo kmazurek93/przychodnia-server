@@ -9,9 +9,7 @@ import java.util.List;
 import static com.google.common.collect.Lists.newArrayList;
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * Created by lupus on 08.01.17.
- */
+
 public class SexToWebModelFunctionTest {
 
     public static final String M = "M";

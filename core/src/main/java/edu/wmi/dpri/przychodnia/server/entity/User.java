@@ -12,9 +12,7 @@ import java.util.Set;
 import static com.google.common.collect.Lists.newArrayList;
 import static jersey.repackaged.com.google.common.collect.Sets.newHashSet;
 
-/**
- * Created by khartv on 17.05.2016.
- */
+
 
 @Data
 @NoArgsConstructor

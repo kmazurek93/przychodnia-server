@@ -7,9 +7,7 @@ import javax.ws.rs.*;
 import static edu.wmi.dpri.przychodnia.commons.news.webapi.NewsWebApi.BASE_PATH;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
-/**
- * Created by lupus on 11.01.17.
- */
+
 @Path(BASE_PATH)
 public interface NewsWebApi {
     String BASE_PATH = "/manageNews";

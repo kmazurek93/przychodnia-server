@@ -7,9 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
-/**
- * Created by lupus on 22.10.16.
- */
+
 public class ClinicJwtAuthToken extends AbstractAuthenticationToken {
     private static final long serialVersionUID = 2877954820905567501L;
 

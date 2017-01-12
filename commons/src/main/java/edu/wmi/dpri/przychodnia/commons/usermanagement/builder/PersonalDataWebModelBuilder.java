@@ -2,9 +2,7 @@ package edu.wmi.dpri.przychodnia.commons.usermanagement.builder;
 
 import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.PersonalDataWebModel;
 
-/**
- * Created by lupus on 14.11.16.
- */
+
 public final class PersonalDataWebModelBuilder {
     private String pesel;
     private String firstName;

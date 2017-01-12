@@ -17,9 +17,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-/**
- * Created by lupus on 11.09.16.
- */
+
 public class IdTypeWebServiceTest {
 
     private static final Long ID = 650L;

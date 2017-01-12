@@ -7,9 +7,7 @@ import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
 
-/**
- * Created by lupus on 01.01.17.
- */
+
 @Component
 public class PatientService {
     @Inject

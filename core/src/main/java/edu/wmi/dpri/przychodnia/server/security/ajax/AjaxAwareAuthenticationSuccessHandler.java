@@ -22,9 +22,7 @@ import java.util.Map;
 
 import static com.google.common.collect.Maps.newHashMap;
 
-/**
- * Created by lupus on 22.10.16.
- */
+
 @Component
 @Profile({"secure","production"})
 public class AjaxAwareAuthenticationSuccessHandler implements AuthenticationSuccessHandler {

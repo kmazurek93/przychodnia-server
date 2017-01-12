@@ -6,9 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-/**
- * Created by lupus on 11.12.16.
- */
+
 @Repository
 public interface PatientRepository extends CrudRepository<Patient, Long> {
 

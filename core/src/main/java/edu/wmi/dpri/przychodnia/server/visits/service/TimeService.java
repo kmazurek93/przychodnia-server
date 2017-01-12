@@ -5,9 +5,7 @@ import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
 
-/**
- * Created by lupus on 18.12.16.
- */
+
 @Component
 public class TimeService {
 

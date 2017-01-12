@@ -21,9 +21,7 @@ import java.util.stream.Collectors;
 import static com.google.common.collect.Lists.newArrayList;
 import static edu.wmi.dpri.przychodnia.server.exceptionmanagement.NotFoundExceptionThrower.throwExceptionIfNull;
 
-/**
- * Created by lupus on 10.01.17.
- */
+
 @Component
 public class AvailabilityService {
 

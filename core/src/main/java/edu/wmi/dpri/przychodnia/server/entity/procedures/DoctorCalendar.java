@@ -7,9 +7,7 @@ import org.joda.time.LocalTime;
 import javax.persistence.*;
 import java.io.Serializable;
 
-/**
- * Created by khartv on 23.12.2016.
- */
+
 @NamedStoredProcedureQuery(
         name = "getCalendarOfADoctor",
         procedureName = "doctor_calendar",

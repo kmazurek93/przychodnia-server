@@ -7,9 +7,7 @@ import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 import org.springframework.stereotype.Component;
 
-/**
- * Created by khartv on 09.01.2017.
- */
+
 @Component
 public class VisitUtils {
 

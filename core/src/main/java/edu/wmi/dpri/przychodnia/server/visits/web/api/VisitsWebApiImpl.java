@@ -11,9 +11,7 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by lupus on 17.12.16.
- */
+
 public class VisitsWebApiImpl implements VisitsWebApi {
 
     @Inject

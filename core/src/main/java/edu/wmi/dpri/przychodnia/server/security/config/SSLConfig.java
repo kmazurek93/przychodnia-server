@@ -10,9 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-/**
- * Created by lupus on 22.10.16.
- */
+
 @Configuration
 @Profile({"secure","production"})
 public class SSLConfig {

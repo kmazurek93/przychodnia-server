@@ -6,9 +6,7 @@ import java.util.List;
 
 import static edu.wmi.dpri.przychodnia.commons.usermanagement.UserManagementConstants.DEFAULT_ROLES_FOR_NEW_USER;
 
-/**
- * Created by lupus on 14.11.16.
- */
+
 public final class UserDataWebModelBuilder {
     private Long id;
     private String username;

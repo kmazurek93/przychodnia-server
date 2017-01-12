@@ -5,9 +5,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.stereotype.Component;
 
-/**
- * Created by lupus on 22.10.16.
- */
+
 @Component
 @Profile({"secure","production"})
 public class JwtHeaderJwtTokenExtractor implements JwtTokenExtractor {

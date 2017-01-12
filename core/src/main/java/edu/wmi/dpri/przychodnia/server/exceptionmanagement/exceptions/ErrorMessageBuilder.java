@@ -1,8 +1,6 @@
 package edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions;
 
-/**
- * Created by lupus on 22.10.16.
- */
+
 public final class ErrorMessageBuilder {
     private int status;
     private String message;

@@ -8,9 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import static edu.wmi.dpri.przychodnia.server.exceptionmanagement.generators.ErrorMessageGenerator.getNotFoundErrorMessage;
 
-/**
- * Created by kmazu on 07.09.2016.
- */
+
 public class NotFoundExceptionThrower {
 
     public static final String ENTITY_OF_CLASS = " of entity of class: ";

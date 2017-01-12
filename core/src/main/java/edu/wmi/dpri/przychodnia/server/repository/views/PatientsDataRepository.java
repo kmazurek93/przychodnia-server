@@ -10,9 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-/**
- * Created by lupus on 11.12.16.
- */
+
 public interface PatientsDataRepository
         extends CrudRepository<PatientsData, Long>,
         PagingAndSortingRepository<PatientsData, Long> {

@@ -10,9 +10,7 @@ import javax.inject.Inject;
 
 import static org.apache.commons.lang3.StringUtils.join;
 
-/**
- * Created by lupus on 19.11.16.
- */
+
 @Component
 public class UserSearchWebService {
 

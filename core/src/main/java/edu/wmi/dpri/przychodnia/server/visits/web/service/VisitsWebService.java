@@ -23,9 +23,7 @@ import static com.google.common.collect.Lists.newArrayList;
 import static edu.wmi.dpri.przychodnia.server.exceptionmanagement.generators.ErrorMessageGenerator.getForbiddenErrorMessage;
 import static edu.wmi.dpri.przychodnia.server.security.model.RoleAuthority.*;
 
-/**
- * Created by lupus on 31.12.16.
- */
+
 @Component
 public class VisitsWebService {
     @Inject

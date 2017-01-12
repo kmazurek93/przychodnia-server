@@ -10,9 +10,7 @@ import static edu.wmi.dpri.przychodnia.commons.usermanagement.UserManagementCons
 import static edu.wmi.dpri.przychodnia.commons.usermanagement.webapi.RoleManagementWebApi.BASE_PATH;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
-/**
- * Created by kmazu on 02.07.2016.
- */
+
 @Path(API_PATH + BASE_PATH)
 public interface RoleManagementWebApi {
     String BASE_PATH = "/roles";

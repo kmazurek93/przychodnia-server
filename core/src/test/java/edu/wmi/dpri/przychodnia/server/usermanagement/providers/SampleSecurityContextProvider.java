@@ -13,9 +13,7 @@ import org.springframework.stereotype.Component;
 import javax.inject.Inject;
 import java.util.stream.Collectors;
 
-/**
- * Created by lupus on 08.01.17.
- */
+
 @Component
 @Profile("integration")
 public class SampleSecurityContextProvider {

@@ -6,9 +6,7 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 
-/**
- * Created by lupus on 22.10.16.
- */
+
 @Service
 public class AuthenticationService {
 

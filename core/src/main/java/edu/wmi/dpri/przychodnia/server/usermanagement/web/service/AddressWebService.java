@@ -15,9 +15,7 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Created by lupus on 22.09.16.
- */
+
 @Service
 public class AddressWebService {
     @Inject

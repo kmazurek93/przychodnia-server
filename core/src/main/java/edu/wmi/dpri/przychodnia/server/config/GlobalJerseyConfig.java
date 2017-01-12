@@ -13,9 +13,7 @@ import org.glassfish.jersey.server.ServerProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
-/**
- * Created by kmazu on 07.09.2016.
- */
+
 @Configuration
 @Component
 public class GlobalJerseyConfig extends ResourceConfig {

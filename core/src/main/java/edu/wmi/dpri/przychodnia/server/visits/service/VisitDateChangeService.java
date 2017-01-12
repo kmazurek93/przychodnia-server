@@ -24,9 +24,7 @@ import static edu.wmi.dpri.przychodnia.server.security.model.RoleAuthority.ROLE_
 import static edu.wmi.dpri.przychodnia.server.security.model.RoleAuthority.ROLE_STAFF;
 import static org.hibernate.Hibernate.initialize;
 
-/**
- * Created by lupus on 01.01.17.
- */
+
 @Component
 public class VisitDateChangeService {
     @Inject

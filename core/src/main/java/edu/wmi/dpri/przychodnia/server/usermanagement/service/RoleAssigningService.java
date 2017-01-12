@@ -13,9 +13,7 @@ import java.util.List;
 import static com.google.common.collect.Lists.newArrayList;
 import static edu.wmi.dpri.przychodnia.server.exceptionmanagement.NotFoundExceptionThrower.throwExceptionIfNull;
 
-/**
- * Created by lupus on 24.11.16.
- */
+
 @Component
 public class RoleAssigningService {
     @Inject

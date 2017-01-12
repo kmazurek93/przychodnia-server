@@ -19,9 +19,7 @@ import java.util.stream.Collectors;
 
 import static org.springframework.data.domain.Sort.Direction.DESC;
 
-/**
- * Created by lupus on 04.01.17.
- */
+
 @Component
 public class PublicNewsWebService {
     @Inject

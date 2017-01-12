@@ -7,9 +7,7 @@ import edu.wmi.dpri.przychodnia.server.entity.User;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by lupus on 19.09.16.
- */
+
 public final class UserBuilder {
     private Long id;
     private String login;

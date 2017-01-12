@@ -10,9 +10,7 @@ import java.util.stream.Collectors;
 
 import static edu.wmi.dpri.przychodnia.commons.usermanagement.builder.SexWebModelBuilder.aSexWebModel;
 
-/**
- * Created by lupus on 11.11.16.
- */
+
 @Component
 public class SexToWebModelFunction implements Function<Sex, SexWebModel> {
 

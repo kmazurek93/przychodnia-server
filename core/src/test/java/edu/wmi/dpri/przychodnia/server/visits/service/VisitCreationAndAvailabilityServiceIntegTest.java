@@ -13,9 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.inject.Inject;
 
-/**
- * Created by lupus on 01.01.17.
- */
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles({"integration", "secure"})

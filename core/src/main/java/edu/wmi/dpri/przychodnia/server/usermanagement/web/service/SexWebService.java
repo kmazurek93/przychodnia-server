@@ -8,9 +8,7 @@ import org.springframework.stereotype.Component;
 import javax.inject.Inject;
 import java.util.List;
 
-/**
- * Created by lupus on 11.11.16.
- */
+
 @Component
 public class SexWebService {
 

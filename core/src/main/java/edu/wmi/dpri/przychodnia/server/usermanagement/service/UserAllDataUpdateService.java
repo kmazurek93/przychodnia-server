@@ -7,11 +7,9 @@ import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
 
-import static edu.wmi.dpri.przychodnia.server.security.model.RoleAuthority.STAFF_OR_ADMIN;
+import static edu.wmi.dpri.przychodnia.server.security.model.RoleAuthority.ROLE_ADMIN;
 
-/**
- * Created by lupus on 18.11.16.
- */
+
 @Component
 public class UserAllDataUpdateService {
 
@@ -29,9 +27,9 @@ public class UserAllDataUpdateService {
 
     public void updateUserData(Long pathId, UserCrudWebModel userDataWebModel) {
         verificationUtility.verifyIfWantsToUpdateCorrectEntities(userDataWebModel, pathId);
-        boolean isAdminOrStaff = userVerificationService.verifyIfHasAnyAuthorityOf(STAFF_OR_ADMIN);
-        userService.updateUser(userDataWebModel.getUserData(), isAdminOrStaff);
-        personService.updatePerson(userDataWebModel.getPersonalData(), isAdminOrStaff);
+        boolean isAdmin = userVerificationService.verifyIfHasAuthority(ROLE_ADMIN);
+        userService.updateUser(userDataWebModel.getUserData(), isAdmin);
+        personService.updatePerson(userDataWebModel.getPersonalData(), isAdmin);
         addressService.updateAddress(userDataWebModel.getAddress());
         if (userDataWebModel.getMailingAddress() != null) {
             addressService.createOrUpdateMailingAddress(userDataWebModel.getMailingAddress());

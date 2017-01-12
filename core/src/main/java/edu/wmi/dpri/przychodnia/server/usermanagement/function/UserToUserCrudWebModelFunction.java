@@ -12,9 +12,7 @@ import javax.inject.Inject;
 
 import static edu.wmi.dpri.przychodnia.commons.usermanagement.builder.UserCrudWebModelBuilder.anUserCrudWebModel;
 
-/**
- * Created by lupus on 14.11.16.
- */
+
 @Component
 public class UserToUserCrudWebModelFunction implements Function<User, UserCrudWebModel> {
     @Inject

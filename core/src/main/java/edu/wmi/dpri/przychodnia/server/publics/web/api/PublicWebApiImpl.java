@@ -17,9 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Created by lupus on 18.10.16.
- */
+
 @Service
 public class PublicWebApiImpl implements PublicWebApi {
 

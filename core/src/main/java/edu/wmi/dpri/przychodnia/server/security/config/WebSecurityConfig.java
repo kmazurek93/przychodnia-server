@@ -26,9 +26,7 @@ import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by lupus on 22.10.16.
- */
+
 @SuppressWarnings("SpringJavaAutowiringInspection")
 @Configuration
 @EnableWebSecurity

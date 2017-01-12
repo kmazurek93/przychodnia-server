@@ -1,4 +1,4 @@
-package edu.wmi.dpri.przychodnia.client.rest;
+package edu.wmi.dpri.przychodnia.client.rest.usermanagement;
 
 import edu.wmi.dpri.przychodnia.commons.rest.GenericRestClient;
 import edu.wmi.dpri.przychodnia.commons.usermanagement.webapi.IdTypeManagementWebApi;
@@ -6,9 +6,6 @@ import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.IdTypeWebModel;
 
 import javax.ws.rs.core.Response;
 
-/**
- * Created by lupus on 21.09.16.
- */
 public class IdTypeClient extends GenericRestClient<IdTypeManagementWebApi> {
 
     public IdTypeClient(String url) {

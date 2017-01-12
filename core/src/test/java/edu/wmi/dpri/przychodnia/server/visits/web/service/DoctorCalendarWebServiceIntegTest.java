@@ -20,9 +20,7 @@ import static edu.wmi.dpri.przychodnia.server.visits.service.DoctorCalendarServi
 import static edu.wmi.dpri.przychodnia.server.visits.service.DoctorCalendarServiceIntegrationTest.START_DATE;
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * Created by lupus on 31.12.16.
- */
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles({"integration", "secure"})

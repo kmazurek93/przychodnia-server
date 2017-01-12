@@ -17,9 +17,7 @@ import javax.ws.rs.BadRequestException;
 import static edu.wmi.dpri.przychodnia.server.exceptionmanagement.generators.ErrorMessageGenerator.getForbiddenErrorMessage;
 import static edu.wmi.dpri.przychodnia.server.security.model.RoleAuthority.STAFF_OR_ADMIN;
 
-/**
- * Created by lupus on 18.11.16.
- */
+
 @Component
 public class UserEntityVerificationUtility {
 

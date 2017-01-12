@@ -26,9 +26,7 @@ import static edu.wmi.dpri.przychodnia.commons.usermanagement.builder.UserSearch
 import static edu.wmi.dpri.przychodnia.server.exceptionmanagement.generators.ErrorMessageGenerator.getForbiddenErrorMessage;
 import static edu.wmi.dpri.przychodnia.server.security.model.RoleAuthority.STAFF_OR_ADMIN;
 
-/**
- * Created by lupus on 18.10.16.
- */
+
 @Service
 public class UserWebService {
 

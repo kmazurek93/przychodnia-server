@@ -8,9 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * Created by kmazu on 03.07.2016.
- */
+
 @Repository
 public interface PersonRepository extends CrudRepository<Person, String> {
 

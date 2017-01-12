@@ -24,9 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Created by lupus on 22.10.16.
- */
+
 
 public class AjaxLoginProcessingFilter extends AbstractAuthenticationProcessingFilter {
     public static final String AUTHENTICATION_METHOD_NOT_SUPPORTED = "Authentication method not supported";

@@ -12,9 +12,7 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Created by lupus on 18.12.16.
- */
+
 @Component
 public class TimeWindowCountService {
 

@@ -8,9 +8,7 @@ import edu.wmi.dpri.przychodnia.server.usermanagement.web.service.UserWebService
 
 import javax.inject.Inject;
 
-/**
- * Created by lupus on 14.11.16.
- */
+
 public class UserWebApiImpl implements UserWebApi {
     @Inject
     private UserWebService userWebService;

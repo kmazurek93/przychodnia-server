@@ -15,9 +15,7 @@ import static edu.wmi.dpri.przychodnia.commons.usermanagement.UserManagementCons
 import static edu.wmi.dpri.przychodnia.commons.usermanagement.webapi.UserConnectionWebApi.BASE_PATH;
 
 
-/**
- * Created by kmazu on 03.07.2016.
- */
+
 @Path(API_PATH + BASE_PATH)
 public interface UserConnectionWebApi {
 

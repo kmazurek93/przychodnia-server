@@ -5,9 +5,7 @@ import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.creation.Address
 import edu.wmi.dpri.przychodnia.server.entity.Address;
 import org.springframework.stereotype.Component;
 
-/**
- * Created by lupus on 22.09.16.
- */
+
 @Component
 public class AddressCreationWebModelToAddressFunction
         implements Function<AddressCreationWebModel, Address> {

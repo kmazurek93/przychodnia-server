@@ -5,9 +5,7 @@ import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.PersonalDataWebM
 import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.UserCrudWebModel;
 import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.UserDataWebModel;
 
-/**
- * Created by lupus on 14.11.16.
- */
+
 public final class UserCrudWebModelBuilder {
     private AddressWebModel address;
     private AddressWebModel mailingAddress;

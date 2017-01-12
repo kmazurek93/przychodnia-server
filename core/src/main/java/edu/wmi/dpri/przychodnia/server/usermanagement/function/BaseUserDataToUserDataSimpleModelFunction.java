@@ -14,9 +14,7 @@ import java.util.stream.Collectors;
 
 import static edu.wmi.dpri.przychodnia.commons.usermanagement.builder.UserDataSimpleModelBuilder.anUserDataSimpleModel;
 
-/**
- * Created by lupus on 11.12.16.
- */
+
 @Component
 public class BaseUserDataToUserDataSimpleModelFunction implements Function<BaseUserData, UserDataSimpleModel> {
 

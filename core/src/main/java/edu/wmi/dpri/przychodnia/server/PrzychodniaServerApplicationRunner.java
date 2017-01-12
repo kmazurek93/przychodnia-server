@@ -13,9 +13,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
-/**
- * Created by lupus on 21.09.16.
- */
+
 @SpringBootApplication
 @EnableAutoConfiguration
 @EnableJpaRepositories(basePackages = {"edu.wmi.dpri.przychodnia.server.repository"})

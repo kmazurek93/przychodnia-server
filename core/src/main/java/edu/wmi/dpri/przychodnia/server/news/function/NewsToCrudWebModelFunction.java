@@ -5,9 +5,7 @@ import edu.wmi.dpri.przychodnia.commons.news.webmodel.NewsCrudModel;
 import edu.wmi.dpri.przychodnia.server.entity.News;
 import org.springframework.stereotype.Component;
 
-/**
- * Created by lupus on 11.01.17.
- */
+
 @Component
 public class NewsToCrudWebModelFunction implements Function<News, NewsCrudModel> {
     @Override

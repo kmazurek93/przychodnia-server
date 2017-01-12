@@ -9,9 +9,7 @@ import java.util.List;
 import static edu.wmi.dpri.przychodnia.commons.availability.webapi.AvailabilityManagementWebApi.BASE_PATH;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
-/**
- * Created by lupus on 10.01.17.
- */
+
 @Path(BASE_PATH)
 public interface AvailabilityManagementWebApi {
     String BASE_PATH = "/doctorAvailabilityManagement";

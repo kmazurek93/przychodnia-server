@@ -9,9 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Created by lupus on 10.01.17.
- */
+
 @Component
 public class AvailabilityToWebModelFunction implements Function<Availability, DoctorAvailabilityWebModel> {
 

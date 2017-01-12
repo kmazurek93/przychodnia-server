@@ -22,9 +22,7 @@ import java.util.stream.Collectors;
 
 import static edu.wmi.dpri.przychodnia.server.usermanagement.service.AuthenticationService.EXPIRED_ACCOUNT_MSG;
 
-/**
- * Created by lupus on 22.10.16.
- */
+
 @Component
 @Profile({"secure","production"})
 public class JwtAuthenticationProvider implements AuthenticationProvider {

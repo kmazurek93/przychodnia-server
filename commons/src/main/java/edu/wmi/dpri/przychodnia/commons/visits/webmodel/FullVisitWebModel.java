@@ -9,9 +9,7 @@ import java.util.List;
 
 import static jersey.repackaged.com.google.common.collect.Lists.newArrayList;
 
-/**
- * Created by lupus on 01.01.17.
- */
+
 @Data
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor

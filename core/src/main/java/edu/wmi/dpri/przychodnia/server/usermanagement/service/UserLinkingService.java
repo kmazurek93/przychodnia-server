@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
-/**
- * Created by lupus on 29.10.16.
- */
+
 @Service
 public class UserLinkingService {
     @Inject

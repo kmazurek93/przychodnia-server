@@ -13,9 +13,7 @@ import java.util.List;
 import static edu.wmi.dpri.przychodnia.commons.usermanagement.UserManagementConstants.API_PATH;
 import static edu.wmi.dpri.przychodnia.commons.usermanagement.webapi.IdTypeManagementWebApi.BASE_PATH;
 
-/**
- * Created by kmazu on 02.07.2016.
- */
+
 @Path(API_PATH + BASE_PATH)
 public interface IdTypeManagementWebApi {
 

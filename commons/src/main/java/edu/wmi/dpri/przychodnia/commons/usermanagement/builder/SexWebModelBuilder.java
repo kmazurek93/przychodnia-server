@@ -2,9 +2,7 @@ package edu.wmi.dpri.przychodnia.commons.usermanagement.builder;
 
 import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.SexWebModel;
 
-/**
- * Created by kmazu on 06.07.2016.
- */
+
 public final class SexWebModelBuilder {
     private Long id;
     private String name;

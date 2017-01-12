@@ -9,9 +9,7 @@ import javax.inject.Inject;
 
 import static edu.wmi.dpri.przychodnia.server.exceptionmanagement.NotFoundExceptionThrower.throwExceptionIfNull;
 
-/**
- * Created by lupus on 01.01.17.
- */
+
 @Component
 public class DoctorService {
     @Inject

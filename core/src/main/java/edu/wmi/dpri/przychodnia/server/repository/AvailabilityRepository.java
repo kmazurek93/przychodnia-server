@@ -4,9 +4,7 @@ import edu.wmi.dpri.przychodnia.server.entity.Availability;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-/**
- * Created by lupus on 11.12.16.
- */
+
 @Repository
 public interface AvailabilityRepository extends CrudRepository<Availability, Long> {
 }

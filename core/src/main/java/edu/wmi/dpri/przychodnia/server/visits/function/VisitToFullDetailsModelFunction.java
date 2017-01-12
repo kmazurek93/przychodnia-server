@@ -12,9 +12,7 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Created by lupus on 01.01.17.
- */
+
 @Component
 public class VisitToFullDetailsModelFunction implements Function<Visit, FullVisitWebModel> {
 

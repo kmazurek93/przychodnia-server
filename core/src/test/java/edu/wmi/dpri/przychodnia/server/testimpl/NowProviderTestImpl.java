@@ -5,9 +5,7 @@ import org.joda.time.DateTime;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-/**
- * Created by lupus on 18.12.16.
- */
+
 @Profile("integration")
 @Component
 public class NowProviderTestImpl implements NowProvider {

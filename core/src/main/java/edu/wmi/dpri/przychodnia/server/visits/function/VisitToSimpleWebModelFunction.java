@@ -12,9 +12,7 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Created by lupus on 31.12.16.
- */
+
 @Component
 public class VisitToSimpleWebModelFunction implements Function<Visit, SimpleVisitWebModel> {
 

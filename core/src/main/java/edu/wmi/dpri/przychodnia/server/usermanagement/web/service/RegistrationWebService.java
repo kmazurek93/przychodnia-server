@@ -12,9 +12,7 @@ import javax.inject.Inject;
 
 import static edu.wmi.dpri.przychodnia.commons.usermanagement.UserManagementConstants.DEFAULT_ROLES_FOR_NEW_USER;
 
-/**
- * Created by lupus on 18.10.16.
- */
+
 @Service
 public class RegistrationWebService {
 

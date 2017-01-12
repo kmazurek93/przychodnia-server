@@ -8,9 +8,7 @@ import org.junit.Test;
 import static java.lang.System.out;
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * Created by lupus on 31.12.16.
- */
+
 
 public class LocalTimeLocalDateConcatenationTest {
 

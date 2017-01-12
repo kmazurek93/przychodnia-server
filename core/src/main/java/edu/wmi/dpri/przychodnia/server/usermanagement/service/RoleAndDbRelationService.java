@@ -13,9 +13,7 @@ import java.util.stream.Collectors;
 import static com.google.common.collect.Lists.newArrayList;
 import static edu.wmi.dpri.przychodnia.server.security.model.RoleAuthority.ROLE_STAFF;
 
-/**
- * Created by lupus on 08.01.17.
- */
+
 @Component
 public class RoleAndDbRelationService {
     @Inject

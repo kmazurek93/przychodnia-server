@@ -11,9 +11,7 @@ import java.util.stream.Collectors;
 
 import static edu.wmi.dpri.przychodnia.commons.usermanagement.builder.UserDataWebModelBuilder.anUserDataWebModel;
 
-/**
- * Created by lupus on 14.11.16.
- */
+
 @Component
 public class UserToUserDataWebModelFunction implements Function<User, UserDataWebModel> {
     @Override

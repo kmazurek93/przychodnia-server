@@ -9,9 +9,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.Base64.Encoder;
 
-/**
- * Created by lupus on 21.10.16.
- */
+
 @Service
 public class PasswordService {
 

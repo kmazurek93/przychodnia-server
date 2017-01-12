@@ -14,11 +14,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static edu.wmi.dpri.przychodnia.server.exceptionmanagement.generators.ErrorMessageGenerator.getForbiddenErrorMessage;
-import static edu.wmi.dpri.przychodnia.server.security.model.RoleAuthority.STAFF_OR_ADMIN;
+import static edu.wmi.dpri.przychodnia.server.security.model.RoleAuthority.ROLE_ADMIN;
 
-/**
- * Created by lupus on 24.11.16.
- */
+
 @Component
 public class RoleWebService {
 
@@ -31,8 +29,8 @@ public class RoleWebService {
     private RoleAssigningService roleAssigningService;
 
     public List<String> getAllPossibleRoles() {
-        boolean isAdminOrStaff = userVerificationService.verifyIfHasAnyAuthorityOf(STAFF_OR_ADMIN);
-        if (isAdminOrStaff) {
+        boolean isAdmin = userVerificationService.verifyIfHasAuthority(ROLE_ADMIN);
+        if (isAdmin) {
             return roleService.findAllUnInitialized()
                     .stream().map(Role::getName)
                     .collect(Collectors.toList());
@@ -42,8 +40,8 @@ public class RoleWebService {
     }
 
     public Response assignRole(RoleAssignmentWebModel roleAssignmentWebModel) {
-        boolean isAdminOrStaff = userVerificationService.verifyIfHasAnyAuthorityOf(STAFF_OR_ADMIN);
-        if (isAdminOrStaff) {
+        boolean isAdmin = userVerificationService.verifyIfHasAuthority(ROLE_ADMIN);
+        if (isAdmin) {
             roleAssigningService.assignRole(roleAssignmentWebModel);
             return Response.noContent().build();
         } else {
@@ -52,8 +50,8 @@ public class RoleWebService {
     }
 
     public Response unassignRole(RoleAssignmentWebModel roleAssignmentWebModel) {
-        boolean isAdminOrStaff = userVerificationService.verifyIfHasAnyAuthorityOf(STAFF_OR_ADMIN);
-        if (isAdminOrStaff) {
+        boolean isAdmin = userVerificationService.verifyIfHasAuthority(ROLE_ADMIN);
+        if (isAdmin) {
             roleAssigningService.unassignRole(roleAssignmentWebModel);
             return Response.noContent().build();
         } else {
@@ -62,8 +60,8 @@ public class RoleWebService {
     }
 
     public Response editRoles(RoleAssignmentWebModel roleAssignmentWebModel) {
-        boolean isAdminOrStaff = userVerificationService.verifyIfHasAnyAuthorityOf(STAFF_OR_ADMIN);
-        if (isAdminOrStaff) {
+        boolean isAdmin = userVerificationService.verifyIfHasAuthority(ROLE_ADMIN);
+        if (isAdmin) {
             roleAssigningService.editRoles(roleAssignmentWebModel);
             return Response.noContent().build();
         } else {

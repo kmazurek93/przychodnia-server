@@ -9,9 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- * Created by khartv on 30.11.2016.
- */
+
 
 @ToString(callSuper = true)
 @Entity

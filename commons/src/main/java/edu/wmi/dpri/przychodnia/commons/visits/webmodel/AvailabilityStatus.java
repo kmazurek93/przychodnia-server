@@ -1,8 +1,6 @@
 package edu.wmi.dpri.przychodnia.commons.visits.webmodel;
 
-/**
- * Created by lupus on 31.12.16.
- */
+
 public class AvailabilityStatus {
 
     public static final String UNAVAILABLE = "unavailable";

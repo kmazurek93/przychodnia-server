@@ -12,9 +12,7 @@ import static com.google.common.collect.Sets.newHashSet;
 import static edu.wmi.dpri.przychodnia.server.entity.builder.PersonBuilder.aPerson;
 import static edu.wmi.dpri.przychodnia.server.entity.builder.UserBuilder.anUser;
 
-/**
- * Created by kmazu on 24.08.2016.
- */
+
 
 public class SampleDataProvider {
 

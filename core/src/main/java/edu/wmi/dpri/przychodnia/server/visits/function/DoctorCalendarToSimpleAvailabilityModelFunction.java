@@ -9,9 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Created by lupus on 31.12.16.
- */
+
 @Component
 public class DoctorCalendarToSimpleAvailabilityModelFunction
         implements Function<DoctorCalendar, SimpleAvailabilityWebModel> {

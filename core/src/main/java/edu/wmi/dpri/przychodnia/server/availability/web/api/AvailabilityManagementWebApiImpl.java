@@ -8,9 +8,7 @@ import edu.wmi.dpri.przychodnia.server.availability.web.service.AvailabilityMana
 import javax.inject.Inject;
 import java.util.List;
 
-/**
- * Created by lupus on 10.01.17.
- */
+
 public class AvailabilityManagementWebApiImpl implements AvailabilityManagementWebApi {
 
     @Inject

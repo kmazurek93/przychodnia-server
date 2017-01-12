@@ -1,7 +1,5 @@
 package edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions;
-/**
- * Created by lupus on 10.05.16.
- */
+
 
 import javax.ws.rs.WebApplicationException;
 

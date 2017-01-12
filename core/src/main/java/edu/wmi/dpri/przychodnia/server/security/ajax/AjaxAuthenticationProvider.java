@@ -20,9 +20,7 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Created by lupus on 22.10.16.
- */
+
 @Component
 @Profile({"secure", "production"})
 public class AjaxAuthenticationProvider implements AuthenticationProvider {

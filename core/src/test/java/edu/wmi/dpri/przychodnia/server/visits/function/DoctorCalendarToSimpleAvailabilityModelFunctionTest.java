@@ -12,9 +12,7 @@ import static edu.wmi.dpri.przychodnia.commons.visits.webmodel.AvailabilityType.
 import static edu.wmi.dpri.przychodnia.commons.visits.webmodel.AvailabilityType.TIME_WINDOW;
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * Created by lupus on 31.12.16.
- */
+
 public class DoctorCalendarToSimpleAvailabilityModelFunctionTest {
 
     public static final String DATE_STRING = "2016-01-01";

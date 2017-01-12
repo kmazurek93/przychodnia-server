@@ -6,9 +6,7 @@ import org.joda.time.DateTime;
 
 import javax.persistence.*;
 
-/**
- * Created by lupus on 04.01.17.
- */
+
 @Data
 @Entity
 @Table(name = "news")

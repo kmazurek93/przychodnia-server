@@ -15,9 +15,7 @@ import static com.google.common.collect.Lists.newArrayList;
 import static edu.wmi.dpri.przychodnia.server.exceptionmanagement.NotFoundExceptionThrower.throwExceptionIfNull;
 
 
-/**
- * Created by lupus on 31.07.16.
- */
+
 @Service
 public class IdTypeService {
 

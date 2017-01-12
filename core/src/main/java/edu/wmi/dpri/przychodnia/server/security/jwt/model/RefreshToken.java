@@ -6,9 +6,7 @@ import io.jsonwebtoken.Jws;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Created by lupus on 22.10.16.
- */
+
 @SuppressWarnings("unchecked")
 public class RefreshToken implements JwtToken {
     private Jws<Claims> claims;

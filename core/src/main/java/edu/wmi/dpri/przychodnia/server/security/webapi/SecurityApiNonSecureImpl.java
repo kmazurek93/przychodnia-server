@@ -5,9 +5,7 @@ import edu.wmi.dpri.przychodnia.server.security.webmodel.UserContextWebModel;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
-/**
- * Created by lupus on 22.10.16.
- */
+
 @Service
 @Profile({"!secure", "!production"})
 public class SecurityApiNonSecureImpl implements SecurityApi {

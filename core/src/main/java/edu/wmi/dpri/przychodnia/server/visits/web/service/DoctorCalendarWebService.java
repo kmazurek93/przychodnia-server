@@ -14,9 +14,7 @@ import java.util.Map;
 import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Maps.newHashMap;
 
-/**
- * Created by lupus on 31.12.16.
- */
+
 @Component
 public class DoctorCalendarWebService {
     public static final String YYYY_MM_DD = "yyyy-MM-dd";

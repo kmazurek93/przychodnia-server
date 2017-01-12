@@ -4,9 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-/**
- * Created by lupus on 22.10.16.
- */
+
 @Configuration
 @ConfigurationProperties(prefix = "security.jwt")
 @Profile({"secure","production"})

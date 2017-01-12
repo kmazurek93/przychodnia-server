@@ -6,9 +6,7 @@ import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * Created by kmazu on 24.08.2016.
- */
+
 public class IdTypeToWebModelFunctionTest {
 
 	public static final String PASSPORT = "PASSPORT";

@@ -12,9 +12,7 @@ import java.util.Map;
 import static edu.wmi.dpri.przychodnia.commons.visits.webapi.VisitsWebApi.BASE_PATH;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
-/**
- * Created by lupus on 25.11.16.
- */
+
 @Path(BASE_PATH)
 public interface VisitsWebApi {
 
@@ -48,7 +46,6 @@ public interface VisitsWebApi {
     @Consumes(APPLICATION_JSON)
     SimpleVisitWebModel createNewVisit(SimpleVisitWebModel visitRequest);
 
-    //TODO not sure if should be used
     @PUT
     @Path("/status/{id}")
     @Produces(APPLICATION_JSON)

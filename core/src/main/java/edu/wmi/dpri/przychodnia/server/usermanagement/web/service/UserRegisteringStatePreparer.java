@@ -16,9 +16,7 @@ import java.util.List;
 import static edu.wmi.dpri.przychodnia.commons.usermanagement.UserManagementConstants.DEFAULT_ROLES_FOR_NEW_USER;
 import static edu.wmi.dpri.przychodnia.server.usermanagement.state.UserRegisteringStateBuilder.anUserRegisteringState;
 
-/**
- * Created by lupus on 18.10.16.
- */
+
 @Component
 public class UserRegisteringStatePreparer {
 

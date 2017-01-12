@@ -9,9 +9,7 @@ import javax.ws.rs.*;
 import static edu.wmi.dpri.przychodnia.commons.usermanagement.UserManagementConstants.API_PATH;
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
-/**
- * Created by lupus on 12.11.16.
- */
+
 @Path(API_PATH + UserWebApi.USERS)
 public interface UserWebApi {
 

@@ -13,9 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.inject.Inject;
 import java.util.List;
 
-/**
- * Created by lupus on 22.10.16.
- */
+
 @Service
 @Profile({"secure","production"})
 public class SecurityService {

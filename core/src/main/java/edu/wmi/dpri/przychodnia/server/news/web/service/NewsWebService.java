@@ -14,9 +14,7 @@ import javax.inject.Inject;
 import static edu.wmi.dpri.przychodnia.server.exceptionmanagement.generators.ErrorMessageGenerator.getForbiddenErrorMessage;
 import static edu.wmi.dpri.przychodnia.server.security.model.RoleAuthority.ROLE_ADMIN;
 
-/**
- * Created by lupus on 11.01.17.
- */
+
 @Component
 public class NewsWebService {
 

@@ -1,8 +1,6 @@
 package edu.wmi.dpri.przychodnia.server.security.jwt.model;
 
-/**
- * Created by lupus on 22.10.16.
- */
+
 
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.ErrorMessage;
 import edu.wmi.dpri.przychodnia.server.exceptionmanagement.exceptions.auth.AuthenticationAppException;

@@ -10,9 +10,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
-/**
- * Created by lupus on 10.05.16.
- */
+
 @Provider
 public class AppExceptionMapper implements ExceptionMapper<AppException> {
     private static final Logger logger = LoggerFactory.getLogger(AppExceptionMapper.class);

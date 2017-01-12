@@ -1,8 +1,6 @@
 package edu.wmi.dpri.przychodnia.commons.rest;
 
-/**
- * Created by lupus on 21.09.16.
- */
+
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.proxy.WebResourceFactory;
 import org.glassfish.jersey.jackson.JacksonFeature;

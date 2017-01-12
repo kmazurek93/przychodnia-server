@@ -17,9 +17,7 @@ import static org.mockito.Matchers.refEq;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-/**
- * Created by kmazu on 07.09.2016.
- */
+
 public class IdTypeServiceTest {
 
     public static final String NEW_NAME = "new name";

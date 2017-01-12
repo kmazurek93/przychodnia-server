@@ -7,9 +7,7 @@ import org.springframework.stereotype.Component;
 
 import static edu.wmi.dpri.przychodnia.commons.usermanagement.builder.IdTypeWebModelBuilder.anIdTypeWebModel;
 
-/**
- * Created by kmazu on 24.08.2016.
- */
+
 @Component
 public class IdTypeToWebModelFunction implements Function<IdType, IdTypeWebModel> {
     @Override

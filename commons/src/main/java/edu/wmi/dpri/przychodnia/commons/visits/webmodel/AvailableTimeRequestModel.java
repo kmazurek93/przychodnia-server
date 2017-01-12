@@ -5,9 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 
-/**
- * Created by lupus on 25.11.16.
- */
+
 @Data
 @NoArgsConstructor
 public class AvailableTimeRequestModel {

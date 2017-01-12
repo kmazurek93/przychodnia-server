@@ -8,9 +8,7 @@ import javax.ws.rs.core.MediaType;
 
 import static edu.wmi.dpri.przychodnia.server.security.SecurityConstants.SECURITY_API_PATH;
 
-/**
- * Created by lupus on 22.10.16.
- */
+
 @Path(SECURITY_API_PATH)
 public interface SecurityApi {
     String TOKEN_REFRESH_PATH = "/auth/token";

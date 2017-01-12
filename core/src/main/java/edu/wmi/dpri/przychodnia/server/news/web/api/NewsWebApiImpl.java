@@ -6,9 +6,7 @@ import edu.wmi.dpri.przychodnia.server.news.web.service.NewsWebService;
 
 import javax.inject.Inject;
 
-/**
- * Created by lupus on 11.01.17.
- */
+
 
 public class NewsWebApiImpl implements NewsWebApi {
 

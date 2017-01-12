@@ -14,9 +14,7 @@ import static com.google.common.collect.Lists.newArrayList;
 import static edu.wmi.dpri.przychodnia.server.security.model.RoleAuthority.*;
 import static org.hibernate.Hibernate.initialize;
 
-/**
- * Created by lupus on 18.10.16.
- */
+
 @Service
 public class RoleService {
 

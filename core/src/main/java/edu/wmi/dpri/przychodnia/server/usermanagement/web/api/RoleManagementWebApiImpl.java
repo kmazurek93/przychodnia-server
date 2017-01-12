@@ -8,9 +8,7 @@ import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
-/**
- * Created by lupus on 24.11.16.
- */
+
 public class RoleManagementWebApiImpl implements RoleManagementWebApi {
 
     @Inject

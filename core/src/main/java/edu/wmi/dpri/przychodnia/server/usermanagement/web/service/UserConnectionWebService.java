@@ -12,9 +12,7 @@ import javax.inject.Inject;
 
 import static edu.wmi.dpri.przychodnia.server.security.model.RoleAuthority.STAFF_OR_ADMIN;
 
-/**
- * Created by lupus on 29.10.16.
- */
+
 @Service
 public class UserConnectionWebService {
 

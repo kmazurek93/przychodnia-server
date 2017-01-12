@@ -7,9 +7,7 @@ import org.springframework.stereotype.Component;
 
 import static edu.wmi.dpri.przychodnia.commons.usermanagement.builder.PersonalDataWebModelBuilder.aPersonalDataWebModel;
 
-/**
- * Created by lupus on 14.11.16.
- */
+
 @Component
 public class PersonToPersonalDataWebModelFunction implements Function<Person, PersonalDataWebModel> {
     @Override

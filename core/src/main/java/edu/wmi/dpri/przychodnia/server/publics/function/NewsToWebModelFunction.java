@@ -7,9 +7,7 @@ import edu.wmi.dpri.przychodnia.server.entity.Person;
 import org.springframework.stereotype.Component;
 
 
-/**
- * Created by lupus on 04.01.17.
- */
+
 @Component
 public class NewsToWebModelFunction implements Function<News, NewsWebModel> {
 

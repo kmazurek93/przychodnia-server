@@ -5,9 +5,7 @@ import org.junit.Test;
 import static edu.wmi.dpri.przychodnia.server.entity.enums.WeekdayType.MONDAY;
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * Created by lupus on 10.01.17.
- */
+
 public class WeekdayTypeTest {
 
 

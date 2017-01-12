@@ -3,9 +3,7 @@ package edu.wmi.dpri.przychodnia.server.security.jwt.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.jsonwebtoken.Claims;
 
-/**
- * Created by lupus on 22.10.16.
- */
+
 public final class AccessJwtToken implements JwtToken {
     private final String rawToken;
     @JsonIgnore

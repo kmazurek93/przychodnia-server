@@ -7,9 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 import java.util.List;
 
-/**
- * Created by lupus on 22.10.16.
- */
+
 
 public class UserContext {
     @Getter

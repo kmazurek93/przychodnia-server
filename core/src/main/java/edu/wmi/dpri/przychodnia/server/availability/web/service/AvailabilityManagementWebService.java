@@ -18,9 +18,7 @@ import java.util.List;
 import static edu.wmi.dpri.przychodnia.server.exceptionmanagement.generators.ErrorMessageGenerator.getForbiddenErrorMessage;
 import static edu.wmi.dpri.przychodnia.server.security.model.RoleAuthority.ROLE_ADMIN;
 
-/**
- * Created by lupus on 10.01.17.
- */
+
 @Component
 public class AvailabilityManagementWebService {
 

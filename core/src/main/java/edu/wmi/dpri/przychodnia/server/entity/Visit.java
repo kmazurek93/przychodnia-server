@@ -13,9 +13,7 @@ import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
 
-/**
- * Created by khartv on 21.11.2016.
- */
+
 
 @Data
 @NoArgsConstructor

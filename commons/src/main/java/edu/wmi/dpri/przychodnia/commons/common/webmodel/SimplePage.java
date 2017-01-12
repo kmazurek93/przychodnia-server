@@ -8,9 +8,7 @@ import java.util.List;
 import static jersey.repackaged.com.google.common.collect.Lists.newArrayList;
 
 
-/**
- * Created by lupus on 04.01.17.
- */
+
 @Data
 @NoArgsConstructor
 public class SimplePage<T> {

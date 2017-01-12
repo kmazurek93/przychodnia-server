@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Created by lupus on 22.10.16.
- */
+
 @Component
 @Profile({"secure","production"})
 public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {

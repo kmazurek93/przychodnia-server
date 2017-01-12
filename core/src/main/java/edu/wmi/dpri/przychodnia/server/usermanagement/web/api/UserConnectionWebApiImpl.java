@@ -8,9 +8,7 @@ import org.jvnet.hk2.annotations.Service;
 import javax.inject.Inject;
 import javax.ws.rs.core.Response;
 
-/**
- * Created by lupus on 29.10.16.
- */
+
 @Service
 public class UserConnectionWebApiImpl implements UserConnectionWebApi {
 

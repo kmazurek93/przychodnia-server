@@ -4,9 +4,7 @@ import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
 
-/**
- * Created by lupus on 29.10.16.
- */
+
 public interface RoleAuthority {
     String ROLE_ADMIN = "ROLE_ADMIN";
     String ROLE_USER = "ROLE_USER";

@@ -19,9 +19,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.data.domain.Sort.Direction.ASC;
 
-/**
- * Created by lupus on 11.12.16.
- */
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles({"integration", "secure"})

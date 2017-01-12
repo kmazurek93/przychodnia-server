@@ -23,9 +23,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-/**
- * Created by lupus on 01.01.17.
- */
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles({"integration", "secure"})

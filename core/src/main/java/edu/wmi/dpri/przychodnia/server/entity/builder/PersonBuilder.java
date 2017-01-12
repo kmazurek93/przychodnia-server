@@ -7,9 +7,7 @@ import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
 
-/**
- * Created by lupus on 19.09.16.
- */
+
 public final class PersonBuilder {
     private String PESEL;
     private String firstName;

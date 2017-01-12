@@ -5,9 +5,7 @@ import edu.wmi.dpri.przychodnia.commons.usermanagement.webmodel.UserSearchResult
 
 import java.util.List;
 
-/**
- * Created by lupus on 14.11.16.
- */
+
 public final class UserSearchResultBuilder {
     private Integer amountOfPages;
     private List<UserDataSimpleModel> users;
