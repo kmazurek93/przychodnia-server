@@ -18,4 +18,4 @@ It's server side. Based on rest services.
 ### Additional info
 
 
-(c) Karol Mazurek, Piotr Strzelecki, Julian Korobacz, Filip Trela
+(c) code: Karol Mazurek, Julian Korobacz
